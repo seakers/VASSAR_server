@@ -17,6 +17,7 @@ dependencies {
     compile files('lib/orekit.jar')
     compile files('lib/jess.jar')
     compile files('lib/SystemArchitectureProblems.jar')
+    compile files('lib/vassar.jar')
     compile 'net.sourceforge.jexcelapi:jxl:2.6.12'
     compile 'org.moeaframework:moeaframework:2.12'
     compile 'org.apache.thrift:libthrift:0.11.0'
