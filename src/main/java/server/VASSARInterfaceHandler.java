@@ -25,7 +25,7 @@ import java.util.*;
 import java.util.concurrent.*;
 
 import io.lettuce.core.RedisClient;
-import javaInterface.DiscreteInputArchitecture;
+import javaInterface.*;
 import org.moeaframework.algorithm.EpsilonMOEA;
 import org.moeaframework.core.*;
 import org.moeaframework.core.comparator.ChainedComparator;
@@ -35,9 +35,10 @@ import org.moeaframework.core.operator.binary.BitFlip;
 import org.moeaframework.core.variable.BinaryVariable;
 import org.moeaframework.util.TypedProperties;
 
-import javaInterface.BinaryInputArchitecture;
-import javaInterface.VASSARInterface;
-import javaInterface.ObjectiveSatisfaction;
+import search.InstrumentAssignment;
+import search.InstrumentAssignmentArchitecture;
+import search.InstrumentedSearch;
+import search.InteractiveSearch;
 
 import rbsa.eoss.architecture.AbstractArchitecture;
 import rbsa.eoss.evaluation.AbstractArchitectureEvaluator;
@@ -60,9 +61,9 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
     }
 
     public void ping() {
-      System.out.println("ping()");
+        System.out.println("ping()");
     }
-  
+
     private void initJess(String problem) {
 
         BaseParams params;
@@ -71,64 +72,64 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         String key;
         String search_clps = "";
 
-        if(problem.equalsIgnoreCase("SMAP")){
+        if (problem.equalsIgnoreCase("SMAP")) {
 
             key = "SMAP";
             String path = this.root +
                     File.pathSeparator + "problems" +
                     File.pathSeparator + "SMAP";
-            params = new rbsa.eoss.problems.SMAP.Params(path, "FUZZY-ATTRIBUTES", "test","normal", search_clps);
+            params = new rbsa.eoss.problems.SMAP.Params(path, "FUZZY-ATTRIBUTES", "test", "normal", search_clps);
             evaluator = new rbsa.eoss.problems.SMAP.ArchitectureEvaluator(params);
 
-        }else if(problem.equalsIgnoreCase("DecadalSurvey")){
+        } else if (problem.equalsIgnoreCase("DecadalSurvey")) {
 
             key = "DecadalSurvey";
             String path = this.root +
                     File.pathSeparator + "problems" +
                     File.pathSeparator + "SMAP";
-            params = new rbsa.eoss.problems.DecadalSurvey.Params(path, "FUZZY-ATTRIBUTES", "test","normal", search_clps);
+            params = new rbsa.eoss.problems.DecadalSurvey.Params(path, "FUZZY-ATTRIBUTES", "test", "normal", search_clps);
             evaluator = new rbsa.eoss.problems.DecadalSurvey.ArchitectureEvaluator(params);
 
-        }else{
+        } else {
             throw new IllegalArgumentException("Unrecorgnizable problem type: " + problem);
         }
 
-        if(this.paramsMap.keySet().contains(key)){
+        if (this.paramsMap.keySet().contains(key)) {
             // Already initialized
             return;
 
-        }else{
+        } else {
             AEM = new ArchitectureEvaluationManager(params, evaluator);
             this.paramsMap.put(key, params);
-            this.architectureEvaluationManagerMap.put(key,AEM);
+            this.architectureEvaluationManagerMap.put(key, AEM);
 
             // Initialization
             AEM.init(1);
         }
     }
 
-    public AbstractArchitecture getArchitectureBinaryInput(String problem, String bitString, int numSatellites, BaseParams params){
+    private AbstractArchitecture getArchitectureBinaryInput(String problem, String bitString, int numSatellites, BaseParams params) {
         AbstractArchitecture architecture;
 
-        if(problem.equalsIgnoreCase("SMAP")){
+        if (problem.equalsIgnoreCase("SMAP")) {
             // Generate a new architecture
             architecture = new rbsa.eoss.problems.SMAP.Architecture(bitString, numSatellites, (rbsa.eoss.problems.SMAP.Params) params);
 
-        }else{
+        } else {
             throw new IllegalArgumentException("Unrecorgnizable problem type: " + problem);
         }
 
         return architecture;
     }
 
-    public AbstractArchitecture getArchitectureDiscreteInput(String problem, int[] intArray, int numSatellites, BaseParams params){
+    private AbstractArchitecture getArchitectureDiscreteInput(String problem, int[] intArray, int numSatellites, BaseParams params) {
         AbstractArchitecture architecture;
 
-        if(problem.equalsIgnoreCase("DecadalSurvey")){
+        if (problem.equalsIgnoreCase("DecadalSurvey")) {
             // Generate a new architecture
             architecture = new rbsa.eoss.problems.DecadalSurvey.Architecture(intArray, 1, (rbsa.eoss.problems.DecadalSurvey.Params) params);
 
-        }else{
+        } else {
             throw new IllegalArgumentException("Unrecorgnizable problem type: " + problem);
         }
 
@@ -143,7 +144,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
         // Input a new architecture design
         String bitString = "";
-        for (Boolean b: boolList) {
+        for (Boolean b : boolList) {
             bitString += b ? "1" : "0";
         }
 
@@ -160,7 +161,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         List<Double> outputs = new ArrayList<>();
         outputs.add(science);
         outputs.add(cost);
-        
+
         System.out.println("Performance Score: " + science + ", Cost: " + cost);
         return new BinaryInputArchitecture(0, boolList, outputs);
     }
@@ -203,14 +204,14 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
 
         String bitString = "";
-        for (Boolean b: boolList) {
+        for (Boolean b : boolList) {
             bitString += b ? "1" : "0";
         }
 
         ArrayList<String> samples = randomLocalChangeBinaryInput(bitString, 4, params);
 
         List<BinaryInputArchitecture> out = new ArrayList<>();
-        for (String sample: samples) {
+        for (String sample : samples) {
 
             AbstractArchitecture architecture = this.getArchitectureBinaryInput(problem, sample, 1, params);
 
@@ -250,8 +251,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             StringBuilder tempBitString = new StringBuilder(bitString);
             if (bitString.charAt(k) == '1') {
                 tempBitString.setCharAt(k, '0');
-            }
-            else {
+            } else {
                 tempBitString.setCharAt(k, '1');
             }
             out.add(tempBitString.toString());
@@ -259,7 +259,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         return out;
     }
 
-    private List<Boolean> bitString2BoolArray(String bitString){
+    private List<Boolean> bitString2BoolArray(String bitString) {
         List<Boolean> out = new ArrayList<>();
         for (int i = 0; i < bitString.length(); i++) {
             out.add(bitString.charAt(i) == '1');
@@ -269,16 +269,17 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
     @Override
     public List<String> getCritiqueBinaryInputArch(String problem, List<Boolean> boolList) {
+
         String bitString = "";
-        for(Boolean b: boolList){
+        for (Boolean b : boolList) {
             bitString += b ? "1" : "0";
         }
 
         AbstractArchitecture architecture;
-        
+
         System.out.println(bitString);
 
-        if(problem.equalsIgnoreCase("SMAP")){
+        if (problem.equalsIgnoreCase("SMAP")) {
 
             rbsa.eoss.problems.SMAP.Params params = (rbsa.eoss.problems.SMAP.Params) this.paramsMap.get("SMAP");
             ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get("SMAP");
@@ -291,7 +292,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
             return critiquer.getCritique();
 
-        }else{
+        } else {
             throw new IllegalArgumentException("Unrecorgnizable problem type: " + problem);
         }
     }
@@ -305,7 +306,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
     public ArrayList<String> getOrbitList(String problem) {
         BaseParams params = this.paramsMap.get(problem);
         ArrayList<String> orbitList = new ArrayList<>();
-        for(String o: params.getOrbitList()){
+        for (String o : params.getOrbitList()) {
             orbitList.add(o);
         }
         return orbitList;
@@ -315,7 +316,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
     public ArrayList<String> getInstrumentList(String problem) {
         BaseParams params = this.paramsMap.get(problem);
         ArrayList<String> instrumentList = new ArrayList<>();
-        for (String i: params.getInstrumentList()) {
+        for (String i : params.getInstrumentList()) {
             instrumentList.add(i);
         }
         return instrumentList;
@@ -346,20 +347,22 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
     @Override
     public List<ObjectiveSatisfaction> getArchitectureScoreExplanation(String problem, List<Boolean> arch) {
         String bitString = "";
-        for (Boolean b: arch) {
+        for (Boolean b : arch) {
             bitString += b ? "1" : "0";
         }
 
+        BaseParams params = this.paramsMap.get(problem);
+        ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
+
         // Generate a new architecture
-        Architecture architecture = new Architecture(bitString, 1);
-        architecture.setEvalMode("DEBUG");
+        AbstractArchitecture architecture = this.getArchitectureBinaryInput(problem, bitString, 1, params);
 
         // Evaluate the architecture
         Result result = null;
         // Save the explanations for each stakeholder score
         List<ObjectiveSatisfaction> explanations = new ArrayList<>();
 
-        result = AE.evaluateArchitecture(architecture, "Slow");
+        result = AEM.evaluateArchitecture(architecture, "Slow");
         for (int i = 0; i < params.panelNames.size(); ++i) {
             explanations.add(new ObjectiveSatisfaction(params.panelNames.get(i),
                     result.getPanelScores().get(i), params.panelWeights.get(i)));
@@ -370,22 +373,24 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
 
     @Override
-    public List<ObjectiveSatisfaction> getPanelScoreExplanation(List<Boolean> arch, String panel) {
+    public List<ObjectiveSatisfaction> getPanelScoreExplanation(String problem, List<Boolean> arch, String panel) {
         String bitString = "";
-        for (Boolean b: arch) {
+        for (Boolean b : arch) {
             bitString += b ? "1" : "0";
         }
 
+        BaseParams params = this.paramsMap.get(problem);
+        ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
+
         // Generate a new architecture
-        Architecture architecture = new Architecture(bitString, 1);
-        architecture.setEvalMode("DEBUG");
+        AbstractArchitecture architecture = this.getArchitectureBinaryInput(problem, bitString, 1, params);
 
         // Evaluate the architecture
         Result result = null;
         // Save the explanations for each stakeholder score
         List<ObjectiveSatisfaction> explanations = new ArrayList<>();
 
-        result = AE.evaluateArchitecture(architecture, "Slow");
+        result = AEM.evaluateArchitecture(architecture, "Slow");
         for (int i = 0; i < params.panelNames.size(); ++i) {
             if (params.panelNames.get(i).equals(panel)) {
                 for (int j = 0; j < params.objNames.get(i).size(); ++j) {
@@ -398,24 +403,25 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         return explanations;
     }
 
-
     @Override
-    public List<ObjectiveSatisfaction> getObjectiveScoreExplanation(List<Boolean> arch, String objective) {
+    public List<ObjectiveSatisfaction> getObjectiveScoreExplanation(String problem, List<Boolean> arch, String objective) {
         String bitString = "";
-        for (Boolean b: arch) {
+        for (Boolean b : arch) {
             bitString += b ? "1" : "0";
         }
 
+        BaseParams params = this.paramsMap.get(problem);
+        ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
+
         // Generate a new architecture
-        Architecture architecture = new Architecture(bitString, 1);
-        architecture.setEvalMode("DEBUG");
+        AbstractArchitecture architecture = this.getArchitectureBinaryInput(problem, bitString, 1, params);
 
         // Evaluate the architecture
         Result result = null;
         // Save the explanations for each stakeholder score
         List<ObjectiveSatisfaction> explanations = new ArrayList<>();
 
-        result = AE.evaluateArchitecture(architecture, "Slow");
+        result = AEM.evaluateArchitecture(architecture, "Slow");
         for (int i = 0; i < params.panelNames.size(); ++i) {
             for (int j = 0; j < params.objNames.get(i).size(); ++j) {
                 if (params.objNames.get(i).get(j).equals(objective)) {
@@ -432,7 +438,37 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
     }
 
     @Override
-    public void startGA(List<BinaryInputArchitecture> dataset, String username) {
+    public SubobjectiveDetails getSubscoreDetailsBinaryInput(String problem, BinaryInputArchitecture architecture, String subobj) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public SubobjectiveDetails getSubscoreDetailsDiscreteInput(String problem, DiscreteInputArchitecture architecture, String subobj) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public List<SubscoreInformation> getArchScienceInformationBinaryInput(String problem, BinaryInputArchitecture architecture) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public List<SubscoreInformation> getArchScienceInformationDiscreteInput(String problem, DiscreteInputArchitecture architecture) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public List<MissionCostInformation> getArchCostInformationBinaryInput(String problem, BinaryInputArchitecture architecture) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public List<MissionCostInformation> getArchCostInformationDiscreteInput(String problem, DiscreteInputArchitecture architecture) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void startGABinaryInput(String problem, List<BinaryInputArchitecture> dataset, String username) {
         //PATH
         String path = ".";
 
@@ -464,7 +500,9 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         properties.setBoolean("saveSelection", true);
 
         //initialize problem
-        Params.initInstance(path, "CRISP-ATTRIBUTES", "test","normal","");
+        BaseParams params = this.paramsMap.get(problem);
+        ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
+
         ArchitectureEvaluator.getInstance().init(8);
         Problem problem = new InstrumentAssignment(new int[]{1});
 
@@ -475,7 +513,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
                     Params.getInstance().numInstr, Params.getInstance().numOrbits, 2);
             for (int j = 1; j < new_arch.getNumberOfVariables(); ++j) {
                 BinaryVariable var = new BinaryVariable(1);
-                var.set(0,dataset.get(i).inputs.get(j));
+                var.set(0, dataset.get(i).inputs.get(j));
                 new_arch.setVariable(j, var);
             }
             new_arch.setObjective(0, dataset.get(i).outputs.get(0));
@@ -512,5 +550,9 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         pool.shutdown();
         System.out.println("DONE");
     }
-}
 
+    @Override
+    public void startGADiscreteInput(String problem, List<DiscreteInputArchitecture> dataset, String username) {
+        throw new UnsupportedOperationException();
+    }
+}

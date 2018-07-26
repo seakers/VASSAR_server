@@ -115,6 +115,7 @@ service VASSARInterface {
     list<string> getCritiqueBinaryInputArch(1:string problem, 2:list<bool> inputs),
 
     list<string> getCritiqueDiscreteInputArch(1:string problem, 2:list<int> inputs),
+    
 
     list<ObjectiveSatisfaction> getArchitectureScoreExplanation(1:string problem, 2:list<bool> arch),
 
