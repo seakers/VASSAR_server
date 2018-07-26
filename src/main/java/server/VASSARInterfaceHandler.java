@@ -503,14 +503,15 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         BaseParams params = this.paramsMap.get(problem);
         ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
 
-        ArchitectureEvaluator.getInstance().init(8);
-        Problem problem = new InstrumentAssignment(new int[]{1});
+        AEM.reset();
+        AEM.init(8);
+        Problem assignmentProblem = new InstrumentAssignment(new int[]{1}, problem, AEM, params);
 
         // Create a solution for each input arch in the dataset
         List<Solution> initial = new ArrayList<>(dataset.size());
         for (int i = 0; i < dataset.size(); ++i) {
             InstrumentAssignmentArchitecture new_arch = new InstrumentAssignmentArchitecture(new int[]{1},
-                    Params.getInstance().numInstr, Params.getInstance().numOrbits, 2);
+                    params.getNumInstr(), params.getNumOrbits(), 2);
             for (int j = 1; j < new_arch.getNumberOfVariables(); ++j) {
                 BinaryVariable var = new BinaryVariable(1);
                 var.set(0, dataset.get(i).inputs.get(j));
@@ -520,7 +521,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             new_arch.setObjective(1, dataset.get(i).outputs.get(1));
             initial.set(i, new_arch);
         }
-        initialization = new InjectedInitialization(problem, popSize, initial);
+        initialization = new InjectedInitialization(assignmentProblem, popSize, initial);
 
         //initialize population structure for algorithm
         Population population = new Population();
@@ -536,7 +537,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         // REDIS
         RedisClient redisClient = RedisClient.create("redis://localhost:6379/0");
 
-        Algorithm eMOEA = new EpsilonMOEA(problem, population, archive, selection, var, initialization);
+        Algorithm eMOEA = new EpsilonMOEA(assignmentProblem, population, archive, selection, var, initialization);
         ecs.submit(new InteractiveSearch(eMOEA, properties, username, redisClient));
 
         try {
@@ -546,7 +547,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         }
 
         redisClient.shutdown();
-        ArchitectureEvaluator.getInstance().clear();
+        AEM.clear();
         pool.shutdown();
         System.out.println("DONE");
     }

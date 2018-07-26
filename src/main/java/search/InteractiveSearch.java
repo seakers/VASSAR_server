@@ -19,7 +19,7 @@ import org.moeaframework.core.Population;
 import org.moeaframework.core.Solution;
 import org.moeaframework.core.variable.BinaryVariable;
 import org.moeaframework.util.TypedProperties;
-import rbsa.eoss.javaInterface.BinaryInputArchitecture;
+import javaInterface.BinaryInputArchitecture;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -92,5 +92,4 @@ public class InteractiveSearch implements Callable<Algorithm> {
 
         return alg;
     }
-
 }

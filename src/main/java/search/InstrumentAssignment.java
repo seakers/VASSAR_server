@@ -7,7 +7,10 @@ package search;
 
 import org.moeaframework.core.Solution;
 import org.moeaframework.problem.AbstractProblem;
-import rbsa.eoss.local.Params;
+import rbsa.eoss.architecture.AbstractArchitecture;
+import rbsa.eoss.evaluation.ArchitectureEvaluationManager;
+import rbsa.eoss.local.BaseParams;
+import rbsa.eoss.Result;
 import seak.architecture.problem.SystemArchitectureProblem;
 
 
@@ -22,7 +25,11 @@ public class InstrumentAssignment extends AbstractProblem implements SystemArchi
 
     private final int[] alternativesForNumberOfSatellites;
 
-    private final ArchitectureEvaluator eval;
+    private final String problem;
+
+    private final ArchitectureEvaluationManager evaluationManager;
+
+    private final BaseParams params;
 
     private final double dcThreshold = 0.5;
 
@@ -33,11 +40,13 @@ public class InstrumentAssignment extends AbstractProblem implements SystemArchi
     /**
      * @param alternativesForNumberOfSatellites
      */
-    public InstrumentAssignment(int[] alternativesForNumberOfSatellites, ArchitectureEvaluator archEval) {
+    public InstrumentAssignment(int[] alternativesForNumberOfSatellites, String problem, ArchitectureEvaluationManager evaluationManager, BaseParams params) {
         //2 decisions for Choosing and Assigning Patterns
-        super(1 + Params.getInstance().numInstr*Params.getInstance().numOrbits, 2);
-        this.eval = archEval;
+        super(1 + params.getNumInstr()*params.getNumOrbits(), 2);
+        this.problem = problem;
+        this.evaluationManager = evaluationManager;
         this.alternativesForNumberOfSatellites = alternativesForNumberOfSatellites;
+        this.params = params;
     }
 
     @Override
@@ -54,8 +63,17 @@ public class InstrumentAssignment extends AbstractProblem implements SystemArchi
             for(int i = 1; i < this.getNumberOfVariables(); ++i) {
                 bitString += arch.getVariable(i).toString();
             }
-            Architecture arch_old = new Architecture(bitString, 1);
-            Result result = eval.evaluateArchitecture(arch_old, "Slow");
+
+            AbstractArchitecture arch_old;
+            if (problem.equalsIgnoreCase("SMAP")) {
+                // Generate a new architecture
+                arch_old = new rbsa.eoss.problems.SMAP.Architecture(bitString, 1, (rbsa.eoss.problems.SMAP.Params)params);
+
+            }else{
+                throw new IllegalArgumentException("Unrecorgnizable problem type: " + problem);
+            }
+
+            Result result = this.evaluationManager.evaluateArchitecture(arch_old, "Slow");
             arch.setObjective(0, -result.getScience()); //negative because MOEAFramework assumes minimization problems
 
             double cost = result.getCost();
@@ -66,7 +84,7 @@ public class InstrumentAssignment extends AbstractProblem implements SystemArchi
 
     @Override
     public Solution newSolution() {
-        return new InstrumentAssignmentArchitecture(alternativesForNumberOfSatellites, Params.getInstance().numInstr, Params.getInstance().numOrbits, 2);
+        return new InstrumentAssignmentArchitecture(alternativesForNumberOfSatellites, params.getNumInstr(), params.getNumOrbits(), 2);
     }
 
 }
