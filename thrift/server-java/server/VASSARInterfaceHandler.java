@@ -20,10 +20,12 @@ package server;
  */
 
 
+import java.io.File;
 import java.util.*;
 import java.util.concurrent.*;
 
 import io.lettuce.core.RedisClient;
+import javaInterface.DiscreteInputArchitecture;
 import org.moeaframework.algorithm.EpsilonMOEA;
 import org.moeaframework.core.*;
 import org.moeaframework.core.comparator.ChainedComparator;
@@ -32,53 +34,109 @@ import org.moeaframework.core.operator.*;
 import org.moeaframework.core.operator.binary.BitFlip;
 import org.moeaframework.core.variable.BinaryVariable;
 import org.moeaframework.util.TypedProperties;
-import rbsa.eoss.*;
-import rbsa.eoss.local.Params;
+
 import javaInterface.BinaryInputArchitecture;
 import javaInterface.VASSARInterface;
 import javaInterface.ObjectiveSatisfaction;
+
+import rbsa.eoss.architecture.AbstractArchitecture;
+import rbsa.eoss.evaluation.AbstractArchitectureEvaluator;
+import rbsa.eoss.evaluation.ArchitectureEvaluationManager;
+import rbsa.eoss.problems.SMAP.ArchitectureEvaluator;
 import seak.architecture.operators.IntegerUM;
+import rbsa.eoss.local.BaseParams;
+import rbsa.eoss.Result;
 
 public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
-    private Params params;
-    private ArchitectureEvaluator AE = null;
+    private String root;
+    private Map<String, BaseParams> paramsMap;
+    private Map<String, ArchitectureEvaluationManager> architectureEvaluationManagerMap;
 
     public VASSARInterfaceHandler() {
-        initJess();
+        // Set a path to the project folder
+        this.root = System.getProperty("user.dir");
     }
 
     public void ping() {
       System.out.println("ping()");
     }
   
-    private void initJess() {
-        // Set a path to the project folder
-        String path = System.getProperty("user.dir");
-        
-        // Initialization
+    private void initJess(String problem) {
+
+        BaseParams params;
+        AbstractArchitectureEvaluator evaluator;
+        ArchitectureEvaluationManager AEM;
+        String key;
         String search_clps = "";
-        params = Params.initInstance(path, "FUZZY-ATTRIBUTES", "test","normal", search_clps);//FUZZY or CRISP
-        AE = ArchitectureEvaluator.getInstance();
-        AE.init(1);
+
+        if(problem.equalsIgnoreCase("SMAP")){
+
+            key = "SMAP";
+            String path = this.root +
+                    File.pathSeparator + "problems" +
+                    File.pathSeparator + "SMAP";
+            params = new rbsa.eoss.problems.SMAP.Params(path, "FUZZY-ATTRIBUTES", "test","normal", search_clps);
+            evaluator = new rbsa.eoss.problems.SMAP.ArchitectureEvaluator(params);
+
+        }else if(problem.equalsIgnoreCase("DecadalSurvey")){
+
+            key = "DecadalSurvey";
+            String path = this.root +
+                    File.pathSeparator + "problems" +
+                    File.pathSeparator + "SMAP";
+            params = new rbsa.eoss.problems.DecadalSurvey.Params(path, "FUZZY-ATTRIBUTES", "test","normal", search_clps);
+            evaluator = new rbsa.eoss.problems.DecadalSurvey.ArchitectureEvaluator(params);
+
+        }else{
+            throw new IllegalArgumentException("Unrecorgnizable problem type: " + problem);
+        }
+
+        if(this.paramsMap.keySet().contains(key)){
+            // Already initialized
+            return;
+
+        }else{
+            AEM = new ArchitectureEvaluationManager(params, evaluator);
+            this.paramsMap.put(key, params);
+            this.architectureEvaluationManagerMap.put(key,AEM);
+
+            // Initialization
+            AEM.init(1);
+        }
     }
 
     @Override
-    public BinaryInputArchitecture eval(List<Boolean> boolList) {
+    public BinaryInputArchitecture evalBinaryInputArch(String problem, List<Boolean> boolList) {
+
+        // Initialize Jess
+        initJess(problem);
+
+        AbstractArchitecture architecture;
+        BaseParams params;
+        ArchitectureEvaluationManager AEM;
+
         // Input a new architecture design
-        // There must be 5 orbits. Instrument name is represented by a capital letter, taken from {A,B,C,D,E,F,G,H,I,J,K,L}
-        
         String bitString = "";
         for (Boolean b: boolList) {
             bitString += b ? "1" : "0";
         }
 
-        // Generate a new architecture
-        Architecture architecture = new Architecture(bitString, 1);
+        if(problem.equalsIgnoreCase("SMAP")){
+
+            params = this.paramsMap.get("SMAP");
+            AEM = this.architectureEvaluationManagerMap.get("SMAP");
+
+            // Generate a new architecture
+            architecture = new rbsa.eoss.problems.SMAP.Architecture(bitString, 1, (rbsa.eoss.problems.SMAP.Params) params);
+
+        }else{
+            throw new IllegalArgumentException("Unrecorgnizable problem type: " + problem);
+        }
 
         // Evaluate the architecture
-        Result result = AE.evaluateArchitecture(architecture,"Slow");
-        
+        Result result = AEM.evaluateArchitecture(architecture, "Slow");
+
         // Save the score and the cost
         double cost = result.getCost();
         double science = result.getScience();
@@ -91,22 +149,86 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
     }
 
     @Override
-    public List<BinaryInputArchitecture> runLocalSearch(List<Boolean> boolList) {
+    public DiscreteInputArchitecture evalDiscreteInputArch(String problem, List<Integer> intList) {
+
+        // Initialize Jess
+        initJess(problem);
+
+        AbstractArchitecture architecture;
+        BaseParams params;
+        ArchitectureEvaluationManager AEM;
+
+        // Input a new architecture design
+        int[] intArray = new int[intList.size()];
+        for (int i = 0; i < intList.size(); i++) {
+            intArray[i] = intList.get(i);
+        }
+
+        if(problem.equalsIgnoreCase("DecadalSurvey")){
+
+            params = this.paramsMap.get("DecadalSurvey");
+            AEM = this.architectureEvaluationManagerMap.get("DecadalSurvey");
+
+            // Generate a new architecture
+            architecture = new rbsa.eoss.problems.DecadalSurvey.Architecture(intArray, 1, (rbsa.eoss.problems.DecadalSurvey.Params) params);
+
+        }else{
+            throw new IllegalArgumentException("Unrecorgnizable problem type: " + problem);
+        }
+
+        // Evaluate the architecture
+        Result result = AEM.evaluateArchitecture(architecture, "Slow");
+
+        // Save the score and the cost
+        double cost = result.getCost();
+        double science = result.getScience();
+        List<Double> outputs = new ArrayList<>();
+        outputs.add(science);
+        outputs.add(cost);
+
+        System.out.println("Performance Score: " + science + ", Cost: " + cost);
+        return new DiscreteInputArchitecture(0, intList, outputs);
+    }
+
+
+    @Override
+    public List<BinaryInputArchitecture> runLocalSearchBinaryInput(String problem, List<Boolean> boolList) {
+
+        AbstractArchitecture architecture;
+        BaseParams params;
+        ArchitectureEvaluationManager AEM;
+
         String bitString = "";
         for (Boolean b: boolList) {
             bitString += b ? "1" : "0";
         }
 
-        ArrayList<String> samples = randomLocalChange(bitString, 4);
+        if(problem.equalsIgnoreCase("SMAP")){
+
+            params = this.paramsMap.get("SMAP");
+            AEM = this.architectureEvaluationManagerMap.get("SMAP");
+
+        }else{
+            throw new IllegalArgumentException("Unrecorgnizable problem type: " + problem);
+        }
+
+        ArrayList<String> samples = randomLocalChangeBinaryInput(bitString, 4, params);
 
         List<BinaryInputArchitecture> out = new ArrayList<>();
 
         for (String sample: samples) {
-            // Generate a new architecture
-            Architecture architecture = new Architecture(sample, 1);
+
+            if(problem.equalsIgnoreCase("SMAP")){
+
+                // Generate a new architecture
+                architecture = new rbsa.eoss.problems.SMAP.Architecture(sample, 1, (rbsa.eoss.problems.SMAP.Params) params);
+
+            }else{
+                throw new IllegalArgumentException("Unrecorgnizable problem type: " + problem);
+            }
 
             // Evaluate the architecture
-            Result result = AE.evaluateArchitecture(architecture,"Slow");
+            Result result = AEM.evaluateArchitecture(architecture, "Slow");
 
             // Save the score and the cost
             double cost = result.getCost();
@@ -124,9 +246,14 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         return out;
     }
 
-    private ArrayList<String> randomLocalChange(String bitString, int n) {
+    @Override
+    public List<DiscreteInputArchitecture> runLocalSearchDiscreteInput(String problem, List<Integer> boolList) {
+        throw new UnsupportedOperationException("Local search for discrete input is not supported yet.");
+    }
+
+    private ArrayList<String> randomLocalChangeBinaryInput(String bitString, int n, BaseParams params) {
         Random rand = new Random();
-        int numVars = params.orbitList.length * params.instrumentList.length;
+        int numVars = params.getNumOrbits() * params.getNumInstr();
 
         ArrayList<String> out = new ArrayList<>();
 

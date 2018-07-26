@@ -1,6 +1,4 @@
 
-
-
 /**
  *  The available types in Thrift are:
  *
@@ -25,8 +23,6 @@ namespace py pyInterface
 typedef i32 int
 
 
-
-
 /**
  * Structs are the basic complex data structures. They are comprised of fields
  * which each have an integer identifier, a type, a symbolic name, and an
@@ -38,10 +34,15 @@ typedef i32 int
  */
  
  
- 
 struct BinaryInputArchitecture {
     1: int id,
     2: list<bool> inputs,
+    3: list<double> outputs
+}
+
+struct DiscreteInputArchitecture {
+    1: int id,
+    2: list<int> inputs,
     3: list<double> outputs
 }
 
@@ -92,35 +93,50 @@ service VASSARInterface {
 
     void ping(),
 
-    BinaryInputArchitecture eval(1:list<bool> inputs),
+    BinaryInputArchitecture evalBinaryInputArch(1:string problem, 2:list<bool> inputs),
 
-    list<BinaryInputArchitecture> runLocalSearch(1:list<bool> inputs),
+    DiscreteInputArchitecture evalDiscreteInputArch(1:string problem, 2:list<int> inputs),
 
-    list<string> getOrbitList(),
+    list<BinaryInputArchitecture> runLocalSearchBinaryInput(1:string problem, 2:list<bool> inputs),
 
-    list<string> getInstrumentList(),
+    list<DiscreteInputArchitecture> runLocalSearchDiscreteInput(1:string problem, 2:list<int> inputs),
 
-    list<string> getObjectiveList(),
 
-    list<string> getInstrumentsForObjective(1:string objective),
+    list<string> getOrbitList(1:string problem),
 
-    list<string> getInstrumentsForPanel(1:string panel),
+    list<string> getInstrumentList(1:string problem),
 
-    list<string> getCritique(1:list<bool> inputs),
+    list<string> getObjectiveList(1:string problem),
 
-    list<ObjectiveSatisfaction> getArchitectureScoreExplanation(1:list<bool> arch),
+    list<string> getInstrumentsForObjective(1:string problem, 2:string objective),
 
-    list<ObjectiveSatisfaction> getPanelScoreExplanation(1:list<bool> arch, 2:string panel),
+    list<string> getInstrumentsForPanel(1:string problem, 2:string panel),
 
-    list<ObjectiveSatisfaction> getObjectiveScoreExplanation(1:list<bool> arch, 2:string objective),
+    list<string> getCritiqueBinaryInputArch(1:string problem, 2:list<bool> inputs),
 
-    oneway void startGA(1:list<BinaryInputArchitecture> dataset, 2:string username),
+    list<string> getCritiqueDiscreteInputArch(1:string problem, 2:list<int> inputs),
 
-    list<SubscoreInformation> getArchScienceInformation(1:BinaryInputArchitecture arch),
+    list<ObjectiveSatisfaction> getArchitectureScoreExplanation(1:string problem, 2:list<bool> arch),
 
-    list<MissionCostInformation> getArchCostInformation(1:BinaryInputArchitecture arch),
+    list<ObjectiveSatisfaction> getPanelScoreExplanation(1:string problem, 2:list<bool> arch, 3:string panel),
 
-    SubobjectiveDetails getSubscoreDetails(1:BinaryInputArchitecture arch, 2:string subobj)
+    list<ObjectiveSatisfaction> getObjectiveScoreExplanation(1:string problem, 2:list<bool> arch, 3:string objective),
+
+
+    oneway void startGABinaryInput(1:string problem, 2:list<BinaryInputArchitecture> dataset, 3:string username),
+
+    list<SubscoreInformation> getArchScienceInformationBinaryInput(1:string problem, 2:BinaryInputArchitecture arch),
+
+    list<MissionCostInformation> getArchCostInformationBinaryInput(1:string problem, 2:BinaryInputArchitecture arch),
+
+    SubobjectiveDetails getSubscoreDetailsBinaryInput(1:string problem, 2:BinaryInputArchitecture arch, 3:string subobj)
+
+    oneway void startGADiscreteInput(1:string problem, 2:list<DiscreteInputArchitecture> dataset, 3:string username),
+
+    list<SubscoreInformation> getArchScienceInformationDiscreteInput(1:string problem, 2:DiscreteInputArchitecture arch),
+
+    list<MissionCostInformation> getArchCostInformationDiscreteInput(1:string problem, 2:DiscreteInputArchitecture arch),
+
+    SubobjectiveDetails getSubscoreDetailsDiscreteInput(1:string problem, 2:DiscreteInputArchitecture arch, 3:string subobj)
 }
-
 
