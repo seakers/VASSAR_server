@@ -86,7 +86,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             key = "DecadalSurvey";
             String path = this.root +
                     File.pathSeparator + "problems" +
-                    File.pathSeparator + "SMAP";
+                    File.pathSeparator + "DecadalSurvey";
             params = new rbsa.eoss.problems.DecadalSurvey.Params(path, "FUZZY-ATTRIBUTES", "test", "normal", search_clps);
             evaluator = new rbsa.eoss.problems.DecadalSurvey.ArchitectureEvaluator(params);
 
@@ -105,6 +105,29 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
             // Initialization
             AEM.init(1);
+        }
+    }
+
+    private BaseParams getProblemParameters(String problem) {
+        String key;
+
+        if (problem.equalsIgnoreCase("SMAP")) {
+            key = "SMAP";
+        }
+        else if (problem.equalsIgnoreCase("DecadalSurvey")) {
+            key = "DecadalSurvey";
+        }
+        else {
+            throw new IllegalArgumentException("Unrecorgnizable problem type: " + problem);
+        }
+
+
+        if (this.paramsMap.containsKey(key)) {
+            // Already initialized
+            return this.paramsMap.get(problem);
+        } else {
+            this.initJess(problem);
+            return this.paramsMap.get(problem);
         }
     }
 
@@ -307,7 +330,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
     @Override
     public ArrayList<String> getOrbitList(String problem) {
-        BaseParams params = this.paramsMap.get(problem);
+        BaseParams params = this.getProblemParameters(problem);
         ArrayList<String> orbitList = new ArrayList<>();
         for (String o : params.getOrbitList()) {
             orbitList.add(o);
@@ -317,7 +340,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
     @Override
     public ArrayList<String> getInstrumentList(String problem) {
-        BaseParams params = this.paramsMap.get(problem);
+        BaseParams params = this.getProblemParameters(problem);
         ArrayList<String> instrumentList = new ArrayList<>();
         for (String i : params.getInstrumentList()) {
             instrumentList.add(i);
@@ -327,7 +350,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
     @Override
     public ArrayList<String> getObjectiveList(String problem) {
-        BaseParams params = this.paramsMap.get(problem);
+        BaseParams params = this.getProblemParameters(problem);
         ArrayList<String> objectiveList = new ArrayList<>();
         params.objectiveDescriptions.forEach((k, v) -> {
             objectiveList.add(k);
@@ -337,13 +360,13 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
     @Override
     public ArrayList<String> getInstrumentsForObjective(String problem, String objective) {
-        BaseParams params = this.paramsMap.get(problem);
+        BaseParams params = this.getProblemParameters(problem);
         return new ArrayList<>(params.objectivesToInstruments.get(objective));
     }
 
     @Override
     public ArrayList<String> getInstrumentsForPanel(String problem, String panel) {
-        BaseParams params = this.paramsMap.get(problem);
+        BaseParams params = this.getProblemParameters(problem);
         return new ArrayList<>(params.panelsToInstruments.get(panel));
     }
 
@@ -354,7 +377,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             bitString += b ? "1" : "0";
         }
 
-        BaseParams params = this.paramsMap.get(problem);
+        BaseParams params = this.getProblemParameters(problem);
         ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
 
         // Generate a new architecture
@@ -382,7 +405,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             bitString += b ? "1" : "0";
         }
 
-        BaseParams params = this.paramsMap.get(problem);
+        BaseParams params = this.getProblemParameters(problem);
         ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
 
         // Generate a new architecture
@@ -413,7 +436,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             bitString += b ? "1" : "0";
         }
 
-        BaseParams params = this.paramsMap.get(problem);
+        BaseParams params = this.getProblemParameters(problem);
         ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
 
         // Generate a new architecture
