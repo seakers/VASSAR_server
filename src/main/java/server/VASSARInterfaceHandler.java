@@ -58,6 +58,8 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
     public VASSARInterfaceHandler() {
         // Set a path to the project folder
         this.root = System.getProperty("user.dir");
+        this.paramsMap = new HashMap<>();
+        this.architectureEvaluationManagerMap = new HashMap<>();
     }
 
     public void ping() {
