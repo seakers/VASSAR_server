@@ -1,3 +1,7 @@
+plugins {
+    id 'com.github.johnrengelman.shadow' version '2.0.4'
+}
+
 group 'seak.vassar_server'
 version '1.0'
 
@@ -7,6 +11,12 @@ sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'server.JavaServer'
+    }
 }
 
 dependencies {

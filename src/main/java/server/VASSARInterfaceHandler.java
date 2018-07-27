@@ -127,7 +127,10 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
         if (problem.equalsIgnoreCase("DecadalSurvey")) {
             // Generate a new architecture
-            architecture = new rbsa.eoss.problems.DecadalSurvey.Architecture(intArray, 1, (rbsa.eoss.problems.DecadalSurvey.Params) params);
+            int numInstr = params.getNumInstr();
+            int[] instrPartitioning = Arrays.copyOfRange(intArray, 0, numInstr);
+            int[] orbitAssignation = Arrays.copyOfRange(intArray, numInstr, intArray.length);
+            architecture = new rbsa.eoss.problems.DecadalSurvey.Architecture(instrPartitioning, orbitAssignation, numSatellites, (rbsa.eoss.problems.DecadalSurvey.Params) params);
 
         } else {
             throw new IllegalArgumentException("Unrecorgnizable problem type: " + problem);
