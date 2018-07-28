@@ -37,14 +37,11 @@ import org.moeaframework.util.TypedProperties;
 
 import search.InstrumentAssignment;
 import search.InstrumentAssignmentArchitecture;
-import search.InstrumentedSearch;
 import search.InteractiveSearch;
 
 import rbsa.eoss.architecture.AbstractArchitecture;
 import rbsa.eoss.evaluation.AbstractArchitectureEvaluator;
 import rbsa.eoss.evaluation.ArchitectureEvaluationManager;
-import rbsa.eoss.problems.SMAP.ArchitectureEvaluator;
-import rbsa.eoss.problems.SMAP.CritiqueGenerator;
 import seak.architecture.operators.IntegerUM;
 import rbsa.eoss.local.BaseParams;
 import rbsa.eoss.Result;
@@ -78,8 +75,8 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
             key = "SMAP";
             String path = this.root +
-                    File.pathSeparator + "problems" +
-                    File.pathSeparator + "SMAP";
+                    File.separator + "problems" +
+                    File.separator + "SMAP";
             params = new rbsa.eoss.problems.SMAP.Params(path, "FUZZY-ATTRIBUTES", "test", "normal", search_clps);
             evaluator = new rbsa.eoss.problems.SMAP.ArchitectureEvaluator(params);
 
@@ -87,8 +84,8 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
             key = "DecadalSurvey";
             String path = this.root +
-                    File.pathSeparator + "problems" +
-                    File.pathSeparator + "DecadalSurvey";
+                    File.separator + "problems" +
+                    File.separator + "DecadalSurvey";
             params = new rbsa.eoss.problems.DecadalSurvey.Params(path, "FUZZY-ATTRIBUTES", "test", "normal", search_clps);
             evaluator = new rbsa.eoss.problems.DecadalSurvey.ArchitectureEvaluator(params);
 
@@ -316,7 +313,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             architecture = this.getArchitectureBinaryInput(problem, bitString, 1, params);
 
             // Initialize Critique Generator
-            CritiqueGenerator critiquer = new CritiqueGenerator(params, AEM.getResourcePool(), architecture);
+            rbsa.eoss.problems.SMAP.CritiqueGenerator critiquer = new rbsa.eoss.problems.SMAP.CritiqueGenerator(params, AEM.getResourcePool(), architecture);
 
             return critiquer.getCritique();
 
