@@ -80,12 +80,12 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             params = new rbsa.eoss.problems.SMAP.Params(path, "FUZZY-ATTRIBUTES", "test", "normal", search_clps);
             evaluator = new rbsa.eoss.problems.SMAP.ArchitectureEvaluator(params);
 
-        } else if (problem.equalsIgnoreCase("DecadalSurvey")) {
+        } else if (problem.equalsIgnoreCase("Decadal2017Aerosols")) {
 
-            key = "DecadalSurvey";
+            key = "Decadal2017Aerosols";
             String path = this.root +
                     File.separator + "problems" +
-                    File.separator + "DecadalSurvey";
+                    File.separator + "Decadal2017Aerosols";
             params = new rbsa.eoss.problems.DecadalSurvey.Params(path, "FUZZY-ATTRIBUTES", "test", "normal", search_clps);
             evaluator = new rbsa.eoss.problems.DecadalSurvey.ArchitectureEvaluator(params);
 
@@ -113,8 +113,8 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         if (problem.equalsIgnoreCase("SMAP")) {
             key = "SMAP";
         }
-        else if (problem.equalsIgnoreCase("DecadalSurvey")) {
-            key = "DecadalSurvey";
+        else if (problem.equalsIgnoreCase("Decadal2017Aerosols")) {
+            key = "Decadal2017Aerosols";
         }
         else {
             throw new IllegalArgumentException("Unrecorgnizable problem type: " + problem);
@@ -147,7 +147,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
     private AbstractArchitecture getArchitectureDiscreteInput(String problem, int[] intArray, int numSatellites, BaseParams params) {
         AbstractArchitecture architecture;
 
-        if (problem.equalsIgnoreCase("DecadalSurvey")) {
+        if (problem.equalsIgnoreCase("Decadal2017Aerosols")) {
             // Generate a new architecture
             int numInstr = params.getNumInstr();
             int[] instrPartitioning = Arrays.copyOfRange(intArray, 0, numInstr);
