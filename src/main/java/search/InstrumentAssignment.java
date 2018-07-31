@@ -65,9 +65,9 @@ public class InstrumentAssignment extends AbstractProblem implements SystemArchi
             }
 
             AbstractArchitecture arch_old;
-            if (problem.equalsIgnoreCase("SMAP")) {
+            if (problem.equalsIgnoreCase("SMAP") || problem.equalsIgnoreCase("ClimateCentric")) {
                 // Generate a new architecture
-                arch_old = new rbsa.eoss.problems.SMAP.Architecture(bitString, 1, (rbsa.eoss.problems.SMAP.Params)params);
+                arch_old = new rbsa.eoss.problems.Assigning.Architecture(bitString, 1, (rbsa.eoss.problems.Assigning.AssigningParams)params);
 
             }else{
                 throw new IllegalArgumentException("Unrecorgnizable problem type: " + problem);
