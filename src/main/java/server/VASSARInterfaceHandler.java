@@ -71,14 +71,25 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         String key;
         String search_clps = "";
 
-        if (problem.equalsIgnoreCase("SMAP")) {
+        if (problem.equalsIgnoreCase("SMAP") ||
+                problem.equalsIgnoreCase("ClimateCentric")) {
 
-            key = "SMAP";
+            key = problem;
             String path = this.root +
                     File.separator + "problems" +
-                    File.separator + "SMAP";
-            params = new rbsa.eoss.problems.SMAP.Params(path, "FUZZY-ATTRIBUTES", "test", "normal", search_clps);
-            evaluator = new rbsa.eoss.problems.SMAP.ArchitectureEvaluator(params);
+                    File.separator + key;
+
+            if(problem.equalsIgnoreCase("SMAP")){
+                params = new rbsa.eoss.problems.Assigning.SMAPParams(path, "FUZZY-ATTRIBUTES", "test", "normal", search_clps);
+
+            }else if(problem.equalsIgnoreCase("ClimateCentric")){
+                params = new rbsa.eoss.problems.Assigning.ClimateCentricParams(path, "FUZZY-ATTRIBUTES", "test", "normal", search_clps);
+
+            }else{
+                throw new RuntimeException();
+            }
+
+            evaluator = new rbsa.eoss.problems.Assigning.ArchitectureEvaluator(params);
 
         } else if (problem.equalsIgnoreCase("Decadal2017Aerosols")) {
 
@@ -86,8 +97,9 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             String path = this.root +
                     File.separator + "problems" +
                     File.separator + "Decadal2017Aerosols";
-            params = new rbsa.eoss.problems.DecadalSurvey.Params(path, "FUZZY-ATTRIBUTES", "test", "normal", search_clps);
-            evaluator = new rbsa.eoss.problems.DecadalSurvey.ArchitectureEvaluator(params);
+            params = new rbsa.eoss.problems.PartitioningAndAssigning.Decadal2017AerosolsParams(path, "FUZZY-ATTRIBUTES", "test", "normal", search_clps);
+            evaluator = new rbsa.eoss.problems.PartitioningAndAssigning.ArchitectureEvaluator(params);
+
 
         } else {
             throw new IllegalArgumentException("Unrecorgnizable problem type: " + problem);
@@ -113,13 +125,15 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         if (problem.equalsIgnoreCase("SMAP")) {
             key = "SMAP";
         }
+        else if(problem.equalsIgnoreCase("ClimateCentric")){
+            key = "ClimateCentric";
+        }
         else if (problem.equalsIgnoreCase("Decadal2017Aerosols")) {
             key = "Decadal2017Aerosols";
         }
         else {
             throw new IllegalArgumentException("Unrecorgnizable problem type: " + problem);
         }
-
 
         if (this.paramsMap.containsKey(key)) {
             // Already initialized
@@ -133,9 +147,9 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
     private AbstractArchitecture getArchitectureBinaryInput(String problem, String bitString, int numSatellites, BaseParams params) {
         AbstractArchitecture architecture;
 
-        if (problem.equalsIgnoreCase("SMAP")) {
+        if (problem.equalsIgnoreCase("SMAP") || problem.equalsIgnoreCase("ClimateCentric")) {
             // Generate a new architecture
-            architecture = new rbsa.eoss.problems.SMAP.Architecture(bitString, numSatellites, (rbsa.eoss.problems.SMAP.Params) params);
+            architecture = new rbsa.eoss.problems.Assigning.Architecture(bitString, numSatellites, (rbsa.eoss.problems.Assigning.AssigningParams) params);
 
         } else {
             throw new IllegalArgumentException("Unrecorgnizable problem type: " + problem);
@@ -152,7 +166,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             int numInstr = params.getNumInstr();
             int[] instrPartitioning = Arrays.copyOfRange(intArray, 0, numInstr);
             int[] orbitAssignation = Arrays.copyOfRange(intArray, numInstr, intArray.length);
-            architecture = new rbsa.eoss.problems.DecadalSurvey.Architecture(instrPartitioning, orbitAssignation, numSatellites, (rbsa.eoss.problems.DecadalSurvey.Params) params);
+            architecture = new rbsa.eoss.problems.PartitioningAndAssigning.Architecture(instrPartitioning, orbitAssignation, numSatellites, (rbsa.eoss.problems.PartitioningAndAssigning.Decadal2017AerosolsParams) params);
 
         } else {
             throw new IllegalArgumentException("Unrecorgnizable problem type: " + problem);
@@ -304,16 +318,16 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
         System.out.println(bitString);
 
-        if (problem.equalsIgnoreCase("SMAP")) {
+        if (problem.equalsIgnoreCase("SMAP") || problem.equalsIgnoreCase("ClimateCentric")) {
 
-            rbsa.eoss.problems.SMAP.Params params = (rbsa.eoss.problems.SMAP.Params) this.paramsMap.get("SMAP");
-            ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get("SMAP");
+            rbsa.eoss.problems.Assigning.AssigningParams params = (rbsa.eoss.problems.Assigning.AssigningParams) this.paramsMap.get(problem);
+            ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
 
             // Generate a new architecture
             architecture = this.getArchitectureBinaryInput(problem, bitString, 1, params);
 
             // Initialize Critique Generator
-            rbsa.eoss.problems.SMAP.CritiqueGenerator critiquer = new rbsa.eoss.problems.SMAP.CritiqueGenerator(params, AEM.getResourcePool(), architecture);
+            rbsa.eoss.problems.Assigning.CritiqueGenerator critiquer = new rbsa.eoss.problems.Assigning.CritiqueGenerator(params, AEM.getResourcePool(), architecture);
 
             return critiquer.getCritique();
 
