@@ -96,7 +96,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             key = "Decadal2017Aerosols";
             String path = this.root +
                     File.separator + "problems" +
-                    File.separator + "Decadal2017Aerosols";
+                    File.separator + "SMAP";
             params = new rbsa.eoss.problems.PartitioningAndAssigning.Decadal2017AerosolsParams(path, "FUZZY-ATTRIBUTES", "test", "normal", search_clps);
             evaluator = new rbsa.eoss.problems.PartitioningAndAssigning.ArchitectureEvaluator(params);
 
