@@ -13,6 +13,9 @@ import rbsa.eoss.evaluation.ArchitectureEvaluationManager;
 import rbsa.eoss.local.BaseParams;
 import seak.architecture.problem.SystemArchitectureProblem;
 
+import java.util.HashSet;
+import java.util.Set;
+
 
 /**
  * An assigning problem to optimize the allocation of n instruments to m orbits.
@@ -68,6 +71,13 @@ public class PartitioningAndAssigningProblem extends AbstractProblem implements 
                 orbitAssignment[i] = Integer.parseInt(arch.getVariable(numPartitioningVariables + i).toString());
             }
 
+            // Check constraint
+            double constraint = 1.0;
+            if(!isFeasible(instrumentPartitioning, orbitAssignment)){
+                constraint = 0.0;
+            }
+            arch.setConstraint(0, constraint);
+
             AbstractArchitecture arch_old;
             if (problem.equalsIgnoreCase("Decadal2017Aerosols")) {
                 // Generate a new architecture
@@ -92,4 +102,37 @@ public class PartitioningAndAssigningProblem extends AbstractProblem implements 
         return new PartitioningAndAssigningArchitecture(params.getNumInstr(), params.getNumOrbits(), 2);
     }
 
+    private boolean isFeasible(int[] instrumentPartitioning, int[] orbitAssignment){
+
+        // Check if the number of satellites matches the number of orbit assignments
+        Set<Integer> satIndices = new HashSet<>();
+        for(int i = 0; i < instrumentPartitioning.length; i++){
+            satIndices.add(instrumentPartitioning[i]);
+        }
+
+        for(int i = 0; i < orbitAssignment.length; i++){
+            if(orbitAssignment[i] >= 0){
+                continue;
+
+            }else{
+                if(satIndices.size() != i){
+                    return false;
+                }
+            }
+        }
+
+        // Check if the index of the new satellite is +1 of the largest index
+        int max = 0;
+        for(int i = 0; i < instrumentPartitioning.length; i++){
+            if(instrumentPartitioning[i] > max){
+                if(instrumentPartitioning[i] == max + 1){
+                    max = instrumentPartitioning[i];
+                }else{
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
 }

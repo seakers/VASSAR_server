@@ -39,7 +39,7 @@ public class PartitioningAndAssigningArchitecture extends seak.architecture.Arch
      * @param numberOfObjectives
      */
     public PartitioningAndAssigningArchitecture(int numberOfInstruments, int numberOfOrbits, int numberOfObjectives) {
-        super(numberOfObjectives, 0, createDecisions(numberOfInstruments, numberOfOrbits));
+        super(numberOfObjectives, 1, createDecisions(numberOfInstruments, numberOfOrbits));
         this.alreadyEvaluated = false;
     }
 

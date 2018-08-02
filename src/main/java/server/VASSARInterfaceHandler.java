@@ -98,6 +98,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             String path = this.root +
                     File.separator + "problems" +
                     File.separator + "SMAP";
+
             params = new rbsa.eoss.problems.PartitioningAndAssigning.Decadal2017AerosolsParams(path, "FUZZY-ATTRIBUTES", "test", "normal", search_clps);
             evaluator = new rbsa.eoss.problems.PartitioningAndAssigning.ArchitectureEvaluator(params);
 
@@ -613,11 +614,6 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         double mutationProbability = 1. / 60.;
         properties.setDouble("mutationProbability", mutationProbability);
 
-        Variation singlecross;
-        Variation bitFlip;
-        Variation intergerMutation;
-        Initialization initialization;
-
         //setup for epsilon MOEA
         double[] epsilonDouble = new double[]{0.001, 1};
 
@@ -658,7 +654,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             initial.set(i, new_arch);
         }
 
-        initialization = new InjectedInitialization(partitioningAndAssigningProblem, popSize, initial);
+        Initialization initialization = new InjectedInitialization(partitioningAndAssigningProblem, popSize, initial);
 
         //initialize population structure for algorithm
         Population population = new Population();
@@ -666,6 +662,10 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         ChainedComparator comp = new ChainedComparator(new ParetoObjectiveComparator());
         TournamentSelection selection = new TournamentSelection(2, comp);
 
+        // Define operators
+        Variation singlecross;
+        Variation bitFlip;
+        Variation intergerMutation;
         singlecross = new OnePointCrossover(crossoverProbability);
         bitFlip = new BitFlip(mutationProbability);
         intergerMutation = new IntegerUM(mutationProbability);
