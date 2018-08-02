@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package search;
+package search.problems.Assigning;
 
 import org.moeaframework.core.Solution;
 import seak.architecture.pattern.ArchitecturalDecision;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
  *
  * @author nozomi
  */
-public class InstrumentAssignmentArchitecture extends Architecture {
+public class AssigningArchitecture extends Architecture {
 
     private static final long serialVersionUID = 8776271523867355732L;
 
@@ -52,8 +52,8 @@ public class InstrumentAssignmentArchitecture extends Architecture {
      * @param alternativesForNumberOfSatellites
      * @param numberOfObjectives
      */
-    public InstrumentAssignmentArchitecture(int[] alternativesForNumberOfSatellites,
-                                            int numberOfInstruments, int numberOfOrbits, int numberOfObjectives) {
+    public AssigningArchitecture(int[] alternativesForNumberOfSatellites,
+                                 int numberOfInstruments, int numberOfOrbits, int numberOfObjectives) {
         super(numberOfObjectives, 0,
                 createDecisions(alternativesForNumberOfSatellites, numberOfInstruments, numberOfOrbits));
         this.alternativesForNumberOfSatellites = alternativesForNumberOfSatellites;
@@ -74,9 +74,9 @@ public class InstrumentAssignmentArchitecture extends Architecture {
      *
      * @param solution
      */
-    private InstrumentAssignmentArchitecture(Solution solution) {
+    private AssigningArchitecture(Solution solution) {
         super(solution);
-        this.alternativesForNumberOfSatellites = ((InstrumentAssignmentArchitecture) solution).alternativesForNumberOfSatellites;
+        this.alternativesForNumberOfSatellites = ((AssigningArchitecture) solution).alternativesForNumberOfSatellites;
     }
 
     public void setAlreadyEvaluated(boolean alreadyEvaluated) {
@@ -89,6 +89,6 @@ public class InstrumentAssignmentArchitecture extends Architecture {
 
     @Override
     public Solution copy() {
-        return new InstrumentAssignmentArchitecture(this);
+        return new AssigningArchitecture(this);
     }
 }

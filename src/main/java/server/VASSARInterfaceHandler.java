@@ -35,16 +35,17 @@ import org.moeaframework.core.operator.binary.BitFlip;
 import org.moeaframework.core.variable.BinaryVariable;
 import org.moeaframework.util.TypedProperties;
 
-import search.InstrumentAssignment;
-import search.InstrumentAssignmentArchitecture;
+import seak.architecture.util.IntegerVariable;
 import search.InteractiveSearch;
-
 import rbsa.eoss.architecture.AbstractArchitecture;
 import rbsa.eoss.evaluation.AbstractArchitectureEvaluator;
 import rbsa.eoss.evaluation.ArchitectureEvaluationManager;
 import seak.architecture.operators.IntegerUM;
 import rbsa.eoss.local.BaseParams;
 import rbsa.eoss.Result;
+import search.problems.Assigning.AssigningArchitecture;
+import search.problems.Assigning.AssigningProblem;
+import search.problems.PartitioningAndAssigning.PartitioningAndAssigningArchitecture;
 
 public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
@@ -544,12 +545,12 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
         AEM.reset();
         AEM.init(8);
-        Problem assignmentProblem = new InstrumentAssignment(new int[]{1}, problem, AEM, params);
+        Problem assignmentProblem = new AssigningProblem(new int[]{1}, problem, AEM, params);
 
         // Create a solution for each input arch in the dataset
         List<Solution> initial = new ArrayList<>(dataset.size());
         for (int i = 0; i < dataset.size(); ++i) {
-            InstrumentAssignmentArchitecture new_arch = new InstrumentAssignmentArchitecture(new int[]{1},
+            AssigningArchitecture new_arch = new AssigningArchitecture(new int[]{1},
                     params.getNumInstr(), params.getNumOrbits(), 2);
             for (int j = 1; j < new_arch.getNumberOfVariables(); ++j) {
                 BinaryVariable var = new BinaryVariable(1);
@@ -593,6 +594,98 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
     @Override
     public void startGADiscreteInput(String problem, List<DiscreteInputArchitecture> dataset, String username) {
-        throw new UnsupportedOperationException();
+        //PATH
+        String path = ".";
+
+        ExecutorService pool = Executors.newFixedThreadPool(8);
+        CompletionService<Algorithm> ecs = new ExecutorCompletionService<>(pool);
+
+        //parameters and operators for search
+        TypedProperties properties = new TypedProperties();
+        //search paramaters set here
+        int popSize = 10;
+        int maxEvals = 50;
+        properties.setInt("maxEvaluations", maxEvals);
+        properties.setInt("populationSize", popSize);
+
+        double crossoverProbability = 1.0;
+        properties.setDouble("crossoverProbability", crossoverProbability);
+        double mutationProbability = 1. / 60.;
+        properties.setDouble("mutationProbability", mutationProbability);
+
+        Variation singlecross;
+        Variation bitFlip;
+        Variation intergerMutation;
+        Initialization initialization;
+
+        //setup for epsilon MOEA
+        double[] epsilonDouble = new double[]{0.001, 1};
+
+        //setup for saving results
+        properties.setBoolean("saveQuality", true);
+        properties.setBoolean("saveCredits", true);
+        properties.setBoolean("saveSelection", true);
+
+        //initialize problem
+        BaseParams params = this.paramsMap.get(problem);
+        ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
+
+        AEM.reset();
+        AEM.init(8);
+        Problem partitioningAndAssigningProblem = new search.problems.PartitioningAndAssigning.PartitioningAndAssigningProblem(problem, AEM, params);
+
+        // Create a solution for each input arch in the dataset
+        List<Solution> initial = new ArrayList<>(dataset.size());
+        for (int i = 0; i < dataset.size(); ++i) {
+            PartitioningAndAssigningArchitecture new_arch = new PartitioningAndAssigningArchitecture(
+                    params.getNumInstr(), params.getNumOrbits(), 2);
+
+            int numPartitioningVariables = new_arch.getDecision("instrumentPartitioning").getNumberOfVariables();
+            int numAssignmentVariables = new_arch.getDecision("orbitAssignment").getNumberOfVariables();
+
+            for (int j = 0; j < numPartitioningVariables; ++j) {
+                IntegerVariable var = new IntegerVariable(dataset.get(i).inputs.get(j), 0, params.getNumInstr());
+                new_arch.setVariable(j, var);
+            }
+
+            for (int j = numPartitioningVariables; j < numPartitioningVariables + numAssignmentVariables; ++j) {
+                IntegerVariable var = new IntegerVariable(dataset.get(i).inputs.get(j), 0, params.getNumOrbits());
+                new_arch.setVariable(j, var);
+            }
+
+            new_arch.setObjective(0, dataset.get(i).outputs.get(0));
+            new_arch.setObjective(1, dataset.get(i).outputs.get(1));
+            initial.set(i, new_arch);
+        }
+
+        initialization = new InjectedInitialization(partitioningAndAssigningProblem, popSize, initial);
+
+        //initialize population structure for algorithm
+        Population population = new Population();
+        EpsilonBoxDominanceArchive archive = new EpsilonBoxDominanceArchive(epsilonDouble);
+        ChainedComparator comp = new ChainedComparator(new ParetoObjectiveComparator());
+        TournamentSelection selection = new TournamentSelection(2, comp);
+
+        singlecross = new OnePointCrossover(crossoverProbability);
+        bitFlip = new BitFlip(mutationProbability);
+        intergerMutation = new IntegerUM(mutationProbability);
+        CompoundVariation var = new CompoundVariation(singlecross, bitFlip, intergerMutation);
+
+        // REDIS
+        RedisClient redisClient = RedisClient.create("redis://localhost:6379/0");
+
+        Algorithm eMOEA = new EpsilonMOEA(partitioningAndAssigningProblem, population, archive, selection, var, initialization);
+        ecs.submit(new InteractiveSearch(eMOEA, properties, username, redisClient));
+
+        try {
+            Algorithm alg = ecs.take().get();
+        } catch (InterruptedException | ExecutionException ex) {
+            ex.printStackTrace();
+        }
+
+        redisClient.shutdown();
+        AEM.clear();
+        pool.shutdown();
+        System.out.println("DONE");
     }
 }

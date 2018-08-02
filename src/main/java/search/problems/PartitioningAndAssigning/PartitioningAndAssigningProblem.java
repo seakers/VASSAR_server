@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package search;
+package search.problems.PartitioningAndAssigning;
 
 import org.moeaframework.core.Solution;
 import org.moeaframework.problem.AbstractProblem;
+import rbsa.eoss.Result;
 import rbsa.eoss.architecture.AbstractArchitecture;
 import rbsa.eoss.evaluation.ArchitectureEvaluationManager;
 import rbsa.eoss.local.BaseParams;
-import rbsa.eoss.Result;
 import seak.architecture.problem.SystemArchitectureProblem;
 
 
@@ -21,9 +21,7 @@ import seak.architecture.problem.SystemArchitectureProblem;
  *
  * @author nozomihitomi
  */
-public class InstrumentAssignment extends AbstractProblem implements SystemArchitectureProblem {
-
-    private final int[] alternativesForNumberOfSatellites;
+public class PartitioningAndAssigningProblem extends AbstractProblem implements SystemArchitectureProblem {
 
     private final String problem;
 
@@ -37,37 +35,44 @@ public class InstrumentAssignment extends AbstractProblem implements SystemArchi
 
     private final double packingEffThreshold = 0.4; //[kg]
 
-    /**
-     * @param alternativesForNumberOfSatellites
-     */
-    public InstrumentAssignment(int[] alternativesForNumberOfSatellites, String problem, ArchitectureEvaluationManager evaluationManager, BaseParams params) {
+    public PartitioningAndAssigningProblem(String problem, ArchitectureEvaluationManager evaluationManager, BaseParams params) {
         //2 decisions for Choosing and Assigning Patterns
-        super(1 + params.getNumInstr()*params.getNumOrbits(), 2);
+        super(2 * params.getNumInstr(), 2);
         this.problem = problem;
         this.evaluationManager = evaluationManager;
-        this.alternativesForNumberOfSatellites = alternativesForNumberOfSatellites;
         this.params = params;
     }
 
     @Override
     public void evaluate(Solution sltn) {
-        InstrumentAssignmentArchitecture arch = (InstrumentAssignmentArchitecture) sltn;
+        PartitioningAndAssigningArchitecture arch = (PartitioningAndAssigningArchitecture) sltn;
         evaluateArch(arch);
         System.out.println(String.format("Arch %s Science = %10f; Cost = %10f",
                 arch.toString(), arch.getObjective(0), arch.getObjective(1)));
     }
 
-    private void evaluateArch(InstrumentAssignmentArchitecture arch) {
+    private void evaluateArch(PartitioningAndAssigningArchitecture arch) {
         if (!arch.getAlreadyEvaluated()) {
-            String bitString = "";
-            for(int i = 1; i < this.getNumberOfVariables(); ++i) {
-                bitString += arch.getVariable(i).toString();
+
+            int numPartitioningVariables = arch.getDecision("instrumentPartitioning").getNumberOfVariables();
+            int numAssignmentVariables = arch.getDecision("orbitAssignment").getNumberOfVariables();
+
+            int[] instrumentPartitioning = new int[numPartitioningVariables];
+            int[] orbitAssignment = new int[numAssignmentVariables];
+
+            for(int i = 0; i < numPartitioningVariables; i++){
+                instrumentPartitioning[i] = Integer.parseInt(arch.getVariable(i).toString());
+            }
+
+            for(int i = 0; i < numAssignmentVariables; i++){
+                orbitAssignment[i] = Integer.parseInt(arch.getVariable(numPartitioningVariables + i).toString());
             }
 
             AbstractArchitecture arch_old;
-            if (problem.equalsIgnoreCase("SMAP") || problem.equalsIgnoreCase("ClimateCentric")) {
+            if (problem.equalsIgnoreCase("Decadal2017Aerosols")) {
                 // Generate a new architecture
-                arch_old = new rbsa.eoss.problems.Assigning.Architecture(bitString, 1, (rbsa.eoss.problems.Assigning.AssigningParams)params);
+                arch_old = new rbsa.eoss.problems.PartitioningAndAssigning.Architecture(instrumentPartitioning, orbitAssignment,
+                        1, (rbsa.eoss.problems.PartitioningAndAssigning.Decadal2017AerosolsParams) params);
 
             }else{
                 throw new IllegalArgumentException("Unrecorgnizable problem type: " + problem);
@@ -84,7 +89,7 @@ public class InstrumentAssignment extends AbstractProblem implements SystemArchi
 
     @Override
     public Solution newSolution() {
-        return new InstrumentAssignmentArchitecture(alternativesForNumberOfSatellites, params.getNumInstr(), params.getNumOrbits(), 2);
+        return new PartitioningAndAssigningArchitecture(params.getNumInstr(), params.getNumOrbits(), 2);
     }
 
 }
