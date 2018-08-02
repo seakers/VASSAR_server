@@ -663,13 +663,9 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         TournamentSelection selection = new TournamentSelection(2, comp);
 
         // Define operators
-        Variation singlecross;
-        Variation bitFlip;
-        Variation intergerMutation;
-        singlecross = new OnePointCrossover(crossoverProbability);
-        bitFlip = new BitFlip(mutationProbability);
-        intergerMutation = new IntegerUM(mutationProbability);
-        CompoundVariation var = new CompoundVariation(singlecross, bitFlip, intergerMutation);
+        Variation singlecross = new search.problems.PartitioningAndAssigning.operators.PartitioningAndAssigningCrossover(crossoverProbability, params);
+        Variation intergerMutation = new search.problems.PartitioningAndAssigning.operators.PartitioningAndAssigningMutation(mutationProbability, params);
+        CompoundVariation var = new CompoundVariation(singlecross, intergerMutation);
 
         // REDIS
         RedisClient redisClient = RedisClient.create("redis://localhost:6379/0");
