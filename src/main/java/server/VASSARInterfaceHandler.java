@@ -627,7 +627,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
 
         AEM.reset();
-        AEM.init(8);
+        AEM.init(1);
         Problem partitioningAndAssigningProblem = new search.problems.PartitioningAndAssigning.PartitioningAndAssigningProblem(problem, AEM, params);
 
         // Create a solution for each input arch in the dataset
@@ -645,13 +645,13 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             }
 
             for (int j = numPartitioningVariables; j < numPartitioningVariables + numAssignmentVariables; ++j) {
-                IntegerVariable var = new IntegerVariable(dataset.get(i).inputs.get(j), 0, params.getNumOrbits());
+                IntegerVariable var = new IntegerVariable(dataset.get(i).inputs.get(j), -1, params.getNumOrbits());
                 new_arch.setVariable(j, var);
             }
 
             new_arch.setObjective(0, dataset.get(i).outputs.get(0));
             new_arch.setObjective(1, dataset.get(i).outputs.get(1));
-            initial.set(i, new_arch);
+            initial.add(new_arch);
         }
 
         Initialization initialization = new InjectedInitialization(partitioningAndAssigningProblem, popSize, initial);

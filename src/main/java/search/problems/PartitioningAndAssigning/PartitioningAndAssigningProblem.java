@@ -12,6 +12,7 @@ import rbsa.eoss.architecture.AbstractArchitecture;
 import rbsa.eoss.evaluation.ArchitectureEvaluationManager;
 import rbsa.eoss.local.BaseParams;
 import seak.architecture.problem.SystemArchitectureProblem;
+import seak.architecture.util.IntegerVariable;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -64,11 +65,11 @@ public class PartitioningAndAssigningProblem extends AbstractProblem implements 
             int[] orbitAssignment = new int[numAssignmentVariables];
 
             for(int i = 0; i < numPartitioningVariables; i++){
-                instrumentPartitioning[i] = Integer.parseInt(arch.getVariable(i).toString());
+                instrumentPartitioning[i] = ((IntegerVariable)arch.getVariable(i)).getValue();
             }
 
             for(int i = 0; i < numAssignmentVariables; i++){
-                orbitAssignment[i] = Integer.parseInt(arch.getVariable(numPartitioningVariables + i).toString());
+                orbitAssignment[i] = ((IntegerVariable) arch.getVariable(numPartitioningVariables + i)).getValue();
             }
 
             // Check constraint

@@ -1,9 +1,7 @@
 package search.problems.PartitioningAndAssigning.operators;
 
-import org.moeaframework.core.PRNG;
 import org.moeaframework.core.Solution;
 import org.moeaframework.core.Variable;
-import org.moeaframework.core.Variation;
 import rbsa.eoss.local.BaseParams;
 import seak.architecture.Architecture;
 import seak.architecture.operators.IntegerUM;
@@ -92,7 +90,7 @@ public class PartitioningAndAssigningMutation extends IntegerUM{
         int numVariables = arch.getDecision(tag).getNumberOfVariables();
         int[] variables = new int[numVariables];
         for(int i = 0; i < numVariables; i++){
-            variables[i] = Integer.parseInt(arch.getVariable(i).toString());
+            variables[i] = ((IntegerVariable)arch.getVariable(i)).getValue();
         }
         return variables;
     }

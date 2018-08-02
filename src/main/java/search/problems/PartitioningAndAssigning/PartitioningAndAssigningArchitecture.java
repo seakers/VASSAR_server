@@ -6,11 +6,8 @@ package search.problems.PartitioningAndAssigning;
 
 import org.moeaframework.core.Solution;
 import seak.architecture.pattern.ArchitecturalDecision;
-import seak.architecture.pattern.Assigning;
 import seak.architecture.pattern.Partitioning;
-
 import java.util.ArrayList;
-
 
 public class PartitioningAndAssigningArchitecture extends seak.architecture.Architecture {
 
@@ -46,7 +43,7 @@ public class PartitioningAndAssigningArchitecture extends seak.architecture.Arch
     private static ArrayList<ArchitecturalDecision> createDecisions(int numberOfInstruments, int numberOfOrbits) {
         ArrayList<ArchitecturalDecision> out = new ArrayList<>();
         out.add(new Partitioning(numberOfInstruments, partitionTag));
-        out.add(new Assigning(numberOfInstruments, numberOfOrbits, assignTag));
+        out.add(new AssigningPatternCategorical(numberOfInstruments, numberOfOrbits, assignTag));
         return out;
     }
 

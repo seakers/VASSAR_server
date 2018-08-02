@@ -146,7 +146,7 @@ public class PartitioningAndAssigningCrossover implements Variation{
         int numVariables = arch.getDecision(tag).getNumberOfVariables();
         int[] variables = new int[numVariables];
         for(int i = 0; i < numVariables; i++){
-            variables[i] = Integer.parseInt(arch.getVariable(i).toString());
+            variables[i] = ((IntegerVariable) arch.getVariable(i)).getValue();
         }
         return variables;
     }
