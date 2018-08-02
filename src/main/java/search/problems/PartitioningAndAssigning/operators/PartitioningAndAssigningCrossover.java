@@ -9,7 +9,6 @@ import seak.architecture.util.IntegerVariable;
 import search.problems.PartitioningAndAssigning.PartitioningAndAssigningArchitecture;
 
 import java.util.Random;
-import java.util.HashSet;
 import java.util.HashMap;
 import java.util.ArrayList;
 
@@ -37,17 +36,17 @@ public class PartitioningAndAssigningCrossover implements Variation{
 
         Architecture arch1 = (PartitioningAndAssigningArchitecture) parents[0];
         Architecture arch2 = (PartitioningAndAssigningArchitecture) parents[1];
-        int[] partitioning1 = getVariables("instrumentPartitioning", arch1);
-        int[] partitioning2 = getVariables("instrumentPartitioning", arch2);
-        int[] assignment1 = getVariables("orbitAssignment", arch1);
-        int[] assignment2 = getVariables("orbitAssignment", arch2);
+        int[] partitioning1 = getIntVariables("instrumentPartitioning", arch1);
+        int[] partitioning2 = getIntVariables("instrumentPartitioning", arch2);
+        int[] assigning1 = getIntVariables("orbitAssignment", arch1);
+        int[] assigning2 = getIntVariables("orbitAssignment", arch2);
 
         Architecture newArch1 = new PartitioningAndAssigningArchitecture(params.getNumInstr(), params.getNumOrbits(), 2);
         Architecture newArch2 = new PartitioningAndAssigningArchitecture(params.getNumInstr(), params.getNumOrbits(), 2);
         int[] newPartitioning1 = new int[partitioning1.length];
         int[] newPartitioning2 = new int[partitioning2.length];
-        int[] newAssignment1 = new int[assignment1.length];
-        int[] newAssignment2 = new int[assignment2.length];
+        int[] newAssigning1 = new int[assigning1.length];
+        int[] newAssigning2 = new int[assigning2.length];
 
         Random random = new Random();
         int split = random.nextInt(partitioning1.length); // Single-point crossover
@@ -56,14 +55,14 @@ public class PartitioningAndAssigningCrossover implements Variation{
             int[] orbitAssigned1 = new int[partitioning1.length];
             for(int i = 0; i < partitioning1.length; i++){
                 int sat = partitioning1[i];
-                int orb = assignment1[sat];
+                int orb = assigning1[sat];
                 orbitAssigned1[i] = orb;
             }
 
             int[] orbitAssigned2 = new int[partitioning2.length];
             for(int i = 0; i < partitioning2.length; i++){
                 int sat = partitioning2[i];
-                int orb = assignment2[sat];
+                int orb = assigning2[sat];
                 orbitAssigned2[i] = orb;
             }
 
@@ -76,18 +75,18 @@ public class PartitioningAndAssigningCrossover implements Variation{
             ArrayList<int[]> temp2 = extractPartitioningAndAssigning(orbitAssignmentInfo2);
 
             newPartitioning1 = temp1.get(0);
-            newAssignment1 = temp1.get(1);
+            newAssigning1 = temp1.get(1);
             newPartitioning2 = temp2.get(0);
-            newAssignment2 = temp2.get(0);
+            newAssigning2 = temp2.get(0);
 
         }else if(option == "prachi"){
             throw new UnsupportedOperationException();
         }
 
-        setVariables("instrumentPartitioning", newArch1, newPartitioning1);
-        setVariables("orbitAssignment", newArch1, newAssignment1);
-        setVariables("instrumentPartitioning", newArch2, newPartitioning2);
-        setVariables("orbitAssignment", newArch2, newAssignment2);
+        setIntVariables("instrumentPartitioning", newArch1, newPartitioning1);
+        setIntVariables("orbitAssignment", newArch1, newAssigning1);
+        setIntVariables("instrumentPartitioning", newArch2, newPartitioning2);
+        setIntVariables("orbitAssignment", newArch2, newAssigning2);
 
         out[0] = newArch1;
         out[1] = newArch2;
@@ -143,7 +142,7 @@ public class PartitioningAndAssigningCrossover implements Variation{
         return out;
     }
 
-    private int[] getVariables(String tag, Architecture arch){
+    private int[] getIntVariables(String tag, Architecture arch){
         int numVariables = arch.getDecision(tag).getNumberOfVariables();
         int[] variables = new int[numVariables];
         for(int i = 0; i < numVariables; i++){
@@ -152,7 +151,7 @@ public class PartitioningAndAssigningCrossover implements Variation{
         return variables;
     }
 
-    private void setVariables(String tag, Architecture arch, int[] values){
+    private void setIntVariables(String tag, Architecture arch, int[] values){
         ArrayList<Variable> variables = arch.getDecision(tag).getVariables();
         for(int i = 0; i < variables.size(); i++){
             IntegerVariable intVar = (IntegerVariable) variables.get(i);
