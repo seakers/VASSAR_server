@@ -82,10 +82,10 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
                     File.separator + key;
 
             if(problem.equalsIgnoreCase("SMAP")){
-                params = new rbsa.eoss.problems.Assigning.SMAPParams(path, "FUZZY-ATTRIBUTES", "test", "normal", search_clps);
+                params = new rbsa.eoss.problems.Assigning.SMAPParams(path, "CRISP-ATTRIBUTES", "test", "normal", search_clps);
 
             }else if(problem.equalsIgnoreCase("ClimateCentric")){
-                params = new rbsa.eoss.problems.Assigning.ClimateCentricParams(path, "FUZZY-ATTRIBUTES", "test", "normal", search_clps);
+                params = new rbsa.eoss.problems.Assigning.ClimateCentricParams(path, "CRISP-ATTRIBUTES", "test", "normal", search_clps);
 
             }else{
                 throw new RuntimeException();
@@ -100,7 +100,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
                     File.separator + "problems" +
                     File.separator + "SMAP";
 
-            params = new rbsa.eoss.problems.PartitioningAndAssigning.Decadal2017AerosolsParams(path, "FUZZY-ATTRIBUTES", "test", "normal", search_clps);
+            params = new rbsa.eoss.problems.PartitioningAndAssigning.Decadal2017AerosolsParams(path, "CRISP-ATTRIBUTES", "test", "normal", search_clps);
             evaluator = new rbsa.eoss.problems.PartitioningAndAssigning.ArchitectureEvaluator(params);
 
 

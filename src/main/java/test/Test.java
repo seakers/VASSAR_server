@@ -23,16 +23,14 @@ public class Test {
 
         String problem = "Decadal2017Aerosols";
         String search_clps = "";
-
         String root = System.getProperty("user.dir");
-        String key = "Decadal2017Aerosols";
 
         //PATH
         String path = root +
                 File.separator + "problems" +
                 File.separator + "SMAP";
 
-        BaseParams params = new rbsa.eoss.problems.PartitioningAndAssigning.Decadal2017AerosolsParams(path, "FUZZY-ATTRIBUTES", "test", "normal", search_clps);
+        BaseParams params = new rbsa.eoss.problems.PartitioningAndAssigning.Decadal2017AerosolsParams(path, "CRISP-ATTRIBUTES", "test", "normal", search_clps);
         AbstractArchitectureEvaluator evaluator = new rbsa.eoss.problems.PartitioningAndAssigning.ArchitectureEvaluator(params);
         ArchitectureEvaluationManager AEM = new ArchitectureEvaluationManager(params, evaluator);
 
