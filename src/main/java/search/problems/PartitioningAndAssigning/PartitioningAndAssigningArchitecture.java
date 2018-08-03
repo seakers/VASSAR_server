@@ -11,17 +11,17 @@ import java.util.ArrayList;
 
 public class PartitioningAndAssigningArchitecture extends seak.architecture.Architecture {
 
-    private static final long serialVersionUID = 8776271523867355732L;
-
     /**
      * Tag used for the assigning decision
      */
-    private static final String assignTag = "orbitAssignment";
+    public static final String assignTag = "assigning";
 
     /**
-     * Tag used for the combining decision
+     * Tag used for the partitioning decision
      */
-    private static final String partitionTag = "instrumentPartitioning";
+    public static final String partitionTag = "partitioning";
+
+    private static final long serialVersionUID = 8776271523867355732L;
 
     private boolean alreadyEvaluated;
 

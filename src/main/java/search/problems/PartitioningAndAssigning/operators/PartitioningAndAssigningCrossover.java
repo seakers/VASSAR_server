@@ -1,13 +1,13 @@
 package search.problems.PartitioningAndAssigning.operators;
 
 import org.moeaframework.core.Solution;
-import org.moeaframework.core.Variable;
 import org.moeaframework.core.Variation;
 import rbsa.eoss.local.BaseParams;
 import seak.architecture.Architecture;
 import seak.architecture.util.IntegerVariable;
 import search.problems.PartitioningAndAssigning.PartitioningAndAssigningArchitecture;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.HashMap;
 import java.util.ArrayList;
@@ -36,10 +36,12 @@ public class PartitioningAndAssigningCrossover implements Variation{
 
         Architecture arch1 = (PartitioningAndAssigningArchitecture) parents[0];
         Architecture arch2 = (PartitioningAndAssigningArchitecture) parents[1];
-        int[] partitioning1 = getIntVariables("instrumentPartitioning", arch1);
-        int[] partitioning2 = getIntVariables("instrumentPartitioning", arch2);
-        int[] assigning1 = getIntVariables("orbitAssignment", arch1);
-        int[] assigning2 = getIntVariables("orbitAssignment", arch2);
+        int[] intVars1 = getIntVariables(arch1);
+        int[] intVars2 = getIntVariables(arch2);
+        int[] partitioning1 = Arrays.copyOfRange(intVars1, 0, params.getNumInstr());
+        int[] partitioning2 = Arrays.copyOfRange(intVars2, 0, params.getNumInstr());
+        int[] assigning1 = Arrays.copyOfRange(intVars1, params.getNumInstr(), 2 * params.getNumInstr()+1);
+        int[] assigning2 = Arrays.copyOfRange(intVars2, params.getNumInstr(), 2 * params.getNumInstr()+1);
 
         Architecture newArch1 = new PartitioningAndAssigningArchitecture(params.getNumInstr(), params.getNumOrbits(), 2);
         Architecture newArch2 = new PartitioningAndAssigningArchitecture(params.getNumInstr(), params.getNumOrbits(), 2);
@@ -83,10 +85,18 @@ public class PartitioningAndAssigningCrossover implements Variation{
             throw new UnsupportedOperationException();
         }
 
-        setIntVariables("instrumentPartitioning", newArch1, newPartitioning1);
-        setIntVariables("orbitAssignment", newArch1, newAssigning1);
-        setIntVariables("instrumentPartitioning", newArch2, newPartitioning2);
-        setIntVariables("orbitAssignment", newArch2, newAssigning2);
+        int[] newIntVars1 = new int[partitioning1.length + assigning1.length];
+        int[] newIntVars2 = new int[partitioning1.length + assigning1.length];
+        for(int i = 0; i < newPartitioning1.length;i ++){
+            newIntVars1[i] = newPartitioning1[i];
+            newIntVars2[i] = newPartitioning2[i];
+        }
+        for(int i = 0; i < newAssigning1.length;i ++){
+            newIntVars1[i + newPartitioning1.length] = newAssigning1[i];
+            newIntVars2[i + newPartitioning1.length] = newAssigning2[i];
+        }
+        setIntVariables(newArch1, newIntVars1);
+        setIntVariables(newArch2, newIntVars2);
 
         out[0] = newArch1;
         out[1] = newArch2;
@@ -142,20 +152,18 @@ public class PartitioningAndAssigningCrossover implements Variation{
         return out;
     }
 
-    private int[] getIntVariables(String tag, Architecture arch){
-        int numVariables = arch.getDecision(tag).getNumberOfVariables();
-        int[] variables = new int[numVariables];
-        for(int i = 0; i < numVariables; i++){
-            variables[i] = ((IntegerVariable) arch.getVariable(i)).getValue();
+    private int[] getIntVariables(Architecture arch){
+        int[] out = new int[arch.getNumberOfVariables()];
+        for(int i = 0; i < out.length; i++){
+            out[i] = ((IntegerVariable) arch.getVariable(i)).getValue();
         }
-        return variables;
+        return out;
     }
 
-    private void setIntVariables(String tag, Architecture arch, int[] values){
-        ArrayList<Variable> variables = arch.getDecision(tag).getVariables();
-        for(int i = 0; i < variables.size(); i++){
-            IntegerVariable intVar = (IntegerVariable) variables.get(i);
-            intVar.setValue(values[i]);
+    private void setIntVariables(Architecture arch, int[] values){
+        int[] out = new int[arch.getNumberOfVariables()];
+        for(int i = 0; i < out.length; i++){
+            ((IntegerVariable) arch.getVariable(i)).setValue(values[i]);
         }
     }
 

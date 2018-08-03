@@ -1,17 +1,13 @@
 package search.problems.PartitioningAndAssigning.operators;
 
 import org.moeaframework.core.Solution;
-import org.moeaframework.core.Variable;
 import rbsa.eoss.local.BaseParams;
 import seak.architecture.Architecture;
 import seak.architecture.operators.IntegerUM;
 import seak.architecture.util.IntegerVariable;
 import search.problems.PartitioningAndAssigning.PartitioningAndAssigningArchitecture;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Collection;
+import java.util.*;
 
 
 public class PartitioningAndAssigningMutation extends IntegerUM{
@@ -35,8 +31,9 @@ public class PartitioningAndAssigningMutation extends IntegerUM{
     private Solution repair(Solution solution){
 
         Architecture arch = (PartitioningAndAssigningArchitecture) solution;
-        int[] partitioning = getIntVariables("instrumentPartitioning", arch);
-        int[] assigning = getIntVariables("orbitAssignment", arch);
+        int[] intVars = getIntVariables(arch);
+        int[] partitioning = Arrays.copyOfRange(intVars, 0, params.getNumInstr());
+        int[] assigning = Arrays.copyOfRange(intVars, params.getNumInstr(), 2 * params.getNumInstr()+1);
 
         Architecture newArch = new PartitioningAndAssigningArchitecture(params.getNumInstr(), params.getNumOrbits(), 2);
         int[] newPartitioning = new int[partitioning.length];
@@ -81,25 +78,29 @@ public class PartitioningAndAssigningMutation extends IntegerUM{
             newAssigning[i] = orb;
         }
 
-        setIntVariables("instrumentPartitioning", newArch, newPartitioning);
-        setIntVariables("orbitAssignment", newArch, newAssigning);
+        int[] newIntVars = new int[partitioning.length + assigning.length];
+        for(int i = 0; i < partitioning.length;i ++){
+            newIntVars[i] = newPartitioning[i];
+        }
+        for(int i = 0; i < assigning.length;i ++){
+            newIntVars[i + newPartitioning.length] = newAssigning[i];
+        }
+        setIntVariables(newArch, newIntVars);
         return newArch;
     }
 
-    private int[] getIntVariables(String tag, Architecture arch){
-        int numVariables = arch.getDecision(tag).getNumberOfVariables();
-        int[] variables = new int[numVariables];
-        for(int i = 0; i < numVariables; i++){
-            variables[i] = ((IntegerVariable)arch.getVariable(i)).getValue();
+    private int[] getIntVariables(Architecture arch){
+        int[] out = new int[arch.getNumberOfVariables()];
+        for(int i = 0; i < out.length; i++){
+            out[i] = ((IntegerVariable) arch.getVariable(i)).getValue();
         }
-        return variables;
+        return out;
     }
 
-    private void setIntVariables(String tag, Architecture arch, int[] values){
-        ArrayList<Variable> variables = arch.getDecision(tag).getVariables();
-        for(int i = 0; i < variables.size(); i++){
-            IntegerVariable intVar = (IntegerVariable) variables.get(i);
-            intVar.setValue(values[i]);
+    private void setIntVariables(Architecture arch, int[] values){
+        int[] out = new int[arch.getNumberOfVariables()];
+        for(int i = 0; i < out.length; i++){
+            ((IntegerVariable) arch.getVariable(i)).setValue(values[i]);
         }
     }
 }

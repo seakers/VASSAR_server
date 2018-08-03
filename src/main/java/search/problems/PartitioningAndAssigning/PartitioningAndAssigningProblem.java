@@ -58,8 +58,8 @@ public class PartitioningAndAssigningProblem extends AbstractProblem implements 
     private void evaluateArch(PartitioningAndAssigningArchitecture arch) {
         if (!arch.getAlreadyEvaluated()) {
 
-            int numPartitioningVariables = arch.getDecision("instrumentPartitioning").getNumberOfVariables();
-            int numAssignmentVariables = arch.getDecision("orbitAssignment").getNumberOfVariables();
+            int numPartitioningVariables = params.getNumInstr();
+            int numAssignmentVariables = params.getNumInstr();
 
             int[] instrumentPartitioning = new int[numPartitioningVariables];
             int[] orbitAssignment = new int[numAssignmentVariables];
@@ -83,7 +83,7 @@ public class PartitioningAndAssigningProblem extends AbstractProblem implements 
             if (problem.equalsIgnoreCase("Decadal2017Aerosols")) {
                 // Generate a new architecture
                 arch_old = new rbsa.eoss.problems.PartitioningAndAssigning.Architecture(instrumentPartitioning, orbitAssignment,
-                        1, (rbsa.eoss.problems.PartitioningAndAssigning.Decadal2017AerosolsParams) params);
+                        1, params);
 
             }else{
                 throw new IllegalArgumentException("Unrecorgnizable problem type: " + problem);

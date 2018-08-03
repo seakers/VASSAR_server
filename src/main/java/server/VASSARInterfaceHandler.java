@@ -46,6 +46,7 @@ import rbsa.eoss.Result;
 import search.problems.Assigning.AssigningArchitecture;
 import search.problems.Assigning.AssigningProblem;
 import search.problems.PartitioningAndAssigning.PartitioningAndAssigningArchitecture;
+import search.problems.PartitioningAndAssigning.PartitioningAndAssigningInitialization;
 
 public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
@@ -636,8 +637,8 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             PartitioningAndAssigningArchitecture new_arch = new PartitioningAndAssigningArchitecture(
                     params.getNumInstr(), params.getNumOrbits(), 2);
 
-            int numPartitioningVariables = new_arch.getDecision("instrumentPartitioning").getNumberOfVariables();
-            int numAssignmentVariables = new_arch.getDecision("orbitAssignment").getNumberOfVariables();
+            int numPartitioningVariables = params.getNumInstr();
+            int numAssignmentVariables = params.getNumInstr();
 
             for (int j = 0; j < numPartitioningVariables; ++j) {
                 IntegerVariable var = new IntegerVariable(dataset.get(i).inputs.get(j), 0, params.getNumInstr());
@@ -654,7 +655,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             initial.add(new_arch);
         }
 
-        Initialization initialization = new InjectedInitialization(partitioningAndAssigningProblem, popSize, initial);
+        Initialization initialization = new PartitioningAndAssigningInitialization(partitioningAndAssigningProblem, popSize, initial, params);
 
         //initialize population structure for algorithm
         Population population = new Population();
