@@ -11,7 +11,7 @@ import org.moeaframework.util.TypedProperties;
 import rbsa.eoss.evaluation.AbstractArchitectureEvaluator;
 import rbsa.eoss.evaluation.ArchitectureEvaluationManager;
 import rbsa.eoss.local.BaseParams;
-import search.InteractiveSearch;
+import search.BinaryInputInteractiveSearch;
 import search.problems.PartitioningAndAssigning.PartitioningAndAssigningInitialization;
 
 import java.io.File;
@@ -104,7 +104,7 @@ public class Test {
         RedisClient redisClient = RedisClient.create("redis://localhost:6379/0");
 
         Algorithm eMOEA = new EpsilonMOEA(partitioningAndAssigningProblem, population, archive, selection, var, initialization);
-        new InteractiveSearch(eMOEA, properties, "hbang", redisClient).call();
+        new BinaryInputInteractiveSearch(eMOEA, properties, "hbang", redisClient).call();
 
         redisClient.shutdown();
         AEM.clear();

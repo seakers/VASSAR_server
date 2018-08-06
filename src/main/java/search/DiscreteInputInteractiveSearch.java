@@ -13,15 +13,14 @@ import io.lettuce.core.api.StatefulRedisConnection;
 import io.lettuce.core.api.sync.RedisCommands;
 import io.lettuce.core.pubsub.StatefulRedisPubSubConnection;
 import io.lettuce.core.pubsub.api.sync.RedisPubSubCommands;
+import javaInterface.DiscreteInputArchitecture;
 import org.moeaframework.algorithm.AbstractEvolutionaryAlgorithm;
 import org.moeaframework.core.Algorithm;
 import org.moeaframework.core.Population;
 import org.moeaframework.core.Solution;
-import org.moeaframework.core.variable.BinaryVariable;
 import org.moeaframework.util.TypedProperties;
-import javaInterface.BinaryInputArchitecture;
+import seak.architecture.util.IntegerVariable;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.Callable;
 
@@ -29,14 +28,14 @@ import java.util.concurrent.Callable;
  *
  * @author nozomihitomi
  */
-public class InteractiveSearch implements Callable<Algorithm> {
+public class DiscreteInputInteractiveSearch implements Callable<Algorithm> {
 
     private final Algorithm alg;
     private final TypedProperties properties;
     private final String username;
     private final RedisClient redisClient;
 
-    public InteractiveSearch(Algorithm alg, TypedProperties properties, String username, RedisClient redisClient) {
+    public DiscreteInputInteractiveSearch(Algorithm alg, TypedProperties properties, String username, RedisClient redisClient) {
         this.alg = alg;
         this.properties = properties;
         this.username = username;
@@ -64,13 +63,13 @@ public class InteractiveSearch implements Callable<Algorithm> {
                 s.setAttribute("NFE", alg.getNumberOfEvaluations());
                 // Send the new architectures through REDIS
                 // But first, turn it into something easier in JSON
-                BinaryInputArchitecture json_arch = new BinaryInputArchitecture();
+                DiscreteInputArchitecture json_arch = new DiscreteInputArchitecture();
                 json_arch.inputs = new ArrayList<>();
                 json_arch.outputs = new ArrayList<>();
                 for (int j = 1; j < s.getNumberOfVariables(); ++j) {
-                    BinaryVariable var = (BinaryVariable)s.getVariable(j);
-                    boolean binaryVal = var.get(0);
-                    json_arch.inputs.add(binaryVal);
+                    IntegerVariable var = (IntegerVariable)s.getVariable(j);
+                    int val = var.getValue();
+                    json_arch.inputs.add(val);
                 }
                 json_arch.outputs.add(-s.getObjective(0));
                 json_arch.outputs.add(s.getObjective(1));

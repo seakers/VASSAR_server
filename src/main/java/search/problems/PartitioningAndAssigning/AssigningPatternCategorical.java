@@ -29,7 +29,7 @@ public class AssigningPatternCategorical extends seak.architecture.pattern.Assig
     public ArrayList<Variable> getVariables() {
         ArrayList<Variable> out = new ArrayList<>(getNumberOfVariables());
         for (int i = 0; i < getNumberOfVariables(); i++) {
-            out.add(new IntegerVariable(-1, -1, this.nNodes));
+            out.add(new IntegerVariable(-1, -1, this.nNodes - 1));
         }
         return out;
     }

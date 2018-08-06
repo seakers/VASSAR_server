@@ -54,28 +54,34 @@ public class PartitioningAndAssigningMutation extends IntegerUM{
         }
 
         for(int i = 0; i < assigning.length;i ++){
-            int orb = satIndex2Orbit.get(i);
-            if(orb == -1){
-                Collection<Integer> orbitsUsed = satIndex2Orbit.values();
-                ArrayList<Integer> orbitOptions;
 
-                if(orbitsUsed.size() == params.getNumOrbits()){
-                    orbitOptions = new ArrayList<>(orbitsUsed);
+            if(satIndex2Orbit.containsKey(i)){
+                int orb = satIndex2Orbit.get(i);
+                if(orb == -1){
+                    Collection<Integer> orbitsUsed = satIndex2Orbit.values();
+                    ArrayList<Integer> orbitOptions;
 
-                }else{
-                    orbitOptions = new ArrayList<>();
-                    for(int j = 0; j < params.getNumOrbits(); j++){
-                        if(!orbitsUsed.contains(j)){
-                            orbitOptions.add(j);
+                    if(orbitsUsed.size() == params.getNumOrbits()){
+                        orbitOptions = new ArrayList<>(orbitsUsed);
+
+                    }else{
+                        orbitOptions = new ArrayList<>();
+                        for(int j = 0; j < params.getNumOrbits(); j++){
+                            if(!orbitsUsed.contains(j)){
+                                orbitOptions.add(j);
+                            }
                         }
                     }
-                }
 
-                Collections.shuffle(orbitOptions);
-                orb = orbitOptions.get(0);
-                satIndex2Orbit.put(i, orb);
+                    Collections.shuffle(orbitOptions);
+                    orb = orbitOptions.get(0);
+                    satIndex2Orbit.put(i, orb);
+                }
+                newAssigning[i] = orb;
+
+            }else{
+                newAssigning[i] = -1;
             }
-            newAssigning[i] = orb;
         }
 
         int[] newIntVars = new int[partitioning.length + assigning.length];

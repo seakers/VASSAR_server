@@ -40,13 +40,14 @@ import org.moeaframework.core.variable.BinaryVariable;
 import org.moeaframework.util.TypedProperties;
 
 import seak.architecture.util.IntegerVariable;
-import search.InteractiveSearch;
+import search.BinaryInputInteractiveSearch;
 import rbsa.eoss.architecture.AbstractArchitecture;
 import rbsa.eoss.evaluation.AbstractArchitectureEvaluator;
 import rbsa.eoss.evaluation.ArchitectureEvaluationManager;
 import seak.architecture.operators.IntegerUM;
 import rbsa.eoss.local.BaseParams;
 import rbsa.eoss.Result;
+import search.DiscreteInputInteractiveSearch;
 import search.problems.Assigning.AssigningArchitecture;
 import search.problems.Assigning.AssigningProblem;
 import search.problems.PartitioningAndAssigning.PartitioningAndAssigningArchitecture;
@@ -759,6 +760,9 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
     @Override
     public void startGABinaryInput(String problem, List<BinaryInputArchitecture> dataset, String username) {
+
+        System.out.println("Starting GA for binary input data");
+
         //PATH
         String path = ".";
 
@@ -828,7 +832,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         RedisClient redisClient = RedisClient.create("redis://localhost:6379/0");
 
         Algorithm eMOEA = new EpsilonMOEA(assignmentProblem, population, archive, selection, var, initialization);
-        ecs.submit(new InteractiveSearch(eMOEA, properties, username, redisClient));
+        ecs.submit(new BinaryInputInteractiveSearch(eMOEA, properties, username, redisClient));
 
         try {
             Algorithm alg = ecs.take().get();
@@ -844,6 +848,9 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
     @Override
     public void startGADiscreteInput(String problem, List<DiscreteInputArchitecture> dataset, String username) {
+
+        System.out.println("Starting GA for discrete input data");
+
         //PATH
         String path = ".";
 
@@ -920,7 +927,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         RedisClient redisClient = RedisClient.create("redis://localhost:6379/0");
 
         Algorithm eMOEA = new EpsilonMOEA(partitioningAndAssigningProblem, population, archive, selection, var, initialization);
-        ecs.submit(new InteractiveSearch(eMOEA, properties, username, redisClient));
+        ecs.submit(new DiscreteInputInteractiveSearch(eMOEA, properties, username, redisClient));
 
         try {
             Algorithm alg = ecs.take().get();
