@@ -837,12 +837,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
         singlecross = new OnePointCrossover(crossoverProbability);
         bitFlip = new BitFlip(mutationProbability);
-        int
-[06/Aug/2018 18:58:59] ERROR [VASSAR:374] Exception when retrieving information from the current architecture!
-Traceback (most recent call last):
-  File "/home/antoni/Programacio/daphne/daphne_brain/VASSAR_API/views.py", line 351, in post
-    subobjective_explanation = client.client.getSubscoreDetailsDiscreteInput(problem, this_arch)
-TypeError: getSubscoreDetailsDiscreteInput() missing 1 required positional argument: 'subobj'ergerMutation = new IntegerUM(mutationProbability);
+        intergerMutation = new IntegerUM(mutationProbability);
         CompoundVariation var = new CompoundVariation(singlecross, bitFlip, intergerMutation);
 
         // REDIS
