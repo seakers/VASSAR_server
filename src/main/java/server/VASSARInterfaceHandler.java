@@ -582,7 +582,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         BaseParams params = this.getProblemParameters(problem);
         ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
         AbstractArchitecture absArchitecture = this.getArchitectureBinaryInput(problem, bitString, 1, params);
-        Result result = AEM.evaluateArchitecture(absArchitecture, "Slow");
+        Result result = AEM.evaluateArchitecture(absArchitecture, "Slow", true);
 
         return getSubscoreDetails(params, subobj, result);
     }
@@ -600,7 +600,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         AbstractArchitecture absArchitecture = this.getArchitectureDiscreteInput(problem, intArray, 1, params);
 
         // Evaluate the architecture
-        Result result = AEM.evaluateArchitecture(absArchitecture, "Slow");
+        Result result = AEM.evaluateArchitecture(absArchitecture, "Slow", true);
 
         return getSubscoreDetails(params, subobj, result);
     }
@@ -650,7 +650,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         BaseParams params = this.getProblemParameters(problem);
         ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
         AbstractArchitecture absArchitecture = this.getArchitectureBinaryInput(problem, bitString, 1, params);
-        Result result = AEM.evaluateArchitecture(absArchitecture, "Slow");
+        Result result = AEM.evaluateArchitecture(absArchitecture, "Slow", true);
 
         return getArchScienceInformation(params, result);
     }
@@ -667,24 +667,13 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         AbstractArchitecture absArchitecture = this.getArchitectureDiscreteInput(problem, intArray, 1, params);
 
         // Evaluate the architecture
-        Result result = AEM.evaluateArchitecture(absArchitecture, "Slow");
+        Result result = AEM.evaluateArchitecture(absArchitecture, "Slow", true);
 
         return getArchScienceInformation(params, result);
     }
 
-    @Override
-    public List<MissionCostInformation> getArchCostInformationBinaryInput(String problem, BinaryInputArchitecture architecture) {
+    private List<MissionCostInformation> getArchCostInformation(Result result) {
         List<MissionCostInformation> information = new ArrayList<>();
-
-        String bitString = "";
-        for (Boolean b : architecture.inputs) {
-            bitString += b ? "1" : "0";
-        }
-
-        BaseParams params = this.getProblemParameters(problem);
-        ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
-        AbstractArchitecture absArchitecture = this.getArchitectureBinaryInput(problem, bitString, 1, params);
-        Result result = AEM.evaluateArchitecture(absArchitecture, "Slow");
 
         // Auxiliary arrays
         String[] massBudgetSlots = { "adapter-mass", "propulsion-mass#", "structure-mass#", "avionics-mass#",
@@ -698,16 +687,12 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             try {
                 String missionName = costFact.getSlotValue("Name").stringValue(null);
                 // Obtain the list of instruments for this orbit
-                List<String> orbitList = Arrays.asList(params.getOrbitList());
-                List<String> instrList = Arrays.asList(params.getInstrumentList());
                 ArrayList<String> payloads = new ArrayList<>();
-                int loopStart = params.getNumInstr()*orbitList.indexOf(missionName);
-                int loopEnd = loopStart + params.getNumInstr();
-                for (int i = params.getNumInstr()*orbitList.indexOf(missionName); i < loopEnd; ++i) {
-                    if (architecture.inputs.get(i)) {
-                        payloads.add(instrList.get(i-loopStart));
-                    }
+                ValueVector instruments = costFact.getSlotValue("instruments").listValue(null);
+                for (int i = 0; i < instruments.size(); ++i) {
+                    payloads.add(instruments.get(i).stringValue(null));
                 }
+
                 // Get the launch vehicle name
                 String launchVehicle = costFact.getSlotValue("launch-vehicle").stringValue(null);
                 HashMap<String, Double> massBudget = new HashMap<>();
@@ -754,8 +739,35 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
     }
 
     @Override
+    public List<MissionCostInformation> getArchCostInformationBinaryInput(String problem, BinaryInputArchitecture architecture) {
+        String bitString = "";
+        for (Boolean b : architecture.inputs) {
+            bitString += b ? "1" : "0";
+        }
+
+        BaseParams params = this.getProblemParameters(problem);
+        ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
+        AbstractArchitecture absArchitecture = this.getArchitectureBinaryInput(problem, bitString, 1, params);
+        Result result = AEM.evaluateArchitecture(absArchitecture, "Slow", true);
+
+        return getArchCostInformation(result);
+    }
+
+    @Override
     public List<MissionCostInformation> getArchCostInformationDiscreteInput(String problem, DiscreteInputArchitecture architecture) {
-        throw new UnsupportedOperationException();
+        int[] intArray = new int[architecture.inputs.size()];
+        for (int i = 0; i < architecture.inputs.size(); i++) {
+            intArray[i] = architecture.inputs.get(i);
+        }
+
+        BaseParams params = this.getProblemParameters(problem);
+        ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
+        AbstractArchitecture absArchitecture = this.getArchitectureDiscreteInput(problem, intArray, 1, params);
+
+        // Evaluate the architecture
+        Result result = AEM.evaluateArchitecture(absArchitecture, "Slow", true);
+
+        return getArchCostInformation(result);
     }
 
     @Override
