@@ -25,6 +25,8 @@ import java.util.*;
 import java.util.concurrent.*;
 
 import io.lettuce.core.RedisClient;
+import io.lettuce.core.pubsub.StatefulRedisPubSubConnection;
+import io.lettuce.core.pubsub.api.sync.RedisPubSubCommands;
 import javaInterface.*;
 import jess.Fact;
 import jess.JessException;
@@ -185,17 +187,13 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
     @Override
     public BinaryInputArchitecture evalBinaryInputArch(String problem, List<Boolean> boolList) {
-
-        // Initialize Jess
-        initJess(problem);
-
         // Input a new architecture design
         String bitString = "";
         for (Boolean b : boolList) {
             bitString += b ? "1" : "0";
         }
 
-        BaseParams params = this.paramsMap.get(problem);
+        BaseParams params = this.getProblemParameters(problem);
         ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
         AbstractArchitecture architecture = this.getArchitectureBinaryInput(problem, bitString, 1, params);
 
@@ -215,17 +213,13 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
     @Override
     public DiscreteInputArchitecture evalDiscreteInputArch(String problem, List<Integer> intList) {
-
-        // Initialize Jess
-        initJess(problem);
-
         // Input a new architecture design
         int[] intArray = new int[intList.size()];
         for (int i = 0; i < intList.size(); i++) {
             intArray[i] = intList.get(i);
         }
 
-        BaseParams params = this.paramsMap.get(problem);
+        BaseParams params = this.getProblemParameters(problem);
         ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
         AbstractArchitecture architecture = this.getArchitectureDiscreteInput(problem, intArray, 1, params);
 
@@ -247,7 +241,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
     @Override
     public List<BinaryInputArchitecture> runLocalSearchBinaryInput(String problem, List<Boolean> boolList) {
 
-        BaseParams params = this.paramsMap.get(problem);
+        BaseParams params = this.getProblemParameters(problem);
         ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
 
         String bitString = "";
@@ -328,7 +322,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
         if (problem.equalsIgnoreCase("SMAP") || problem.equalsIgnoreCase("ClimateCentric")) {
 
-            rbsa.eoss.problems.Assigning.AssigningParams params = (rbsa.eoss.problems.Assigning.AssigningParams) this.paramsMap.get(problem);
+            rbsa.eoss.problems.Assigning.AssigningParams params = (rbsa.eoss.problems.Assigning.AssigningParams) this.getProblemParameters(problem);
             ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
 
             // Generate a new architecture
@@ -345,8 +339,31 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
     }
 
     @Override
-    public List<String> getCritiqueDiscreteInputArch(String problem, List<Integer> boolList) {
-        throw new UnsupportedOperationException("getCritiqueDiscreteArch() not supported yet.");
+    public List<String> getCritiqueDiscreteInputArch(String problem, List<Integer> intList) {
+
+        AbstractArchitecture architecture;
+
+        System.out.println(intList);
+
+        if (problem.equalsIgnoreCase("Decadal2017Aerosols")) {
+
+            rbsa.eoss.problems.PartitioningAndAssigning.PartitioningAndAssigningParams params = (rbsa.eoss.problems.PartitioningAndAssigning.PartitioningAndAssigningParams) this.getProblemParameters(problem);
+            ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
+
+            // Generate a new architecture
+            int[] intArray = new int[intList.size()];
+            for(int i = 0; i < intArray.length; i++)
+                intArray[i] = intList.get(i);
+            architecture = this.getArchitectureDiscreteInput(problem, intArray, 1, params);
+
+            // Initialize Critique Generator
+            rbsa.eoss.problems.PartitioningAndAssigning.CritiqueGenerator critiquer = new rbsa.eoss.problems.PartitioningAndAssigning.CritiqueGenerator(params, AEM.getResourcePool(), architecture);
+
+            return critiquer.getCritique();
+
+        } else {
+            throw new IllegalArgumentException("Unrecorgnizable problem type: " + problem);
+        }
     }
 
     @Override
@@ -806,26 +823,30 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         properties.setBoolean("saveSelection", true);
 
         //initialize problem
-        BaseParams params = this.paramsMap.get(problem);
+        BaseParams params = this.getProblemParameters(problem);
         ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
 
-        AEM.reset();
-        AEM.init(8);
         Problem assignmentProblem = new AssigningProblem(new int[]{1}, problem, AEM, params);
+
+        Random r = new Random();
 
         // Create a solution for each input arch in the dataset
         List<Solution> initial = new ArrayList<>(dataset.size());
-        for (int i = 0; i < dataset.size(); ++i) {
+        for (int i = 0; i < popSize && !dataset.isEmpty(); ++i) {
             AssigningArchitecture new_arch = new AssigningArchitecture(new int[]{1},
                     params.getNumInstr(), params.getNumOrbits(), 2);
+
+            int newIndex = r.nextInt(dataset.size());
+
             for (int j = 1; j < new_arch.getNumberOfVariables(); ++j) {
                 BinaryVariable var = new BinaryVariable(1);
-                var.set(0, dataset.get(i).inputs.get(j));
+                var.set(0, dataset.get(newIndex).inputs.get(j));
                 new_arch.setVariable(j, var);
             }
-            new_arch.setObjective(0, dataset.get(i).outputs.get(0));
-            new_arch.setObjective(1, dataset.get(i).outputs.get(1));
-            initial.set(i, new_arch);
+            new_arch.setObjective(0, dataset.get(newIndex).outputs.get(0));
+            new_arch.setObjective(1, dataset.get(newIndex).outputs.get(1));
+            initial.set(newIndex, new_arch);
+            dataset.remove(newIndex);
         }
         initialization = new InjectedInitialization(assignmentProblem, popSize, initial);
 
@@ -852,8 +873,13 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             ex.printStackTrace();
         }
 
+        // Notify listeners of new architectures in username channel
+        StatefulRedisPubSubConnection<String, String> pubsubConnection = redisClient.connectPubSub();
+        RedisPubSubCommands<String, String> sync = pubsubConnection.sync();
+        sync.publish(username, "ga_done");
+        pubsubConnection.close();
+
         redisClient.shutdown();
-        AEM.clear();
         pool.shutdown();
         System.out.println("DONE");
     }
@@ -891,35 +917,39 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         properties.setBoolean("saveSelection", true);
 
         //initialize problem
-        BaseParams params = this.paramsMap.get(problem);
+        BaseParams params = this.getProblemParameters(problem);
         ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
 
-        AEM.reset();
-        AEM.init(1);
         Problem partitioningAndAssigningProblem = new search.problems.PartitioningAndAssigning.PartitioningAndAssigningProblem(problem, AEM, params);
+
+        Random r = new Random();
 
         // Create a solution for each input arch in the dataset
         List<Solution> initial = new ArrayList<>(dataset.size());
-        for (int i = 0; i < dataset.size(); ++i) {
+        for (int i = 0; i < popSize && !dataset.isEmpty(); ++i) {
             PartitioningAndAssigningArchitecture new_arch = new PartitioningAndAssigningArchitecture(
                     params.getNumInstr(), params.getNumOrbits(), 2);
 
             int numPartitioningVariables = params.getNumInstr();
             int numAssignmentVariables = params.getNumInstr();
 
+            int newIndex = r.nextInt(dataset.size());
+
             for (int j = 0; j < numPartitioningVariables; ++j) {
-                IntegerVariable var = new IntegerVariable(dataset.get(i).inputs.get(j), 0, params.getNumInstr());
+                IntegerVariable var = new IntegerVariable(dataset.get(newIndex).inputs.get(j), 0, params.getNumInstr());
                 new_arch.setVariable(j, var);
             }
 
             for (int j = numPartitioningVariables; j < numPartitioningVariables + numAssignmentVariables; ++j) {
-                IntegerVariable var = new IntegerVariable(dataset.get(i).inputs.get(j), -1, params.getNumOrbits());
+                IntegerVariable var = new IntegerVariable(dataset.get(newIndex).inputs.get(j), -1, params.getNumOrbits());
                 new_arch.setVariable(j, var);
             }
 
-            new_arch.setObjective(0, dataset.get(i).outputs.get(0));
-            new_arch.setObjective(1, dataset.get(i).outputs.get(1));
+            new_arch.setObjective(0, dataset.get(newIndex).outputs.get(0));
+            new_arch.setObjective(1, dataset.get(newIndex).outputs.get(1));
             initial.add(new_arch);
+
+            dataset.remove(newIndex);
         }
 
         Initialization initialization = new PartitioningAndAssigningInitialization(partitioningAndAssigningProblem, popSize, initial, params);
@@ -947,8 +977,13 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             ex.printStackTrace();
         }
 
+        // Notify listeners of new architectures in username channel
+        StatefulRedisPubSubConnection<String, String> pubsubConnection = redisClient.connectPubSub();
+        RedisPubSubCommands<String, String> sync = pubsubConnection.sync();
+        sync.publish(username, "ga_done");
+        pubsubConnection.close();
+
         redisClient.shutdown();
-        AEM.clear();
         pool.shutdown();
         System.out.println("DONE");
     }

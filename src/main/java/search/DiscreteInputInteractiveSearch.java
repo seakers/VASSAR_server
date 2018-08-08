@@ -66,7 +66,7 @@ public class DiscreteInputInteractiveSearch implements Callable<Algorithm> {
                 DiscreteInputArchitecture json_arch = new DiscreteInputArchitecture();
                 json_arch.inputs = new ArrayList<>();
                 json_arch.outputs = new ArrayList<>();
-                for (int j = 1; j < s.getNumberOfVariables(); ++j) {
+                for (int j = 0; j < s.getNumberOfVariables(); ++j) {
                     IntegerVariable var = (IntegerVariable)s.getVariable(j);
                     int val = var.getValue();
                     json_arch.inputs.add(val);
