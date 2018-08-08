@@ -1,6 +1,14 @@
 package test;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import io.lettuce.core.RedisClient;
+import io.lettuce.core.api.StatefulRedisConnection;
+import io.lettuce.core.api.sync.RedisCommands;
+import io.lettuce.core.pubsub.StatefulRedisPubSubConnection;
+import io.lettuce.core.pubsub.api.sync.RedisPubSubCommands;
+import javaInterface.DiscreteInputArchitecture;
+import org.moeaframework.algorithm.AbstractEvolutionaryAlgorithm;
 import org.moeaframework.algorithm.EpsilonMOEA;
 import org.moeaframework.core.*;
 import org.moeaframework.core.comparator.ChainedComparator;
@@ -8,13 +16,21 @@ import org.moeaframework.core.comparator.ParetoObjectiveComparator;
 import org.moeaframework.core.operator.CompoundVariation;
 import org.moeaframework.core.operator.TournamentSelection;
 import org.moeaframework.util.TypedProperties;
+import rbsa.eoss.Result;
 import rbsa.eoss.evaluation.AbstractArchitectureEvaluator;
 import rbsa.eoss.evaluation.ArchitectureEvaluationManager;
 import rbsa.eoss.local.BaseParams;
+import seak.architecture.util.IntegerVariable;
 import search.BinaryInputInteractiveSearch;
+import search.DiscreteInputInteractiveSearch;
+import search.problems.PartitioningAndAssigning.PartitioningAndAssigningArchitecture;
 import search.problems.PartitioningAndAssigning.PartitioningAndAssigningInitialization;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.util.ArrayList;
+import java.util.StringJoiner;
 
 
 public class Test {
@@ -37,8 +53,8 @@ public class Test {
         //parameters and operators for search
         TypedProperties properties = new TypedProperties();
         //search paramaters set here
-        int popSize = 20;
-        int maxEvals = 50;
+        int popSize = 100;
+        int maxEvals = 1400;
 
         properties.setInt("maxEvaluations", maxEvals);
         properties.setInt("populationSize", popSize);
@@ -100,13 +116,81 @@ public class Test {
         Variation intergerMutation = new search.problems.PartitioningAndAssigning.operators.PartitioningAndAssigningMutation(mutationProbability, params);
         CompoundVariation var = new CompoundVariation(singlecross, intergerMutation);
 
-        // REDIS
-        RedisClient redisClient = RedisClient.create("redis://localhost:6379/0");
-
         Algorithm eMOEA = new EpsilonMOEA(partitioningAndAssigningProblem, population, archive, selection, var, initialization);
-        new BinaryInputInteractiveSearch(eMOEA, properties, "hbang", redisClient).call();
 
-        redisClient.shutdown();
+        Algorithm alg = eMOEA;
+        int populationSize = popSize;
+        int maxEvaluations = maxEvals;
+
+        // run the executor using the listener to collect results
+        System.out.println("Starting " + alg.getClass().getSimpleName() + " on " + alg.getProblem().getName() + " with pop size: " + populationSize);
+        alg.step();
+        long startTime = System.currentTimeMillis();
+
+        while (!alg.isTerminated() && (alg.getNumberOfEvaluations() < maxEvaluations)) {
+            alg.step();
+        }
+
+        Population pop = ((AbstractEvolutionaryAlgorithm) alg).getPopulation();
+
+        int numInputs = 10;
+        ArrayList<ArrayList<Integer>> inputs = new ArrayList<>();
+        ArrayList<ArrayList<Double>> outputs = new ArrayList<>();
+        for(int i = 0; i < pop.size(); i++){
+            PartitioningAndAssigningArchitecture sol = (PartitioningAndAssigningArchitecture)pop.get(i);
+            numInputs = sol.getNumberOfVariables();
+            ArrayList<Integer> input = new ArrayList<>();
+            ArrayList<Double> output = new ArrayList<>();
+            for(int j = 0; j < sol.getNumberOfVariables(); j++){
+                input.add(((IntegerVariable) sol.getVariable(j)).getValue());
+            }
+            for(int j = 0; j < sol.getNumberOfObjectives(); j++){
+                output.add(sol.getObjective(j));
+            }
+            inputs.add(input);
+            outputs.add(output);
+        }
+
+        String filePath = path + "/results/GATest.csv";
+
+        int count = 0;
+        try (BufferedWriter outputWriter = new BufferedWriter(new FileWriter(filePath))) {
+
+            StringJoiner header = new StringJoiner(",");
+            for(int i = 0; i < numInputs; i++){
+                header.add("input" + i);
+            }
+
+            header.add("Science");
+            header.add("Cost");
+            outputWriter.write(header.toString() + "\n");
+
+            for (int i = 0; i < inputs.size(); i++) {
+                if (outputs.get(i).get(0) == 0.0) {
+                    count++;
+
+                }else {
+                    StringJoiner sj = new StringJoiner(",");
+                    StringJoiner inputString = new StringJoiner(",");
+                    for(int j:inputs.get(i)){
+                        String temp = "" + j;
+                        inputString.add(temp);
+                    }
+                    sj.add(inputString.toString());
+                    sj.add(Double.toString(outputs.get(i).get(0)));
+                    sj.add(Double.toString(outputs.get(i).get(1)));
+                    outputWriter.write(sj.toString() + "\n");
+                }
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+
+        alg.terminate();
+        long finishTime = System.currentTimeMillis();
+        System.out.println("Done with optimization. Execution time: " + ((finishTime - startTime) / 1000) + "s");
+
         AEM.clear();
         System.out.println("DONE");
     }

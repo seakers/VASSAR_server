@@ -16,6 +16,7 @@ repositories {
 jar {
     manifest {
         attributes 'Main-Class': 'server.JavaServer'
+        //attributes 'Main-Class': 'test.Test'
     }
 }
 
