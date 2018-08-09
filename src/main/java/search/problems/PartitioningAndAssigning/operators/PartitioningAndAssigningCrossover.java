@@ -79,7 +79,7 @@ public class PartitioningAndAssigningCrossover implements Variation{
             newPartitioning1 = temp1.get(0);
             newAssigning1 = temp1.get(1);
             newPartitioning2 = temp2.get(0);
-            newAssigning2 = temp2.get(0);
+            newAssigning2 = temp2.get(1);
 
         }else if(option == "prachi"){
             throw new UnsupportedOperationException();
@@ -112,20 +112,24 @@ public class PartitioningAndAssigningCrossover implements Variation{
             assigning[i] = -1;
         }
 
-        ArrayList<Integer> orbitUsed = new ArrayList<>();
-        HashMap<Integer, Integer>  orbit2SatIndex = new HashMap<>();
+        int satIndex = 0;
+        HashMap<Integer, Integer> orbit2SatIndex = new HashMap<>();
+        HashMap<Integer, Integer> satIndex2Orbit = new HashMap<>();
+
         for(int i = 0; i < assignedOrbit.length; i++){
             int orb = assignedOrbit[i];
-            if(!orbitUsed.contains(orb)){
-                orbit2SatIndex.put(orb, orbitUsed.size());
-                orbitUsed.add(orb);
+
+            if(!orbit2SatIndex.containsKey(orb)){
+                orbit2SatIndex.put(orb, satIndex);
+                satIndex2Orbit.put(satIndex, orb);
+                satIndex++;
             }
 
             partitioning[i] = orbit2SatIndex.get(orb);
         }
 
-        for(int i = 0; i < orbitUsed.size(); i++){
-            assigning[i] = orbitUsed.get(i);
+        for(int index: satIndex2Orbit.keySet()){
+            assigning[index] = satIndex2Orbit.get(index);
         }
 
         ArrayList<int[]> out = new ArrayList<>();

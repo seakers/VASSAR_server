@@ -276,8 +276,68 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
     }
 
     @Override
-    public List<DiscreteInputArchitecture> runLocalSearchDiscreteInput(String problem, List<Integer> boolList) {
-        throw new UnsupportedOperationException("Local search for discrete input is not supported yet.");
+    public List<DiscreteInputArchitecture> runLocalSearchDiscreteInput(String problem, List<Integer> inputs) {
+        BaseParams params = this.getProblemParameters(problem);
+        ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
+
+        int[] inputsArray = new int[inputs.size()];
+        for(int i = 0; i < inputs.size(); i++){
+            inputsArray[i] = inputs.get(i);
+        }
+
+        ArrayList<int[]> samples = randomLocalChangeDiscreteInput(inputsArray, 4, params);
+
+        List<DiscreteInputArchitecture> out = new ArrayList<>();
+        for (int[] sample : samples) {
+
+            AbstractArchitecture architecture = this.getArchitectureDiscreteInput(problem, sample, 1, params);
+
+            // Evaluate the architecture
+            Result result = AEM.evaluateArchitecture(architecture, "Slow");
+
+            // Save the score and the cost
+            double cost = result.getCost();
+            double science = result.getScience();
+            List<Double> outputs = new ArrayList<>();
+            outputs.add(science);
+            outputs.add(cost);
+
+            List<Integer> newInput = new ArrayList<>();
+            for(int i = 0; i < sample.length; i++){
+                newInput.add(sample[i]);
+            }
+
+            DiscreteInputArchitecture arch = new DiscreteInputArchitecture(0, newInput, outputs);
+            out.add(arch);
+        }
+
+        return out;
+    }
+
+    private ArrayList<int[]> randomLocalChangeDiscreteInput(int[] input, int n, BaseParams params) {
+
+        // Assumes partitioning + assigning problem
+
+        Random rand = new Random();
+        int numVars = 2 * params.getNumInstr();
+
+        ArrayList<int[]> out = new ArrayList<>();
+        Solution solution = new PartitioningAndAssigningArchitecture(params.getNumInstr(), params.getNumOrbits(), 2);
+
+        for(int i = 0; i < n; i++){
+            int selectedVar = rand.nextInt(numVars);
+            IntegerVariable variable = (IntegerVariable) solution.getVariable(selectedVar);
+            int lowerBound = variable.getLowerBound();
+            int upperBound = variable.getUpperBound();
+
+            int randInt = rand.nextInt(upperBound - lowerBound + 1) + lowerBound;
+            int[] modifiedInput = Arrays.copyOfRange(input, 0, input.length);
+            modifiedInput[selectedVar] = randInt;
+
+            out.add(modifiedInput);
+        }
+
+        return out;
     }
 
     private ArrayList<String> randomLocalChangeBinaryInput(String bitString, int n, BaseParams params) {
