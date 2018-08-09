@@ -132,12 +132,12 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
                 for (int j = 1; j < new_arch.getNumberOfVariables(); ++j) {
                     BinaryVariable var = new BinaryVariable(1);
-                    var.set(0, dataset.get(newIndex).inputs.get(j));
+                    var.set(0, dataset.get(newIndex).inputs.get(j-1));
                     new_arch.setVariable(j, var);
                 }
                 new_arch.setObjective(0, dataset.get(newIndex).outputs.get(0));
                 new_arch.setObjective(1, dataset.get(newIndex).outputs.get(1));
-                initial.set(newIndex, new_arch);
+                initial.add(new_arch);
                 dataset.remove(newIndex);
             }
             initialization = new InjectedInitialization(assignmentProblem, popSize, initial);
