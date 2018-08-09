@@ -50,6 +50,7 @@ import seak.architecture.operators.IntegerUM;
 import rbsa.eoss.local.BaseParams;
 import rbsa.eoss.Result;
 import search.DiscreteInputInteractiveSearch;
+import search.Utils;
 import search.problems.Assigning.AssigningArchitecture;
 import search.problems.Assigning.AssigningProblem;
 import search.problems.PartitioningAndAssigning.PartitioningAndAssigningArchitecture;
@@ -202,7 +203,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
             double crossoverProbability = 1.0;
             properties.setDouble("crossoverProbability", crossoverProbability);
-            double mutationProbability = 1. / 60.;
+            double mutationProbability = 1. / 6.;
             properties.setDouble("mutationProbability", mutationProbability);
 
             //setup for epsilon MOEA
