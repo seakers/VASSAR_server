@@ -62,11 +62,235 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
     private Map<String, BaseParams> paramsMap;
     private Map<String, ArchitectureEvaluationManager> architectureEvaluationManagerMap;
 
+    private Thread binaryInputGAThread;
+    private Thread discreteInputGAThread;
+
+    private ConcurrentLinkedQueue<Integer> binaryInputQueue;
+    private ConcurrentLinkedQueue<Integer> discreteInputQueue;
+
     public VASSARInterfaceHandler() {
         // Set a path to the project folder
         this.root = System.getProperty("user.dir");
         this.paramsMap = new HashMap<>();
         this.architectureEvaluationManagerMap = new HashMap<>();
+
+        this.binaryInputGAThread = new Thread();
+        this.discreteInputGAThread = new Thread();
+
+        this.binaryInputQueue =  new ConcurrentLinkedQueue<>();
+        this.discreteInputQueue = new ConcurrentLinkedQueue<>();
+    }
+
+    private Runnable generateBinaryInputGATask(String problem, List<BinaryInputArchitecture> dataset, String username) {
+        return () -> {
+            System.out.println("Starting GA for binary input data");
+
+            //PATH
+            String path = ".";
+
+            ExecutorService pool = Executors.newFixedThreadPool(8);
+            CompletionService<Algorithm> ecs = new ExecutorCompletionService<>(pool);
+
+            //parameters and operators for search
+            TypedProperties properties = new TypedProperties();
+            //search paramaters set here
+            int popSize = 50;
+            int maxEvals = 3000;
+            properties.setInt("maxEvaluations", maxEvals);
+            properties.setInt("populationSize", popSize);
+            double crossoverProbability = 1.0;
+            properties.setDouble("crossoverProbability", crossoverProbability);
+            double mutationProbability = 1. / 60.;
+            properties.setDouble("mutationProbability", mutationProbability);
+            Variation singlecross;
+            Variation bitFlip;
+            Variation intergerMutation;
+            Initialization initialization;
+
+            //setup for epsilon MOEA
+            double[] epsilonDouble = new double[]{0.001, 1};
+
+            //setup for saving results
+            properties.setBoolean("saveQuality", true);
+            properties.setBoolean("saveCredits", true);
+            properties.setBoolean("saveSelection", true);
+
+            //initialize problem
+            BaseParams params = this.getProblemParameters(problem);
+            ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
+
+            Problem assignmentProblem = new AssigningProblem(new int[]{1}, problem, AEM, params);
+
+            Random r = new Random();
+
+            // Create a solution for each input arch in the dataset
+            List<Solution> initial = new ArrayList<>(dataset.size());
+            for (int i = 0; i < popSize && !dataset.isEmpty(); ++i) {
+                AssigningArchitecture new_arch = new AssigningArchitecture(new int[]{1},
+                        params.getNumInstr(), params.getNumOrbits(), 2);
+
+                int newIndex = r.nextInt(dataset.size());
+
+                for (int j = 1; j < new_arch.getNumberOfVariables(); ++j) {
+                    BinaryVariable var = new BinaryVariable(1);
+                    var.set(0, dataset.get(newIndex).inputs.get(j));
+                    new_arch.setVariable(j, var);
+                }
+                new_arch.setObjective(0, dataset.get(newIndex).outputs.get(0));
+                new_arch.setObjective(1, dataset.get(newIndex).outputs.get(1));
+                initial.set(newIndex, new_arch);
+                dataset.remove(newIndex);
+            }
+            initialization = new InjectedInitialization(assignmentProblem, popSize, initial);
+
+            //initialize population structure for algorithm
+            Population population = new Population();
+            EpsilonBoxDominanceArchive archive = new EpsilonBoxDominanceArchive(epsilonDouble);
+            ChainedComparator comp = new ChainedComparator(new ParetoObjectiveComparator());
+            TournamentSelection selection = new TournamentSelection(2, comp);
+
+            singlecross = new OnePointCrossover(crossoverProbability);
+            bitFlip = new BitFlip(mutationProbability);
+            intergerMutation = new IntegerUM(mutationProbability);
+            CompoundVariation var = new CompoundVariation(singlecross, bitFlip, intergerMutation);
+
+            // REDIS
+            RedisClient redisClient = RedisClient.create("redis://localhost:6379/0");
+
+            // Notify listeners of GA starting in username channel
+            StatefulRedisPubSubConnection<String, String> pubsubConnection = redisClient.connectPubSub();
+            RedisPubSubCommands<String, String> sync = pubsubConnection.sync();
+            sync.publish(username, "ga_started");
+            pubsubConnection.close();
+
+            Algorithm eMOEA = new EpsilonMOEA(assignmentProblem, population, archive, selection, var, initialization);
+            ecs.submit(new BinaryInputInteractiveSearch(eMOEA, properties, username, redisClient, binaryInputQueue));
+
+            try {
+                Algorithm alg = ecs.take().get();
+            } catch (InterruptedException | ExecutionException ex) {
+                ex.printStackTrace();
+            }
+
+            // Notify listeners of new architectures in username channel
+            StatefulRedisPubSubConnection<String, String> pubsubConnection2 = redisClient.connectPubSub();
+            RedisPubSubCommands<String, String> sync2 = pubsubConnection2.sync();
+            sync2.publish(username, "ga_done");
+            pubsubConnection2.close();
+
+            redisClient.shutdown();
+            pool.shutdown();
+            System.out.println("DONE");
+        };
+    }
+
+    private Runnable generateDiscreteInputGATask(String problem, List<DiscreteInputArchitecture> dataset, String username) {
+        return () -> {
+            System.out.println("Starting GA for discrete input data");
+            //PATH
+            String path = ".";
+
+            ExecutorService pool = Executors.newFixedThreadPool(8);
+            CompletionService<Algorithm> ecs = new ExecutorCompletionService<>(pool);
+
+            //parameters and operators for search
+            TypedProperties properties = new TypedProperties();
+            //search paramaters set here
+            int popSize = 50;
+            int maxEvals = 3000;
+            properties.setInt("maxEvaluations", maxEvals);
+            properties.setInt("populationSize", popSize);
+
+            double crossoverProbability = 1.0;
+            properties.setDouble("crossoverProbability", crossoverProbability);
+            double mutationProbability = 1. / 6.;
+            properties.setDouble("mutationProbability", mutationProbability);
+
+            //setup for epsilon MOEA
+            double[] epsilonDouble = new double[]{0.001, 1};
+
+            //setup for saving results
+            properties.setBoolean("saveQuality", true);
+            properties.setBoolean("saveCredits", true);
+            properties.setBoolean("saveSelection", true);
+
+            //initialize problem
+            BaseParams params = this.getProblemParameters(problem);
+            ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
+
+            Problem partitioningAndAssigningProblem = new search.problems.PartitioningAndAssigning.PartitioningAndAssigningProblem(problem, AEM, params);
+
+            Random r = new Random();
+
+            // Create a solution for each input arch in the dataset
+            List<Solution> initial = new ArrayList<>(dataset.size());
+            for (int i = 0; i < popSize && !dataset.isEmpty(); ++i) {
+                PartitioningAndAssigningArchitecture new_arch = new PartitioningAndAssigningArchitecture(
+                        params.getNumInstr(), params.getNumOrbits(), 2);
+
+                int numPartitioningVariables = params.getNumInstr();
+                int numAssignmentVariables = params.getNumInstr();
+
+                int newIndex = r.nextInt(dataset.size());
+
+                for (int j = 0; j < numPartitioningVariables; ++j) {
+                    IntegerVariable var = new IntegerVariable(dataset.get(newIndex).inputs.get(j), 0, params.getNumInstr());
+                    new_arch.setVariable(j, var);
+                }
+
+                for (int j = numPartitioningVariables; j < numPartitioningVariables + numAssignmentVariables; ++j) {
+                    IntegerVariable var = new IntegerVariable(dataset.get(newIndex).inputs.get(j), -1, params.getNumOrbits());
+                    new_arch.setVariable(j, var);
+                }
+
+                new_arch.setObjective(0, dataset.get(newIndex).outputs.get(0));
+                new_arch.setObjective(1, dataset.get(newIndex).outputs.get(1));
+                initial.add(new_arch);
+
+                dataset.remove(newIndex);
+            }
+
+            Initialization initialization = new PartitioningAndAssigningInitialization(partitioningAndAssigningProblem, popSize, initial, params);
+
+            //initialize population structure for algorithm
+            Population population = new Population();
+            EpsilonBoxDominanceArchive archive = new EpsilonBoxDominanceArchive(epsilonDouble);
+            ChainedComparator comp = new ChainedComparator(new ParetoObjectiveComparator());
+            TournamentSelection selection = new TournamentSelection(2, comp);
+
+            // Define operators
+            Variation singlecross = new search.problems.PartitioningAndAssigning.operators.PartitioningAndAssigningCrossover(crossoverProbability, params);
+            Variation intergerMutation = new search.problems.PartitioningAndAssigning.operators.PartitioningAndAssigningMutation(mutationProbability, params);
+            CompoundVariation var = new CompoundVariation(singlecross, intergerMutation);
+
+            // REDIS
+            RedisClient redisClient = RedisClient.create("redis://localhost:6379/0");
+
+            // Notify listeners of GA starting in username channel
+            StatefulRedisPubSubConnection<String, String> pubsubConnection = redisClient.connectPubSub();
+            RedisPubSubCommands<String, String> sync = pubsubConnection.sync();
+            sync.publish(username, "ga_started");
+            pubsubConnection.close();
+
+            Algorithm eMOEA = new EpsilonMOEA(partitioningAndAssigningProblem, population, archive, selection, var, initialization);
+            ecs.submit(new DiscreteInputInteractiveSearch(eMOEA, properties, username, redisClient, discreteInputQueue));
+
+            try {
+                Algorithm alg = ecs.take().get();
+            } catch (InterruptedException | ExecutionException ex) {
+                ex.printStackTrace();
+            }
+
+            // Notify listeners of new architectures in username channel
+            StatefulRedisPubSubConnection<String, String> pubsubConnection2 = redisClient.connectPubSub();
+            RedisPubSubCommands<String, String> sync2 = pubsubConnection2.sync();
+            sync2.publish(username, "ga_done");
+            pubsubConnection2.close();
+
+            redisClient.shutdown();
+            pool.shutdown();
+            System.out.println("DONE");
+        };
     }
 
     public void ping() {
@@ -849,219 +1073,35 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
     }
 
     @Override
-    public void startGABinaryInput(String problem, List<BinaryInputArchitecture> dataset, String username) {
-
-        System.out.println("Starting GA for binary input data");
-
-        //PATH
-        String path = ".";
-
-        ExecutorService pool = Executors.newFixedThreadPool(8);
-        CompletionService<Algorithm> ecs = new ExecutorCompletionService<>(pool);
-
-        //parameters and operators for search
-        TypedProperties properties = new TypedProperties();
-        //search paramaters set here
-        int popSize = 10;
-        int maxEvals = 50;
-        properties.setInt("maxEvaluations", maxEvals);
-        properties.setInt("populationSize", popSize);
-        double crossoverProbability = 1.0;
-        properties.setDouble("crossoverProbability", crossoverProbability);
-        double mutationProbability = 1. / 60.;
-        properties.setDouble("mutationProbability", mutationProbability);
-        Variation singlecross;
-        Variation bitFlip;
-        Variation intergerMutation;
-        Initialization initialization;
-
-        //setup for epsilon MOEA
-        double[] epsilonDouble = new double[]{0.001, 1};
-
-        //setup for saving results
-        properties.setBoolean("saveQuality", true);
-        properties.setBoolean("saveCredits", true);
-        properties.setBoolean("saveSelection", true);
-
-        //initialize problem
-        BaseParams params = this.getProblemParameters(problem);
-        ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
-
-        Problem assignmentProblem = new AssigningProblem(new int[]{1}, problem, AEM, params);
-
-        Random r = new Random();
-
-        // Create a solution for each input arch in the dataset
-        List<Solution> initial = new ArrayList<>(dataset.size());
-        for (int i = 0; i < popSize && !dataset.isEmpty(); ++i) {
-            AssigningArchitecture new_arch = new AssigningArchitecture(new int[]{1},
-                    params.getNumInstr(), params.getNumOrbits(), 2);
-
-            int newIndex = r.nextInt(dataset.size());
-
-            for (int j = 1; j < new_arch.getNumberOfVariables(); ++j) {
-                BinaryVariable var = new BinaryVariable(1);
-                var.set(0, dataset.get(newIndex).inputs.get(j));
-                new_arch.setVariable(j, var);
-            }
-            new_arch.setObjective(0, dataset.get(newIndex).outputs.get(0));
-            new_arch.setObjective(1, dataset.get(newIndex).outputs.get(1));
-            initial.set(newIndex, new_arch);
-            dataset.remove(newIndex);
-        }
-        initialization = new InjectedInitialization(assignmentProblem, popSize, initial);
-
-        //initialize population structure for algorithm
-        Population population = new Population();
-        EpsilonBoxDominanceArchive archive = new EpsilonBoxDominanceArchive(epsilonDouble);
-        ChainedComparator comp = new ChainedComparator(new ParetoObjectiveComparator());
-        TournamentSelection selection = new TournamentSelection(2, comp);
-
-        singlecross = new OnePointCrossover(crossoverProbability);
-        bitFlip = new BitFlip(mutationProbability);
-        intergerMutation = new IntegerUM(mutationProbability);
-        CompoundVariation var = new CompoundVariation(singlecross, bitFlip, intergerMutation);
-
-        // REDIS
-        RedisClient redisClient = RedisClient.create("redis://localhost:6379/0");
-
-        Algorithm eMOEA = new EpsilonMOEA(assignmentProblem, population, archive, selection, var, initialization);
-        ecs.submit(new BinaryInputInteractiveSearch(eMOEA, properties, username, redisClient));
-
-        try {
-            Algorithm alg = ecs.take().get();
-        } catch (InterruptedException | ExecutionException ex) {
-            ex.printStackTrace();
-        }
-
-        // Notify listeners of new architectures in username channel
-        StatefulRedisPubSubConnection<String, String> pubsubConnection = redisClient.connectPubSub();
-        RedisPubSubCommands<String, String> sync = pubsubConnection.sync();
-        sync.publish(username, "ga_done");
-        pubsubConnection.close();
-
-        redisClient.shutdown();
-        pool.shutdown();
-        System.out.println("DONE");
+    public boolean isGABinaryInputRunning() {
+        return this.binaryInputGAThread.isAlive();
     }
 
     @Override
-    public void startGADiscreteInput(String problem, List<DiscreteInputArchitecture> dataset, String username) {
+    public void toggleGABinaryInput(String problem, List<BinaryInputArchitecture> dataset, String username) {
+        if (binaryInputGAThread.isAlive()) {
+            binaryInputQueue.add(0);
+        }
+        else {
+            binaryInputGAThread = new Thread(this.generateBinaryInputGATask(problem, dataset, username));
+            binaryInputGAThread.start();
+        }
+    }
 
-        System.out.println("Starting GA for discrete input data");
+    @Override
+    public boolean isGADiscreteInputRunning() {
+        return this.discreteInputGAThread.isAlive();
+    }
 
-        //PATH
-        String path = ".";
-
-        ExecutorService pool = Executors.newFixedThreadPool(8);
-        CompletionService<Algorithm> ecs = new ExecutorCompletionService<>(pool);
-
-        //parameters and operators for search
-        TypedProperties properties = new TypedProperties();
-        //search paramaters set here
-        int popSize = 15;
-        int maxEvals = 75;
-        properties.setInt("maxEvaluations", maxEvals);
-        properties.setInt("populationSize", popSize);
-
-        double crossoverProbability = 1.0;
-        properties.setDouble("crossoverProbability", crossoverProbability);
-        double mutationProbability = 1. / 5.;
-        properties.setDouble("mutationProbability", mutationProbability);
-
-        //setup for epsilon MOEA
-        double[] epsilonDouble = new double[]{0.001, 1};
-
-        //setup for saving results
-        properties.setBoolean("saveQuality", true);
-        properties.setBoolean("saveCredits", true);
-        properties.setBoolean("saveSelection", true);
-
-        //initialize problem
-        BaseParams params = this.getProblemParameters(problem);
-        ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
-
-        Problem partitioningAndAssigningProblem = new search.problems.PartitioningAndAssigning.PartitioningAndAssigningProblem(problem, AEM, params);
-
-        Random r = new Random();
-
-        // Create a solution for each input arch in the dataset
-        List<Solution> initial = new ArrayList<>(popSize);
-
-        List<Boolean> SIB = new ArrayList<>();
-        SIB.add(false); // science
-        SIB.add(true); // cost
-
-        while(!dataset.isEmpty() && initial.size() < popSize){
-
-            List<DiscreteInputArchitecture> front = Utils.getFuzzyParetoFrontDiscreteInput(dataset, SIB, 0);
-
-            for(int i = 0; i < front.size(); i++){
-                PartitioningAndAssigningArchitecture new_arch = new PartitioningAndAssigningArchitecture(
-                        params.getNumInstr(), params.getNumOrbits(), 2);
-
-                int numPartitioningVariables = params.getNumInstr();
-                int numAssignmentVariables = params.getNumInstr();
-                for (int j = 0; j < numPartitioningVariables; ++j) {
-                    IntegerVariable var = new IntegerVariable(front.get(i).inputs.get(j), 0, params.getNumInstr());
-                    new_arch.setVariable(j, var);
-                }
-
-                for (int j = numPartitioningVariables; j < numPartitioningVariables + numAssignmentVariables; ++j) {
-                    IntegerVariable var = new IntegerVariable(front.get(i).inputs.get(j), -1, params.getNumOrbits());
-                    new_arch.setVariable(j, var);
-                }
-
-                new_arch.setObjective(0, front.get(i).outputs.get(0));
-                new_arch.setObjective(1, front.get(i).outputs.get(1));
-                initial.add(new_arch);
-
-                for(int j = 0; j < dataset.size(); j++){
-                    if(front.get(i).getId() == dataset.get(j).getId()){
-                        dataset.remove(j);
-                        break;
-                    }
-                }
-
-                if(initial.size() > popSize){
-                    break;
-                }
-            }
+    @Override
+    public void toggleGADiscreteInput(String problem, List<DiscreteInputArchitecture> dataset, String username) {
+        if (discreteInputGAThread.isAlive()) {
+            discreteInputQueue.add(0);
+        }
+        else {
+            discreteInputGAThread = new Thread(this.generateDiscreteInputGATask(problem, dataset, username));
+            discreteInputGAThread.start();
         }
 
-        Initialization initialization = new PartitioningAndAssigningInitialization(partitioningAndAssigningProblem, popSize, initial, params);
-
-        //initialize population structure for algorithm
-        Population population = new Population();
-        EpsilonBoxDominanceArchive archive = new EpsilonBoxDominanceArchive(epsilonDouble);
-        ChainedComparator comp = new ChainedComparator(new ParetoObjectiveComparator());
-        TournamentSelection selection = new TournamentSelection(2, comp);
-
-        // Define operators
-        Variation crossover = new search.problems.PartitioningAndAssigning.operators.PartitioningAndAssigningCrossover(crossoverProbability, params);
-        Variation mutation = new search.problems.PartitioningAndAssigning.operators.PartitioningAndAssigningMutation(mutationProbability, params);
-        CompoundVariation var = new CompoundVariation(crossover, mutation);
-
-        // REDIS
-        RedisClient redisClient = RedisClient.create("redis://localhost:6379/0");
-
-        Algorithm eMOEA = new EpsilonMOEA(partitioningAndAssigningProblem, population, archive, selection, var, initialization);
-        ecs.submit(new DiscreteInputInteractiveSearch(eMOEA, properties, username, redisClient));
-
-        try {
-            Algorithm alg = ecs.take().get();
-        } catch (InterruptedException | ExecutionException ex) {
-            ex.printStackTrace();
-        }
-
-        // Notify listeners of new architectures in username channel
-        StatefulRedisPubSubConnection<String, String> pubsubConnection = redisClient.connectPubSub();
-        RedisPubSubCommands<String, String> sync = pubsubConnection.sync();
-        sync.publish(username, "ga_done");
-        pubsubConnection.close();
-
-        redisClient.shutdown();
-        pool.shutdown();
-        System.out.println("DONE");
     }
 }
