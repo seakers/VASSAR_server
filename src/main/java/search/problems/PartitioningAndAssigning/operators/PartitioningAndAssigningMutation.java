@@ -6,7 +6,6 @@ import seak.architecture.Architecture;
 import seak.architecture.operators.IntegerUM;
 import seak.architecture.util.IntegerVariable;
 import search.problems.PartitioningAndAssigning.PartitioningAndAssigningArchitecture;
-
 import java.util.*;
 
 
@@ -28,12 +27,10 @@ public class PartitioningAndAssigningMutation extends IntegerUM{
         return out;
     }
 
-    private Solution repair(Solution solution){
+    public int[] repair(int[] inputs){
 
-        Architecture arch = (PartitioningAndAssigningArchitecture) solution;
-        int[] intVars = getIntVariables(arch);
-        int[] partitioning = Arrays.copyOfRange(intVars, 0, params.getNumInstr());
-        int[] assigning = Arrays.copyOfRange(intVars, params.getNumInstr(), 2 * params.getNumInstr()+1);
+        int[] partitioning = Arrays.copyOfRange(inputs, 0, params.getNumInstr());
+        int[] assigning = Arrays.copyOfRange(inputs, params.getNumInstr(), 2 * params.getNumInstr()+1);
 
         Architecture newArch = new PartitioningAndAssigningArchitecture(params.getNumInstr(), params.getNumOrbits(), 2);
         int[] newPartitioning = new int[partitioning.length];
@@ -91,6 +88,16 @@ public class PartitioningAndAssigningMutation extends IntegerUM{
         for(int i = 0; i < assigning.length;i ++){
             newIntVars[i + newPartitioning.length] = newAssigning[i];
         }
+        return newIntVars;
+    }
+
+    private Solution repair(Solution solution){
+        Architecture arch = (PartitioningAndAssigningArchitecture) solution;
+        int[] intVars = getIntVariables(arch);
+
+        int[] newIntVars = repair(intVars);
+
+        Architecture newArch = new PartitioningAndAssigningArchitecture(params.getNumInstr(), params.getNumOrbits(), 2);
         setIntVariables(newArch, newIntVars);
         return newArch;
     }

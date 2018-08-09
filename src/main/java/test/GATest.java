@@ -33,7 +33,7 @@ import java.util.ArrayList;
 import java.util.StringJoiner;
 
 
-public class Test {
+public class GATest {
 
     public static void main(String[] args){
 
@@ -61,7 +61,7 @@ public class Test {
 
         double crossoverProbability = 1.0;
         properties.setDouble("crossoverProbability", crossoverProbability);
-        double mutationProbability = 1. / 60.;
+        double mutationProbability = 1. / 10.;
         properties.setDouble("mutationProbability", mutationProbability);
 
         //setup for epsilon MOEA

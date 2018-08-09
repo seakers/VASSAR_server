@@ -19,13 +19,12 @@ package server;
  * under the License.
  */
 
+import javaInterface.VASSARInterface;
 import org.apache.thrift.server.TServer;
 import org.apache.thrift.server.TServer.Args;
 import org.apache.thrift.server.TSimpleServer;
 import org.apache.thrift.transport.TServerSocket;
 import org.apache.thrift.transport.TServerTransport;
-
-import javaInterface.VASSARInterface;
 
 public class JavaServer {
 
