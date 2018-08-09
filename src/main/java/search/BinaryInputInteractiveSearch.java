@@ -11,6 +11,8 @@ import com.google.gson.GsonBuilder;
 import io.lettuce.core.RedisClient;
 import io.lettuce.core.api.StatefulRedisConnection;
 import io.lettuce.core.api.sync.RedisCommands;
+import io.lettuce.core.pubsub.RedisPubSubAdapter;
+import io.lettuce.core.pubsub.RedisPubSubListener;
 import io.lettuce.core.pubsub.StatefulRedisPubSubConnection;
 import io.lettuce.core.pubsub.api.sync.RedisPubSubCommands;
 import org.moeaframework.algorithm.AbstractEvolutionaryAlgorithm;
@@ -24,6 +26,7 @@ import javaInterface.BinaryInputArchitecture;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  *
@@ -35,12 +38,16 @@ public class BinaryInputInteractiveSearch implements Callable<Algorithm> {
     private final TypedProperties properties;
     private final String username;
     private final RedisClient redisClient;
+    private boolean isStopped;
+    private ConcurrentLinkedQueue<Integer> messageQueue;
 
-    public BinaryInputInteractiveSearch(Algorithm alg, TypedProperties properties, String username, RedisClient redisClient) {
+    public BinaryInputInteractiveSearch(Algorithm alg, TypedProperties properties, String username, RedisClient redisClient, ConcurrentLinkedQueue<Integer> messageQueue) {
         this.alg = alg;
         this.properties = properties;
         this.username = username;
         this.redisClient = redisClient;
+        this.isStopped = false;
+        this.messageQueue = messageQueue;
     }
 
     @Override
@@ -54,7 +61,13 @@ public class BinaryInputInteractiveSearch implements Callable<Algorithm> {
         alg.step();
         long startTime = System.currentTimeMillis();
 
-        while (!alg.isTerminated() && (alg.getNumberOfEvaluations() < maxEvaluations)) {
+        while (!alg.isTerminated() && (alg.getNumberOfEvaluations() < maxEvaluations) && !isStopped) {
+            Integer message = messageQueue.poll();
+            if (message != null) {
+                if (message == 0) {
+                    this.isStopped = true;
+                }
+            }
             alg.step();
             Population pop = ((AbstractEvolutionaryAlgorithm) alg).getPopulation();
             StatefulRedisConnection<String, String> connection = redisClient.connect();
