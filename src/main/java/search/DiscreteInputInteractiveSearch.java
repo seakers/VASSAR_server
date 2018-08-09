@@ -58,8 +58,9 @@ public class DiscreteInputInteractiveSearch implements Callable<Algorithm> {
             Population pop = ((AbstractEvolutionaryAlgorithm) alg).getPopulation();
             StatefulRedisConnection<String, String> connection = redisClient.connect();
             RedisCommands<String, String> syncCommands = connection.sync();
-            for(int i=1; i<3; i++){
-                Solution s = pop.get(pop.size() - i);
+
+            for(int i = 0; i < pop.size(); i++){
+                Solution s = pop.get(i);
                 s.setAttribute("NFE", alg.getNumberOfEvaluations());
                 // Send the new architectures through REDIS
                 // But first, turn it into something easier in JSON

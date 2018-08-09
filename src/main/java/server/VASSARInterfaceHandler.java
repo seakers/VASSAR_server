@@ -50,6 +50,7 @@ import seak.architecture.operators.IntegerUM;
 import rbsa.eoss.local.BaseParams;
 import rbsa.eoss.Result;
 import search.DiscreteInputInteractiveSearch;
+import search.Utils;
 import search.problems.Assigning.AssigningArchitecture;
 import search.problems.Assigning.AssigningProblem;
 import search.problems.PartitioningAndAssigning.PartitioningAndAssigningArchitecture;
@@ -958,14 +959,14 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         //parameters and operators for search
         TypedProperties properties = new TypedProperties();
         //search paramaters set here
-        int popSize = 10;
-        int maxEvals = 50;
+        int popSize = 15;
+        int maxEvals = 75;
         properties.setInt("maxEvaluations", maxEvals);
         properties.setInt("populationSize", popSize);
 
         double crossoverProbability = 1.0;
         properties.setDouble("crossoverProbability", crossoverProbability);
-        double mutationProbability = 1. / 60.;
+        double mutationProbability = 1. / 5.;
         properties.setDouble("mutationProbability", mutationProbability);
 
         //setup for epsilon MOEA
@@ -985,31 +986,47 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         Random r = new Random();
 
         // Create a solution for each input arch in the dataset
-        List<Solution> initial = new ArrayList<>(dataset.size());
-        for (int i = 0; i < popSize && !dataset.isEmpty(); ++i) {
-            PartitioningAndAssigningArchitecture new_arch = new PartitioningAndAssigningArchitecture(
-                    params.getNumInstr(), params.getNumOrbits(), 2);
+        List<Solution> initial = new ArrayList<>(popSize);
 
-            int numPartitioningVariables = params.getNumInstr();
-            int numAssignmentVariables = params.getNumInstr();
+        List<Boolean> SIB = new ArrayList<>();
+        SIB.add(false); // science
+        SIB.add(true); // cost
 
-            int newIndex = r.nextInt(dataset.size());
+        while(!dataset.isEmpty() && initial.size() < popSize){
 
-            for (int j = 0; j < numPartitioningVariables; ++j) {
-                IntegerVariable var = new IntegerVariable(dataset.get(newIndex).inputs.get(j), 0, params.getNumInstr());
-                new_arch.setVariable(j, var);
+            List<DiscreteInputArchitecture> front = Utils.getFuzzyParetoFrontDiscreteInput(dataset, SIB, 0);
+
+            for(int i = 0; i < front.size(); i++){
+                PartitioningAndAssigningArchitecture new_arch = new PartitioningAndAssigningArchitecture(
+                        params.getNumInstr(), params.getNumOrbits(), 2);
+
+                int numPartitioningVariables = params.getNumInstr();
+                int numAssignmentVariables = params.getNumInstr();
+                for (int j = 0; j < numPartitioningVariables; ++j) {
+                    IntegerVariable var = new IntegerVariable(front.get(i).inputs.get(j), 0, params.getNumInstr());
+                    new_arch.setVariable(j, var);
+                }
+
+                for (int j = numPartitioningVariables; j < numPartitioningVariables + numAssignmentVariables; ++j) {
+                    IntegerVariable var = new IntegerVariable(front.get(i).inputs.get(j), -1, params.getNumOrbits());
+                    new_arch.setVariable(j, var);
+                }
+
+                new_arch.setObjective(0, front.get(i).outputs.get(0));
+                new_arch.setObjective(1, front.get(i).outputs.get(1));
+                initial.add(new_arch);
+
+                for(int j = 0; j < dataset.size(); j++){
+                    if(front.get(i).getId() == dataset.get(j).getId()){
+                        dataset.remove(j);
+                        break;
+                    }
+                }
+
+                if(initial.size() > popSize){
+                    break;
+                }
             }
-
-            for (int j = numPartitioningVariables; j < numPartitioningVariables + numAssignmentVariables; ++j) {
-                IntegerVariable var = new IntegerVariable(dataset.get(newIndex).inputs.get(j), -1, params.getNumOrbits());
-                new_arch.setVariable(j, var);
-            }
-
-            new_arch.setObjective(0, dataset.get(newIndex).outputs.get(0));
-            new_arch.setObjective(1, dataset.get(newIndex).outputs.get(1));
-            initial.add(new_arch);
-
-            dataset.remove(newIndex);
         }
 
         Initialization initialization = new PartitioningAndAssigningInitialization(partitioningAndAssigningProblem, popSize, initial, params);
@@ -1021,9 +1038,9 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         TournamentSelection selection = new TournamentSelection(2, comp);
 
         // Define operators
-        Variation singlecross = new search.problems.PartitioningAndAssigning.operators.PartitioningAndAssigningCrossover(crossoverProbability, params);
-        Variation intergerMutation = new search.problems.PartitioningAndAssigning.operators.PartitioningAndAssigningMutation(mutationProbability, params);
-        CompoundVariation var = new CompoundVariation(singlecross, intergerMutation);
+        Variation crossover = new search.problems.PartitioningAndAssigning.operators.PartitioningAndAssigningCrossover(crossoverProbability, params);
+        Variation mutation = new search.problems.PartitioningAndAssigning.operators.PartitioningAndAssigningMutation(mutationProbability, params);
+        CompoundVariation var = new CompoundVariation(crossover, mutation);
 
         // REDIS
         RedisClient redisClient = RedisClient.create("redis://localhost:6379/0");

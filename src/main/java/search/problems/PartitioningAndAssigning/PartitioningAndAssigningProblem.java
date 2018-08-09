@@ -51,8 +51,8 @@ public class PartitioningAndAssigningProblem extends AbstractProblem implements 
     public void evaluate(Solution sltn) {
         PartitioningAndAssigningArchitecture arch = (PartitioningAndAssigningArchitecture) sltn;
         evaluateArch(arch);
-        System.out.println(String.format("Arch %s Science = %10f; Cost = %10f",
-                arch.toString(), arch.getObjective(0), arch.getObjective(1)));
+        //System.out.println(String.format("Arch %s Science = %10f; Cost = %10f",
+        //        arch.toString(), arch.getObjective(0), arch.getObjective(1)));
     }
 
     private void evaluateArch(PartitioningAndAssigningArchitecture arch) {
