@@ -11,6 +11,8 @@ import org.moeaframework.util.TypedProperties;
 import rbsa.eoss.evaluation.AbstractArchitectureEvaluator;
 import rbsa.eoss.evaluation.ArchitectureEvaluationManager;
 import rbsa.eoss.local.BaseParams;
+import rbsa.eoss.problems.PartitioningAndAssigning.ArchitectureEvaluator;
+import rbsa.eoss.problems.PartitioningAndAssigning.Decadal2017AerosolsParams;
 import seak.architecture.util.IntegerVariable;
 import seak.vassar_server.search.problems.PartitioningAndAssigning.PartitioningAndAssigningArchitecture;
 import seak.vassar_server.search.problems.PartitioningAndAssigning.PartitioningAndAssigningInitialization;
@@ -35,13 +37,13 @@ public class GATest {
                 File.separator + "problems" +
                 File.separator + "SMAP";
 
-        BaseParams params = new rbsa.eoss.problems.PartitioningAndAssigning.Decadal2017AerosolsParams(path, "CRISP-ATTRIBUTES", "seak/vassar_server/test", "normal", search_clps);
-        AbstractArchitectureEvaluator evaluator = new rbsa.eoss.problems.PartitioningAndAssigning.ArchitectureEvaluator(params);
+        BaseParams params = new Decadal2017AerosolsParams(path, "CRISP-ATTRIBUTES", "test", "normal", search_clps);
+        AbstractArchitectureEvaluator evaluator = new ArchitectureEvaluator(params);
         ArchitectureEvaluationManager AEM = new ArchitectureEvaluationManager(params, evaluator);
 
-        //parameters and operators for seak.vassar_server.search
+        //parameters and operators for search
         TypedProperties properties = new TypedProperties();
-        //seak.vassar_server.search paramaters set here
+        //search paramaters set here
         int popSize = 100;
         int maxEvals = 1400;
 

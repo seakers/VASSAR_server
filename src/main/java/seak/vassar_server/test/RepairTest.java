@@ -34,9 +34,9 @@ public class RepairTest {
         AbstractArchitectureEvaluator evaluator = new rbsa.eoss.problems.PartitioningAndAssigning.ArchitectureEvaluator(params);
         ArchitectureEvaluationManager AEM = new ArchitectureEvaluationManager(params, evaluator);
 
-        //parameters and operators for seak.vassar_server.search
+        //parameters and operators for search
         TypedProperties properties = new TypedProperties();
-        //seak.vassar_server.search paramaters set here
+        //search paramaters set here
 
         Problem partitioningAndAssigningProblem = new seak.vassar_server.search.problems.PartitioningAndAssigning.PartitioningAndAssigningProblem(problem, AEM, params);
 

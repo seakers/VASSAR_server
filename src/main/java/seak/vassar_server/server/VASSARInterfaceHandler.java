@@ -194,7 +194,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
             //parameters and operators for seak.vassar_server.search
             TypedProperties properties = new TypedProperties();
-            //seak.vassar_server.search paramaters set here
+            //search paramaters set here
             int popSize = 50;
             int maxEvals = 3000;
             properties.setInt("maxEvaluations", maxEvals);
@@ -311,12 +311,12 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
             if (problem.equalsIgnoreCase("SMAP")) {
                 params = new rbsa.eoss.problems.Assigning.SMAPParams(path, "CRISP-ATTRIBUTES",
-                        "seak/vassar_server/test", "normal", search_clps);
+                        "test", "normal", search_clps);
 
             }
             else if (problem.equalsIgnoreCase("ClimateCentric")) {
                 params = new rbsa.eoss.problems.Assigning.ClimateCentricParams(path, "FUZZY-ATTRIBUTES",
-                        "seak/vassar_server/test", "normal", search_clps);
+                        "test", "normal", search_clps);
             }
             else {
                 throw new RuntimeException();
@@ -332,7 +332,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
                     File.separator + "SMAP";
 
             params = new rbsa.eoss.problems.PartitioningAndAssigning.Decadal2017AerosolsParams(path, "CRISP-ATTRIBUTES",
-                    "seak/vassar_server/test", "normal", search_clps);
+                    "test", "normal", search_clps);
             evaluator = new rbsa.eoss.problems.PartitioningAndAssigning.ArchitectureEvaluator(params);
         }
         else {

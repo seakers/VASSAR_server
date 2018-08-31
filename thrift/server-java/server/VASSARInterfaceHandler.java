@@ -248,7 +248,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
     @Override
     public List<DiscreteInputArchitecture> runLocalSearchDiscreteInput(String problem, List<Integer> boolList) {
-        throw new UnsupportedOperationException("Local seak.vassar_server.search for discrete input is not supported yet.");
+        throw new UnsupportedOperationException("Local search for discrete input is not supported yet.");
     }
 
     private ArrayList<String> randomLocalChangeBinaryInput(String bitString, int n, BaseParams params) {
@@ -431,9 +431,9 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         ExecutorService pool = Executors.newFixedThreadPool(8);
         CompletionService<Algorithm> ecs = new ExecutorCompletionService<>(pool);
 
-        //parameters and operators for seak.vassar_server.search
+        //parameters and operators for search
         TypedProperties properties = new TypedProperties();
-        //seak.vassar_server.search paramaters set here
+        //search paramaters set here
         int popSize = 10;
         int maxEvals = 50;
         properties.setInt("maxEvaluations", maxEvals);
