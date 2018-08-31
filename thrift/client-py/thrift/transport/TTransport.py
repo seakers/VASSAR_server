@@ -103,7 +103,7 @@ class CReadableTransport(object):
 
 
 class TServerTransportBase(object):
-    """Base class for Thrift server transports."""
+    """Base class for Thrift seak.vassar_server.server transports."""
 
     def listen(self):
         pass
@@ -353,8 +353,8 @@ class TSaslClientTransport(TTransportBase, CReadableTransport):
                  **sasl_kwargs):
         """
         transport: an underlying transport to use, typically just a TSocket
-        host: the name of the server, from a SASL perspective
-        service: the name of the server's service, from a SASL perspective
+        host: the name of the seak.vassar_server.server, from a SASL perspective
+        service: the name of the seak.vassar_server.server's service, from a SASL perspective
         mechanism: the name of the preferred mechanism to use
 
         All other kwargs will be passed to the puresasl.client.SASLClient
@@ -384,7 +384,7 @@ class TSaslClientTransport(TTransportBase, CReadableTransport):
                 if not self.sasl.complete:
                     raise TTransportException(
                         TTransportException.NOT_OPEN,
-                        "The server erroneously indicated "
+                        "The seak.vassar_server.server erroneously indicated "
                         "that SASL negotiation was complete")
                 else:
                     break

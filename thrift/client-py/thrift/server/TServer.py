@@ -29,7 +29,7 @@ logger = logging.getLogger(__name__)
 
 
 class TServer(object):
-    """Base interface for a server, which must have a serve() method.
+    """Base interface for a seak.vassar_server.server, which must have a serve() method.
 
     Three constructors for all servers:
     1) (processor, serverTransport)
@@ -65,7 +65,7 @@ class TServer(object):
 
 
 class TSimpleServer(TServer):
-    """Simple single-threaded server that just pumps around one transport."""
+    """Simple single-threaded seak.vassar_server.server that just pumps around one transport."""
 
     def __init__(self, *args):
         TServer.__init__(self, *args)
@@ -93,7 +93,7 @@ class TSimpleServer(TServer):
 
 
 class TThreadedServer(TServer):
-    """Threaded server that spawns a new thread per each connection."""
+    """Threaded seak.vassar_server.server that spawns a new thread per each connection."""
 
     def __init__(self, *args, **kwargs):
         TServer.__init__(self, *args)
@@ -193,12 +193,12 @@ class TThreadPoolServer(TServer):
 
 
 class TForkingServer(TServer):
-    """A Thrift server that forks a new process for each request
+    """A Thrift seak.vassar_server.server that forks a new process for each request
 
-    This is more scalable than the threaded server as it does not cause
+    This is more scalable than the threaded seak.vassar_server.server as it does not cause
     GIL contention.
 
-    Note that this has different semantics from the threading server.
+    Note that this has different semantics from the threading seak.vassar_server.server.
     Specifically, updates to shared variables will no longer be shared.
     It will also not work on windows.
 

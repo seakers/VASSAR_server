@@ -1,4 +1,4 @@
-package server;
+package seak.vassar_server.server;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -25,7 +25,7 @@ import java.util.*;
 import java.util.concurrent.*;
 
 import io.lettuce.core.RedisClient;
-import javaInterface.DiscreteInputArchitecture;
+import seak.vassar_server.javaInterface.DiscreteInputArchitecture;
 import org.moeaframework.algorithm.EpsilonMOEA;
 import org.moeaframework.core.*;
 import org.moeaframework.core.comparator.ChainedComparator;
@@ -35,9 +35,9 @@ import org.moeaframework.core.operator.binary.BitFlip;
 import org.moeaframework.core.variable.BinaryVariable;
 import org.moeaframework.util.TypedProperties;
 
-import javaInterface.BinaryInputArchitecture;
-import javaInterface.VASSARInterface;
-import javaInterface.ObjectiveSatisfaction;
+import seak.vassar_server.javaInterface.BinaryInputArchitecture;
+import seak.vassar_server.javaInterface.VASSARInterface;
+import seak.vassar_server.javaInterface.ObjectiveSatisfaction;
 
 import rbsa.eoss.architecture.AbstractArchitecture;
 import rbsa.eoss.evaluation.AbstractArchitectureEvaluator;
@@ -248,7 +248,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
     @Override
     public List<DiscreteInputArchitecture> runLocalSearchDiscreteInput(String problem, List<Integer> boolList) {
-        throw new UnsupportedOperationException("Local search for discrete input is not supported yet.");
+        throw new UnsupportedOperationException("Local seak.vassar_server.search for discrete input is not supported yet.");
     }
 
     private ArrayList<String> randomLocalChangeBinaryInput(String bitString, int n, BaseParams params) {
@@ -431,9 +431,9 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         ExecutorService pool = Executors.newFixedThreadPool(8);
         CompletionService<Algorithm> ecs = new ExecutorCompletionService<>(pool);
 
-        //parameters and operators for search
+        //parameters and operators for seak.vassar_server.search
         TypedProperties properties = new TypedProperties();
-        //search paramaters set here
+        //seak.vassar_server.search paramaters set here
         int popSize = 10;
         int maxEvals = 50;
         properties.setInt("maxEvaluations", maxEvals);

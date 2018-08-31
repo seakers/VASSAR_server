@@ -17,7 +17,7 @@
  */
 
 
-namespace java javaInterface
+namespace java seak.vassar_server.javaInterface
 namespace py pyInterface
 
 typedef i32 int

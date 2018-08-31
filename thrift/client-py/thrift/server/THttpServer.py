@@ -19,7 +19,7 @@
 
 from six.moves import BaseHTTPServer
 
-from thrift.server import TServer
+from thrift.seak.vassar_server.server import TServer
 from thrift.transport import TTransport
 
 
@@ -28,7 +28,7 @@ class ResponseException(Exception):
 
     Normally, THttpServer always sends a 200 response.  If a handler wants
     to override this behavior (e.g., to simulate a misconfigured or
-    overloaded web server during testing), it can raise a ResponseException.
+    overloaded web seak.vassar_server.server during testing), it can raise a ResponseException.
     The function passed to the constructor will be called with the
     RequestHandler as its only argument.
     """
@@ -37,7 +37,7 @@ class ResponseException(Exception):
 
 
 class THttpServer(TServer.TServer):
-    """A simple HTTP-based Thrift server
+    """A simple HTTP-based Thrift seak.vassar_server.server
 
     This class is not very performant, but it is useful (for example) for
     acting as a mock version of an Apache-based PHP Thrift endpoint.
@@ -48,7 +48,7 @@ class THttpServer(TServer.TServer):
                  inputProtocolFactory,
                  outputProtocolFactory=None,
                  server_class=BaseHTTPServer.HTTPServer):
-        """Set up protocol factories and HTTP server.
+        """Set up protocol factories and HTTP seak.vassar_server.server.
 
         See BaseHTTPServer for server_address.
         See TServer for protocol factories.

@@ -4,7 +4,7 @@
  * DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
  *  @generated
  */
-package javaInterface;
+package seak.vassar_server.javaInterface;
 
 @SuppressWarnings({"cast", "rawtypes", "serial", "unchecked", "unused"})
 /**

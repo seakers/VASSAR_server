@@ -20,53 +20,53 @@ public class VASSARInterface {
      */
     public void ping() throws org.apache.thrift.TException;
 
-    public BinaryInputArchitecture evalBinaryInputArch(java.lang.String problem, java.util.List<java.lang.Boolean> inputs) throws org.apache.thrift.TException;
+    public BinaryInputArchitecture evalBinaryInputArch(String problem, java.util.List<Boolean> inputs) throws org.apache.thrift.TException;
 
-    public DiscreteInputArchitecture evalDiscreteInputArch(java.lang.String problem, java.util.List<java.lang.Integer> inputs) throws org.apache.thrift.TException;
+    public DiscreteInputArchitecture evalDiscreteInputArch(String problem, java.util.List<Integer> inputs) throws org.apache.thrift.TException;
 
-    public java.util.List<BinaryInputArchitecture> runLocalSearchBinaryInput(java.lang.String problem, java.util.List<java.lang.Boolean> inputs) throws org.apache.thrift.TException;
+    public java.util.List<BinaryInputArchitecture> runLocalSearchBinaryInput(String problem, java.util.List<Boolean> inputs) throws org.apache.thrift.TException;
 
-    public java.util.List<DiscreteInputArchitecture> runLocalSearchDiscreteInput(java.lang.String problem, java.util.List<java.lang.Integer> inputs) throws org.apache.thrift.TException;
+    public java.util.List<DiscreteInputArchitecture> runLocalSearchDiscreteInput(String problem, java.util.List<Integer> inputs) throws org.apache.thrift.TException;
 
-    public java.util.List<java.lang.String> getOrbitList(java.lang.String problem) throws org.apache.thrift.TException;
+    public java.util.List<String> getOrbitList(String problem) throws org.apache.thrift.TException;
 
-    public java.util.List<java.lang.String> getInstrumentList(java.lang.String problem) throws org.apache.thrift.TException;
+    public java.util.List<String> getInstrumentList(String problem) throws org.apache.thrift.TException;
 
-    public java.util.List<java.lang.String> getObjectiveList(java.lang.String problem) throws org.apache.thrift.TException;
+    public java.util.List<String> getObjectiveList(String problem) throws org.apache.thrift.TException;
 
-    public java.util.List<java.lang.String> getInstrumentsForObjective(java.lang.String problem, java.lang.String objective) throws org.apache.thrift.TException;
+    public java.util.List<String> getInstrumentsForObjective(String problem, String objective) throws org.apache.thrift.TException;
 
-    public java.util.List<java.lang.String> getInstrumentsForPanel(java.lang.String problem, java.lang.String panel) throws org.apache.thrift.TException;
+    public java.util.List<String> getInstrumentsForPanel(String problem, String panel) throws org.apache.thrift.TException;
 
-    public java.util.List<java.lang.String> getCritiqueBinaryInputArch(java.lang.String problem, java.util.List<java.lang.Boolean> inputs) throws org.apache.thrift.TException;
+    public java.util.List<String> getCritiqueBinaryInputArch(String problem, java.util.List<Boolean> inputs) throws org.apache.thrift.TException;
 
-    public java.util.List<java.lang.String> getCritiqueDiscreteInputArch(java.lang.String problem, java.util.List<java.lang.Integer> inputs) throws org.apache.thrift.TException;
+    public java.util.List<String> getCritiqueDiscreteInputArch(String problem, java.util.List<Integer> inputs) throws org.apache.thrift.TException;
 
-    public java.util.List<ObjectiveSatisfaction> getArchitectureScoreExplanation(java.lang.String problem, java.util.List<java.lang.Boolean> arch) throws org.apache.thrift.TException;
+    public java.util.List<ObjectiveSatisfaction> getArchitectureScoreExplanation(String problem, java.util.List<Boolean> arch) throws org.apache.thrift.TException;
 
-    public java.util.List<ObjectiveSatisfaction> getPanelScoreExplanation(java.lang.String problem, java.util.List<java.lang.Boolean> arch, java.lang.String panel) throws org.apache.thrift.TException;
+    public java.util.List<ObjectiveSatisfaction> getPanelScoreExplanation(String problem, java.util.List<Boolean> arch, String panel) throws org.apache.thrift.TException;
 
-    public java.util.List<ObjectiveSatisfaction> getObjectiveScoreExplanation(java.lang.String problem, java.util.List<java.lang.Boolean> arch, java.lang.String objective) throws org.apache.thrift.TException;
+    public java.util.List<ObjectiveSatisfaction> getObjectiveScoreExplanation(String problem, java.util.List<Boolean> arch, String objective) throws org.apache.thrift.TException;
 
     public boolean isGABinaryInputRunning() throws org.apache.thrift.TException;
 
-    public void toggleGABinaryInput(java.lang.String problem, java.util.List<BinaryInputArchitecture> dataset, java.lang.String username) throws org.apache.thrift.TException;
+    public void toggleGABinaryInput(String problem, java.util.List<BinaryInputArchitecture> dataset, String username) throws org.apache.thrift.TException;
 
-    public java.util.List<SubscoreInformation> getArchScienceInformationBinaryInput(java.lang.String problem, BinaryInputArchitecture arch) throws org.apache.thrift.TException;
+    public java.util.List<SubscoreInformation> getArchScienceInformationBinaryInput(String problem, BinaryInputArchitecture arch) throws org.apache.thrift.TException;
 
-    public java.util.List<MissionCostInformation> getArchCostInformationBinaryInput(java.lang.String problem, BinaryInputArchitecture arch) throws org.apache.thrift.TException;
+    public java.util.List<MissionCostInformation> getArchCostInformationBinaryInput(String problem, BinaryInputArchitecture arch) throws org.apache.thrift.TException;
 
-    public SubobjectiveDetails getSubscoreDetailsBinaryInput(java.lang.String problem, BinaryInputArchitecture arch, java.lang.String subobj) throws org.apache.thrift.TException;
+    public SubobjectiveDetails getSubscoreDetailsBinaryInput(String problem, BinaryInputArchitecture arch, String subobj) throws org.apache.thrift.TException;
 
     public boolean isGADiscreteInputRunning() throws org.apache.thrift.TException;
 
-    public void toggleGADiscreteInput(java.lang.String problem, java.util.List<DiscreteInputArchitecture> dataset, java.lang.String username) throws org.apache.thrift.TException;
+    public void toggleGADiscreteInput(String problem, java.util.List<DiscreteInputArchitecture> dataset, String username) throws org.apache.thrift.TException;
 
-    public java.util.List<SubscoreInformation> getArchScienceInformationDiscreteInput(java.lang.String problem, DiscreteInputArchitecture arch) throws org.apache.thrift.TException;
+    public java.util.List<SubscoreInformation> getArchScienceInformationDiscreteInput(String problem, DiscreteInputArchitecture arch) throws org.apache.thrift.TException;
 
-    public java.util.List<MissionCostInformation> getArchCostInformationDiscreteInput(java.lang.String problem, DiscreteInputArchitecture arch) throws org.apache.thrift.TException;
+    public java.util.List<MissionCostInformation> getArchCostInformationDiscreteInput(String problem, DiscreteInputArchitecture arch) throws org.apache.thrift.TException;
 
-    public SubobjectiveDetails getSubscoreDetailsDiscreteInput(java.lang.String problem, DiscreteInputArchitecture arch, java.lang.String subobj) throws org.apache.thrift.TException;
+    public SubobjectiveDetails getSubscoreDetailsDiscreteInput(String problem, DiscreteInputArchitecture arch, String subobj) throws org.apache.thrift.TException;
 
   }
 
@@ -74,53 +74,53 @@ public class VASSARInterface {
 
     public void ping(org.apache.thrift.async.AsyncMethodCallback<Void> resultHandler) throws org.apache.thrift.TException;
 
-    public void evalBinaryInputArch(java.lang.String problem, java.util.List<java.lang.Boolean> inputs, org.apache.thrift.async.AsyncMethodCallback<BinaryInputArchitecture> resultHandler) throws org.apache.thrift.TException;
+    public void evalBinaryInputArch(String problem, java.util.List<Boolean> inputs, org.apache.thrift.async.AsyncMethodCallback<BinaryInputArchitecture> resultHandler) throws org.apache.thrift.TException;
 
-    public void evalDiscreteInputArch(java.lang.String problem, java.util.List<java.lang.Integer> inputs, org.apache.thrift.async.AsyncMethodCallback<DiscreteInputArchitecture> resultHandler) throws org.apache.thrift.TException;
+    public void evalDiscreteInputArch(String problem, java.util.List<Integer> inputs, org.apache.thrift.async.AsyncMethodCallback<DiscreteInputArchitecture> resultHandler) throws org.apache.thrift.TException;
 
-    public void runLocalSearchBinaryInput(java.lang.String problem, java.util.List<java.lang.Boolean> inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<BinaryInputArchitecture>> resultHandler) throws org.apache.thrift.TException;
+    public void runLocalSearchBinaryInput(String problem, java.util.List<Boolean> inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<BinaryInputArchitecture>> resultHandler) throws org.apache.thrift.TException;
 
-    public void runLocalSearchDiscreteInput(java.lang.String problem, java.util.List<java.lang.Integer> inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<DiscreteInputArchitecture>> resultHandler) throws org.apache.thrift.TException;
+    public void runLocalSearchDiscreteInput(String problem, java.util.List<Integer> inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<DiscreteInputArchitecture>> resultHandler) throws org.apache.thrift.TException;
 
-    public void getOrbitList(java.lang.String problem, org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>> resultHandler) throws org.apache.thrift.TException;
+    public void getOrbitList(String problem, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler) throws org.apache.thrift.TException;
 
-    public void getInstrumentList(java.lang.String problem, org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>> resultHandler) throws org.apache.thrift.TException;
+    public void getInstrumentList(String problem, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler) throws org.apache.thrift.TException;
 
-    public void getObjectiveList(java.lang.String problem, org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>> resultHandler) throws org.apache.thrift.TException;
+    public void getObjectiveList(String problem, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler) throws org.apache.thrift.TException;
 
-    public void getInstrumentsForObjective(java.lang.String problem, java.lang.String objective, org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>> resultHandler) throws org.apache.thrift.TException;
+    public void getInstrumentsForObjective(String problem, String objective, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler) throws org.apache.thrift.TException;
 
-    public void getInstrumentsForPanel(java.lang.String problem, java.lang.String panel, org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>> resultHandler) throws org.apache.thrift.TException;
+    public void getInstrumentsForPanel(String problem, String panel, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler) throws org.apache.thrift.TException;
 
-    public void getCritiqueBinaryInputArch(java.lang.String problem, java.util.List<java.lang.Boolean> inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>> resultHandler) throws org.apache.thrift.TException;
+    public void getCritiqueBinaryInputArch(String problem, java.util.List<Boolean> inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler) throws org.apache.thrift.TException;
 
-    public void getCritiqueDiscreteInputArch(java.lang.String problem, java.util.List<java.lang.Integer> inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>> resultHandler) throws org.apache.thrift.TException;
+    public void getCritiqueDiscreteInputArch(String problem, java.util.List<Integer> inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler) throws org.apache.thrift.TException;
 
-    public void getArchitectureScoreExplanation(java.lang.String problem, java.util.List<java.lang.Boolean> arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ObjectiveSatisfaction>> resultHandler) throws org.apache.thrift.TException;
+    public void getArchitectureScoreExplanation(String problem, java.util.List<Boolean> arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ObjectiveSatisfaction>> resultHandler) throws org.apache.thrift.TException;
 
-    public void getPanelScoreExplanation(java.lang.String problem, java.util.List<java.lang.Boolean> arch, java.lang.String panel, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ObjectiveSatisfaction>> resultHandler) throws org.apache.thrift.TException;
+    public void getPanelScoreExplanation(String problem, java.util.List<Boolean> arch, String panel, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ObjectiveSatisfaction>> resultHandler) throws org.apache.thrift.TException;
 
-    public void getObjectiveScoreExplanation(java.lang.String problem, java.util.List<java.lang.Boolean> arch, java.lang.String objective, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ObjectiveSatisfaction>> resultHandler) throws org.apache.thrift.TException;
+    public void getObjectiveScoreExplanation(String problem, java.util.List<Boolean> arch, String objective, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ObjectiveSatisfaction>> resultHandler) throws org.apache.thrift.TException;
 
-    public void isGABinaryInputRunning(org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean> resultHandler) throws org.apache.thrift.TException;
+    public void isGABinaryInputRunning(org.apache.thrift.async.AsyncMethodCallback<Boolean> resultHandler) throws org.apache.thrift.TException;
 
-    public void toggleGABinaryInput(java.lang.String problem, java.util.List<BinaryInputArchitecture> dataset, java.lang.String username, org.apache.thrift.async.AsyncMethodCallback<Void> resultHandler) throws org.apache.thrift.TException;
+    public void toggleGABinaryInput(String problem, java.util.List<BinaryInputArchitecture> dataset, String username, org.apache.thrift.async.AsyncMethodCallback<Void> resultHandler) throws org.apache.thrift.TException;
 
-    public void getArchScienceInformationBinaryInput(java.lang.String problem, BinaryInputArchitecture arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<SubscoreInformation>> resultHandler) throws org.apache.thrift.TException;
+    public void getArchScienceInformationBinaryInput(String problem, BinaryInputArchitecture arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<SubscoreInformation>> resultHandler) throws org.apache.thrift.TException;
 
-    public void getArchCostInformationBinaryInput(java.lang.String problem, BinaryInputArchitecture arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<MissionCostInformation>> resultHandler) throws org.apache.thrift.TException;
+    public void getArchCostInformationBinaryInput(String problem, BinaryInputArchitecture arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<MissionCostInformation>> resultHandler) throws org.apache.thrift.TException;
 
-    public void getSubscoreDetailsBinaryInput(java.lang.String problem, BinaryInputArchitecture arch, java.lang.String subobj, org.apache.thrift.async.AsyncMethodCallback<SubobjectiveDetails> resultHandler) throws org.apache.thrift.TException;
+    public void getSubscoreDetailsBinaryInput(String problem, BinaryInputArchitecture arch, String subobj, org.apache.thrift.async.AsyncMethodCallback<SubobjectiveDetails> resultHandler) throws org.apache.thrift.TException;
 
-    public void isGADiscreteInputRunning(org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean> resultHandler) throws org.apache.thrift.TException;
+    public void isGADiscreteInputRunning(org.apache.thrift.async.AsyncMethodCallback<Boolean> resultHandler) throws org.apache.thrift.TException;
 
-    public void toggleGADiscreteInput(java.lang.String problem, java.util.List<DiscreteInputArchitecture> dataset, java.lang.String username, org.apache.thrift.async.AsyncMethodCallback<Void> resultHandler) throws org.apache.thrift.TException;
+    public void toggleGADiscreteInput(String problem, java.util.List<DiscreteInputArchitecture> dataset, String username, org.apache.thrift.async.AsyncMethodCallback<Void> resultHandler) throws org.apache.thrift.TException;
 
-    public void getArchScienceInformationDiscreteInput(java.lang.String problem, DiscreteInputArchitecture arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<SubscoreInformation>> resultHandler) throws org.apache.thrift.TException;
+    public void getArchScienceInformationDiscreteInput(String problem, DiscreteInputArchitecture arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<SubscoreInformation>> resultHandler) throws org.apache.thrift.TException;
 
-    public void getArchCostInformationDiscreteInput(java.lang.String problem, DiscreteInputArchitecture arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<MissionCostInformation>> resultHandler) throws org.apache.thrift.TException;
+    public void getArchCostInformationDiscreteInput(String problem, DiscreteInputArchitecture arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<MissionCostInformation>> resultHandler) throws org.apache.thrift.TException;
 
-    public void getSubscoreDetailsDiscreteInput(java.lang.String problem, DiscreteInputArchitecture arch, java.lang.String subobj, org.apache.thrift.async.AsyncMethodCallback<SubobjectiveDetails> resultHandler) throws org.apache.thrift.TException;
+    public void getSubscoreDetailsDiscreteInput(String problem, DiscreteInputArchitecture arch, String subobj, org.apache.thrift.async.AsyncMethodCallback<SubobjectiveDetails> resultHandler) throws org.apache.thrift.TException;
 
   }
 
@@ -163,13 +163,13 @@ public class VASSARInterface {
       return;
     }
 
-    public BinaryInputArchitecture evalBinaryInputArch(java.lang.String problem, java.util.List<java.lang.Boolean> inputs) throws org.apache.thrift.TException
+    public BinaryInputArchitecture evalBinaryInputArch(String problem, java.util.List<Boolean> inputs) throws org.apache.thrift.TException
     {
       send_evalBinaryInputArch(problem, inputs);
       return recv_evalBinaryInputArch();
     }
 
-    public void send_evalBinaryInputArch(java.lang.String problem, java.util.List<java.lang.Boolean> inputs) throws org.apache.thrift.TException
+    public void send_evalBinaryInputArch(String problem, java.util.List<Boolean> inputs) throws org.apache.thrift.TException
     {
       evalBinaryInputArch_args args = new evalBinaryInputArch_args();
       args.setProblem(problem);
@@ -187,13 +187,13 @@ public class VASSARInterface {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "evalBinaryInputArch failed: unknown result");
     }
 
-    public DiscreteInputArchitecture evalDiscreteInputArch(java.lang.String problem, java.util.List<java.lang.Integer> inputs) throws org.apache.thrift.TException
+    public DiscreteInputArchitecture evalDiscreteInputArch(String problem, java.util.List<Integer> inputs) throws org.apache.thrift.TException
     {
       send_evalDiscreteInputArch(problem, inputs);
       return recv_evalDiscreteInputArch();
     }
 
-    public void send_evalDiscreteInputArch(java.lang.String problem, java.util.List<java.lang.Integer> inputs) throws org.apache.thrift.TException
+    public void send_evalDiscreteInputArch(String problem, java.util.List<Integer> inputs) throws org.apache.thrift.TException
     {
       evalDiscreteInputArch_args args = new evalDiscreteInputArch_args();
       args.setProblem(problem);
@@ -211,13 +211,13 @@ public class VASSARInterface {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "evalDiscreteInputArch failed: unknown result");
     }
 
-    public java.util.List<BinaryInputArchitecture> runLocalSearchBinaryInput(java.lang.String problem, java.util.List<java.lang.Boolean> inputs) throws org.apache.thrift.TException
+    public java.util.List<BinaryInputArchitecture> runLocalSearchBinaryInput(String problem, java.util.List<Boolean> inputs) throws org.apache.thrift.TException
     {
       send_runLocalSearchBinaryInput(problem, inputs);
       return recv_runLocalSearchBinaryInput();
     }
 
-    public void send_runLocalSearchBinaryInput(java.lang.String problem, java.util.List<java.lang.Boolean> inputs) throws org.apache.thrift.TException
+    public void send_runLocalSearchBinaryInput(String problem, java.util.List<Boolean> inputs) throws org.apache.thrift.TException
     {
       runLocalSearchBinaryInput_args args = new runLocalSearchBinaryInput_args();
       args.setProblem(problem);
@@ -235,13 +235,13 @@ public class VASSARInterface {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "runLocalSearchBinaryInput failed: unknown result");
     }
 
-    public java.util.List<DiscreteInputArchitecture> runLocalSearchDiscreteInput(java.lang.String problem, java.util.List<java.lang.Integer> inputs) throws org.apache.thrift.TException
+    public java.util.List<DiscreteInputArchitecture> runLocalSearchDiscreteInput(String problem, java.util.List<Integer> inputs) throws org.apache.thrift.TException
     {
       send_runLocalSearchDiscreteInput(problem, inputs);
       return recv_runLocalSearchDiscreteInput();
     }
 
-    public void send_runLocalSearchDiscreteInput(java.lang.String problem, java.util.List<java.lang.Integer> inputs) throws org.apache.thrift.TException
+    public void send_runLocalSearchDiscreteInput(String problem, java.util.List<Integer> inputs) throws org.apache.thrift.TException
     {
       runLocalSearchDiscreteInput_args args = new runLocalSearchDiscreteInput_args();
       args.setProblem(problem);
@@ -259,20 +259,20 @@ public class VASSARInterface {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "runLocalSearchDiscreteInput failed: unknown result");
     }
 
-    public java.util.List<java.lang.String> getOrbitList(java.lang.String problem) throws org.apache.thrift.TException
+    public java.util.List<String> getOrbitList(String problem) throws org.apache.thrift.TException
     {
       send_getOrbitList(problem);
       return recv_getOrbitList();
     }
 
-    public void send_getOrbitList(java.lang.String problem) throws org.apache.thrift.TException
+    public void send_getOrbitList(String problem) throws org.apache.thrift.TException
     {
       getOrbitList_args args = new getOrbitList_args();
       args.setProblem(problem);
       sendBase("getOrbitList", args);
     }
 
-    public java.util.List<java.lang.String> recv_getOrbitList() throws org.apache.thrift.TException
+    public java.util.List<String> recv_getOrbitList() throws org.apache.thrift.TException
     {
       getOrbitList_result result = new getOrbitList_result();
       receiveBase(result, "getOrbitList");
@@ -282,20 +282,20 @@ public class VASSARInterface {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "getOrbitList failed: unknown result");
     }
 
-    public java.util.List<java.lang.String> getInstrumentList(java.lang.String problem) throws org.apache.thrift.TException
+    public java.util.List<String> getInstrumentList(String problem) throws org.apache.thrift.TException
     {
       send_getInstrumentList(problem);
       return recv_getInstrumentList();
     }
 
-    public void send_getInstrumentList(java.lang.String problem) throws org.apache.thrift.TException
+    public void send_getInstrumentList(String problem) throws org.apache.thrift.TException
     {
       getInstrumentList_args args = new getInstrumentList_args();
       args.setProblem(problem);
       sendBase("getInstrumentList", args);
     }
 
-    public java.util.List<java.lang.String> recv_getInstrumentList() throws org.apache.thrift.TException
+    public java.util.List<String> recv_getInstrumentList() throws org.apache.thrift.TException
     {
       getInstrumentList_result result = new getInstrumentList_result();
       receiveBase(result, "getInstrumentList");
@@ -305,20 +305,20 @@ public class VASSARInterface {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "getInstrumentList failed: unknown result");
     }
 
-    public java.util.List<java.lang.String> getObjectiveList(java.lang.String problem) throws org.apache.thrift.TException
+    public java.util.List<String> getObjectiveList(String problem) throws org.apache.thrift.TException
     {
       send_getObjectiveList(problem);
       return recv_getObjectiveList();
     }
 
-    public void send_getObjectiveList(java.lang.String problem) throws org.apache.thrift.TException
+    public void send_getObjectiveList(String problem) throws org.apache.thrift.TException
     {
       getObjectiveList_args args = new getObjectiveList_args();
       args.setProblem(problem);
       sendBase("getObjectiveList", args);
     }
 
-    public java.util.List<java.lang.String> recv_getObjectiveList() throws org.apache.thrift.TException
+    public java.util.List<String> recv_getObjectiveList() throws org.apache.thrift.TException
     {
       getObjectiveList_result result = new getObjectiveList_result();
       receiveBase(result, "getObjectiveList");
@@ -328,13 +328,13 @@ public class VASSARInterface {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "getObjectiveList failed: unknown result");
     }
 
-    public java.util.List<java.lang.String> getInstrumentsForObjective(java.lang.String problem, java.lang.String objective) throws org.apache.thrift.TException
+    public java.util.List<String> getInstrumentsForObjective(String problem, String objective) throws org.apache.thrift.TException
     {
       send_getInstrumentsForObjective(problem, objective);
       return recv_getInstrumentsForObjective();
     }
 
-    public void send_getInstrumentsForObjective(java.lang.String problem, java.lang.String objective) throws org.apache.thrift.TException
+    public void send_getInstrumentsForObjective(String problem, String objective) throws org.apache.thrift.TException
     {
       getInstrumentsForObjective_args args = new getInstrumentsForObjective_args();
       args.setProblem(problem);
@@ -342,7 +342,7 @@ public class VASSARInterface {
       sendBase("getInstrumentsForObjective", args);
     }
 
-    public java.util.List<java.lang.String> recv_getInstrumentsForObjective() throws org.apache.thrift.TException
+    public java.util.List<String> recv_getInstrumentsForObjective() throws org.apache.thrift.TException
     {
       getInstrumentsForObjective_result result = new getInstrumentsForObjective_result();
       receiveBase(result, "getInstrumentsForObjective");
@@ -352,13 +352,13 @@ public class VASSARInterface {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "getInstrumentsForObjective failed: unknown result");
     }
 
-    public java.util.List<java.lang.String> getInstrumentsForPanel(java.lang.String problem, java.lang.String panel) throws org.apache.thrift.TException
+    public java.util.List<String> getInstrumentsForPanel(String problem, String panel) throws org.apache.thrift.TException
     {
       send_getInstrumentsForPanel(problem, panel);
       return recv_getInstrumentsForPanel();
     }
 
-    public void send_getInstrumentsForPanel(java.lang.String problem, java.lang.String panel) throws org.apache.thrift.TException
+    public void send_getInstrumentsForPanel(String problem, String panel) throws org.apache.thrift.TException
     {
       getInstrumentsForPanel_args args = new getInstrumentsForPanel_args();
       args.setProblem(problem);
@@ -366,7 +366,7 @@ public class VASSARInterface {
       sendBase("getInstrumentsForPanel", args);
     }
 
-    public java.util.List<java.lang.String> recv_getInstrumentsForPanel() throws org.apache.thrift.TException
+    public java.util.List<String> recv_getInstrumentsForPanel() throws org.apache.thrift.TException
     {
       getInstrumentsForPanel_result result = new getInstrumentsForPanel_result();
       receiveBase(result, "getInstrumentsForPanel");
@@ -376,13 +376,13 @@ public class VASSARInterface {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "getInstrumentsForPanel failed: unknown result");
     }
 
-    public java.util.List<java.lang.String> getCritiqueBinaryInputArch(java.lang.String problem, java.util.List<java.lang.Boolean> inputs) throws org.apache.thrift.TException
+    public java.util.List<String> getCritiqueBinaryInputArch(String problem, java.util.List<Boolean> inputs) throws org.apache.thrift.TException
     {
       send_getCritiqueBinaryInputArch(problem, inputs);
       return recv_getCritiqueBinaryInputArch();
     }
 
-    public void send_getCritiqueBinaryInputArch(java.lang.String problem, java.util.List<java.lang.Boolean> inputs) throws org.apache.thrift.TException
+    public void send_getCritiqueBinaryInputArch(String problem, java.util.List<Boolean> inputs) throws org.apache.thrift.TException
     {
       getCritiqueBinaryInputArch_args args = new getCritiqueBinaryInputArch_args();
       args.setProblem(problem);
@@ -390,7 +390,7 @@ public class VASSARInterface {
       sendBase("getCritiqueBinaryInputArch", args);
     }
 
-    public java.util.List<java.lang.String> recv_getCritiqueBinaryInputArch() throws org.apache.thrift.TException
+    public java.util.List<String> recv_getCritiqueBinaryInputArch() throws org.apache.thrift.TException
     {
       getCritiqueBinaryInputArch_result result = new getCritiqueBinaryInputArch_result();
       receiveBase(result, "getCritiqueBinaryInputArch");
@@ -400,13 +400,13 @@ public class VASSARInterface {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "getCritiqueBinaryInputArch failed: unknown result");
     }
 
-    public java.util.List<java.lang.String> getCritiqueDiscreteInputArch(java.lang.String problem, java.util.List<java.lang.Integer> inputs) throws org.apache.thrift.TException
+    public java.util.List<String> getCritiqueDiscreteInputArch(String problem, java.util.List<Integer> inputs) throws org.apache.thrift.TException
     {
       send_getCritiqueDiscreteInputArch(problem, inputs);
       return recv_getCritiqueDiscreteInputArch();
     }
 
-    public void send_getCritiqueDiscreteInputArch(java.lang.String problem, java.util.List<java.lang.Integer> inputs) throws org.apache.thrift.TException
+    public void send_getCritiqueDiscreteInputArch(String problem, java.util.List<Integer> inputs) throws org.apache.thrift.TException
     {
       getCritiqueDiscreteInputArch_args args = new getCritiqueDiscreteInputArch_args();
       args.setProblem(problem);
@@ -414,7 +414,7 @@ public class VASSARInterface {
       sendBase("getCritiqueDiscreteInputArch", args);
     }
 
-    public java.util.List<java.lang.String> recv_getCritiqueDiscreteInputArch() throws org.apache.thrift.TException
+    public java.util.List<String> recv_getCritiqueDiscreteInputArch() throws org.apache.thrift.TException
     {
       getCritiqueDiscreteInputArch_result result = new getCritiqueDiscreteInputArch_result();
       receiveBase(result, "getCritiqueDiscreteInputArch");
@@ -424,13 +424,13 @@ public class VASSARInterface {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "getCritiqueDiscreteInputArch failed: unknown result");
     }
 
-    public java.util.List<ObjectiveSatisfaction> getArchitectureScoreExplanation(java.lang.String problem, java.util.List<java.lang.Boolean> arch) throws org.apache.thrift.TException
+    public java.util.List<ObjectiveSatisfaction> getArchitectureScoreExplanation(String problem, java.util.List<Boolean> arch) throws org.apache.thrift.TException
     {
       send_getArchitectureScoreExplanation(problem, arch);
       return recv_getArchitectureScoreExplanation();
     }
 
-    public void send_getArchitectureScoreExplanation(java.lang.String problem, java.util.List<java.lang.Boolean> arch) throws org.apache.thrift.TException
+    public void send_getArchitectureScoreExplanation(String problem, java.util.List<Boolean> arch) throws org.apache.thrift.TException
     {
       getArchitectureScoreExplanation_args args = new getArchitectureScoreExplanation_args();
       args.setProblem(problem);
@@ -448,13 +448,13 @@ public class VASSARInterface {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "getArchitectureScoreExplanation failed: unknown result");
     }
 
-    public java.util.List<ObjectiveSatisfaction> getPanelScoreExplanation(java.lang.String problem, java.util.List<java.lang.Boolean> arch, java.lang.String panel) throws org.apache.thrift.TException
+    public java.util.List<ObjectiveSatisfaction> getPanelScoreExplanation(String problem, java.util.List<Boolean> arch, String panel) throws org.apache.thrift.TException
     {
       send_getPanelScoreExplanation(problem, arch, panel);
       return recv_getPanelScoreExplanation();
     }
 
-    public void send_getPanelScoreExplanation(java.lang.String problem, java.util.List<java.lang.Boolean> arch, java.lang.String panel) throws org.apache.thrift.TException
+    public void send_getPanelScoreExplanation(String problem, java.util.List<Boolean> arch, String panel) throws org.apache.thrift.TException
     {
       getPanelScoreExplanation_args args = new getPanelScoreExplanation_args();
       args.setProblem(problem);
@@ -473,13 +473,13 @@ public class VASSARInterface {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "getPanelScoreExplanation failed: unknown result");
     }
 
-    public java.util.List<ObjectiveSatisfaction> getObjectiveScoreExplanation(java.lang.String problem, java.util.List<java.lang.Boolean> arch, java.lang.String objective) throws org.apache.thrift.TException
+    public java.util.List<ObjectiveSatisfaction> getObjectiveScoreExplanation(String problem, java.util.List<Boolean> arch, String objective) throws org.apache.thrift.TException
     {
       send_getObjectiveScoreExplanation(problem, arch, objective);
       return recv_getObjectiveScoreExplanation();
     }
 
-    public void send_getObjectiveScoreExplanation(java.lang.String problem, java.util.List<java.lang.Boolean> arch, java.lang.String objective) throws org.apache.thrift.TException
+    public void send_getObjectiveScoreExplanation(String problem, java.util.List<Boolean> arch, String objective) throws org.apache.thrift.TException
     {
       getObjectiveScoreExplanation_args args = new getObjectiveScoreExplanation_args();
       args.setProblem(problem);
@@ -520,12 +520,12 @@ public class VASSARInterface {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "isGABinaryInputRunning failed: unknown result");
     }
 
-    public void toggleGABinaryInput(java.lang.String problem, java.util.List<BinaryInputArchitecture> dataset, java.lang.String username) throws org.apache.thrift.TException
+    public void toggleGABinaryInput(String problem, java.util.List<BinaryInputArchitecture> dataset, String username) throws org.apache.thrift.TException
     {
       send_toggleGABinaryInput(problem, dataset, username);
     }
 
-    public void send_toggleGABinaryInput(java.lang.String problem, java.util.List<BinaryInputArchitecture> dataset, java.lang.String username) throws org.apache.thrift.TException
+    public void send_toggleGABinaryInput(String problem, java.util.List<BinaryInputArchitecture> dataset, String username) throws org.apache.thrift.TException
     {
       toggleGABinaryInput_args args = new toggleGABinaryInput_args();
       args.setProblem(problem);
@@ -534,13 +534,13 @@ public class VASSARInterface {
       sendBaseOneway("toggleGABinaryInput", args);
     }
 
-    public java.util.List<SubscoreInformation> getArchScienceInformationBinaryInput(java.lang.String problem, BinaryInputArchitecture arch) throws org.apache.thrift.TException
+    public java.util.List<SubscoreInformation> getArchScienceInformationBinaryInput(String problem, BinaryInputArchitecture arch) throws org.apache.thrift.TException
     {
       send_getArchScienceInformationBinaryInput(problem, arch);
       return recv_getArchScienceInformationBinaryInput();
     }
 
-    public void send_getArchScienceInformationBinaryInput(java.lang.String problem, BinaryInputArchitecture arch) throws org.apache.thrift.TException
+    public void send_getArchScienceInformationBinaryInput(String problem, BinaryInputArchitecture arch) throws org.apache.thrift.TException
     {
       getArchScienceInformationBinaryInput_args args = new getArchScienceInformationBinaryInput_args();
       args.setProblem(problem);
@@ -558,13 +558,13 @@ public class VASSARInterface {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "getArchScienceInformationBinaryInput failed: unknown result");
     }
 
-    public java.util.List<MissionCostInformation> getArchCostInformationBinaryInput(java.lang.String problem, BinaryInputArchitecture arch) throws org.apache.thrift.TException
+    public java.util.List<MissionCostInformation> getArchCostInformationBinaryInput(String problem, BinaryInputArchitecture arch) throws org.apache.thrift.TException
     {
       send_getArchCostInformationBinaryInput(problem, arch);
       return recv_getArchCostInformationBinaryInput();
     }
 
-    public void send_getArchCostInformationBinaryInput(java.lang.String problem, BinaryInputArchitecture arch) throws org.apache.thrift.TException
+    public void send_getArchCostInformationBinaryInput(String problem, BinaryInputArchitecture arch) throws org.apache.thrift.TException
     {
       getArchCostInformationBinaryInput_args args = new getArchCostInformationBinaryInput_args();
       args.setProblem(problem);
@@ -582,13 +582,13 @@ public class VASSARInterface {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "getArchCostInformationBinaryInput failed: unknown result");
     }
 
-    public SubobjectiveDetails getSubscoreDetailsBinaryInput(java.lang.String problem, BinaryInputArchitecture arch, java.lang.String subobj) throws org.apache.thrift.TException
+    public SubobjectiveDetails getSubscoreDetailsBinaryInput(String problem, BinaryInputArchitecture arch, String subobj) throws org.apache.thrift.TException
     {
       send_getSubscoreDetailsBinaryInput(problem, arch, subobj);
       return recv_getSubscoreDetailsBinaryInput();
     }
 
-    public void send_getSubscoreDetailsBinaryInput(java.lang.String problem, BinaryInputArchitecture arch, java.lang.String subobj) throws org.apache.thrift.TException
+    public void send_getSubscoreDetailsBinaryInput(String problem, BinaryInputArchitecture arch, String subobj) throws org.apache.thrift.TException
     {
       getSubscoreDetailsBinaryInput_args args = new getSubscoreDetailsBinaryInput_args();
       args.setProblem(problem);
@@ -629,12 +629,12 @@ public class VASSARInterface {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "isGADiscreteInputRunning failed: unknown result");
     }
 
-    public void toggleGADiscreteInput(java.lang.String problem, java.util.List<DiscreteInputArchitecture> dataset, java.lang.String username) throws org.apache.thrift.TException
+    public void toggleGADiscreteInput(String problem, java.util.List<DiscreteInputArchitecture> dataset, String username) throws org.apache.thrift.TException
     {
       send_toggleGADiscreteInput(problem, dataset, username);
     }
 
-    public void send_toggleGADiscreteInput(java.lang.String problem, java.util.List<DiscreteInputArchitecture> dataset, java.lang.String username) throws org.apache.thrift.TException
+    public void send_toggleGADiscreteInput(String problem, java.util.List<DiscreteInputArchitecture> dataset, String username) throws org.apache.thrift.TException
     {
       toggleGADiscreteInput_args args = new toggleGADiscreteInput_args();
       args.setProblem(problem);
@@ -643,13 +643,13 @@ public class VASSARInterface {
       sendBaseOneway("toggleGADiscreteInput", args);
     }
 
-    public java.util.List<SubscoreInformation> getArchScienceInformationDiscreteInput(java.lang.String problem, DiscreteInputArchitecture arch) throws org.apache.thrift.TException
+    public java.util.List<SubscoreInformation> getArchScienceInformationDiscreteInput(String problem, DiscreteInputArchitecture arch) throws org.apache.thrift.TException
     {
       send_getArchScienceInformationDiscreteInput(problem, arch);
       return recv_getArchScienceInformationDiscreteInput();
     }
 
-    public void send_getArchScienceInformationDiscreteInput(java.lang.String problem, DiscreteInputArchitecture arch) throws org.apache.thrift.TException
+    public void send_getArchScienceInformationDiscreteInput(String problem, DiscreteInputArchitecture arch) throws org.apache.thrift.TException
     {
       getArchScienceInformationDiscreteInput_args args = new getArchScienceInformationDiscreteInput_args();
       args.setProblem(problem);
@@ -667,13 +667,13 @@ public class VASSARInterface {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "getArchScienceInformationDiscreteInput failed: unknown result");
     }
 
-    public java.util.List<MissionCostInformation> getArchCostInformationDiscreteInput(java.lang.String problem, DiscreteInputArchitecture arch) throws org.apache.thrift.TException
+    public java.util.List<MissionCostInformation> getArchCostInformationDiscreteInput(String problem, DiscreteInputArchitecture arch) throws org.apache.thrift.TException
     {
       send_getArchCostInformationDiscreteInput(problem, arch);
       return recv_getArchCostInformationDiscreteInput();
     }
 
-    public void send_getArchCostInformationDiscreteInput(java.lang.String problem, DiscreteInputArchitecture arch) throws org.apache.thrift.TException
+    public void send_getArchCostInformationDiscreteInput(String problem, DiscreteInputArchitecture arch) throws org.apache.thrift.TException
     {
       getArchCostInformationDiscreteInput_args args = new getArchCostInformationDiscreteInput_args();
       args.setProblem(problem);
@@ -691,13 +691,13 @@ public class VASSARInterface {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "getArchCostInformationDiscreteInput failed: unknown result");
     }
 
-    public SubobjectiveDetails getSubscoreDetailsDiscreteInput(java.lang.String problem, DiscreteInputArchitecture arch, java.lang.String subobj) throws org.apache.thrift.TException
+    public SubobjectiveDetails getSubscoreDetailsDiscreteInput(String problem, DiscreteInputArchitecture arch, String subobj) throws org.apache.thrift.TException
     {
       send_getSubscoreDetailsDiscreteInput(problem, arch, subobj);
       return recv_getSubscoreDetailsDiscreteInput();
     }
 
-    public void send_getSubscoreDetailsDiscreteInput(java.lang.String problem, DiscreteInputArchitecture arch, java.lang.String subobj) throws org.apache.thrift.TException
+    public void send_getSubscoreDetailsDiscreteInput(String problem, DiscreteInputArchitecture arch, String subobj) throws org.apache.thrift.TException
     {
       getSubscoreDetailsDiscreteInput_args args = new getSubscoreDetailsDiscreteInput_args();
       args.setProblem(problem);
@@ -754,8 +754,8 @@ public class VASSARInterface {
       }
 
       public Void getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new java.lang.IllegalStateException("Method call not finished!");
+        if (getState() != State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
         }
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
@@ -763,7 +763,7 @@ public class VASSARInterface {
       }
     }
 
-    public void evalBinaryInputArch(java.lang.String problem, java.util.List<java.lang.Boolean> inputs, org.apache.thrift.async.AsyncMethodCallback<BinaryInputArchitecture> resultHandler) throws org.apache.thrift.TException {
+    public void evalBinaryInputArch(String problem, java.util.List<Boolean> inputs, org.apache.thrift.async.AsyncMethodCallback<BinaryInputArchitecture> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       evalBinaryInputArch_call method_call = new evalBinaryInputArch_call(problem, inputs, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
@@ -771,9 +771,9 @@ public class VASSARInterface {
     }
 
     public static class evalBinaryInputArch_call extends org.apache.thrift.async.TAsyncMethodCall<BinaryInputArchitecture> {
-      private java.lang.String problem;
-      private java.util.List<java.lang.Boolean> inputs;
-      public evalBinaryInputArch_call(java.lang.String problem, java.util.List<java.lang.Boolean> inputs, org.apache.thrift.async.AsyncMethodCallback<BinaryInputArchitecture> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      private String problem;
+      private java.util.List<Boolean> inputs;
+      public evalBinaryInputArch_call(String problem, java.util.List<Boolean> inputs, org.apache.thrift.async.AsyncMethodCallback<BinaryInputArchitecture> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.problem = problem;
         this.inputs = inputs;
@@ -789,8 +789,8 @@ public class VASSARInterface {
       }
 
       public BinaryInputArchitecture getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new java.lang.IllegalStateException("Method call not finished!");
+        if (getState() != State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
         }
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
@@ -798,7 +798,7 @@ public class VASSARInterface {
       }
     }
 
-    public void evalDiscreteInputArch(java.lang.String problem, java.util.List<java.lang.Integer> inputs, org.apache.thrift.async.AsyncMethodCallback<DiscreteInputArchitecture> resultHandler) throws org.apache.thrift.TException {
+    public void evalDiscreteInputArch(String problem, java.util.List<Integer> inputs, org.apache.thrift.async.AsyncMethodCallback<DiscreteInputArchitecture> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       evalDiscreteInputArch_call method_call = new evalDiscreteInputArch_call(problem, inputs, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
@@ -806,9 +806,9 @@ public class VASSARInterface {
     }
 
     public static class evalDiscreteInputArch_call extends org.apache.thrift.async.TAsyncMethodCall<DiscreteInputArchitecture> {
-      private java.lang.String problem;
-      private java.util.List<java.lang.Integer> inputs;
-      public evalDiscreteInputArch_call(java.lang.String problem, java.util.List<java.lang.Integer> inputs, org.apache.thrift.async.AsyncMethodCallback<DiscreteInputArchitecture> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      private String problem;
+      private java.util.List<Integer> inputs;
+      public evalDiscreteInputArch_call(String problem, java.util.List<Integer> inputs, org.apache.thrift.async.AsyncMethodCallback<DiscreteInputArchitecture> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.problem = problem;
         this.inputs = inputs;
@@ -824,8 +824,8 @@ public class VASSARInterface {
       }
 
       public DiscreteInputArchitecture getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new java.lang.IllegalStateException("Method call not finished!");
+        if (getState() != State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
         }
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
@@ -833,7 +833,7 @@ public class VASSARInterface {
       }
     }
 
-    public void runLocalSearchBinaryInput(java.lang.String problem, java.util.List<java.lang.Boolean> inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<BinaryInputArchitecture>> resultHandler) throws org.apache.thrift.TException {
+    public void runLocalSearchBinaryInput(String problem, java.util.List<Boolean> inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<BinaryInputArchitecture>> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       runLocalSearchBinaryInput_call method_call = new runLocalSearchBinaryInput_call(problem, inputs, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
@@ -841,9 +841,9 @@ public class VASSARInterface {
     }
 
     public static class runLocalSearchBinaryInput_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<BinaryInputArchitecture>> {
-      private java.lang.String problem;
-      private java.util.List<java.lang.Boolean> inputs;
-      public runLocalSearchBinaryInput_call(java.lang.String problem, java.util.List<java.lang.Boolean> inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<BinaryInputArchitecture>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      private String problem;
+      private java.util.List<Boolean> inputs;
+      public runLocalSearchBinaryInput_call(String problem, java.util.List<Boolean> inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<BinaryInputArchitecture>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.problem = problem;
         this.inputs = inputs;
@@ -859,8 +859,8 @@ public class VASSARInterface {
       }
 
       public java.util.List<BinaryInputArchitecture> getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new java.lang.IllegalStateException("Method call not finished!");
+        if (getState() != State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
         }
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
@@ -868,7 +868,7 @@ public class VASSARInterface {
       }
     }
 
-    public void runLocalSearchDiscreteInput(java.lang.String problem, java.util.List<java.lang.Integer> inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<DiscreteInputArchitecture>> resultHandler) throws org.apache.thrift.TException {
+    public void runLocalSearchDiscreteInput(String problem, java.util.List<Integer> inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<DiscreteInputArchitecture>> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       runLocalSearchDiscreteInput_call method_call = new runLocalSearchDiscreteInput_call(problem, inputs, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
@@ -876,9 +876,9 @@ public class VASSARInterface {
     }
 
     public static class runLocalSearchDiscreteInput_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<DiscreteInputArchitecture>> {
-      private java.lang.String problem;
-      private java.util.List<java.lang.Integer> inputs;
-      public runLocalSearchDiscreteInput_call(java.lang.String problem, java.util.List<java.lang.Integer> inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<DiscreteInputArchitecture>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      private String problem;
+      private java.util.List<Integer> inputs;
+      public runLocalSearchDiscreteInput_call(String problem, java.util.List<Integer> inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<DiscreteInputArchitecture>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.problem = problem;
         this.inputs = inputs;
@@ -894,8 +894,8 @@ public class VASSARInterface {
       }
 
       public java.util.List<DiscreteInputArchitecture> getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new java.lang.IllegalStateException("Method call not finished!");
+        if (getState() != State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
         }
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
@@ -903,16 +903,16 @@ public class VASSARInterface {
       }
     }
 
-    public void getOrbitList(java.lang.String problem, org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>> resultHandler) throws org.apache.thrift.TException {
+    public void getOrbitList(String problem, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       getOrbitList_call method_call = new getOrbitList_call(problem, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class getOrbitList_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<java.lang.String>> {
-      private java.lang.String problem;
-      public getOrbitList_call(java.lang.String problem, org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+    public static class getOrbitList_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<String>> {
+      private String problem;
+      public getOrbitList_call(String problem, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.problem = problem;
       }
@@ -925,9 +925,9 @@ public class VASSARInterface {
         prot.writeMessageEnd();
       }
 
-      public java.util.List<java.lang.String> getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new java.lang.IllegalStateException("Method call not finished!");
+      public java.util.List<String> getResult() throws org.apache.thrift.TException {
+        if (getState() != State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
         }
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
@@ -935,16 +935,16 @@ public class VASSARInterface {
       }
     }
 
-    public void getInstrumentList(java.lang.String problem, org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>> resultHandler) throws org.apache.thrift.TException {
+    public void getInstrumentList(String problem, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       getInstrumentList_call method_call = new getInstrumentList_call(problem, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class getInstrumentList_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<java.lang.String>> {
-      private java.lang.String problem;
-      public getInstrumentList_call(java.lang.String problem, org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+    public static class getInstrumentList_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<String>> {
+      private String problem;
+      public getInstrumentList_call(String problem, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.problem = problem;
       }
@@ -957,9 +957,9 @@ public class VASSARInterface {
         prot.writeMessageEnd();
       }
 
-      public java.util.List<java.lang.String> getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new java.lang.IllegalStateException("Method call not finished!");
+      public java.util.List<String> getResult() throws org.apache.thrift.TException {
+        if (getState() != State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
         }
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
@@ -967,16 +967,16 @@ public class VASSARInterface {
       }
     }
 
-    public void getObjectiveList(java.lang.String problem, org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>> resultHandler) throws org.apache.thrift.TException {
+    public void getObjectiveList(String problem, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       getObjectiveList_call method_call = new getObjectiveList_call(problem, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class getObjectiveList_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<java.lang.String>> {
-      private java.lang.String problem;
-      public getObjectiveList_call(java.lang.String problem, org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+    public static class getObjectiveList_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<String>> {
+      private String problem;
+      public getObjectiveList_call(String problem, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.problem = problem;
       }
@@ -989,9 +989,9 @@ public class VASSARInterface {
         prot.writeMessageEnd();
       }
 
-      public java.util.List<java.lang.String> getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new java.lang.IllegalStateException("Method call not finished!");
+      public java.util.List<String> getResult() throws org.apache.thrift.TException {
+        if (getState() != State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
         }
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
@@ -999,17 +999,17 @@ public class VASSARInterface {
       }
     }
 
-    public void getInstrumentsForObjective(java.lang.String problem, java.lang.String objective, org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>> resultHandler) throws org.apache.thrift.TException {
+    public void getInstrumentsForObjective(String problem, String objective, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       getInstrumentsForObjective_call method_call = new getInstrumentsForObjective_call(problem, objective, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class getInstrumentsForObjective_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<java.lang.String>> {
-      private java.lang.String problem;
-      private java.lang.String objective;
-      public getInstrumentsForObjective_call(java.lang.String problem, java.lang.String objective, org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+    public static class getInstrumentsForObjective_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<String>> {
+      private String problem;
+      private String objective;
+      public getInstrumentsForObjective_call(String problem, String objective, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.problem = problem;
         this.objective = objective;
@@ -1024,9 +1024,9 @@ public class VASSARInterface {
         prot.writeMessageEnd();
       }
 
-      public java.util.List<java.lang.String> getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new java.lang.IllegalStateException("Method call not finished!");
+      public java.util.List<String> getResult() throws org.apache.thrift.TException {
+        if (getState() != State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
         }
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
@@ -1034,17 +1034,17 @@ public class VASSARInterface {
       }
     }
 
-    public void getInstrumentsForPanel(java.lang.String problem, java.lang.String panel, org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>> resultHandler) throws org.apache.thrift.TException {
+    public void getInstrumentsForPanel(String problem, String panel, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       getInstrumentsForPanel_call method_call = new getInstrumentsForPanel_call(problem, panel, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class getInstrumentsForPanel_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<java.lang.String>> {
-      private java.lang.String problem;
-      private java.lang.String panel;
-      public getInstrumentsForPanel_call(java.lang.String problem, java.lang.String panel, org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+    public static class getInstrumentsForPanel_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<String>> {
+      private String problem;
+      private String panel;
+      public getInstrumentsForPanel_call(String problem, String panel, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.problem = problem;
         this.panel = panel;
@@ -1059,9 +1059,9 @@ public class VASSARInterface {
         prot.writeMessageEnd();
       }
 
-      public java.util.List<java.lang.String> getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new java.lang.IllegalStateException("Method call not finished!");
+      public java.util.List<String> getResult() throws org.apache.thrift.TException {
+        if (getState() != State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
         }
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
@@ -1069,17 +1069,17 @@ public class VASSARInterface {
       }
     }
 
-    public void getCritiqueBinaryInputArch(java.lang.String problem, java.util.List<java.lang.Boolean> inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>> resultHandler) throws org.apache.thrift.TException {
+    public void getCritiqueBinaryInputArch(String problem, java.util.List<Boolean> inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       getCritiqueBinaryInputArch_call method_call = new getCritiqueBinaryInputArch_call(problem, inputs, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class getCritiqueBinaryInputArch_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<java.lang.String>> {
-      private java.lang.String problem;
-      private java.util.List<java.lang.Boolean> inputs;
-      public getCritiqueBinaryInputArch_call(java.lang.String problem, java.util.List<java.lang.Boolean> inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+    public static class getCritiqueBinaryInputArch_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<String>> {
+      private String problem;
+      private java.util.List<Boolean> inputs;
+      public getCritiqueBinaryInputArch_call(String problem, java.util.List<Boolean> inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.problem = problem;
         this.inputs = inputs;
@@ -1094,9 +1094,9 @@ public class VASSARInterface {
         prot.writeMessageEnd();
       }
 
-      public java.util.List<java.lang.String> getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new java.lang.IllegalStateException("Method call not finished!");
+      public java.util.List<String> getResult() throws org.apache.thrift.TException {
+        if (getState() != State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
         }
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
@@ -1104,17 +1104,17 @@ public class VASSARInterface {
       }
     }
 
-    public void getCritiqueDiscreteInputArch(java.lang.String problem, java.util.List<java.lang.Integer> inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>> resultHandler) throws org.apache.thrift.TException {
+    public void getCritiqueDiscreteInputArch(String problem, java.util.List<Integer> inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       getCritiqueDiscreteInputArch_call method_call = new getCritiqueDiscreteInputArch_call(problem, inputs, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class getCritiqueDiscreteInputArch_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<java.lang.String>> {
-      private java.lang.String problem;
-      private java.util.List<java.lang.Integer> inputs;
-      public getCritiqueDiscreteInputArch_call(java.lang.String problem, java.util.List<java.lang.Integer> inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+    public static class getCritiqueDiscreteInputArch_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<String>> {
+      private String problem;
+      private java.util.List<Integer> inputs;
+      public getCritiqueDiscreteInputArch_call(String problem, java.util.List<Integer> inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.problem = problem;
         this.inputs = inputs;
@@ -1129,9 +1129,9 @@ public class VASSARInterface {
         prot.writeMessageEnd();
       }
 
-      public java.util.List<java.lang.String> getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new java.lang.IllegalStateException("Method call not finished!");
+      public java.util.List<String> getResult() throws org.apache.thrift.TException {
+        if (getState() != State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
         }
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
@@ -1139,7 +1139,7 @@ public class VASSARInterface {
       }
     }
 
-    public void getArchitectureScoreExplanation(java.lang.String problem, java.util.List<java.lang.Boolean> arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ObjectiveSatisfaction>> resultHandler) throws org.apache.thrift.TException {
+    public void getArchitectureScoreExplanation(String problem, java.util.List<Boolean> arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ObjectiveSatisfaction>> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       getArchitectureScoreExplanation_call method_call = new getArchitectureScoreExplanation_call(problem, arch, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
@@ -1147,9 +1147,9 @@ public class VASSARInterface {
     }
 
     public static class getArchitectureScoreExplanation_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<ObjectiveSatisfaction>> {
-      private java.lang.String problem;
-      private java.util.List<java.lang.Boolean> arch;
-      public getArchitectureScoreExplanation_call(java.lang.String problem, java.util.List<java.lang.Boolean> arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ObjectiveSatisfaction>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      private String problem;
+      private java.util.List<Boolean> arch;
+      public getArchitectureScoreExplanation_call(String problem, java.util.List<Boolean> arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ObjectiveSatisfaction>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.problem = problem;
         this.arch = arch;
@@ -1165,8 +1165,8 @@ public class VASSARInterface {
       }
 
       public java.util.List<ObjectiveSatisfaction> getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new java.lang.IllegalStateException("Method call not finished!");
+        if (getState() != State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
         }
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
@@ -1174,7 +1174,7 @@ public class VASSARInterface {
       }
     }
 
-    public void getPanelScoreExplanation(java.lang.String problem, java.util.List<java.lang.Boolean> arch, java.lang.String panel, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ObjectiveSatisfaction>> resultHandler) throws org.apache.thrift.TException {
+    public void getPanelScoreExplanation(String problem, java.util.List<Boolean> arch, String panel, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ObjectiveSatisfaction>> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       getPanelScoreExplanation_call method_call = new getPanelScoreExplanation_call(problem, arch, panel, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
@@ -1182,10 +1182,10 @@ public class VASSARInterface {
     }
 
     public static class getPanelScoreExplanation_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<ObjectiveSatisfaction>> {
-      private java.lang.String problem;
-      private java.util.List<java.lang.Boolean> arch;
-      private java.lang.String panel;
-      public getPanelScoreExplanation_call(java.lang.String problem, java.util.List<java.lang.Boolean> arch, java.lang.String panel, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ObjectiveSatisfaction>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      private String problem;
+      private java.util.List<Boolean> arch;
+      private String panel;
+      public getPanelScoreExplanation_call(String problem, java.util.List<Boolean> arch, String panel, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ObjectiveSatisfaction>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.problem = problem;
         this.arch = arch;
@@ -1203,8 +1203,8 @@ public class VASSARInterface {
       }
 
       public java.util.List<ObjectiveSatisfaction> getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new java.lang.IllegalStateException("Method call not finished!");
+        if (getState() != State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
         }
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
@@ -1212,7 +1212,7 @@ public class VASSARInterface {
       }
     }
 
-    public void getObjectiveScoreExplanation(java.lang.String problem, java.util.List<java.lang.Boolean> arch, java.lang.String objective, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ObjectiveSatisfaction>> resultHandler) throws org.apache.thrift.TException {
+    public void getObjectiveScoreExplanation(String problem, java.util.List<Boolean> arch, String objective, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ObjectiveSatisfaction>> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       getObjectiveScoreExplanation_call method_call = new getObjectiveScoreExplanation_call(problem, arch, objective, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
@@ -1220,10 +1220,10 @@ public class VASSARInterface {
     }
 
     public static class getObjectiveScoreExplanation_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<ObjectiveSatisfaction>> {
-      private java.lang.String problem;
-      private java.util.List<java.lang.Boolean> arch;
-      private java.lang.String objective;
-      public getObjectiveScoreExplanation_call(java.lang.String problem, java.util.List<java.lang.Boolean> arch, java.lang.String objective, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ObjectiveSatisfaction>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      private String problem;
+      private java.util.List<Boolean> arch;
+      private String objective;
+      public getObjectiveScoreExplanation_call(String problem, java.util.List<Boolean> arch, String objective, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ObjectiveSatisfaction>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.problem = problem;
         this.arch = arch;
@@ -1241,8 +1241,8 @@ public class VASSARInterface {
       }
 
       public java.util.List<ObjectiveSatisfaction> getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new java.lang.IllegalStateException("Method call not finished!");
+        if (getState() != State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
         }
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
@@ -1250,15 +1250,15 @@ public class VASSARInterface {
       }
     }
 
-    public void isGABinaryInputRunning(org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean> resultHandler) throws org.apache.thrift.TException {
+    public void isGABinaryInputRunning(org.apache.thrift.async.AsyncMethodCallback<Boolean> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       isGABinaryInputRunning_call method_call = new isGABinaryInputRunning_call(resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class isGABinaryInputRunning_call extends org.apache.thrift.async.TAsyncMethodCall<java.lang.Boolean> {
-      public isGABinaryInputRunning_call(org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+    public static class isGABinaryInputRunning_call extends org.apache.thrift.async.TAsyncMethodCall<Boolean> {
+      public isGABinaryInputRunning_call(org.apache.thrift.async.AsyncMethodCallback<Boolean> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
       }
 
@@ -1269,9 +1269,9 @@ public class VASSARInterface {
         prot.writeMessageEnd();
       }
 
-      public java.lang.Boolean getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new java.lang.IllegalStateException("Method call not finished!");
+      public Boolean getResult() throws org.apache.thrift.TException {
+        if (getState() != State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
         }
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
@@ -1279,7 +1279,7 @@ public class VASSARInterface {
       }
     }
 
-    public void toggleGABinaryInput(java.lang.String problem, java.util.List<BinaryInputArchitecture> dataset, java.lang.String username, org.apache.thrift.async.AsyncMethodCallback<Void> resultHandler) throws org.apache.thrift.TException {
+    public void toggleGABinaryInput(String problem, java.util.List<BinaryInputArchitecture> dataset, String username, org.apache.thrift.async.AsyncMethodCallback<Void> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       toggleGABinaryInput_call method_call = new toggleGABinaryInput_call(problem, dataset, username, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
@@ -1287,10 +1287,10 @@ public class VASSARInterface {
     }
 
     public static class toggleGABinaryInput_call extends org.apache.thrift.async.TAsyncMethodCall<Void> {
-      private java.lang.String problem;
+      private String problem;
       private java.util.List<BinaryInputArchitecture> dataset;
-      private java.lang.String username;
-      public toggleGABinaryInput_call(java.lang.String problem, java.util.List<BinaryInputArchitecture> dataset, java.lang.String username, org.apache.thrift.async.AsyncMethodCallback<Void> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      private String username;
+      public toggleGABinaryInput_call(String problem, java.util.List<BinaryInputArchitecture> dataset, String username, org.apache.thrift.async.AsyncMethodCallback<Void> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, true);
         this.problem = problem;
         this.dataset = dataset;
@@ -1308,8 +1308,8 @@ public class VASSARInterface {
       }
 
       public Void getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new java.lang.IllegalStateException("Method call not finished!");
+        if (getState() != State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
         }
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
@@ -1317,7 +1317,7 @@ public class VASSARInterface {
       }
     }
 
-    public void getArchScienceInformationBinaryInput(java.lang.String problem, BinaryInputArchitecture arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<SubscoreInformation>> resultHandler) throws org.apache.thrift.TException {
+    public void getArchScienceInformationBinaryInput(String problem, BinaryInputArchitecture arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<SubscoreInformation>> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       getArchScienceInformationBinaryInput_call method_call = new getArchScienceInformationBinaryInput_call(problem, arch, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
@@ -1325,9 +1325,9 @@ public class VASSARInterface {
     }
 
     public static class getArchScienceInformationBinaryInput_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<SubscoreInformation>> {
-      private java.lang.String problem;
+      private String problem;
       private BinaryInputArchitecture arch;
-      public getArchScienceInformationBinaryInput_call(java.lang.String problem, BinaryInputArchitecture arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<SubscoreInformation>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      public getArchScienceInformationBinaryInput_call(String problem, BinaryInputArchitecture arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<SubscoreInformation>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.problem = problem;
         this.arch = arch;
@@ -1343,8 +1343,8 @@ public class VASSARInterface {
       }
 
       public java.util.List<SubscoreInformation> getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new java.lang.IllegalStateException("Method call not finished!");
+        if (getState() != State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
         }
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
@@ -1352,7 +1352,7 @@ public class VASSARInterface {
       }
     }
 
-    public void getArchCostInformationBinaryInput(java.lang.String problem, BinaryInputArchitecture arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<MissionCostInformation>> resultHandler) throws org.apache.thrift.TException {
+    public void getArchCostInformationBinaryInput(String problem, BinaryInputArchitecture arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<MissionCostInformation>> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       getArchCostInformationBinaryInput_call method_call = new getArchCostInformationBinaryInput_call(problem, arch, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
@@ -1360,9 +1360,9 @@ public class VASSARInterface {
     }
 
     public static class getArchCostInformationBinaryInput_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<MissionCostInformation>> {
-      private java.lang.String problem;
+      private String problem;
       private BinaryInputArchitecture arch;
-      public getArchCostInformationBinaryInput_call(java.lang.String problem, BinaryInputArchitecture arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<MissionCostInformation>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      public getArchCostInformationBinaryInput_call(String problem, BinaryInputArchitecture arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<MissionCostInformation>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.problem = problem;
         this.arch = arch;
@@ -1378,8 +1378,8 @@ public class VASSARInterface {
       }
 
       public java.util.List<MissionCostInformation> getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new java.lang.IllegalStateException("Method call not finished!");
+        if (getState() != State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
         }
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
@@ -1387,7 +1387,7 @@ public class VASSARInterface {
       }
     }
 
-    public void getSubscoreDetailsBinaryInput(java.lang.String problem, BinaryInputArchitecture arch, java.lang.String subobj, org.apache.thrift.async.AsyncMethodCallback<SubobjectiveDetails> resultHandler) throws org.apache.thrift.TException {
+    public void getSubscoreDetailsBinaryInput(String problem, BinaryInputArchitecture arch, String subobj, org.apache.thrift.async.AsyncMethodCallback<SubobjectiveDetails> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       getSubscoreDetailsBinaryInput_call method_call = new getSubscoreDetailsBinaryInput_call(problem, arch, subobj, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
@@ -1395,10 +1395,10 @@ public class VASSARInterface {
     }
 
     public static class getSubscoreDetailsBinaryInput_call extends org.apache.thrift.async.TAsyncMethodCall<SubobjectiveDetails> {
-      private java.lang.String problem;
+      private String problem;
       private BinaryInputArchitecture arch;
-      private java.lang.String subobj;
-      public getSubscoreDetailsBinaryInput_call(java.lang.String problem, BinaryInputArchitecture arch, java.lang.String subobj, org.apache.thrift.async.AsyncMethodCallback<SubobjectiveDetails> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      private String subobj;
+      public getSubscoreDetailsBinaryInput_call(String problem, BinaryInputArchitecture arch, String subobj, org.apache.thrift.async.AsyncMethodCallback<SubobjectiveDetails> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.problem = problem;
         this.arch = arch;
@@ -1416,8 +1416,8 @@ public class VASSARInterface {
       }
 
       public SubobjectiveDetails getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new java.lang.IllegalStateException("Method call not finished!");
+        if (getState() != State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
         }
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
@@ -1425,15 +1425,15 @@ public class VASSARInterface {
       }
     }
 
-    public void isGADiscreteInputRunning(org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean> resultHandler) throws org.apache.thrift.TException {
+    public void isGADiscreteInputRunning(org.apache.thrift.async.AsyncMethodCallback<Boolean> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       isGADiscreteInputRunning_call method_call = new isGADiscreteInputRunning_call(resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class isGADiscreteInputRunning_call extends org.apache.thrift.async.TAsyncMethodCall<java.lang.Boolean> {
-      public isGADiscreteInputRunning_call(org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+    public static class isGADiscreteInputRunning_call extends org.apache.thrift.async.TAsyncMethodCall<Boolean> {
+      public isGADiscreteInputRunning_call(org.apache.thrift.async.AsyncMethodCallback<Boolean> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
       }
 
@@ -1444,9 +1444,9 @@ public class VASSARInterface {
         prot.writeMessageEnd();
       }
 
-      public java.lang.Boolean getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new java.lang.IllegalStateException("Method call not finished!");
+      public Boolean getResult() throws org.apache.thrift.TException {
+        if (getState() != State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
         }
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
@@ -1454,7 +1454,7 @@ public class VASSARInterface {
       }
     }
 
-    public void toggleGADiscreteInput(java.lang.String problem, java.util.List<DiscreteInputArchitecture> dataset, java.lang.String username, org.apache.thrift.async.AsyncMethodCallback<Void> resultHandler) throws org.apache.thrift.TException {
+    public void toggleGADiscreteInput(String problem, java.util.List<DiscreteInputArchitecture> dataset, String username, org.apache.thrift.async.AsyncMethodCallback<Void> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       toggleGADiscreteInput_call method_call = new toggleGADiscreteInput_call(problem, dataset, username, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
@@ -1462,10 +1462,10 @@ public class VASSARInterface {
     }
 
     public static class toggleGADiscreteInput_call extends org.apache.thrift.async.TAsyncMethodCall<Void> {
-      private java.lang.String problem;
+      private String problem;
       private java.util.List<DiscreteInputArchitecture> dataset;
-      private java.lang.String username;
-      public toggleGADiscreteInput_call(java.lang.String problem, java.util.List<DiscreteInputArchitecture> dataset, java.lang.String username, org.apache.thrift.async.AsyncMethodCallback<Void> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      private String username;
+      public toggleGADiscreteInput_call(String problem, java.util.List<DiscreteInputArchitecture> dataset, String username, org.apache.thrift.async.AsyncMethodCallback<Void> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, true);
         this.problem = problem;
         this.dataset = dataset;
@@ -1483,8 +1483,8 @@ public class VASSARInterface {
       }
 
       public Void getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new java.lang.IllegalStateException("Method call not finished!");
+        if (getState() != State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
         }
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
@@ -1492,7 +1492,7 @@ public class VASSARInterface {
       }
     }
 
-    public void getArchScienceInformationDiscreteInput(java.lang.String problem, DiscreteInputArchitecture arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<SubscoreInformation>> resultHandler) throws org.apache.thrift.TException {
+    public void getArchScienceInformationDiscreteInput(String problem, DiscreteInputArchitecture arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<SubscoreInformation>> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       getArchScienceInformationDiscreteInput_call method_call = new getArchScienceInformationDiscreteInput_call(problem, arch, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
@@ -1500,9 +1500,9 @@ public class VASSARInterface {
     }
 
     public static class getArchScienceInformationDiscreteInput_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<SubscoreInformation>> {
-      private java.lang.String problem;
+      private String problem;
       private DiscreteInputArchitecture arch;
-      public getArchScienceInformationDiscreteInput_call(java.lang.String problem, DiscreteInputArchitecture arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<SubscoreInformation>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      public getArchScienceInformationDiscreteInput_call(String problem, DiscreteInputArchitecture arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<SubscoreInformation>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.problem = problem;
         this.arch = arch;
@@ -1518,8 +1518,8 @@ public class VASSARInterface {
       }
 
       public java.util.List<SubscoreInformation> getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new java.lang.IllegalStateException("Method call not finished!");
+        if (getState() != State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
         }
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
@@ -1527,7 +1527,7 @@ public class VASSARInterface {
       }
     }
 
-    public void getArchCostInformationDiscreteInput(java.lang.String problem, DiscreteInputArchitecture arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<MissionCostInformation>> resultHandler) throws org.apache.thrift.TException {
+    public void getArchCostInformationDiscreteInput(String problem, DiscreteInputArchitecture arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<MissionCostInformation>> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       getArchCostInformationDiscreteInput_call method_call = new getArchCostInformationDiscreteInput_call(problem, arch, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
@@ -1535,9 +1535,9 @@ public class VASSARInterface {
     }
 
     public static class getArchCostInformationDiscreteInput_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<MissionCostInformation>> {
-      private java.lang.String problem;
+      private String problem;
       private DiscreteInputArchitecture arch;
-      public getArchCostInformationDiscreteInput_call(java.lang.String problem, DiscreteInputArchitecture arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<MissionCostInformation>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      public getArchCostInformationDiscreteInput_call(String problem, DiscreteInputArchitecture arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<MissionCostInformation>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.problem = problem;
         this.arch = arch;
@@ -1553,8 +1553,8 @@ public class VASSARInterface {
       }
 
       public java.util.List<MissionCostInformation> getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new java.lang.IllegalStateException("Method call not finished!");
+        if (getState() != State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
         }
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
@@ -1562,7 +1562,7 @@ public class VASSARInterface {
       }
     }
 
-    public void getSubscoreDetailsDiscreteInput(java.lang.String problem, DiscreteInputArchitecture arch, java.lang.String subobj, org.apache.thrift.async.AsyncMethodCallback<SubobjectiveDetails> resultHandler) throws org.apache.thrift.TException {
+    public void getSubscoreDetailsDiscreteInput(String problem, DiscreteInputArchitecture arch, String subobj, org.apache.thrift.async.AsyncMethodCallback<SubobjectiveDetails> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       getSubscoreDetailsDiscreteInput_call method_call = new getSubscoreDetailsDiscreteInput_call(problem, arch, subobj, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
@@ -1570,10 +1570,10 @@ public class VASSARInterface {
     }
 
     public static class getSubscoreDetailsDiscreteInput_call extends org.apache.thrift.async.TAsyncMethodCall<SubobjectiveDetails> {
-      private java.lang.String problem;
+      private String problem;
       private DiscreteInputArchitecture arch;
-      private java.lang.String subobj;
-      public getSubscoreDetailsDiscreteInput_call(java.lang.String problem, DiscreteInputArchitecture arch, java.lang.String subobj, org.apache.thrift.async.AsyncMethodCallback<SubobjectiveDetails> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      private String subobj;
+      public getSubscoreDetailsDiscreteInput_call(String problem, DiscreteInputArchitecture arch, String subobj, org.apache.thrift.async.AsyncMethodCallback<SubobjectiveDetails> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.problem = problem;
         this.arch = arch;
@@ -1591,8 +1591,8 @@ public class VASSARInterface {
       }
 
       public SubobjectiveDetails getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new java.lang.IllegalStateException("Method call not finished!");
+        if (getState() != State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
         }
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
@@ -1605,14 +1605,14 @@ public class VASSARInterface {
   public static class Processor<I extends Iface> extends org.apache.thrift.TBaseProcessor<I> implements org.apache.thrift.TProcessor {
     private static final org.slf4j.Logger _LOGGER = org.slf4j.LoggerFactory.getLogger(Processor.class.getName());
     public Processor(I iface) {
-      super(iface, getProcessMap(new java.util.HashMap<java.lang.String, org.apache.thrift.ProcessFunction<I, ? extends org.apache.thrift.TBase>>()));
+      super(iface, getProcessMap(new java.util.HashMap<String, org.apache.thrift.ProcessFunction<I, ? extends org.apache.thrift.TBase>>()));
     }
 
-    protected Processor(I iface, java.util.Map<java.lang.String, org.apache.thrift.ProcessFunction<I, ? extends org.apache.thrift.TBase>> processMap) {
+    protected Processor(I iface, java.util.Map<String, org.apache.thrift.ProcessFunction<I, ? extends org.apache.thrift.TBase>> processMap) {
       super(iface, getProcessMap(processMap));
     }
 
-    private static <I extends Iface> java.util.Map<java.lang.String,  org.apache.thrift.ProcessFunction<I, ? extends org.apache.thrift.TBase>> getProcessMap(java.util.Map<java.lang.String, org.apache.thrift.ProcessFunction<I, ? extends  org.apache.thrift.TBase>> processMap) {
+    private static <I extends Iface> java.util.Map<String,  org.apache.thrift.ProcessFunction<I, ? extends org.apache.thrift.TBase>> getProcessMap(java.util.Map<String, org.apache.thrift.ProcessFunction<I, ? extends  org.apache.thrift.TBase>> processMap) {
       processMap.put("ping", new ping());
       processMap.put("evalBinaryInputArch", new evalBinaryInputArch());
       processMap.put("evalDiscreteInputArch", new evalDiscreteInputArch());
@@ -2271,14 +2271,14 @@ public class VASSARInterface {
   public static class AsyncProcessor<I extends AsyncIface> extends org.apache.thrift.TBaseAsyncProcessor<I> {
     private static final org.slf4j.Logger _LOGGER = org.slf4j.LoggerFactory.getLogger(AsyncProcessor.class.getName());
     public AsyncProcessor(I iface) {
-      super(iface, getProcessMap(new java.util.HashMap<java.lang.String, org.apache.thrift.AsyncProcessFunction<I, ? extends org.apache.thrift.TBase, ?>>()));
+      super(iface, getProcessMap(new java.util.HashMap<String, org.apache.thrift.AsyncProcessFunction<I, ? extends org.apache.thrift.TBase, ?>>()));
     }
 
-    protected AsyncProcessor(I iface, java.util.Map<java.lang.String,  org.apache.thrift.AsyncProcessFunction<I, ? extends  org.apache.thrift.TBase, ?>> processMap) {
+    protected AsyncProcessor(I iface, java.util.Map<String,  org.apache.thrift.AsyncProcessFunction<I, ? extends  org.apache.thrift.TBase, ?>> processMap) {
       super(iface, getProcessMap(processMap));
     }
 
-    private static <I extends AsyncIface> java.util.Map<java.lang.String,  org.apache.thrift.AsyncProcessFunction<I, ? extends  org.apache.thrift.TBase,?>> getProcessMap(java.util.Map<java.lang.String,  org.apache.thrift.AsyncProcessFunction<I, ? extends  org.apache.thrift.TBase, ?>> processMap) {
+    private static <I extends AsyncIface> java.util.Map<String,  org.apache.thrift.AsyncProcessFunction<I, ? extends  org.apache.thrift.TBase,?>> getProcessMap(java.util.Map<String,  org.apache.thrift.AsyncProcessFunction<I, ? extends  org.apache.thrift.TBase, ?>> processMap) {
       processMap.put("ping", new ping());
       processMap.put("evalBinaryInputArch", new evalBinaryInputArch());
       processMap.put("evalDiscreteInputArch", new evalDiscreteInputArch());
@@ -2326,12 +2326,12 @@ public class VASSARInterface {
             } catch (org.apache.thrift.transport.TTransportException e) {
               _LOGGER.error("TTransportException writing to internal frame buffer", e);
               fb.close();
-            } catch (java.lang.Exception e) {
+            } catch (Exception e) {
               _LOGGER.error("Exception writing to internal frame buffer", e);
               onError(e);
             }
           }
-          public void onError(java.lang.Exception e) {
+          public void onError(Exception e) {
             byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
             org.apache.thrift.TSerializable msg;
             ping_result result = new ping_result();
@@ -2350,7 +2350,7 @@ public class VASSARInterface {
             }
             try {
               fcall.sendResponse(fb,msg,msgType,seqid);
-            } catch (java.lang.Exception ex) {
+            } catch (Exception ex) {
               _LOGGER.error("Exception writing to internal frame buffer", ex);
               fb.close();
             }
@@ -2387,12 +2387,12 @@ public class VASSARInterface {
             } catch (org.apache.thrift.transport.TTransportException e) {
               _LOGGER.error("TTransportException writing to internal frame buffer", e);
               fb.close();
-            } catch (java.lang.Exception e) {
+            } catch (Exception e) {
               _LOGGER.error("Exception writing to internal frame buffer", e);
               onError(e);
             }
           }
-          public void onError(java.lang.Exception e) {
+          public void onError(Exception e) {
             byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
             org.apache.thrift.TSerializable msg;
             evalBinaryInputArch_result result = new evalBinaryInputArch_result();
@@ -2411,7 +2411,7 @@ public class VASSARInterface {
             }
             try {
               fcall.sendResponse(fb,msg,msgType,seqid);
-            } catch (java.lang.Exception ex) {
+            } catch (Exception ex) {
               _LOGGER.error("Exception writing to internal frame buffer", ex);
               fb.close();
             }
@@ -2448,12 +2448,12 @@ public class VASSARInterface {
             } catch (org.apache.thrift.transport.TTransportException e) {
               _LOGGER.error("TTransportException writing to internal frame buffer", e);
               fb.close();
-            } catch (java.lang.Exception e) {
+            } catch (Exception e) {
               _LOGGER.error("Exception writing to internal frame buffer", e);
               onError(e);
             }
           }
-          public void onError(java.lang.Exception e) {
+          public void onError(Exception e) {
             byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
             org.apache.thrift.TSerializable msg;
             evalDiscreteInputArch_result result = new evalDiscreteInputArch_result();
@@ -2472,7 +2472,7 @@ public class VASSARInterface {
             }
             try {
               fcall.sendResponse(fb,msg,msgType,seqid);
-            } catch (java.lang.Exception ex) {
+            } catch (Exception ex) {
               _LOGGER.error("Exception writing to internal frame buffer", ex);
               fb.close();
             }
@@ -2509,12 +2509,12 @@ public class VASSARInterface {
             } catch (org.apache.thrift.transport.TTransportException e) {
               _LOGGER.error("TTransportException writing to internal frame buffer", e);
               fb.close();
-            } catch (java.lang.Exception e) {
+            } catch (Exception e) {
               _LOGGER.error("Exception writing to internal frame buffer", e);
               onError(e);
             }
           }
-          public void onError(java.lang.Exception e) {
+          public void onError(Exception e) {
             byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
             org.apache.thrift.TSerializable msg;
             runLocalSearchBinaryInput_result result = new runLocalSearchBinaryInput_result();
@@ -2533,7 +2533,7 @@ public class VASSARInterface {
             }
             try {
               fcall.sendResponse(fb,msg,msgType,seqid);
-            } catch (java.lang.Exception ex) {
+            } catch (Exception ex) {
               _LOGGER.error("Exception writing to internal frame buffer", ex);
               fb.close();
             }
@@ -2570,12 +2570,12 @@ public class VASSARInterface {
             } catch (org.apache.thrift.transport.TTransportException e) {
               _LOGGER.error("TTransportException writing to internal frame buffer", e);
               fb.close();
-            } catch (java.lang.Exception e) {
+            } catch (Exception e) {
               _LOGGER.error("Exception writing to internal frame buffer", e);
               onError(e);
             }
           }
-          public void onError(java.lang.Exception e) {
+          public void onError(Exception e) {
             byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
             org.apache.thrift.TSerializable msg;
             runLocalSearchDiscreteInput_result result = new runLocalSearchDiscreteInput_result();
@@ -2594,7 +2594,7 @@ public class VASSARInterface {
             }
             try {
               fcall.sendResponse(fb,msg,msgType,seqid);
-            } catch (java.lang.Exception ex) {
+            } catch (Exception ex) {
               _LOGGER.error("Exception writing to internal frame buffer", ex);
               fb.close();
             }
@@ -2611,7 +2611,7 @@ public class VASSARInterface {
       }
     }
 
-    public static class getOrbitList<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, getOrbitList_args, java.util.List<java.lang.String>> {
+    public static class getOrbitList<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, getOrbitList_args, java.util.List<String>> {
       public getOrbitList() {
         super("getOrbitList");
       }
@@ -2620,10 +2620,10 @@ public class VASSARInterface {
         return new getOrbitList_args();
       }
 
-      public org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+      public org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
         final org.apache.thrift.AsyncProcessFunction fcall = this;
-        return new org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>>() { 
-          public void onComplete(java.util.List<java.lang.String> o) {
+        return new org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>>() {
+          public void onComplete(java.util.List<String> o) {
             getOrbitList_result result = new getOrbitList_result();
             result.success = o;
             try {
@@ -2631,12 +2631,12 @@ public class VASSARInterface {
             } catch (org.apache.thrift.transport.TTransportException e) {
               _LOGGER.error("TTransportException writing to internal frame buffer", e);
               fb.close();
-            } catch (java.lang.Exception e) {
+            } catch (Exception e) {
               _LOGGER.error("Exception writing to internal frame buffer", e);
               onError(e);
             }
           }
-          public void onError(java.lang.Exception e) {
+          public void onError(Exception e) {
             byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
             org.apache.thrift.TSerializable msg;
             getOrbitList_result result = new getOrbitList_result();
@@ -2655,7 +2655,7 @@ public class VASSARInterface {
             }
             try {
               fcall.sendResponse(fb,msg,msgType,seqid);
-            } catch (java.lang.Exception ex) {
+            } catch (Exception ex) {
               _LOGGER.error("Exception writing to internal frame buffer", ex);
               fb.close();
             }
@@ -2667,12 +2667,12 @@ public class VASSARInterface {
         return false;
       }
 
-      public void start(I iface, getOrbitList_args args, org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>> resultHandler) throws org.apache.thrift.TException {
+      public void start(I iface, getOrbitList_args args, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler) throws org.apache.thrift.TException {
         iface.getOrbitList(args.problem,resultHandler);
       }
     }
 
-    public static class getInstrumentList<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, getInstrumentList_args, java.util.List<java.lang.String>> {
+    public static class getInstrumentList<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, getInstrumentList_args, java.util.List<String>> {
       public getInstrumentList() {
         super("getInstrumentList");
       }
@@ -2681,10 +2681,10 @@ public class VASSARInterface {
         return new getInstrumentList_args();
       }
 
-      public org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+      public org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
         final org.apache.thrift.AsyncProcessFunction fcall = this;
-        return new org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>>() { 
-          public void onComplete(java.util.List<java.lang.String> o) {
+        return new org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>>() {
+          public void onComplete(java.util.List<String> o) {
             getInstrumentList_result result = new getInstrumentList_result();
             result.success = o;
             try {
@@ -2692,12 +2692,12 @@ public class VASSARInterface {
             } catch (org.apache.thrift.transport.TTransportException e) {
               _LOGGER.error("TTransportException writing to internal frame buffer", e);
               fb.close();
-            } catch (java.lang.Exception e) {
+            } catch (Exception e) {
               _LOGGER.error("Exception writing to internal frame buffer", e);
               onError(e);
             }
           }
-          public void onError(java.lang.Exception e) {
+          public void onError(Exception e) {
             byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
             org.apache.thrift.TSerializable msg;
             getInstrumentList_result result = new getInstrumentList_result();
@@ -2716,7 +2716,7 @@ public class VASSARInterface {
             }
             try {
               fcall.sendResponse(fb,msg,msgType,seqid);
-            } catch (java.lang.Exception ex) {
+            } catch (Exception ex) {
               _LOGGER.error("Exception writing to internal frame buffer", ex);
               fb.close();
             }
@@ -2728,12 +2728,12 @@ public class VASSARInterface {
         return false;
       }
 
-      public void start(I iface, getInstrumentList_args args, org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>> resultHandler) throws org.apache.thrift.TException {
+      public void start(I iface, getInstrumentList_args args, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler) throws org.apache.thrift.TException {
         iface.getInstrumentList(args.problem,resultHandler);
       }
     }
 
-    public static class getObjectiveList<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, getObjectiveList_args, java.util.List<java.lang.String>> {
+    public static class getObjectiveList<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, getObjectiveList_args, java.util.List<String>> {
       public getObjectiveList() {
         super("getObjectiveList");
       }
@@ -2742,10 +2742,10 @@ public class VASSARInterface {
         return new getObjectiveList_args();
       }
 
-      public org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+      public org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
         final org.apache.thrift.AsyncProcessFunction fcall = this;
-        return new org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>>() { 
-          public void onComplete(java.util.List<java.lang.String> o) {
+        return new org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>>() {
+          public void onComplete(java.util.List<String> o) {
             getObjectiveList_result result = new getObjectiveList_result();
             result.success = o;
             try {
@@ -2753,12 +2753,12 @@ public class VASSARInterface {
             } catch (org.apache.thrift.transport.TTransportException e) {
               _LOGGER.error("TTransportException writing to internal frame buffer", e);
               fb.close();
-            } catch (java.lang.Exception e) {
+            } catch (Exception e) {
               _LOGGER.error("Exception writing to internal frame buffer", e);
               onError(e);
             }
           }
-          public void onError(java.lang.Exception e) {
+          public void onError(Exception e) {
             byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
             org.apache.thrift.TSerializable msg;
             getObjectiveList_result result = new getObjectiveList_result();
@@ -2777,7 +2777,7 @@ public class VASSARInterface {
             }
             try {
               fcall.sendResponse(fb,msg,msgType,seqid);
-            } catch (java.lang.Exception ex) {
+            } catch (Exception ex) {
               _LOGGER.error("Exception writing to internal frame buffer", ex);
               fb.close();
             }
@@ -2789,12 +2789,12 @@ public class VASSARInterface {
         return false;
       }
 
-      public void start(I iface, getObjectiveList_args args, org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>> resultHandler) throws org.apache.thrift.TException {
+      public void start(I iface, getObjectiveList_args args, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler) throws org.apache.thrift.TException {
         iface.getObjectiveList(args.problem,resultHandler);
       }
     }
 
-    public static class getInstrumentsForObjective<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, getInstrumentsForObjective_args, java.util.List<java.lang.String>> {
+    public static class getInstrumentsForObjective<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, getInstrumentsForObjective_args, java.util.List<String>> {
       public getInstrumentsForObjective() {
         super("getInstrumentsForObjective");
       }
@@ -2803,10 +2803,10 @@ public class VASSARInterface {
         return new getInstrumentsForObjective_args();
       }
 
-      public org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+      public org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
         final org.apache.thrift.AsyncProcessFunction fcall = this;
-        return new org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>>() { 
-          public void onComplete(java.util.List<java.lang.String> o) {
+        return new org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>>() {
+          public void onComplete(java.util.List<String> o) {
             getInstrumentsForObjective_result result = new getInstrumentsForObjective_result();
             result.success = o;
             try {
@@ -2814,12 +2814,12 @@ public class VASSARInterface {
             } catch (org.apache.thrift.transport.TTransportException e) {
               _LOGGER.error("TTransportException writing to internal frame buffer", e);
               fb.close();
-            } catch (java.lang.Exception e) {
+            } catch (Exception e) {
               _LOGGER.error("Exception writing to internal frame buffer", e);
               onError(e);
             }
           }
-          public void onError(java.lang.Exception e) {
+          public void onError(Exception e) {
             byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
             org.apache.thrift.TSerializable msg;
             getInstrumentsForObjective_result result = new getInstrumentsForObjective_result();
@@ -2838,7 +2838,7 @@ public class VASSARInterface {
             }
             try {
               fcall.sendResponse(fb,msg,msgType,seqid);
-            } catch (java.lang.Exception ex) {
+            } catch (Exception ex) {
               _LOGGER.error("Exception writing to internal frame buffer", ex);
               fb.close();
             }
@@ -2850,12 +2850,12 @@ public class VASSARInterface {
         return false;
       }
 
-      public void start(I iface, getInstrumentsForObjective_args args, org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>> resultHandler) throws org.apache.thrift.TException {
+      public void start(I iface, getInstrumentsForObjective_args args, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler) throws org.apache.thrift.TException {
         iface.getInstrumentsForObjective(args.problem, args.objective,resultHandler);
       }
     }
 
-    public static class getInstrumentsForPanel<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, getInstrumentsForPanel_args, java.util.List<java.lang.String>> {
+    public static class getInstrumentsForPanel<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, getInstrumentsForPanel_args, java.util.List<String>> {
       public getInstrumentsForPanel() {
         super("getInstrumentsForPanel");
       }
@@ -2864,10 +2864,10 @@ public class VASSARInterface {
         return new getInstrumentsForPanel_args();
       }
 
-      public org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+      public org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
         final org.apache.thrift.AsyncProcessFunction fcall = this;
-        return new org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>>() { 
-          public void onComplete(java.util.List<java.lang.String> o) {
+        return new org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>>() {
+          public void onComplete(java.util.List<String> o) {
             getInstrumentsForPanel_result result = new getInstrumentsForPanel_result();
             result.success = o;
             try {
@@ -2875,12 +2875,12 @@ public class VASSARInterface {
             } catch (org.apache.thrift.transport.TTransportException e) {
               _LOGGER.error("TTransportException writing to internal frame buffer", e);
               fb.close();
-            } catch (java.lang.Exception e) {
+            } catch (Exception e) {
               _LOGGER.error("Exception writing to internal frame buffer", e);
               onError(e);
             }
           }
-          public void onError(java.lang.Exception e) {
+          public void onError(Exception e) {
             byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
             org.apache.thrift.TSerializable msg;
             getInstrumentsForPanel_result result = new getInstrumentsForPanel_result();
@@ -2899,7 +2899,7 @@ public class VASSARInterface {
             }
             try {
               fcall.sendResponse(fb,msg,msgType,seqid);
-            } catch (java.lang.Exception ex) {
+            } catch (Exception ex) {
               _LOGGER.error("Exception writing to internal frame buffer", ex);
               fb.close();
             }
@@ -2911,12 +2911,12 @@ public class VASSARInterface {
         return false;
       }
 
-      public void start(I iface, getInstrumentsForPanel_args args, org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>> resultHandler) throws org.apache.thrift.TException {
+      public void start(I iface, getInstrumentsForPanel_args args, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler) throws org.apache.thrift.TException {
         iface.getInstrumentsForPanel(args.problem, args.panel,resultHandler);
       }
     }
 
-    public static class getCritiqueBinaryInputArch<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, getCritiqueBinaryInputArch_args, java.util.List<java.lang.String>> {
+    public static class getCritiqueBinaryInputArch<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, getCritiqueBinaryInputArch_args, java.util.List<String>> {
       public getCritiqueBinaryInputArch() {
         super("getCritiqueBinaryInputArch");
       }
@@ -2925,10 +2925,10 @@ public class VASSARInterface {
         return new getCritiqueBinaryInputArch_args();
       }
 
-      public org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+      public org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
         final org.apache.thrift.AsyncProcessFunction fcall = this;
-        return new org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>>() { 
-          public void onComplete(java.util.List<java.lang.String> o) {
+        return new org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>>() {
+          public void onComplete(java.util.List<String> o) {
             getCritiqueBinaryInputArch_result result = new getCritiqueBinaryInputArch_result();
             result.success = o;
             try {
@@ -2936,12 +2936,12 @@ public class VASSARInterface {
             } catch (org.apache.thrift.transport.TTransportException e) {
               _LOGGER.error("TTransportException writing to internal frame buffer", e);
               fb.close();
-            } catch (java.lang.Exception e) {
+            } catch (Exception e) {
               _LOGGER.error("Exception writing to internal frame buffer", e);
               onError(e);
             }
           }
-          public void onError(java.lang.Exception e) {
+          public void onError(Exception e) {
             byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
             org.apache.thrift.TSerializable msg;
             getCritiqueBinaryInputArch_result result = new getCritiqueBinaryInputArch_result();
@@ -2960,7 +2960,7 @@ public class VASSARInterface {
             }
             try {
               fcall.sendResponse(fb,msg,msgType,seqid);
-            } catch (java.lang.Exception ex) {
+            } catch (Exception ex) {
               _LOGGER.error("Exception writing to internal frame buffer", ex);
               fb.close();
             }
@@ -2972,12 +2972,12 @@ public class VASSARInterface {
         return false;
       }
 
-      public void start(I iface, getCritiqueBinaryInputArch_args args, org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>> resultHandler) throws org.apache.thrift.TException {
+      public void start(I iface, getCritiqueBinaryInputArch_args args, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler) throws org.apache.thrift.TException {
         iface.getCritiqueBinaryInputArch(args.problem, args.inputs,resultHandler);
       }
     }
 
-    public static class getCritiqueDiscreteInputArch<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, getCritiqueDiscreteInputArch_args, java.util.List<java.lang.String>> {
+    public static class getCritiqueDiscreteInputArch<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, getCritiqueDiscreteInputArch_args, java.util.List<String>> {
       public getCritiqueDiscreteInputArch() {
         super("getCritiqueDiscreteInputArch");
       }
@@ -2986,10 +2986,10 @@ public class VASSARInterface {
         return new getCritiqueDiscreteInputArch_args();
       }
 
-      public org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+      public org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
         final org.apache.thrift.AsyncProcessFunction fcall = this;
-        return new org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>>() { 
-          public void onComplete(java.util.List<java.lang.String> o) {
+        return new org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>>() {
+          public void onComplete(java.util.List<String> o) {
             getCritiqueDiscreteInputArch_result result = new getCritiqueDiscreteInputArch_result();
             result.success = o;
             try {
@@ -2997,12 +2997,12 @@ public class VASSARInterface {
             } catch (org.apache.thrift.transport.TTransportException e) {
               _LOGGER.error("TTransportException writing to internal frame buffer", e);
               fb.close();
-            } catch (java.lang.Exception e) {
+            } catch (Exception e) {
               _LOGGER.error("Exception writing to internal frame buffer", e);
               onError(e);
             }
           }
-          public void onError(java.lang.Exception e) {
+          public void onError(Exception e) {
             byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
             org.apache.thrift.TSerializable msg;
             getCritiqueDiscreteInputArch_result result = new getCritiqueDiscreteInputArch_result();
@@ -3021,7 +3021,7 @@ public class VASSARInterface {
             }
             try {
               fcall.sendResponse(fb,msg,msgType,seqid);
-            } catch (java.lang.Exception ex) {
+            } catch (Exception ex) {
               _LOGGER.error("Exception writing to internal frame buffer", ex);
               fb.close();
             }
@@ -3033,7 +3033,7 @@ public class VASSARInterface {
         return false;
       }
 
-      public void start(I iface, getCritiqueDiscreteInputArch_args args, org.apache.thrift.async.AsyncMethodCallback<java.util.List<java.lang.String>> resultHandler) throws org.apache.thrift.TException {
+      public void start(I iface, getCritiqueDiscreteInputArch_args args, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler) throws org.apache.thrift.TException {
         iface.getCritiqueDiscreteInputArch(args.problem, args.inputs,resultHandler);
       }
     }
@@ -3058,12 +3058,12 @@ public class VASSARInterface {
             } catch (org.apache.thrift.transport.TTransportException e) {
               _LOGGER.error("TTransportException writing to internal frame buffer", e);
               fb.close();
-            } catch (java.lang.Exception e) {
+            } catch (Exception e) {
               _LOGGER.error("Exception writing to internal frame buffer", e);
               onError(e);
             }
           }
-          public void onError(java.lang.Exception e) {
+          public void onError(Exception e) {
             byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
             org.apache.thrift.TSerializable msg;
             getArchitectureScoreExplanation_result result = new getArchitectureScoreExplanation_result();
@@ -3082,7 +3082,7 @@ public class VASSARInterface {
             }
             try {
               fcall.sendResponse(fb,msg,msgType,seqid);
-            } catch (java.lang.Exception ex) {
+            } catch (Exception ex) {
               _LOGGER.error("Exception writing to internal frame buffer", ex);
               fb.close();
             }
@@ -3119,12 +3119,12 @@ public class VASSARInterface {
             } catch (org.apache.thrift.transport.TTransportException e) {
               _LOGGER.error("TTransportException writing to internal frame buffer", e);
               fb.close();
-            } catch (java.lang.Exception e) {
+            } catch (Exception e) {
               _LOGGER.error("Exception writing to internal frame buffer", e);
               onError(e);
             }
           }
-          public void onError(java.lang.Exception e) {
+          public void onError(Exception e) {
             byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
             org.apache.thrift.TSerializable msg;
             getPanelScoreExplanation_result result = new getPanelScoreExplanation_result();
@@ -3143,7 +3143,7 @@ public class VASSARInterface {
             }
             try {
               fcall.sendResponse(fb,msg,msgType,seqid);
-            } catch (java.lang.Exception ex) {
+            } catch (Exception ex) {
               _LOGGER.error("Exception writing to internal frame buffer", ex);
               fb.close();
             }
@@ -3180,12 +3180,12 @@ public class VASSARInterface {
             } catch (org.apache.thrift.transport.TTransportException e) {
               _LOGGER.error("TTransportException writing to internal frame buffer", e);
               fb.close();
-            } catch (java.lang.Exception e) {
+            } catch (Exception e) {
               _LOGGER.error("Exception writing to internal frame buffer", e);
               onError(e);
             }
           }
-          public void onError(java.lang.Exception e) {
+          public void onError(Exception e) {
             byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
             org.apache.thrift.TSerializable msg;
             getObjectiveScoreExplanation_result result = new getObjectiveScoreExplanation_result();
@@ -3204,7 +3204,7 @@ public class VASSARInterface {
             }
             try {
               fcall.sendResponse(fb,msg,msgType,seqid);
-            } catch (java.lang.Exception ex) {
+            } catch (Exception ex) {
               _LOGGER.error("Exception writing to internal frame buffer", ex);
               fb.close();
             }
@@ -3221,7 +3221,7 @@ public class VASSARInterface {
       }
     }
 
-    public static class isGABinaryInputRunning<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, isGABinaryInputRunning_args, java.lang.Boolean> {
+    public static class isGABinaryInputRunning<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, isGABinaryInputRunning_args, Boolean> {
       public isGABinaryInputRunning() {
         super("isGABinaryInputRunning");
       }
@@ -3230,10 +3230,10 @@ public class VASSARInterface {
         return new isGABinaryInputRunning_args();
       }
 
-      public org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+      public org.apache.thrift.async.AsyncMethodCallback<Boolean> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
         final org.apache.thrift.AsyncProcessFunction fcall = this;
-        return new org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean>() { 
-          public void onComplete(java.lang.Boolean o) {
+        return new org.apache.thrift.async.AsyncMethodCallback<Boolean>() {
+          public void onComplete(Boolean o) {
             isGABinaryInputRunning_result result = new isGABinaryInputRunning_result();
             result.success = o;
             result.setSuccessIsSet(true);
@@ -3242,12 +3242,12 @@ public class VASSARInterface {
             } catch (org.apache.thrift.transport.TTransportException e) {
               _LOGGER.error("TTransportException writing to internal frame buffer", e);
               fb.close();
-            } catch (java.lang.Exception e) {
+            } catch (Exception e) {
               _LOGGER.error("Exception writing to internal frame buffer", e);
               onError(e);
             }
           }
-          public void onError(java.lang.Exception e) {
+          public void onError(Exception e) {
             byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
             org.apache.thrift.TSerializable msg;
             isGABinaryInputRunning_result result = new isGABinaryInputRunning_result();
@@ -3266,7 +3266,7 @@ public class VASSARInterface {
             }
             try {
               fcall.sendResponse(fb,msg,msgType,seqid);
-            } catch (java.lang.Exception ex) {
+            } catch (Exception ex) {
               _LOGGER.error("Exception writing to internal frame buffer", ex);
               fb.close();
             }
@@ -3278,7 +3278,7 @@ public class VASSARInterface {
         return false;
       }
 
-      public void start(I iface, isGABinaryInputRunning_args args, org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean> resultHandler) throws org.apache.thrift.TException {
+      public void start(I iface, isGABinaryInputRunning_args args, org.apache.thrift.async.AsyncMethodCallback<Boolean> resultHandler) throws org.apache.thrift.TException {
         iface.isGABinaryInputRunning(resultHandler);
       }
     }
@@ -3297,7 +3297,7 @@ public class VASSARInterface {
         return new org.apache.thrift.async.AsyncMethodCallback<Void>() { 
           public void onComplete(Void o) {
           }
-          public void onError(java.lang.Exception e) {
+          public void onError(Exception e) {
             if (e instanceof org.apache.thrift.transport.TTransportException) {
               _LOGGER.error("TTransportException inside handler", e);
               fb.close();
@@ -3337,12 +3337,12 @@ public class VASSARInterface {
             } catch (org.apache.thrift.transport.TTransportException e) {
               _LOGGER.error("TTransportException writing to internal frame buffer", e);
               fb.close();
-            } catch (java.lang.Exception e) {
+            } catch (Exception e) {
               _LOGGER.error("Exception writing to internal frame buffer", e);
               onError(e);
             }
           }
-          public void onError(java.lang.Exception e) {
+          public void onError(Exception e) {
             byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
             org.apache.thrift.TSerializable msg;
             getArchScienceInformationBinaryInput_result result = new getArchScienceInformationBinaryInput_result();
@@ -3361,7 +3361,7 @@ public class VASSARInterface {
             }
             try {
               fcall.sendResponse(fb,msg,msgType,seqid);
-            } catch (java.lang.Exception ex) {
+            } catch (Exception ex) {
               _LOGGER.error("Exception writing to internal frame buffer", ex);
               fb.close();
             }
@@ -3398,12 +3398,12 @@ public class VASSARInterface {
             } catch (org.apache.thrift.transport.TTransportException e) {
               _LOGGER.error("TTransportException writing to internal frame buffer", e);
               fb.close();
-            } catch (java.lang.Exception e) {
+            } catch (Exception e) {
               _LOGGER.error("Exception writing to internal frame buffer", e);
               onError(e);
             }
           }
-          public void onError(java.lang.Exception e) {
+          public void onError(Exception e) {
             byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
             org.apache.thrift.TSerializable msg;
             getArchCostInformationBinaryInput_result result = new getArchCostInformationBinaryInput_result();
@@ -3422,7 +3422,7 @@ public class VASSARInterface {
             }
             try {
               fcall.sendResponse(fb,msg,msgType,seqid);
-            } catch (java.lang.Exception ex) {
+            } catch (Exception ex) {
               _LOGGER.error("Exception writing to internal frame buffer", ex);
               fb.close();
             }
@@ -3459,12 +3459,12 @@ public class VASSARInterface {
             } catch (org.apache.thrift.transport.TTransportException e) {
               _LOGGER.error("TTransportException writing to internal frame buffer", e);
               fb.close();
-            } catch (java.lang.Exception e) {
+            } catch (Exception e) {
               _LOGGER.error("Exception writing to internal frame buffer", e);
               onError(e);
             }
           }
-          public void onError(java.lang.Exception e) {
+          public void onError(Exception e) {
             byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
             org.apache.thrift.TSerializable msg;
             getSubscoreDetailsBinaryInput_result result = new getSubscoreDetailsBinaryInput_result();
@@ -3483,7 +3483,7 @@ public class VASSARInterface {
             }
             try {
               fcall.sendResponse(fb,msg,msgType,seqid);
-            } catch (java.lang.Exception ex) {
+            } catch (Exception ex) {
               _LOGGER.error("Exception writing to internal frame buffer", ex);
               fb.close();
             }
@@ -3500,7 +3500,7 @@ public class VASSARInterface {
       }
     }
 
-    public static class isGADiscreteInputRunning<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, isGADiscreteInputRunning_args, java.lang.Boolean> {
+    public static class isGADiscreteInputRunning<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, isGADiscreteInputRunning_args, Boolean> {
       public isGADiscreteInputRunning() {
         super("isGADiscreteInputRunning");
       }
@@ -3509,10 +3509,10 @@ public class VASSARInterface {
         return new isGADiscreteInputRunning_args();
       }
 
-      public org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+      public org.apache.thrift.async.AsyncMethodCallback<Boolean> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
         final org.apache.thrift.AsyncProcessFunction fcall = this;
-        return new org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean>() { 
-          public void onComplete(java.lang.Boolean o) {
+        return new org.apache.thrift.async.AsyncMethodCallback<Boolean>() {
+          public void onComplete(Boolean o) {
             isGADiscreteInputRunning_result result = new isGADiscreteInputRunning_result();
             result.success = o;
             result.setSuccessIsSet(true);
@@ -3521,12 +3521,12 @@ public class VASSARInterface {
             } catch (org.apache.thrift.transport.TTransportException e) {
               _LOGGER.error("TTransportException writing to internal frame buffer", e);
               fb.close();
-            } catch (java.lang.Exception e) {
+            } catch (Exception e) {
               _LOGGER.error("Exception writing to internal frame buffer", e);
               onError(e);
             }
           }
-          public void onError(java.lang.Exception e) {
+          public void onError(Exception e) {
             byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
             org.apache.thrift.TSerializable msg;
             isGADiscreteInputRunning_result result = new isGADiscreteInputRunning_result();
@@ -3545,7 +3545,7 @@ public class VASSARInterface {
             }
             try {
               fcall.sendResponse(fb,msg,msgType,seqid);
-            } catch (java.lang.Exception ex) {
+            } catch (Exception ex) {
               _LOGGER.error("Exception writing to internal frame buffer", ex);
               fb.close();
             }
@@ -3557,7 +3557,7 @@ public class VASSARInterface {
         return false;
       }
 
-      public void start(I iface, isGADiscreteInputRunning_args args, org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean> resultHandler) throws org.apache.thrift.TException {
+      public void start(I iface, isGADiscreteInputRunning_args args, org.apache.thrift.async.AsyncMethodCallback<Boolean> resultHandler) throws org.apache.thrift.TException {
         iface.isGADiscreteInputRunning(resultHandler);
       }
     }
@@ -3576,7 +3576,7 @@ public class VASSARInterface {
         return new org.apache.thrift.async.AsyncMethodCallback<Void>() { 
           public void onComplete(Void o) {
           }
-          public void onError(java.lang.Exception e) {
+          public void onError(Exception e) {
             if (e instanceof org.apache.thrift.transport.TTransportException) {
               _LOGGER.error("TTransportException inside handler", e);
               fb.close();
@@ -3616,12 +3616,12 @@ public class VASSARInterface {
             } catch (org.apache.thrift.transport.TTransportException e) {
               _LOGGER.error("TTransportException writing to internal frame buffer", e);
               fb.close();
-            } catch (java.lang.Exception e) {
+            } catch (Exception e) {
               _LOGGER.error("Exception writing to internal frame buffer", e);
               onError(e);
             }
           }
-          public void onError(java.lang.Exception e) {
+          public void onError(Exception e) {
             byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
             org.apache.thrift.TSerializable msg;
             getArchScienceInformationDiscreteInput_result result = new getArchScienceInformationDiscreteInput_result();
@@ -3640,7 +3640,7 @@ public class VASSARInterface {
             }
             try {
               fcall.sendResponse(fb,msg,msgType,seqid);
-            } catch (java.lang.Exception ex) {
+            } catch (Exception ex) {
               _LOGGER.error("Exception writing to internal frame buffer", ex);
               fb.close();
             }
@@ -3677,12 +3677,12 @@ public class VASSARInterface {
             } catch (org.apache.thrift.transport.TTransportException e) {
               _LOGGER.error("TTransportException writing to internal frame buffer", e);
               fb.close();
-            } catch (java.lang.Exception e) {
+            } catch (Exception e) {
               _LOGGER.error("Exception writing to internal frame buffer", e);
               onError(e);
             }
           }
-          public void onError(java.lang.Exception e) {
+          public void onError(Exception e) {
             byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
             org.apache.thrift.TSerializable msg;
             getArchCostInformationDiscreteInput_result result = new getArchCostInformationDiscreteInput_result();
@@ -3701,7 +3701,7 @@ public class VASSARInterface {
             }
             try {
               fcall.sendResponse(fb,msg,msgType,seqid);
-            } catch (java.lang.Exception ex) {
+            } catch (Exception ex) {
               _LOGGER.error("Exception writing to internal frame buffer", ex);
               fb.close();
             }
@@ -3738,12 +3738,12 @@ public class VASSARInterface {
             } catch (org.apache.thrift.transport.TTransportException e) {
               _LOGGER.error("TTransportException writing to internal frame buffer", e);
               fb.close();
-            } catch (java.lang.Exception e) {
+            } catch (Exception e) {
               _LOGGER.error("Exception writing to internal frame buffer", e);
               onError(e);
             }
           }
-          public void onError(java.lang.Exception e) {
+          public void onError(Exception e) {
             byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
             org.apache.thrift.TSerializable msg;
             getSubscoreDetailsDiscreteInput_result result = new getSubscoreDetailsDiscreteInput_result();
@@ -3762,7 +3762,7 @@ public class VASSARInterface {
             }
             try {
               fcall.sendResponse(fb,msg,msgType,seqid);
-            } catch (java.lang.Exception ex) {
+            } catch (Exception ex) {
               _LOGGER.error("Exception writing to internal frame buffer", ex);
               fb.close();
             }
@@ -3793,7 +3793,7 @@ public class VASSARInterface {
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
 ;
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -3817,21 +3817,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -3840,7 +3840,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -3868,30 +3868,30 @@ public class VASSARInterface {
     public void clear() {
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof ping_args)
@@ -3939,8 +3939,8 @@ public class VASSARInterface {
     }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("ping_args(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("ping_args(");
       boolean first = true;
 
       sb.append(")");
@@ -3960,7 +3960,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -4043,7 +4043,7 @@ public class VASSARInterface {
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
 ;
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -4067,21 +4067,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -4090,7 +4090,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -4118,30 +4118,30 @@ public class VASSARInterface {
     public void clear() {
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof ping_result)
@@ -4189,8 +4189,8 @@ public class VASSARInterface {
       }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("ping_result(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("ping_result(");
       boolean first = true;
 
       sb.append(")");
@@ -4210,7 +4210,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -4290,15 +4290,15 @@ public class VASSARInterface {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new evalBinaryInputArch_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new evalBinaryInputArch_argsTupleSchemeFactory();
 
-    public java.lang.String problem; // required
-    public java.util.List<java.lang.Boolean> inputs; // required
+    public String problem; // required
+    public java.util.List<Boolean> inputs; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       PROBLEM((short)1, "problem"),
       INPUTS((short)2, "inputs");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -4326,21 +4326,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -4349,7 +4349,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -4371,8 +4371,8 @@ public class VASSARInterface {
     }
 
     public evalBinaryInputArch_args(
-      java.lang.String problem,
-      java.util.List<java.lang.Boolean> inputs)
+      String problem,
+      java.util.List<Boolean> inputs)
     {
       this();
       this.problem = problem;
@@ -4387,7 +4387,7 @@ public class VASSARInterface {
         this.problem = other.problem;
       }
       if (other.isSetInputs()) {
-        java.util.List<java.lang.Boolean> __this__inputs = new java.util.ArrayList<java.lang.Boolean>(other.inputs);
+        java.util.List<Boolean> __this__inputs = new java.util.ArrayList<Boolean>(other.inputs);
         this.inputs = __this__inputs;
       }
     }
@@ -4402,11 +4402,11 @@ public class VASSARInterface {
       this.inputs = null;
     }
 
-    public java.lang.String getProblem() {
+    public String getProblem() {
       return this.problem;
     }
 
-    public evalBinaryInputArch_args setProblem(java.lang.String problem) {
+    public evalBinaryInputArch_args setProblem(String problem) {
       this.problem = problem;
       return this;
     }
@@ -4430,22 +4430,22 @@ public class VASSARInterface {
       return (this.inputs == null) ? 0 : this.inputs.size();
     }
 
-    public java.util.Iterator<java.lang.Boolean> getInputsIterator() {
+    public java.util.Iterator<Boolean> getInputsIterator() {
       return (this.inputs == null) ? null : this.inputs.iterator();
     }
 
     public void addToInputs(boolean elem) {
       if (this.inputs == null) {
-        this.inputs = new java.util.ArrayList<java.lang.Boolean>();
+        this.inputs = new java.util.ArrayList<Boolean>();
       }
       this.inputs.add(elem);
     }
 
-    public java.util.List<java.lang.Boolean> getInputs() {
+    public java.util.List<Boolean> getInputs() {
       return this.inputs;
     }
 
-    public evalBinaryInputArch_args setInputs(java.util.List<java.lang.Boolean> inputs) {
+    public evalBinaryInputArch_args setInputs(java.util.List<Boolean> inputs) {
       this.inputs = inputs;
       return this;
     }
@@ -4465,13 +4465,13 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case PROBLEM:
         if (value == null) {
           unsetProblem();
         } else {
-          setProblem((java.lang.String)value);
+          setProblem((String)value);
         }
         break;
 
@@ -4479,14 +4479,14 @@ public class VASSARInterface {
         if (value == null) {
           unsetInputs();
         } else {
-          setInputs((java.util.List<java.lang.Boolean>)value);
+          setInputs((java.util.List<Boolean>)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case PROBLEM:
         return getProblem();
@@ -4495,13 +4495,13 @@ public class VASSARInterface {
         return getInputs();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
@@ -4510,11 +4510,11 @@ public class VASSARInterface {
       case INPUTS:
         return isSetInputs();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof evalBinaryInputArch_args)
@@ -4572,7 +4572,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
+      lastComparison = Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -4582,7 +4582,7 @@ public class VASSARInterface {
           return lastComparison;
         }
       }
-      lastComparison = java.lang.Boolean.valueOf(isSetInputs()).compareTo(other.isSetInputs());
+      lastComparison = Boolean.valueOf(isSetInputs()).compareTo(other.isSetInputs());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -4608,8 +4608,8 @@ public class VASSARInterface {
     }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("evalBinaryInputArch_args(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("evalBinaryInputArch_args(");
       boolean first = true;
 
       sb.append("problem:");
@@ -4644,7 +4644,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -4682,7 +4682,7 @@ public class VASSARInterface {
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
                   org.apache.thrift.protocol.TList _list134 = iprot.readListBegin();
-                  struct.inputs = new java.util.ArrayList<java.lang.Boolean>(_list134.size);
+                  struct.inputs = new java.util.ArrayList<Boolean>(_list134.size);
                   boolean _elem135;
                   for (int _i136 = 0; _i136 < _list134.size; ++_i136)
                   {
@@ -4778,7 +4778,7 @@ public class VASSARInterface {
         if (incoming.get(1)) {
           {
             org.apache.thrift.protocol.TList _list139 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.BOOL, iprot.readI32());
-            struct.inputs = new java.util.ArrayList<java.lang.Boolean>(_list139.size);
+            struct.inputs = new java.util.ArrayList<Boolean>(_list139.size);
             boolean _elem140;
             for (int _i141 = 0; _i141 < _list139.size; ++_i141)
             {
@@ -4810,7 +4810,7 @@ public class VASSARInterface {
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       SUCCESS((short)0, "success");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -4836,21 +4836,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -4859,7 +4859,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -4926,7 +4926,7 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case SUCCESS:
         if (value == null) {
@@ -4939,30 +4939,30 @@ public class VASSARInterface {
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case SUCCESS:
         return getSuccess();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case SUCCESS:
         return isSetSuccess();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof evalBinaryInputArch_result)
@@ -5007,7 +5007,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -5033,8 +5033,8 @@ public class VASSARInterface {
       }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("evalBinaryInputArch_result(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("evalBinaryInputArch_result(");
       boolean first = true;
 
       sb.append("success:");
@@ -5064,7 +5064,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -5172,15 +5172,15 @@ public class VASSARInterface {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new evalDiscreteInputArch_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new evalDiscreteInputArch_argsTupleSchemeFactory();
 
-    public java.lang.String problem; // required
-    public java.util.List<java.lang.Integer> inputs; // required
+    public String problem; // required
+    public java.util.List<Integer> inputs; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       PROBLEM((short)1, "problem"),
       INPUTS((short)2, "inputs");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -5208,21 +5208,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -5231,7 +5231,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -5253,8 +5253,8 @@ public class VASSARInterface {
     }
 
     public evalDiscreteInputArch_args(
-      java.lang.String problem,
-      java.util.List<java.lang.Integer> inputs)
+      String problem,
+      java.util.List<Integer> inputs)
     {
       this();
       this.problem = problem;
@@ -5269,8 +5269,8 @@ public class VASSARInterface {
         this.problem = other.problem;
       }
       if (other.isSetInputs()) {
-        java.util.List<java.lang.Integer> __this__inputs = new java.util.ArrayList<java.lang.Integer>(other.inputs.size());
-        for (java.lang.Integer other_element : other.inputs) {
+        java.util.List<Integer> __this__inputs = new java.util.ArrayList<Integer>(other.inputs.size());
+        for (Integer other_element : other.inputs) {
           __this__inputs.add(other_element);
         }
         this.inputs = __this__inputs;
@@ -5287,11 +5287,11 @@ public class VASSARInterface {
       this.inputs = null;
     }
 
-    public java.lang.String getProblem() {
+    public String getProblem() {
       return this.problem;
     }
 
-    public evalDiscreteInputArch_args setProblem(java.lang.String problem) {
+    public evalDiscreteInputArch_args setProblem(String problem) {
       this.problem = problem;
       return this;
     }
@@ -5315,22 +5315,22 @@ public class VASSARInterface {
       return (this.inputs == null) ? 0 : this.inputs.size();
     }
 
-    public java.util.Iterator<java.lang.Integer> getInputsIterator() {
+    public java.util.Iterator<Integer> getInputsIterator() {
       return (this.inputs == null) ? null : this.inputs.iterator();
     }
 
     public void addToInputs(int elem) {
       if (this.inputs == null) {
-        this.inputs = new java.util.ArrayList<java.lang.Integer>();
+        this.inputs = new java.util.ArrayList<Integer>();
       }
       this.inputs.add(elem);
     }
 
-    public java.util.List<java.lang.Integer> getInputs() {
+    public java.util.List<Integer> getInputs() {
       return this.inputs;
     }
 
-    public evalDiscreteInputArch_args setInputs(java.util.List<java.lang.Integer> inputs) {
+    public evalDiscreteInputArch_args setInputs(java.util.List<Integer> inputs) {
       this.inputs = inputs;
       return this;
     }
@@ -5350,13 +5350,13 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case PROBLEM:
         if (value == null) {
           unsetProblem();
         } else {
-          setProblem((java.lang.String)value);
+          setProblem((String)value);
         }
         break;
 
@@ -5364,14 +5364,14 @@ public class VASSARInterface {
         if (value == null) {
           unsetInputs();
         } else {
-          setInputs((java.util.List<java.lang.Integer>)value);
+          setInputs((java.util.List<Integer>)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case PROBLEM:
         return getProblem();
@@ -5380,13 +5380,13 @@ public class VASSARInterface {
         return getInputs();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
@@ -5395,11 +5395,11 @@ public class VASSARInterface {
       case INPUTS:
         return isSetInputs();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof evalDiscreteInputArch_args)
@@ -5457,7 +5457,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
+      lastComparison = Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -5467,7 +5467,7 @@ public class VASSARInterface {
           return lastComparison;
         }
       }
-      lastComparison = java.lang.Boolean.valueOf(isSetInputs()).compareTo(other.isSetInputs());
+      lastComparison = Boolean.valueOf(isSetInputs()).compareTo(other.isSetInputs());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -5493,8 +5493,8 @@ public class VASSARInterface {
     }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("evalDiscreteInputArch_args(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("evalDiscreteInputArch_args(");
       boolean first = true;
 
       sb.append("problem:");
@@ -5529,7 +5529,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -5567,7 +5567,7 @@ public class VASSARInterface {
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
                   org.apache.thrift.protocol.TList _list142 = iprot.readListBegin();
-                  struct.inputs = new java.util.ArrayList<java.lang.Integer>(_list142.size);
+                  struct.inputs = new java.util.ArrayList<Integer>(_list142.size);
                   int _elem143;
                   for (int _i144 = 0; _i144 < _list142.size; ++_i144)
                   {
@@ -5663,7 +5663,7 @@ public class VASSARInterface {
         if (incoming.get(1)) {
           {
             org.apache.thrift.protocol.TList _list147 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.I32, iprot.readI32());
-            struct.inputs = new java.util.ArrayList<java.lang.Integer>(_list147.size);
+            struct.inputs = new java.util.ArrayList<Integer>(_list147.size);
             int _elem148;
             for (int _i149 = 0; _i149 < _list147.size; ++_i149)
             {
@@ -5695,7 +5695,7 @@ public class VASSARInterface {
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       SUCCESS((short)0, "success");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -5721,21 +5721,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -5744,7 +5744,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -5811,7 +5811,7 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case SUCCESS:
         if (value == null) {
@@ -5824,30 +5824,30 @@ public class VASSARInterface {
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case SUCCESS:
         return getSuccess();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case SUCCESS:
         return isSetSuccess();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof evalDiscreteInputArch_result)
@@ -5892,7 +5892,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -5918,8 +5918,8 @@ public class VASSARInterface {
       }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("evalDiscreteInputArch_result(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("evalDiscreteInputArch_result(");
       boolean first = true;
 
       sb.append("success:");
@@ -5949,7 +5949,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -6057,15 +6057,15 @@ public class VASSARInterface {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new runLocalSearchBinaryInput_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new runLocalSearchBinaryInput_argsTupleSchemeFactory();
 
-    public java.lang.String problem; // required
-    public java.util.List<java.lang.Boolean> inputs; // required
+    public String problem; // required
+    public java.util.List<Boolean> inputs; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       PROBLEM((short)1, "problem"),
       INPUTS((short)2, "inputs");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -6093,21 +6093,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -6116,7 +6116,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -6138,8 +6138,8 @@ public class VASSARInterface {
     }
 
     public runLocalSearchBinaryInput_args(
-      java.lang.String problem,
-      java.util.List<java.lang.Boolean> inputs)
+      String problem,
+      java.util.List<Boolean> inputs)
     {
       this();
       this.problem = problem;
@@ -6154,7 +6154,7 @@ public class VASSARInterface {
         this.problem = other.problem;
       }
       if (other.isSetInputs()) {
-        java.util.List<java.lang.Boolean> __this__inputs = new java.util.ArrayList<java.lang.Boolean>(other.inputs);
+        java.util.List<Boolean> __this__inputs = new java.util.ArrayList<Boolean>(other.inputs);
         this.inputs = __this__inputs;
       }
     }
@@ -6169,11 +6169,11 @@ public class VASSARInterface {
       this.inputs = null;
     }
 
-    public java.lang.String getProblem() {
+    public String getProblem() {
       return this.problem;
     }
 
-    public runLocalSearchBinaryInput_args setProblem(java.lang.String problem) {
+    public runLocalSearchBinaryInput_args setProblem(String problem) {
       this.problem = problem;
       return this;
     }
@@ -6197,22 +6197,22 @@ public class VASSARInterface {
       return (this.inputs == null) ? 0 : this.inputs.size();
     }
 
-    public java.util.Iterator<java.lang.Boolean> getInputsIterator() {
+    public java.util.Iterator<Boolean> getInputsIterator() {
       return (this.inputs == null) ? null : this.inputs.iterator();
     }
 
     public void addToInputs(boolean elem) {
       if (this.inputs == null) {
-        this.inputs = new java.util.ArrayList<java.lang.Boolean>();
+        this.inputs = new java.util.ArrayList<Boolean>();
       }
       this.inputs.add(elem);
     }
 
-    public java.util.List<java.lang.Boolean> getInputs() {
+    public java.util.List<Boolean> getInputs() {
       return this.inputs;
     }
 
-    public runLocalSearchBinaryInput_args setInputs(java.util.List<java.lang.Boolean> inputs) {
+    public runLocalSearchBinaryInput_args setInputs(java.util.List<Boolean> inputs) {
       this.inputs = inputs;
       return this;
     }
@@ -6232,13 +6232,13 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case PROBLEM:
         if (value == null) {
           unsetProblem();
         } else {
-          setProblem((java.lang.String)value);
+          setProblem((String)value);
         }
         break;
 
@@ -6246,14 +6246,14 @@ public class VASSARInterface {
         if (value == null) {
           unsetInputs();
         } else {
-          setInputs((java.util.List<java.lang.Boolean>)value);
+          setInputs((java.util.List<Boolean>)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case PROBLEM:
         return getProblem();
@@ -6262,13 +6262,13 @@ public class VASSARInterface {
         return getInputs();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
@@ -6277,11 +6277,11 @@ public class VASSARInterface {
       case INPUTS:
         return isSetInputs();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof runLocalSearchBinaryInput_args)
@@ -6339,7 +6339,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
+      lastComparison = Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -6349,7 +6349,7 @@ public class VASSARInterface {
           return lastComparison;
         }
       }
-      lastComparison = java.lang.Boolean.valueOf(isSetInputs()).compareTo(other.isSetInputs());
+      lastComparison = Boolean.valueOf(isSetInputs()).compareTo(other.isSetInputs());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -6375,8 +6375,8 @@ public class VASSARInterface {
     }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("runLocalSearchBinaryInput_args(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("runLocalSearchBinaryInput_args(");
       boolean first = true;
 
       sb.append("problem:");
@@ -6411,7 +6411,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -6449,7 +6449,7 @@ public class VASSARInterface {
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
                   org.apache.thrift.protocol.TList _list150 = iprot.readListBegin();
-                  struct.inputs = new java.util.ArrayList<java.lang.Boolean>(_list150.size);
+                  struct.inputs = new java.util.ArrayList<Boolean>(_list150.size);
                   boolean _elem151;
                   for (int _i152 = 0; _i152 < _list150.size; ++_i152)
                   {
@@ -6545,7 +6545,7 @@ public class VASSARInterface {
         if (incoming.get(1)) {
           {
             org.apache.thrift.protocol.TList _list155 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.BOOL, iprot.readI32());
-            struct.inputs = new java.util.ArrayList<java.lang.Boolean>(_list155.size);
+            struct.inputs = new java.util.ArrayList<Boolean>(_list155.size);
             boolean _elem156;
             for (int _i157 = 0; _i157 < _list155.size; ++_i157)
             {
@@ -6577,7 +6577,7 @@ public class VASSARInterface {
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       SUCCESS((short)0, "success");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -6603,21 +6603,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -6626,7 +6626,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -6713,7 +6713,7 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case SUCCESS:
         if (value == null) {
@@ -6726,30 +6726,30 @@ public class VASSARInterface {
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case SUCCESS:
         return getSuccess();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case SUCCESS:
         return isSetSuccess();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof runLocalSearchBinaryInput_result)
@@ -6794,7 +6794,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -6820,8 +6820,8 @@ public class VASSARInterface {
       }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("runLocalSearchBinaryInput_result(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("runLocalSearchBinaryInput_result(");
       boolean first = true;
 
       sb.append("success:");
@@ -6848,7 +6848,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -6988,15 +6988,15 @@ public class VASSARInterface {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new runLocalSearchDiscreteInput_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new runLocalSearchDiscreteInput_argsTupleSchemeFactory();
 
-    public java.lang.String problem; // required
-    public java.util.List<java.lang.Integer> inputs; // required
+    public String problem; // required
+    public java.util.List<Integer> inputs; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       PROBLEM((short)1, "problem"),
       INPUTS((short)2, "inputs");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -7024,21 +7024,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -7047,7 +7047,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -7069,8 +7069,8 @@ public class VASSARInterface {
     }
 
     public runLocalSearchDiscreteInput_args(
-      java.lang.String problem,
-      java.util.List<java.lang.Integer> inputs)
+      String problem,
+      java.util.List<Integer> inputs)
     {
       this();
       this.problem = problem;
@@ -7085,8 +7085,8 @@ public class VASSARInterface {
         this.problem = other.problem;
       }
       if (other.isSetInputs()) {
-        java.util.List<java.lang.Integer> __this__inputs = new java.util.ArrayList<java.lang.Integer>(other.inputs.size());
-        for (java.lang.Integer other_element : other.inputs) {
+        java.util.List<Integer> __this__inputs = new java.util.ArrayList<Integer>(other.inputs.size());
+        for (Integer other_element : other.inputs) {
           __this__inputs.add(other_element);
         }
         this.inputs = __this__inputs;
@@ -7103,11 +7103,11 @@ public class VASSARInterface {
       this.inputs = null;
     }
 
-    public java.lang.String getProblem() {
+    public String getProblem() {
       return this.problem;
     }
 
-    public runLocalSearchDiscreteInput_args setProblem(java.lang.String problem) {
+    public runLocalSearchDiscreteInput_args setProblem(String problem) {
       this.problem = problem;
       return this;
     }
@@ -7131,22 +7131,22 @@ public class VASSARInterface {
       return (this.inputs == null) ? 0 : this.inputs.size();
     }
 
-    public java.util.Iterator<java.lang.Integer> getInputsIterator() {
+    public java.util.Iterator<Integer> getInputsIterator() {
       return (this.inputs == null) ? null : this.inputs.iterator();
     }
 
     public void addToInputs(int elem) {
       if (this.inputs == null) {
-        this.inputs = new java.util.ArrayList<java.lang.Integer>();
+        this.inputs = new java.util.ArrayList<Integer>();
       }
       this.inputs.add(elem);
     }
 
-    public java.util.List<java.lang.Integer> getInputs() {
+    public java.util.List<Integer> getInputs() {
       return this.inputs;
     }
 
-    public runLocalSearchDiscreteInput_args setInputs(java.util.List<java.lang.Integer> inputs) {
+    public runLocalSearchDiscreteInput_args setInputs(java.util.List<Integer> inputs) {
       this.inputs = inputs;
       return this;
     }
@@ -7166,13 +7166,13 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case PROBLEM:
         if (value == null) {
           unsetProblem();
         } else {
-          setProblem((java.lang.String)value);
+          setProblem((String)value);
         }
         break;
 
@@ -7180,14 +7180,14 @@ public class VASSARInterface {
         if (value == null) {
           unsetInputs();
         } else {
-          setInputs((java.util.List<java.lang.Integer>)value);
+          setInputs((java.util.List<Integer>)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case PROBLEM:
         return getProblem();
@@ -7196,13 +7196,13 @@ public class VASSARInterface {
         return getInputs();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
@@ -7211,11 +7211,11 @@ public class VASSARInterface {
       case INPUTS:
         return isSetInputs();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof runLocalSearchDiscreteInput_args)
@@ -7273,7 +7273,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
+      lastComparison = Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -7283,7 +7283,7 @@ public class VASSARInterface {
           return lastComparison;
         }
       }
-      lastComparison = java.lang.Boolean.valueOf(isSetInputs()).compareTo(other.isSetInputs());
+      lastComparison = Boolean.valueOf(isSetInputs()).compareTo(other.isSetInputs());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -7309,8 +7309,8 @@ public class VASSARInterface {
     }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("runLocalSearchDiscreteInput_args(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("runLocalSearchDiscreteInput_args(");
       boolean first = true;
 
       sb.append("problem:");
@@ -7345,7 +7345,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -7383,7 +7383,7 @@ public class VASSARInterface {
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
                   org.apache.thrift.protocol.TList _list166 = iprot.readListBegin();
-                  struct.inputs = new java.util.ArrayList<java.lang.Integer>(_list166.size);
+                  struct.inputs = new java.util.ArrayList<Integer>(_list166.size);
                   int _elem167;
                   for (int _i168 = 0; _i168 < _list166.size; ++_i168)
                   {
@@ -7479,7 +7479,7 @@ public class VASSARInterface {
         if (incoming.get(1)) {
           {
             org.apache.thrift.protocol.TList _list171 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.I32, iprot.readI32());
-            struct.inputs = new java.util.ArrayList<java.lang.Integer>(_list171.size);
+            struct.inputs = new java.util.ArrayList<Integer>(_list171.size);
             int _elem172;
             for (int _i173 = 0; _i173 < _list171.size; ++_i173)
             {
@@ -7511,7 +7511,7 @@ public class VASSARInterface {
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       SUCCESS((short)0, "success");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -7537,21 +7537,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -7560,7 +7560,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -7647,7 +7647,7 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case SUCCESS:
         if (value == null) {
@@ -7660,30 +7660,30 @@ public class VASSARInterface {
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case SUCCESS:
         return getSuccess();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case SUCCESS:
         return isSetSuccess();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof runLocalSearchDiscreteInput_result)
@@ -7728,7 +7728,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -7754,8 +7754,8 @@ public class VASSARInterface {
       }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("runLocalSearchDiscreteInput_result(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("runLocalSearchDiscreteInput_result(");
       boolean first = true;
 
       sb.append("success:");
@@ -7782,7 +7782,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -7921,13 +7921,13 @@ public class VASSARInterface {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new getOrbitList_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new getOrbitList_argsTupleSchemeFactory();
 
-    public java.lang.String problem; // required
+    public String problem; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       PROBLEM((short)1, "problem");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -7953,21 +7953,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -7976,7 +7976,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -7995,7 +7995,7 @@ public class VASSARInterface {
     }
 
     public getOrbitList_args(
-      java.lang.String problem)
+      String problem)
     {
       this();
       this.problem = problem;
@@ -8019,11 +8019,11 @@ public class VASSARInterface {
       this.problem = null;
     }
 
-    public java.lang.String getProblem() {
+    public String getProblem() {
       return this.problem;
     }
 
-    public getOrbitList_args setProblem(java.lang.String problem) {
+    public getOrbitList_args setProblem(String problem) {
       this.problem = problem;
       return this;
     }
@@ -8043,43 +8043,43 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case PROBLEM:
         if (value == null) {
           unsetProblem();
         } else {
-          setProblem((java.lang.String)value);
+          setProblem((String)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case PROBLEM:
         return getProblem();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case PROBLEM:
         return isSetProblem();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof getOrbitList_args)
@@ -8124,7 +8124,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
+      lastComparison = Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -8150,8 +8150,8 @@ public class VASSARInterface {
     }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("getOrbitList_args(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("getOrbitList_args(");
       boolean first = true;
 
       sb.append("problem:");
@@ -8178,7 +8178,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -8283,13 +8283,13 @@ public class VASSARInterface {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new getOrbitList_resultStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new getOrbitList_resultTupleSchemeFactory();
 
-    public java.util.List<java.lang.String> success; // required
+    public java.util.List<String> success; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       SUCCESS((short)0, "success");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -8315,21 +8315,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -8338,7 +8338,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -8358,7 +8358,7 @@ public class VASSARInterface {
     }
 
     public getOrbitList_result(
-      java.util.List<java.lang.String> success)
+      java.util.List<String> success)
     {
       this();
       this.success = success;
@@ -8369,7 +8369,7 @@ public class VASSARInterface {
      */
     public getOrbitList_result(getOrbitList_result other) {
       if (other.isSetSuccess()) {
-        java.util.List<java.lang.String> __this__success = new java.util.ArrayList<java.lang.String>(other.success);
+        java.util.List<String> __this__success = new java.util.ArrayList<String>(other.success);
         this.success = __this__success;
       }
     }
@@ -8387,22 +8387,22 @@ public class VASSARInterface {
       return (this.success == null) ? 0 : this.success.size();
     }
 
-    public java.util.Iterator<java.lang.String> getSuccessIterator() {
+    public java.util.Iterator<String> getSuccessIterator() {
       return (this.success == null) ? null : this.success.iterator();
     }
 
-    public void addToSuccess(java.lang.String elem) {
+    public void addToSuccess(String elem) {
       if (this.success == null) {
-        this.success = new java.util.ArrayList<java.lang.String>();
+        this.success = new java.util.ArrayList<String>();
       }
       this.success.add(elem);
     }
 
-    public java.util.List<java.lang.String> getSuccess() {
+    public java.util.List<String> getSuccess() {
       return this.success;
     }
 
-    public getOrbitList_result setSuccess(java.util.List<java.lang.String> success) {
+    public getOrbitList_result setSuccess(java.util.List<String> success) {
       this.success = success;
       return this;
     }
@@ -8422,43 +8422,43 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case SUCCESS:
         if (value == null) {
           unsetSuccess();
         } else {
-          setSuccess((java.util.List<java.lang.String>)value);
+          setSuccess((java.util.List<String>)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case SUCCESS:
         return getSuccess();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case SUCCESS:
         return isSetSuccess();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof getOrbitList_result)
@@ -8503,7 +8503,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -8529,8 +8529,8 @@ public class VASSARInterface {
       }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("getOrbitList_result(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("getOrbitList_result(");
       boolean first = true;
 
       sb.append("success:");
@@ -8557,7 +8557,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -8587,8 +8587,8 @@ public class VASSARInterface {
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
                   org.apache.thrift.protocol.TList _list182 = iprot.readListBegin();
-                  struct.success = new java.util.ArrayList<java.lang.String>(_list182.size);
-                  java.lang.String _elem183;
+                  struct.success = new java.util.ArrayList<String>(_list182.size);
+                  String _elem183;
                   for (int _i184 = 0; _i184 < _list182.size; ++_i184)
                   {
                     _elem183 = iprot.readString();
@@ -8620,7 +8620,7 @@ public class VASSARInterface {
           oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
           {
             oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, struct.success.size()));
-            for (java.lang.String _iter185 : struct.success)
+            for (String _iter185 : struct.success)
             {
               oprot.writeString(_iter185);
             }
@@ -8653,7 +8653,7 @@ public class VASSARInterface {
         if (struct.isSetSuccess()) {
           {
             oprot.writeI32(struct.success.size());
-            for (java.lang.String _iter186 : struct.success)
+            for (String _iter186 : struct.success)
             {
               oprot.writeString(_iter186);
             }
@@ -8668,8 +8668,8 @@ public class VASSARInterface {
         if (incoming.get(0)) {
           {
             org.apache.thrift.protocol.TList _list187 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, iprot.readI32());
-            struct.success = new java.util.ArrayList<java.lang.String>(_list187.size);
-            java.lang.String _elem188;
+            struct.success = new java.util.ArrayList<String>(_list187.size);
+            String _elem188;
             for (int _i189 = 0; _i189 < _list187.size; ++_i189)
             {
               _elem188 = iprot.readString();
@@ -8694,13 +8694,13 @@ public class VASSARInterface {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new getInstrumentList_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new getInstrumentList_argsTupleSchemeFactory();
 
-    public java.lang.String problem; // required
+    public String problem; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       PROBLEM((short)1, "problem");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -8726,21 +8726,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -8749,7 +8749,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -8768,7 +8768,7 @@ public class VASSARInterface {
     }
 
     public getInstrumentList_args(
-      java.lang.String problem)
+      String problem)
     {
       this();
       this.problem = problem;
@@ -8792,11 +8792,11 @@ public class VASSARInterface {
       this.problem = null;
     }
 
-    public java.lang.String getProblem() {
+    public String getProblem() {
       return this.problem;
     }
 
-    public getInstrumentList_args setProblem(java.lang.String problem) {
+    public getInstrumentList_args setProblem(String problem) {
       this.problem = problem;
       return this;
     }
@@ -8816,43 +8816,43 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case PROBLEM:
         if (value == null) {
           unsetProblem();
         } else {
-          setProblem((java.lang.String)value);
+          setProblem((String)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case PROBLEM:
         return getProblem();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case PROBLEM:
         return isSetProblem();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof getInstrumentList_args)
@@ -8897,7 +8897,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
+      lastComparison = Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -8923,8 +8923,8 @@ public class VASSARInterface {
     }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("getInstrumentList_args(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("getInstrumentList_args(");
       boolean first = true;
 
       sb.append("problem:");
@@ -8951,7 +8951,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -9056,13 +9056,13 @@ public class VASSARInterface {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new getInstrumentList_resultStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new getInstrumentList_resultTupleSchemeFactory();
 
-    public java.util.List<java.lang.String> success; // required
+    public java.util.List<String> success; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       SUCCESS((short)0, "success");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -9088,21 +9088,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -9111,7 +9111,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -9131,7 +9131,7 @@ public class VASSARInterface {
     }
 
     public getInstrumentList_result(
-      java.util.List<java.lang.String> success)
+      java.util.List<String> success)
     {
       this();
       this.success = success;
@@ -9142,7 +9142,7 @@ public class VASSARInterface {
      */
     public getInstrumentList_result(getInstrumentList_result other) {
       if (other.isSetSuccess()) {
-        java.util.List<java.lang.String> __this__success = new java.util.ArrayList<java.lang.String>(other.success);
+        java.util.List<String> __this__success = new java.util.ArrayList<String>(other.success);
         this.success = __this__success;
       }
     }
@@ -9160,22 +9160,22 @@ public class VASSARInterface {
       return (this.success == null) ? 0 : this.success.size();
     }
 
-    public java.util.Iterator<java.lang.String> getSuccessIterator() {
+    public java.util.Iterator<String> getSuccessIterator() {
       return (this.success == null) ? null : this.success.iterator();
     }
 
-    public void addToSuccess(java.lang.String elem) {
+    public void addToSuccess(String elem) {
       if (this.success == null) {
-        this.success = new java.util.ArrayList<java.lang.String>();
+        this.success = new java.util.ArrayList<String>();
       }
       this.success.add(elem);
     }
 
-    public java.util.List<java.lang.String> getSuccess() {
+    public java.util.List<String> getSuccess() {
       return this.success;
     }
 
-    public getInstrumentList_result setSuccess(java.util.List<java.lang.String> success) {
+    public getInstrumentList_result setSuccess(java.util.List<String> success) {
       this.success = success;
       return this;
     }
@@ -9195,43 +9195,43 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case SUCCESS:
         if (value == null) {
           unsetSuccess();
         } else {
-          setSuccess((java.util.List<java.lang.String>)value);
+          setSuccess((java.util.List<String>)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case SUCCESS:
         return getSuccess();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case SUCCESS:
         return isSetSuccess();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof getInstrumentList_result)
@@ -9276,7 +9276,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -9302,8 +9302,8 @@ public class VASSARInterface {
       }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("getInstrumentList_result(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("getInstrumentList_result(");
       boolean first = true;
 
       sb.append("success:");
@@ -9330,7 +9330,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -9360,8 +9360,8 @@ public class VASSARInterface {
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
                   org.apache.thrift.protocol.TList _list190 = iprot.readListBegin();
-                  struct.success = new java.util.ArrayList<java.lang.String>(_list190.size);
-                  java.lang.String _elem191;
+                  struct.success = new java.util.ArrayList<String>(_list190.size);
+                  String _elem191;
                   for (int _i192 = 0; _i192 < _list190.size; ++_i192)
                   {
                     _elem191 = iprot.readString();
@@ -9393,7 +9393,7 @@ public class VASSARInterface {
           oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
           {
             oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, struct.success.size()));
-            for (java.lang.String _iter193 : struct.success)
+            for (String _iter193 : struct.success)
             {
               oprot.writeString(_iter193);
             }
@@ -9426,7 +9426,7 @@ public class VASSARInterface {
         if (struct.isSetSuccess()) {
           {
             oprot.writeI32(struct.success.size());
-            for (java.lang.String _iter194 : struct.success)
+            for (String _iter194 : struct.success)
             {
               oprot.writeString(_iter194);
             }
@@ -9441,8 +9441,8 @@ public class VASSARInterface {
         if (incoming.get(0)) {
           {
             org.apache.thrift.protocol.TList _list195 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, iprot.readI32());
-            struct.success = new java.util.ArrayList<java.lang.String>(_list195.size);
-            java.lang.String _elem196;
+            struct.success = new java.util.ArrayList<String>(_list195.size);
+            String _elem196;
             for (int _i197 = 0; _i197 < _list195.size; ++_i197)
             {
               _elem196 = iprot.readString();
@@ -9467,13 +9467,13 @@ public class VASSARInterface {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new getObjectiveList_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new getObjectiveList_argsTupleSchemeFactory();
 
-    public java.lang.String problem; // required
+    public String problem; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       PROBLEM((short)1, "problem");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -9499,21 +9499,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -9522,7 +9522,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -9541,7 +9541,7 @@ public class VASSARInterface {
     }
 
     public getObjectiveList_args(
-      java.lang.String problem)
+      String problem)
     {
       this();
       this.problem = problem;
@@ -9565,11 +9565,11 @@ public class VASSARInterface {
       this.problem = null;
     }
 
-    public java.lang.String getProblem() {
+    public String getProblem() {
       return this.problem;
     }
 
-    public getObjectiveList_args setProblem(java.lang.String problem) {
+    public getObjectiveList_args setProblem(String problem) {
       this.problem = problem;
       return this;
     }
@@ -9589,43 +9589,43 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case PROBLEM:
         if (value == null) {
           unsetProblem();
         } else {
-          setProblem((java.lang.String)value);
+          setProblem((String)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case PROBLEM:
         return getProblem();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case PROBLEM:
         return isSetProblem();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof getObjectiveList_args)
@@ -9670,7 +9670,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
+      lastComparison = Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -9696,8 +9696,8 @@ public class VASSARInterface {
     }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("getObjectiveList_args(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("getObjectiveList_args(");
       boolean first = true;
 
       sb.append("problem:");
@@ -9724,7 +9724,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -9829,13 +9829,13 @@ public class VASSARInterface {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new getObjectiveList_resultStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new getObjectiveList_resultTupleSchemeFactory();
 
-    public java.util.List<java.lang.String> success; // required
+    public java.util.List<String> success; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       SUCCESS((short)0, "success");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -9861,21 +9861,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -9884,7 +9884,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -9904,7 +9904,7 @@ public class VASSARInterface {
     }
 
     public getObjectiveList_result(
-      java.util.List<java.lang.String> success)
+      java.util.List<String> success)
     {
       this();
       this.success = success;
@@ -9915,7 +9915,7 @@ public class VASSARInterface {
      */
     public getObjectiveList_result(getObjectiveList_result other) {
       if (other.isSetSuccess()) {
-        java.util.List<java.lang.String> __this__success = new java.util.ArrayList<java.lang.String>(other.success);
+        java.util.List<String> __this__success = new java.util.ArrayList<String>(other.success);
         this.success = __this__success;
       }
     }
@@ -9933,22 +9933,22 @@ public class VASSARInterface {
       return (this.success == null) ? 0 : this.success.size();
     }
 
-    public java.util.Iterator<java.lang.String> getSuccessIterator() {
+    public java.util.Iterator<String> getSuccessIterator() {
       return (this.success == null) ? null : this.success.iterator();
     }
 
-    public void addToSuccess(java.lang.String elem) {
+    public void addToSuccess(String elem) {
       if (this.success == null) {
-        this.success = new java.util.ArrayList<java.lang.String>();
+        this.success = new java.util.ArrayList<String>();
       }
       this.success.add(elem);
     }
 
-    public java.util.List<java.lang.String> getSuccess() {
+    public java.util.List<String> getSuccess() {
       return this.success;
     }
 
-    public getObjectiveList_result setSuccess(java.util.List<java.lang.String> success) {
+    public getObjectiveList_result setSuccess(java.util.List<String> success) {
       this.success = success;
       return this;
     }
@@ -9968,43 +9968,43 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case SUCCESS:
         if (value == null) {
           unsetSuccess();
         } else {
-          setSuccess((java.util.List<java.lang.String>)value);
+          setSuccess((java.util.List<String>)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case SUCCESS:
         return getSuccess();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case SUCCESS:
         return isSetSuccess();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof getObjectiveList_result)
@@ -10049,7 +10049,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -10075,8 +10075,8 @@ public class VASSARInterface {
       }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("getObjectiveList_result(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("getObjectiveList_result(");
       boolean first = true;
 
       sb.append("success:");
@@ -10103,7 +10103,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -10133,8 +10133,8 @@ public class VASSARInterface {
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
                   org.apache.thrift.protocol.TList _list198 = iprot.readListBegin();
-                  struct.success = new java.util.ArrayList<java.lang.String>(_list198.size);
-                  java.lang.String _elem199;
+                  struct.success = new java.util.ArrayList<String>(_list198.size);
+                  String _elem199;
                   for (int _i200 = 0; _i200 < _list198.size; ++_i200)
                   {
                     _elem199 = iprot.readString();
@@ -10166,7 +10166,7 @@ public class VASSARInterface {
           oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
           {
             oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, struct.success.size()));
-            for (java.lang.String _iter201 : struct.success)
+            for (String _iter201 : struct.success)
             {
               oprot.writeString(_iter201);
             }
@@ -10199,7 +10199,7 @@ public class VASSARInterface {
         if (struct.isSetSuccess()) {
           {
             oprot.writeI32(struct.success.size());
-            for (java.lang.String _iter202 : struct.success)
+            for (String _iter202 : struct.success)
             {
               oprot.writeString(_iter202);
             }
@@ -10214,8 +10214,8 @@ public class VASSARInterface {
         if (incoming.get(0)) {
           {
             org.apache.thrift.protocol.TList _list203 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, iprot.readI32());
-            struct.success = new java.util.ArrayList<java.lang.String>(_list203.size);
-            java.lang.String _elem204;
+            struct.success = new java.util.ArrayList<String>(_list203.size);
+            String _elem204;
             for (int _i205 = 0; _i205 < _list203.size; ++_i205)
             {
               _elem204 = iprot.readString();
@@ -10241,15 +10241,15 @@ public class VASSARInterface {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new getInstrumentsForObjective_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new getInstrumentsForObjective_argsTupleSchemeFactory();
 
-    public java.lang.String problem; // required
-    public java.lang.String objective; // required
+    public String problem; // required
+    public String objective; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       PROBLEM((short)1, "problem"),
       OBJECTIVE((short)2, "objective");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -10277,21 +10277,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -10300,7 +10300,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -10321,8 +10321,8 @@ public class VASSARInterface {
     }
 
     public getInstrumentsForObjective_args(
-      java.lang.String problem,
-      java.lang.String objective)
+      String problem,
+      String objective)
     {
       this();
       this.problem = problem;
@@ -10351,11 +10351,11 @@ public class VASSARInterface {
       this.objective = null;
     }
 
-    public java.lang.String getProblem() {
+    public String getProblem() {
       return this.problem;
     }
 
-    public getInstrumentsForObjective_args setProblem(java.lang.String problem) {
+    public getInstrumentsForObjective_args setProblem(String problem) {
       this.problem = problem;
       return this;
     }
@@ -10375,11 +10375,11 @@ public class VASSARInterface {
       }
     }
 
-    public java.lang.String getObjective() {
+    public String getObjective() {
       return this.objective;
     }
 
-    public getInstrumentsForObjective_args setObjective(java.lang.String objective) {
+    public getInstrumentsForObjective_args setObjective(String objective) {
       this.objective = objective;
       return this;
     }
@@ -10399,13 +10399,13 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case PROBLEM:
         if (value == null) {
           unsetProblem();
         } else {
-          setProblem((java.lang.String)value);
+          setProblem((String)value);
         }
         break;
 
@@ -10413,14 +10413,14 @@ public class VASSARInterface {
         if (value == null) {
           unsetObjective();
         } else {
-          setObjective((java.lang.String)value);
+          setObjective((String)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case PROBLEM:
         return getProblem();
@@ -10429,13 +10429,13 @@ public class VASSARInterface {
         return getObjective();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
@@ -10444,11 +10444,11 @@ public class VASSARInterface {
       case OBJECTIVE:
         return isSetObjective();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof getInstrumentsForObjective_args)
@@ -10506,7 +10506,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
+      lastComparison = Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -10516,7 +10516,7 @@ public class VASSARInterface {
           return lastComparison;
         }
       }
-      lastComparison = java.lang.Boolean.valueOf(isSetObjective()).compareTo(other.isSetObjective());
+      lastComparison = Boolean.valueOf(isSetObjective()).compareTo(other.isSetObjective());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -10542,8 +10542,8 @@ public class VASSARInterface {
     }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("getInstrumentsForObjective_args(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("getInstrumentsForObjective_args(");
       boolean first = true;
 
       sb.append("problem:");
@@ -10578,7 +10578,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -10706,13 +10706,13 @@ public class VASSARInterface {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new getInstrumentsForObjective_resultStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new getInstrumentsForObjective_resultTupleSchemeFactory();
 
-    public java.util.List<java.lang.String> success; // required
+    public java.util.List<String> success; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       SUCCESS((short)0, "success");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -10738,21 +10738,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -10761,7 +10761,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -10781,7 +10781,7 @@ public class VASSARInterface {
     }
 
     public getInstrumentsForObjective_result(
-      java.util.List<java.lang.String> success)
+      java.util.List<String> success)
     {
       this();
       this.success = success;
@@ -10792,7 +10792,7 @@ public class VASSARInterface {
      */
     public getInstrumentsForObjective_result(getInstrumentsForObjective_result other) {
       if (other.isSetSuccess()) {
-        java.util.List<java.lang.String> __this__success = new java.util.ArrayList<java.lang.String>(other.success);
+        java.util.List<String> __this__success = new java.util.ArrayList<String>(other.success);
         this.success = __this__success;
       }
     }
@@ -10810,22 +10810,22 @@ public class VASSARInterface {
       return (this.success == null) ? 0 : this.success.size();
     }
 
-    public java.util.Iterator<java.lang.String> getSuccessIterator() {
+    public java.util.Iterator<String> getSuccessIterator() {
       return (this.success == null) ? null : this.success.iterator();
     }
 
-    public void addToSuccess(java.lang.String elem) {
+    public void addToSuccess(String elem) {
       if (this.success == null) {
-        this.success = new java.util.ArrayList<java.lang.String>();
+        this.success = new java.util.ArrayList<String>();
       }
       this.success.add(elem);
     }
 
-    public java.util.List<java.lang.String> getSuccess() {
+    public java.util.List<String> getSuccess() {
       return this.success;
     }
 
-    public getInstrumentsForObjective_result setSuccess(java.util.List<java.lang.String> success) {
+    public getInstrumentsForObjective_result setSuccess(java.util.List<String> success) {
       this.success = success;
       return this;
     }
@@ -10845,43 +10845,43 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case SUCCESS:
         if (value == null) {
           unsetSuccess();
         } else {
-          setSuccess((java.util.List<java.lang.String>)value);
+          setSuccess((java.util.List<String>)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case SUCCESS:
         return getSuccess();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case SUCCESS:
         return isSetSuccess();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof getInstrumentsForObjective_result)
@@ -10926,7 +10926,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -10952,8 +10952,8 @@ public class VASSARInterface {
       }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("getInstrumentsForObjective_result(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("getInstrumentsForObjective_result(");
       boolean first = true;
 
       sb.append("success:");
@@ -10980,7 +10980,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -11010,8 +11010,8 @@ public class VASSARInterface {
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
                   org.apache.thrift.protocol.TList _list206 = iprot.readListBegin();
-                  struct.success = new java.util.ArrayList<java.lang.String>(_list206.size);
-                  java.lang.String _elem207;
+                  struct.success = new java.util.ArrayList<String>(_list206.size);
+                  String _elem207;
                   for (int _i208 = 0; _i208 < _list206.size; ++_i208)
                   {
                     _elem207 = iprot.readString();
@@ -11043,7 +11043,7 @@ public class VASSARInterface {
           oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
           {
             oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, struct.success.size()));
-            for (java.lang.String _iter209 : struct.success)
+            for (String _iter209 : struct.success)
             {
               oprot.writeString(_iter209);
             }
@@ -11076,7 +11076,7 @@ public class VASSARInterface {
         if (struct.isSetSuccess()) {
           {
             oprot.writeI32(struct.success.size());
-            for (java.lang.String _iter210 : struct.success)
+            for (String _iter210 : struct.success)
             {
               oprot.writeString(_iter210);
             }
@@ -11091,8 +11091,8 @@ public class VASSARInterface {
         if (incoming.get(0)) {
           {
             org.apache.thrift.protocol.TList _list211 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, iprot.readI32());
-            struct.success = new java.util.ArrayList<java.lang.String>(_list211.size);
-            java.lang.String _elem212;
+            struct.success = new java.util.ArrayList<String>(_list211.size);
+            String _elem212;
             for (int _i213 = 0; _i213 < _list211.size; ++_i213)
             {
               _elem212 = iprot.readString();
@@ -11118,15 +11118,15 @@ public class VASSARInterface {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new getInstrumentsForPanel_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new getInstrumentsForPanel_argsTupleSchemeFactory();
 
-    public java.lang.String problem; // required
-    public java.lang.String panel; // required
+    public String problem; // required
+    public String panel; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       PROBLEM((short)1, "problem"),
       PANEL((short)2, "panel");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -11154,21 +11154,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -11177,7 +11177,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -11198,8 +11198,8 @@ public class VASSARInterface {
     }
 
     public getInstrumentsForPanel_args(
-      java.lang.String problem,
-      java.lang.String panel)
+      String problem,
+      String panel)
     {
       this();
       this.problem = problem;
@@ -11228,11 +11228,11 @@ public class VASSARInterface {
       this.panel = null;
     }
 
-    public java.lang.String getProblem() {
+    public String getProblem() {
       return this.problem;
     }
 
-    public getInstrumentsForPanel_args setProblem(java.lang.String problem) {
+    public getInstrumentsForPanel_args setProblem(String problem) {
       this.problem = problem;
       return this;
     }
@@ -11252,11 +11252,11 @@ public class VASSARInterface {
       }
     }
 
-    public java.lang.String getPanel() {
+    public String getPanel() {
       return this.panel;
     }
 
-    public getInstrumentsForPanel_args setPanel(java.lang.String panel) {
+    public getInstrumentsForPanel_args setPanel(String panel) {
       this.panel = panel;
       return this;
     }
@@ -11276,13 +11276,13 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case PROBLEM:
         if (value == null) {
           unsetProblem();
         } else {
-          setProblem((java.lang.String)value);
+          setProblem((String)value);
         }
         break;
 
@@ -11290,14 +11290,14 @@ public class VASSARInterface {
         if (value == null) {
           unsetPanel();
         } else {
-          setPanel((java.lang.String)value);
+          setPanel((String)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case PROBLEM:
         return getProblem();
@@ -11306,13 +11306,13 @@ public class VASSARInterface {
         return getPanel();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
@@ -11321,11 +11321,11 @@ public class VASSARInterface {
       case PANEL:
         return isSetPanel();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof getInstrumentsForPanel_args)
@@ -11383,7 +11383,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
+      lastComparison = Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -11393,7 +11393,7 @@ public class VASSARInterface {
           return lastComparison;
         }
       }
-      lastComparison = java.lang.Boolean.valueOf(isSetPanel()).compareTo(other.isSetPanel());
+      lastComparison = Boolean.valueOf(isSetPanel()).compareTo(other.isSetPanel());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -11419,8 +11419,8 @@ public class VASSARInterface {
     }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("getInstrumentsForPanel_args(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("getInstrumentsForPanel_args(");
       boolean first = true;
 
       sb.append("problem:");
@@ -11455,7 +11455,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -11583,13 +11583,13 @@ public class VASSARInterface {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new getInstrumentsForPanel_resultStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new getInstrumentsForPanel_resultTupleSchemeFactory();
 
-    public java.util.List<java.lang.String> success; // required
+    public java.util.List<String> success; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       SUCCESS((short)0, "success");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -11615,21 +11615,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -11638,7 +11638,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -11658,7 +11658,7 @@ public class VASSARInterface {
     }
 
     public getInstrumentsForPanel_result(
-      java.util.List<java.lang.String> success)
+      java.util.List<String> success)
     {
       this();
       this.success = success;
@@ -11669,7 +11669,7 @@ public class VASSARInterface {
      */
     public getInstrumentsForPanel_result(getInstrumentsForPanel_result other) {
       if (other.isSetSuccess()) {
-        java.util.List<java.lang.String> __this__success = new java.util.ArrayList<java.lang.String>(other.success);
+        java.util.List<String> __this__success = new java.util.ArrayList<String>(other.success);
         this.success = __this__success;
       }
     }
@@ -11687,22 +11687,22 @@ public class VASSARInterface {
       return (this.success == null) ? 0 : this.success.size();
     }
 
-    public java.util.Iterator<java.lang.String> getSuccessIterator() {
+    public java.util.Iterator<String> getSuccessIterator() {
       return (this.success == null) ? null : this.success.iterator();
     }
 
-    public void addToSuccess(java.lang.String elem) {
+    public void addToSuccess(String elem) {
       if (this.success == null) {
-        this.success = new java.util.ArrayList<java.lang.String>();
+        this.success = new java.util.ArrayList<String>();
       }
       this.success.add(elem);
     }
 
-    public java.util.List<java.lang.String> getSuccess() {
+    public java.util.List<String> getSuccess() {
       return this.success;
     }
 
-    public getInstrumentsForPanel_result setSuccess(java.util.List<java.lang.String> success) {
+    public getInstrumentsForPanel_result setSuccess(java.util.List<String> success) {
       this.success = success;
       return this;
     }
@@ -11722,43 +11722,43 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case SUCCESS:
         if (value == null) {
           unsetSuccess();
         } else {
-          setSuccess((java.util.List<java.lang.String>)value);
+          setSuccess((java.util.List<String>)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case SUCCESS:
         return getSuccess();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case SUCCESS:
         return isSetSuccess();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof getInstrumentsForPanel_result)
@@ -11803,7 +11803,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -11829,8 +11829,8 @@ public class VASSARInterface {
       }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("getInstrumentsForPanel_result(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("getInstrumentsForPanel_result(");
       boolean first = true;
 
       sb.append("success:");
@@ -11857,7 +11857,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -11887,8 +11887,8 @@ public class VASSARInterface {
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
                   org.apache.thrift.protocol.TList _list214 = iprot.readListBegin();
-                  struct.success = new java.util.ArrayList<java.lang.String>(_list214.size);
-                  java.lang.String _elem215;
+                  struct.success = new java.util.ArrayList<String>(_list214.size);
+                  String _elem215;
                   for (int _i216 = 0; _i216 < _list214.size; ++_i216)
                   {
                     _elem215 = iprot.readString();
@@ -11920,7 +11920,7 @@ public class VASSARInterface {
           oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
           {
             oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, struct.success.size()));
-            for (java.lang.String _iter217 : struct.success)
+            for (String _iter217 : struct.success)
             {
               oprot.writeString(_iter217);
             }
@@ -11953,7 +11953,7 @@ public class VASSARInterface {
         if (struct.isSetSuccess()) {
           {
             oprot.writeI32(struct.success.size());
-            for (java.lang.String _iter218 : struct.success)
+            for (String _iter218 : struct.success)
             {
               oprot.writeString(_iter218);
             }
@@ -11968,8 +11968,8 @@ public class VASSARInterface {
         if (incoming.get(0)) {
           {
             org.apache.thrift.protocol.TList _list219 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, iprot.readI32());
-            struct.success = new java.util.ArrayList<java.lang.String>(_list219.size);
-            java.lang.String _elem220;
+            struct.success = new java.util.ArrayList<String>(_list219.size);
+            String _elem220;
             for (int _i221 = 0; _i221 < _list219.size; ++_i221)
             {
               _elem220 = iprot.readString();
@@ -11995,15 +11995,15 @@ public class VASSARInterface {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new getCritiqueBinaryInputArch_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new getCritiqueBinaryInputArch_argsTupleSchemeFactory();
 
-    public java.lang.String problem; // required
-    public java.util.List<java.lang.Boolean> inputs; // required
+    public String problem; // required
+    public java.util.List<Boolean> inputs; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       PROBLEM((short)1, "problem"),
       INPUTS((short)2, "inputs");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -12031,21 +12031,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -12054,7 +12054,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -12076,8 +12076,8 @@ public class VASSARInterface {
     }
 
     public getCritiqueBinaryInputArch_args(
-      java.lang.String problem,
-      java.util.List<java.lang.Boolean> inputs)
+      String problem,
+      java.util.List<Boolean> inputs)
     {
       this();
       this.problem = problem;
@@ -12092,7 +12092,7 @@ public class VASSARInterface {
         this.problem = other.problem;
       }
       if (other.isSetInputs()) {
-        java.util.List<java.lang.Boolean> __this__inputs = new java.util.ArrayList<java.lang.Boolean>(other.inputs);
+        java.util.List<Boolean> __this__inputs = new java.util.ArrayList<Boolean>(other.inputs);
         this.inputs = __this__inputs;
       }
     }
@@ -12107,11 +12107,11 @@ public class VASSARInterface {
       this.inputs = null;
     }
 
-    public java.lang.String getProblem() {
+    public String getProblem() {
       return this.problem;
     }
 
-    public getCritiqueBinaryInputArch_args setProblem(java.lang.String problem) {
+    public getCritiqueBinaryInputArch_args setProblem(String problem) {
       this.problem = problem;
       return this;
     }
@@ -12135,22 +12135,22 @@ public class VASSARInterface {
       return (this.inputs == null) ? 0 : this.inputs.size();
     }
 
-    public java.util.Iterator<java.lang.Boolean> getInputsIterator() {
+    public java.util.Iterator<Boolean> getInputsIterator() {
       return (this.inputs == null) ? null : this.inputs.iterator();
     }
 
     public void addToInputs(boolean elem) {
       if (this.inputs == null) {
-        this.inputs = new java.util.ArrayList<java.lang.Boolean>();
+        this.inputs = new java.util.ArrayList<Boolean>();
       }
       this.inputs.add(elem);
     }
 
-    public java.util.List<java.lang.Boolean> getInputs() {
+    public java.util.List<Boolean> getInputs() {
       return this.inputs;
     }
 
-    public getCritiqueBinaryInputArch_args setInputs(java.util.List<java.lang.Boolean> inputs) {
+    public getCritiqueBinaryInputArch_args setInputs(java.util.List<Boolean> inputs) {
       this.inputs = inputs;
       return this;
     }
@@ -12170,13 +12170,13 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case PROBLEM:
         if (value == null) {
           unsetProblem();
         } else {
-          setProblem((java.lang.String)value);
+          setProblem((String)value);
         }
         break;
 
@@ -12184,14 +12184,14 @@ public class VASSARInterface {
         if (value == null) {
           unsetInputs();
         } else {
-          setInputs((java.util.List<java.lang.Boolean>)value);
+          setInputs((java.util.List<Boolean>)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case PROBLEM:
         return getProblem();
@@ -12200,13 +12200,13 @@ public class VASSARInterface {
         return getInputs();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
@@ -12215,11 +12215,11 @@ public class VASSARInterface {
       case INPUTS:
         return isSetInputs();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof getCritiqueBinaryInputArch_args)
@@ -12277,7 +12277,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
+      lastComparison = Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -12287,7 +12287,7 @@ public class VASSARInterface {
           return lastComparison;
         }
       }
-      lastComparison = java.lang.Boolean.valueOf(isSetInputs()).compareTo(other.isSetInputs());
+      lastComparison = Boolean.valueOf(isSetInputs()).compareTo(other.isSetInputs());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -12313,8 +12313,8 @@ public class VASSARInterface {
     }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("getCritiqueBinaryInputArch_args(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("getCritiqueBinaryInputArch_args(");
       boolean first = true;
 
       sb.append("problem:");
@@ -12349,7 +12349,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -12387,7 +12387,7 @@ public class VASSARInterface {
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
                   org.apache.thrift.protocol.TList _list222 = iprot.readListBegin();
-                  struct.inputs = new java.util.ArrayList<java.lang.Boolean>(_list222.size);
+                  struct.inputs = new java.util.ArrayList<Boolean>(_list222.size);
                   boolean _elem223;
                   for (int _i224 = 0; _i224 < _list222.size; ++_i224)
                   {
@@ -12483,7 +12483,7 @@ public class VASSARInterface {
         if (incoming.get(1)) {
           {
             org.apache.thrift.protocol.TList _list227 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.BOOL, iprot.readI32());
-            struct.inputs = new java.util.ArrayList<java.lang.Boolean>(_list227.size);
+            struct.inputs = new java.util.ArrayList<Boolean>(_list227.size);
             boolean _elem228;
             for (int _i229 = 0; _i229 < _list227.size; ++_i229)
             {
@@ -12509,13 +12509,13 @@ public class VASSARInterface {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new getCritiqueBinaryInputArch_resultStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new getCritiqueBinaryInputArch_resultTupleSchemeFactory();
 
-    public java.util.List<java.lang.String> success; // required
+    public java.util.List<String> success; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       SUCCESS((short)0, "success");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -12541,21 +12541,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -12564,7 +12564,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -12584,7 +12584,7 @@ public class VASSARInterface {
     }
 
     public getCritiqueBinaryInputArch_result(
-      java.util.List<java.lang.String> success)
+      java.util.List<String> success)
     {
       this();
       this.success = success;
@@ -12595,7 +12595,7 @@ public class VASSARInterface {
      */
     public getCritiqueBinaryInputArch_result(getCritiqueBinaryInputArch_result other) {
       if (other.isSetSuccess()) {
-        java.util.List<java.lang.String> __this__success = new java.util.ArrayList<java.lang.String>(other.success);
+        java.util.List<String> __this__success = new java.util.ArrayList<String>(other.success);
         this.success = __this__success;
       }
     }
@@ -12613,22 +12613,22 @@ public class VASSARInterface {
       return (this.success == null) ? 0 : this.success.size();
     }
 
-    public java.util.Iterator<java.lang.String> getSuccessIterator() {
+    public java.util.Iterator<String> getSuccessIterator() {
       return (this.success == null) ? null : this.success.iterator();
     }
 
-    public void addToSuccess(java.lang.String elem) {
+    public void addToSuccess(String elem) {
       if (this.success == null) {
-        this.success = new java.util.ArrayList<java.lang.String>();
+        this.success = new java.util.ArrayList<String>();
       }
       this.success.add(elem);
     }
 
-    public java.util.List<java.lang.String> getSuccess() {
+    public java.util.List<String> getSuccess() {
       return this.success;
     }
 
-    public getCritiqueBinaryInputArch_result setSuccess(java.util.List<java.lang.String> success) {
+    public getCritiqueBinaryInputArch_result setSuccess(java.util.List<String> success) {
       this.success = success;
       return this;
     }
@@ -12648,43 +12648,43 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case SUCCESS:
         if (value == null) {
           unsetSuccess();
         } else {
-          setSuccess((java.util.List<java.lang.String>)value);
+          setSuccess((java.util.List<String>)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case SUCCESS:
         return getSuccess();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case SUCCESS:
         return isSetSuccess();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof getCritiqueBinaryInputArch_result)
@@ -12729,7 +12729,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -12755,8 +12755,8 @@ public class VASSARInterface {
       }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("getCritiqueBinaryInputArch_result(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("getCritiqueBinaryInputArch_result(");
       boolean first = true;
 
       sb.append("success:");
@@ -12783,7 +12783,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -12813,8 +12813,8 @@ public class VASSARInterface {
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
                   org.apache.thrift.protocol.TList _list230 = iprot.readListBegin();
-                  struct.success = new java.util.ArrayList<java.lang.String>(_list230.size);
-                  java.lang.String _elem231;
+                  struct.success = new java.util.ArrayList<String>(_list230.size);
+                  String _elem231;
                   for (int _i232 = 0; _i232 < _list230.size; ++_i232)
                   {
                     _elem231 = iprot.readString();
@@ -12846,7 +12846,7 @@ public class VASSARInterface {
           oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
           {
             oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, struct.success.size()));
-            for (java.lang.String _iter233 : struct.success)
+            for (String _iter233 : struct.success)
             {
               oprot.writeString(_iter233);
             }
@@ -12879,7 +12879,7 @@ public class VASSARInterface {
         if (struct.isSetSuccess()) {
           {
             oprot.writeI32(struct.success.size());
-            for (java.lang.String _iter234 : struct.success)
+            for (String _iter234 : struct.success)
             {
               oprot.writeString(_iter234);
             }
@@ -12894,8 +12894,8 @@ public class VASSARInterface {
         if (incoming.get(0)) {
           {
             org.apache.thrift.protocol.TList _list235 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, iprot.readI32());
-            struct.success = new java.util.ArrayList<java.lang.String>(_list235.size);
-            java.lang.String _elem236;
+            struct.success = new java.util.ArrayList<String>(_list235.size);
+            String _elem236;
             for (int _i237 = 0; _i237 < _list235.size; ++_i237)
             {
               _elem236 = iprot.readString();
@@ -12921,15 +12921,15 @@ public class VASSARInterface {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new getCritiqueDiscreteInputArch_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new getCritiqueDiscreteInputArch_argsTupleSchemeFactory();
 
-    public java.lang.String problem; // required
-    public java.util.List<java.lang.Integer> inputs; // required
+    public String problem; // required
+    public java.util.List<Integer> inputs; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       PROBLEM((short)1, "problem"),
       INPUTS((short)2, "inputs");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -12957,21 +12957,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -12980,7 +12980,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -13002,8 +13002,8 @@ public class VASSARInterface {
     }
 
     public getCritiqueDiscreteInputArch_args(
-      java.lang.String problem,
-      java.util.List<java.lang.Integer> inputs)
+      String problem,
+      java.util.List<Integer> inputs)
     {
       this();
       this.problem = problem;
@@ -13018,8 +13018,8 @@ public class VASSARInterface {
         this.problem = other.problem;
       }
       if (other.isSetInputs()) {
-        java.util.List<java.lang.Integer> __this__inputs = new java.util.ArrayList<java.lang.Integer>(other.inputs.size());
-        for (java.lang.Integer other_element : other.inputs) {
+        java.util.List<Integer> __this__inputs = new java.util.ArrayList<Integer>(other.inputs.size());
+        for (Integer other_element : other.inputs) {
           __this__inputs.add(other_element);
         }
         this.inputs = __this__inputs;
@@ -13036,11 +13036,11 @@ public class VASSARInterface {
       this.inputs = null;
     }
 
-    public java.lang.String getProblem() {
+    public String getProblem() {
       return this.problem;
     }
 
-    public getCritiqueDiscreteInputArch_args setProblem(java.lang.String problem) {
+    public getCritiqueDiscreteInputArch_args setProblem(String problem) {
       this.problem = problem;
       return this;
     }
@@ -13064,22 +13064,22 @@ public class VASSARInterface {
       return (this.inputs == null) ? 0 : this.inputs.size();
     }
 
-    public java.util.Iterator<java.lang.Integer> getInputsIterator() {
+    public java.util.Iterator<Integer> getInputsIterator() {
       return (this.inputs == null) ? null : this.inputs.iterator();
     }
 
     public void addToInputs(int elem) {
       if (this.inputs == null) {
-        this.inputs = new java.util.ArrayList<java.lang.Integer>();
+        this.inputs = new java.util.ArrayList<Integer>();
       }
       this.inputs.add(elem);
     }
 
-    public java.util.List<java.lang.Integer> getInputs() {
+    public java.util.List<Integer> getInputs() {
       return this.inputs;
     }
 
-    public getCritiqueDiscreteInputArch_args setInputs(java.util.List<java.lang.Integer> inputs) {
+    public getCritiqueDiscreteInputArch_args setInputs(java.util.List<Integer> inputs) {
       this.inputs = inputs;
       return this;
     }
@@ -13099,13 +13099,13 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case PROBLEM:
         if (value == null) {
           unsetProblem();
         } else {
-          setProblem((java.lang.String)value);
+          setProblem((String)value);
         }
         break;
 
@@ -13113,14 +13113,14 @@ public class VASSARInterface {
         if (value == null) {
           unsetInputs();
         } else {
-          setInputs((java.util.List<java.lang.Integer>)value);
+          setInputs((java.util.List<Integer>)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case PROBLEM:
         return getProblem();
@@ -13129,13 +13129,13 @@ public class VASSARInterface {
         return getInputs();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
@@ -13144,11 +13144,11 @@ public class VASSARInterface {
       case INPUTS:
         return isSetInputs();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof getCritiqueDiscreteInputArch_args)
@@ -13206,7 +13206,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
+      lastComparison = Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -13216,7 +13216,7 @@ public class VASSARInterface {
           return lastComparison;
         }
       }
-      lastComparison = java.lang.Boolean.valueOf(isSetInputs()).compareTo(other.isSetInputs());
+      lastComparison = Boolean.valueOf(isSetInputs()).compareTo(other.isSetInputs());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -13242,8 +13242,8 @@ public class VASSARInterface {
     }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("getCritiqueDiscreteInputArch_args(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("getCritiqueDiscreteInputArch_args(");
       boolean first = true;
 
       sb.append("problem:");
@@ -13278,7 +13278,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -13316,7 +13316,7 @@ public class VASSARInterface {
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
                   org.apache.thrift.protocol.TList _list238 = iprot.readListBegin();
-                  struct.inputs = new java.util.ArrayList<java.lang.Integer>(_list238.size);
+                  struct.inputs = new java.util.ArrayList<Integer>(_list238.size);
                   int _elem239;
                   for (int _i240 = 0; _i240 < _list238.size; ++_i240)
                   {
@@ -13412,7 +13412,7 @@ public class VASSARInterface {
         if (incoming.get(1)) {
           {
             org.apache.thrift.protocol.TList _list243 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.I32, iprot.readI32());
-            struct.inputs = new java.util.ArrayList<java.lang.Integer>(_list243.size);
+            struct.inputs = new java.util.ArrayList<Integer>(_list243.size);
             int _elem244;
             for (int _i245 = 0; _i245 < _list243.size; ++_i245)
             {
@@ -13438,13 +13438,13 @@ public class VASSARInterface {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new getCritiqueDiscreteInputArch_resultStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new getCritiqueDiscreteInputArch_resultTupleSchemeFactory();
 
-    public java.util.List<java.lang.String> success; // required
+    public java.util.List<String> success; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       SUCCESS((short)0, "success");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -13470,21 +13470,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -13493,7 +13493,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -13513,7 +13513,7 @@ public class VASSARInterface {
     }
 
     public getCritiqueDiscreteInputArch_result(
-      java.util.List<java.lang.String> success)
+      java.util.List<String> success)
     {
       this();
       this.success = success;
@@ -13524,7 +13524,7 @@ public class VASSARInterface {
      */
     public getCritiqueDiscreteInputArch_result(getCritiqueDiscreteInputArch_result other) {
       if (other.isSetSuccess()) {
-        java.util.List<java.lang.String> __this__success = new java.util.ArrayList<java.lang.String>(other.success);
+        java.util.List<String> __this__success = new java.util.ArrayList<String>(other.success);
         this.success = __this__success;
       }
     }
@@ -13542,22 +13542,22 @@ public class VASSARInterface {
       return (this.success == null) ? 0 : this.success.size();
     }
 
-    public java.util.Iterator<java.lang.String> getSuccessIterator() {
+    public java.util.Iterator<String> getSuccessIterator() {
       return (this.success == null) ? null : this.success.iterator();
     }
 
-    public void addToSuccess(java.lang.String elem) {
+    public void addToSuccess(String elem) {
       if (this.success == null) {
-        this.success = new java.util.ArrayList<java.lang.String>();
+        this.success = new java.util.ArrayList<String>();
       }
       this.success.add(elem);
     }
 
-    public java.util.List<java.lang.String> getSuccess() {
+    public java.util.List<String> getSuccess() {
       return this.success;
     }
 
-    public getCritiqueDiscreteInputArch_result setSuccess(java.util.List<java.lang.String> success) {
+    public getCritiqueDiscreteInputArch_result setSuccess(java.util.List<String> success) {
       this.success = success;
       return this;
     }
@@ -13577,43 +13577,43 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case SUCCESS:
         if (value == null) {
           unsetSuccess();
         } else {
-          setSuccess((java.util.List<java.lang.String>)value);
+          setSuccess((java.util.List<String>)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case SUCCESS:
         return getSuccess();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case SUCCESS:
         return isSetSuccess();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof getCritiqueDiscreteInputArch_result)
@@ -13658,7 +13658,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -13684,8 +13684,8 @@ public class VASSARInterface {
       }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("getCritiqueDiscreteInputArch_result(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("getCritiqueDiscreteInputArch_result(");
       boolean first = true;
 
       sb.append("success:");
@@ -13712,7 +13712,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -13742,8 +13742,8 @@ public class VASSARInterface {
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
                   org.apache.thrift.protocol.TList _list246 = iprot.readListBegin();
-                  struct.success = new java.util.ArrayList<java.lang.String>(_list246.size);
-                  java.lang.String _elem247;
+                  struct.success = new java.util.ArrayList<String>(_list246.size);
+                  String _elem247;
                   for (int _i248 = 0; _i248 < _list246.size; ++_i248)
                   {
                     _elem247 = iprot.readString();
@@ -13775,7 +13775,7 @@ public class VASSARInterface {
           oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
           {
             oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, struct.success.size()));
-            for (java.lang.String _iter249 : struct.success)
+            for (String _iter249 : struct.success)
             {
               oprot.writeString(_iter249);
             }
@@ -13808,7 +13808,7 @@ public class VASSARInterface {
         if (struct.isSetSuccess()) {
           {
             oprot.writeI32(struct.success.size());
-            for (java.lang.String _iter250 : struct.success)
+            for (String _iter250 : struct.success)
             {
               oprot.writeString(_iter250);
             }
@@ -13823,8 +13823,8 @@ public class VASSARInterface {
         if (incoming.get(0)) {
           {
             org.apache.thrift.protocol.TList _list251 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, iprot.readI32());
-            struct.success = new java.util.ArrayList<java.lang.String>(_list251.size);
-            java.lang.String _elem252;
+            struct.success = new java.util.ArrayList<String>(_list251.size);
+            String _elem252;
             for (int _i253 = 0; _i253 < _list251.size; ++_i253)
             {
               _elem252 = iprot.readString();
@@ -13850,15 +13850,15 @@ public class VASSARInterface {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new getArchitectureScoreExplanation_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new getArchitectureScoreExplanation_argsTupleSchemeFactory();
 
-    public java.lang.String problem; // required
-    public java.util.List<java.lang.Boolean> arch; // required
+    public String problem; // required
+    public java.util.List<Boolean> arch; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       PROBLEM((short)1, "problem"),
       ARCH((short)2, "arch");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -13886,21 +13886,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -13909,7 +13909,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -13931,8 +13931,8 @@ public class VASSARInterface {
     }
 
     public getArchitectureScoreExplanation_args(
-      java.lang.String problem,
-      java.util.List<java.lang.Boolean> arch)
+      String problem,
+      java.util.List<Boolean> arch)
     {
       this();
       this.problem = problem;
@@ -13947,7 +13947,7 @@ public class VASSARInterface {
         this.problem = other.problem;
       }
       if (other.isSetArch()) {
-        java.util.List<java.lang.Boolean> __this__arch = new java.util.ArrayList<java.lang.Boolean>(other.arch);
+        java.util.List<Boolean> __this__arch = new java.util.ArrayList<Boolean>(other.arch);
         this.arch = __this__arch;
       }
     }
@@ -13962,11 +13962,11 @@ public class VASSARInterface {
       this.arch = null;
     }
 
-    public java.lang.String getProblem() {
+    public String getProblem() {
       return this.problem;
     }
 
-    public getArchitectureScoreExplanation_args setProblem(java.lang.String problem) {
+    public getArchitectureScoreExplanation_args setProblem(String problem) {
       this.problem = problem;
       return this;
     }
@@ -13990,22 +13990,22 @@ public class VASSARInterface {
       return (this.arch == null) ? 0 : this.arch.size();
     }
 
-    public java.util.Iterator<java.lang.Boolean> getArchIterator() {
+    public java.util.Iterator<Boolean> getArchIterator() {
       return (this.arch == null) ? null : this.arch.iterator();
     }
 
     public void addToArch(boolean elem) {
       if (this.arch == null) {
-        this.arch = new java.util.ArrayList<java.lang.Boolean>();
+        this.arch = new java.util.ArrayList<Boolean>();
       }
       this.arch.add(elem);
     }
 
-    public java.util.List<java.lang.Boolean> getArch() {
+    public java.util.List<Boolean> getArch() {
       return this.arch;
     }
 
-    public getArchitectureScoreExplanation_args setArch(java.util.List<java.lang.Boolean> arch) {
+    public getArchitectureScoreExplanation_args setArch(java.util.List<Boolean> arch) {
       this.arch = arch;
       return this;
     }
@@ -14025,13 +14025,13 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case PROBLEM:
         if (value == null) {
           unsetProblem();
         } else {
-          setProblem((java.lang.String)value);
+          setProblem((String)value);
         }
         break;
 
@@ -14039,14 +14039,14 @@ public class VASSARInterface {
         if (value == null) {
           unsetArch();
         } else {
-          setArch((java.util.List<java.lang.Boolean>)value);
+          setArch((java.util.List<Boolean>)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case PROBLEM:
         return getProblem();
@@ -14055,13 +14055,13 @@ public class VASSARInterface {
         return getArch();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
@@ -14070,11 +14070,11 @@ public class VASSARInterface {
       case ARCH:
         return isSetArch();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof getArchitectureScoreExplanation_args)
@@ -14132,7 +14132,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
+      lastComparison = Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -14142,7 +14142,7 @@ public class VASSARInterface {
           return lastComparison;
         }
       }
-      lastComparison = java.lang.Boolean.valueOf(isSetArch()).compareTo(other.isSetArch());
+      lastComparison = Boolean.valueOf(isSetArch()).compareTo(other.isSetArch());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -14168,8 +14168,8 @@ public class VASSARInterface {
     }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("getArchitectureScoreExplanation_args(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("getArchitectureScoreExplanation_args(");
       boolean first = true;
 
       sb.append("problem:");
@@ -14204,7 +14204,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -14242,7 +14242,7 @@ public class VASSARInterface {
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
                   org.apache.thrift.protocol.TList _list254 = iprot.readListBegin();
-                  struct.arch = new java.util.ArrayList<java.lang.Boolean>(_list254.size);
+                  struct.arch = new java.util.ArrayList<Boolean>(_list254.size);
                   boolean _elem255;
                   for (int _i256 = 0; _i256 < _list254.size; ++_i256)
                   {
@@ -14338,7 +14338,7 @@ public class VASSARInterface {
         if (incoming.get(1)) {
           {
             org.apache.thrift.protocol.TList _list259 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.BOOL, iprot.readI32());
-            struct.arch = new java.util.ArrayList<java.lang.Boolean>(_list259.size);
+            struct.arch = new java.util.ArrayList<Boolean>(_list259.size);
             boolean _elem260;
             for (int _i261 = 0; _i261 < _list259.size; ++_i261)
             {
@@ -14370,7 +14370,7 @@ public class VASSARInterface {
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       SUCCESS((short)0, "success");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -14396,21 +14396,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -14419,7 +14419,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -14506,7 +14506,7 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case SUCCESS:
         if (value == null) {
@@ -14519,30 +14519,30 @@ public class VASSARInterface {
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case SUCCESS:
         return getSuccess();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case SUCCESS:
         return isSetSuccess();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof getArchitectureScoreExplanation_result)
@@ -14587,7 +14587,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -14613,8 +14613,8 @@ public class VASSARInterface {
       }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("getArchitectureScoreExplanation_result(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("getArchitectureScoreExplanation_result(");
       boolean first = true;
 
       sb.append("success:");
@@ -14641,7 +14641,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -14782,9 +14782,9 @@ public class VASSARInterface {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new getPanelScoreExplanation_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new getPanelScoreExplanation_argsTupleSchemeFactory();
 
-    public java.lang.String problem; // required
-    public java.util.List<java.lang.Boolean> arch; // required
-    public java.lang.String panel; // required
+    public String problem; // required
+    public java.util.List<Boolean> arch; // required
+    public String panel; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -14792,7 +14792,7 @@ public class VASSARInterface {
       ARCH((short)2, "arch"),
       PANEL((short)3, "panel");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -14822,21 +14822,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -14845,7 +14845,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -14869,9 +14869,9 @@ public class VASSARInterface {
     }
 
     public getPanelScoreExplanation_args(
-      java.lang.String problem,
-      java.util.List<java.lang.Boolean> arch,
-      java.lang.String panel)
+      String problem,
+      java.util.List<Boolean> arch,
+      String panel)
     {
       this();
       this.problem = problem;
@@ -14887,7 +14887,7 @@ public class VASSARInterface {
         this.problem = other.problem;
       }
       if (other.isSetArch()) {
-        java.util.List<java.lang.Boolean> __this__arch = new java.util.ArrayList<java.lang.Boolean>(other.arch);
+        java.util.List<Boolean> __this__arch = new java.util.ArrayList<Boolean>(other.arch);
         this.arch = __this__arch;
       }
       if (other.isSetPanel()) {
@@ -14906,11 +14906,11 @@ public class VASSARInterface {
       this.panel = null;
     }
 
-    public java.lang.String getProblem() {
+    public String getProblem() {
       return this.problem;
     }
 
-    public getPanelScoreExplanation_args setProblem(java.lang.String problem) {
+    public getPanelScoreExplanation_args setProblem(String problem) {
       this.problem = problem;
       return this;
     }
@@ -14934,22 +14934,22 @@ public class VASSARInterface {
       return (this.arch == null) ? 0 : this.arch.size();
     }
 
-    public java.util.Iterator<java.lang.Boolean> getArchIterator() {
+    public java.util.Iterator<Boolean> getArchIterator() {
       return (this.arch == null) ? null : this.arch.iterator();
     }
 
     public void addToArch(boolean elem) {
       if (this.arch == null) {
-        this.arch = new java.util.ArrayList<java.lang.Boolean>();
+        this.arch = new java.util.ArrayList<Boolean>();
       }
       this.arch.add(elem);
     }
 
-    public java.util.List<java.lang.Boolean> getArch() {
+    public java.util.List<Boolean> getArch() {
       return this.arch;
     }
 
-    public getPanelScoreExplanation_args setArch(java.util.List<java.lang.Boolean> arch) {
+    public getPanelScoreExplanation_args setArch(java.util.List<Boolean> arch) {
       this.arch = arch;
       return this;
     }
@@ -14969,11 +14969,11 @@ public class VASSARInterface {
       }
     }
 
-    public java.lang.String getPanel() {
+    public String getPanel() {
       return this.panel;
     }
 
-    public getPanelScoreExplanation_args setPanel(java.lang.String panel) {
+    public getPanelScoreExplanation_args setPanel(String panel) {
       this.panel = panel;
       return this;
     }
@@ -14993,13 +14993,13 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case PROBLEM:
         if (value == null) {
           unsetProblem();
         } else {
-          setProblem((java.lang.String)value);
+          setProblem((String)value);
         }
         break;
 
@@ -15007,7 +15007,7 @@ public class VASSARInterface {
         if (value == null) {
           unsetArch();
         } else {
-          setArch((java.util.List<java.lang.Boolean>)value);
+          setArch((java.util.List<Boolean>)value);
         }
         break;
 
@@ -15015,14 +15015,14 @@ public class VASSARInterface {
         if (value == null) {
           unsetPanel();
         } else {
-          setPanel((java.lang.String)value);
+          setPanel((String)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case PROBLEM:
         return getProblem();
@@ -15034,13 +15034,13 @@ public class VASSARInterface {
         return getPanel();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
@@ -15051,11 +15051,11 @@ public class VASSARInterface {
       case PANEL:
         return isSetPanel();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof getPanelScoreExplanation_args)
@@ -15126,7 +15126,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
+      lastComparison = Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -15136,7 +15136,7 @@ public class VASSARInterface {
           return lastComparison;
         }
       }
-      lastComparison = java.lang.Boolean.valueOf(isSetArch()).compareTo(other.isSetArch());
+      lastComparison = Boolean.valueOf(isSetArch()).compareTo(other.isSetArch());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -15146,7 +15146,7 @@ public class VASSARInterface {
           return lastComparison;
         }
       }
-      lastComparison = java.lang.Boolean.valueOf(isSetPanel()).compareTo(other.isSetPanel());
+      lastComparison = Boolean.valueOf(isSetPanel()).compareTo(other.isSetPanel());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -15172,8 +15172,8 @@ public class VASSARInterface {
     }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("getPanelScoreExplanation_args(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("getPanelScoreExplanation_args(");
       boolean first = true;
 
       sb.append("problem:");
@@ -15216,7 +15216,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -15254,7 +15254,7 @@ public class VASSARInterface {
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
                   org.apache.thrift.protocol.TList _list270 = iprot.readListBegin();
-                  struct.arch = new java.util.ArrayList<java.lang.Boolean>(_list270.size);
+                  struct.arch = new java.util.ArrayList<Boolean>(_list270.size);
                   boolean _elem271;
                   for (int _i272 = 0; _i272 < _list270.size; ++_i272)
                   {
@@ -15369,7 +15369,7 @@ public class VASSARInterface {
         if (incoming.get(1)) {
           {
             org.apache.thrift.protocol.TList _list275 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.BOOL, iprot.readI32());
-            struct.arch = new java.util.ArrayList<java.lang.Boolean>(_list275.size);
+            struct.arch = new java.util.ArrayList<Boolean>(_list275.size);
             boolean _elem276;
             for (int _i277 = 0; _i277 < _list275.size; ++_i277)
             {
@@ -15405,7 +15405,7 @@ public class VASSARInterface {
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       SUCCESS((short)0, "success");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -15431,21 +15431,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -15454,7 +15454,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -15541,7 +15541,7 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case SUCCESS:
         if (value == null) {
@@ -15554,30 +15554,30 @@ public class VASSARInterface {
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case SUCCESS:
         return getSuccess();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case SUCCESS:
         return isSetSuccess();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof getPanelScoreExplanation_result)
@@ -15622,7 +15622,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -15648,8 +15648,8 @@ public class VASSARInterface {
       }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("getPanelScoreExplanation_result(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("getPanelScoreExplanation_result(");
       boolean first = true;
 
       sb.append("success:");
@@ -15676,7 +15676,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -15817,9 +15817,9 @@ public class VASSARInterface {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new getObjectiveScoreExplanation_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new getObjectiveScoreExplanation_argsTupleSchemeFactory();
 
-    public java.lang.String problem; // required
-    public java.util.List<java.lang.Boolean> arch; // required
-    public java.lang.String objective; // required
+    public String problem; // required
+    public java.util.List<Boolean> arch; // required
+    public String objective; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -15827,7 +15827,7 @@ public class VASSARInterface {
       ARCH((short)2, "arch"),
       OBJECTIVE((short)3, "objective");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -15857,21 +15857,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -15880,7 +15880,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -15904,9 +15904,9 @@ public class VASSARInterface {
     }
 
     public getObjectiveScoreExplanation_args(
-      java.lang.String problem,
-      java.util.List<java.lang.Boolean> arch,
-      java.lang.String objective)
+      String problem,
+      java.util.List<Boolean> arch,
+      String objective)
     {
       this();
       this.problem = problem;
@@ -15922,7 +15922,7 @@ public class VASSARInterface {
         this.problem = other.problem;
       }
       if (other.isSetArch()) {
-        java.util.List<java.lang.Boolean> __this__arch = new java.util.ArrayList<java.lang.Boolean>(other.arch);
+        java.util.List<Boolean> __this__arch = new java.util.ArrayList<Boolean>(other.arch);
         this.arch = __this__arch;
       }
       if (other.isSetObjective()) {
@@ -15941,11 +15941,11 @@ public class VASSARInterface {
       this.objective = null;
     }
 
-    public java.lang.String getProblem() {
+    public String getProblem() {
       return this.problem;
     }
 
-    public getObjectiveScoreExplanation_args setProblem(java.lang.String problem) {
+    public getObjectiveScoreExplanation_args setProblem(String problem) {
       this.problem = problem;
       return this;
     }
@@ -15969,22 +15969,22 @@ public class VASSARInterface {
       return (this.arch == null) ? 0 : this.arch.size();
     }
 
-    public java.util.Iterator<java.lang.Boolean> getArchIterator() {
+    public java.util.Iterator<Boolean> getArchIterator() {
       return (this.arch == null) ? null : this.arch.iterator();
     }
 
     public void addToArch(boolean elem) {
       if (this.arch == null) {
-        this.arch = new java.util.ArrayList<java.lang.Boolean>();
+        this.arch = new java.util.ArrayList<Boolean>();
       }
       this.arch.add(elem);
     }
 
-    public java.util.List<java.lang.Boolean> getArch() {
+    public java.util.List<Boolean> getArch() {
       return this.arch;
     }
 
-    public getObjectiveScoreExplanation_args setArch(java.util.List<java.lang.Boolean> arch) {
+    public getObjectiveScoreExplanation_args setArch(java.util.List<Boolean> arch) {
       this.arch = arch;
       return this;
     }
@@ -16004,11 +16004,11 @@ public class VASSARInterface {
       }
     }
 
-    public java.lang.String getObjective() {
+    public String getObjective() {
       return this.objective;
     }
 
-    public getObjectiveScoreExplanation_args setObjective(java.lang.String objective) {
+    public getObjectiveScoreExplanation_args setObjective(String objective) {
       this.objective = objective;
       return this;
     }
@@ -16028,13 +16028,13 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case PROBLEM:
         if (value == null) {
           unsetProblem();
         } else {
-          setProblem((java.lang.String)value);
+          setProblem((String)value);
         }
         break;
 
@@ -16042,7 +16042,7 @@ public class VASSARInterface {
         if (value == null) {
           unsetArch();
         } else {
-          setArch((java.util.List<java.lang.Boolean>)value);
+          setArch((java.util.List<Boolean>)value);
         }
         break;
 
@@ -16050,14 +16050,14 @@ public class VASSARInterface {
         if (value == null) {
           unsetObjective();
         } else {
-          setObjective((java.lang.String)value);
+          setObjective((String)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case PROBLEM:
         return getProblem();
@@ -16069,13 +16069,13 @@ public class VASSARInterface {
         return getObjective();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
@@ -16086,11 +16086,11 @@ public class VASSARInterface {
       case OBJECTIVE:
         return isSetObjective();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof getObjectiveScoreExplanation_args)
@@ -16161,7 +16161,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
+      lastComparison = Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -16171,7 +16171,7 @@ public class VASSARInterface {
           return lastComparison;
         }
       }
-      lastComparison = java.lang.Boolean.valueOf(isSetArch()).compareTo(other.isSetArch());
+      lastComparison = Boolean.valueOf(isSetArch()).compareTo(other.isSetArch());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -16181,7 +16181,7 @@ public class VASSARInterface {
           return lastComparison;
         }
       }
-      lastComparison = java.lang.Boolean.valueOf(isSetObjective()).compareTo(other.isSetObjective());
+      lastComparison = Boolean.valueOf(isSetObjective()).compareTo(other.isSetObjective());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -16207,8 +16207,8 @@ public class VASSARInterface {
     }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("getObjectiveScoreExplanation_args(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("getObjectiveScoreExplanation_args(");
       boolean first = true;
 
       sb.append("problem:");
@@ -16251,7 +16251,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -16289,7 +16289,7 @@ public class VASSARInterface {
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
                   org.apache.thrift.protocol.TList _list286 = iprot.readListBegin();
-                  struct.arch = new java.util.ArrayList<java.lang.Boolean>(_list286.size);
+                  struct.arch = new java.util.ArrayList<Boolean>(_list286.size);
                   boolean _elem287;
                   for (int _i288 = 0; _i288 < _list286.size; ++_i288)
                   {
@@ -16404,7 +16404,7 @@ public class VASSARInterface {
         if (incoming.get(1)) {
           {
             org.apache.thrift.protocol.TList _list291 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.BOOL, iprot.readI32());
-            struct.arch = new java.util.ArrayList<java.lang.Boolean>(_list291.size);
+            struct.arch = new java.util.ArrayList<Boolean>(_list291.size);
             boolean _elem292;
             for (int _i293 = 0; _i293 < _list291.size; ++_i293)
             {
@@ -16440,7 +16440,7 @@ public class VASSARInterface {
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       SUCCESS((short)0, "success");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -16466,21 +16466,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -16489,7 +16489,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -16576,7 +16576,7 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case SUCCESS:
         if (value == null) {
@@ -16589,30 +16589,30 @@ public class VASSARInterface {
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case SUCCESS:
         return getSuccess();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case SUCCESS:
         return isSetSuccess();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof getObjectiveScoreExplanation_result)
@@ -16657,7 +16657,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -16683,8 +16683,8 @@ public class VASSARInterface {
       }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("getObjectiveScoreExplanation_result(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("getObjectiveScoreExplanation_result(");
       boolean first = true;
 
       sb.append("success:");
@@ -16711,7 +16711,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -16854,7 +16854,7 @@ public class VASSARInterface {
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
 ;
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -16878,21 +16878,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -16901,7 +16901,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -16929,30 +16929,30 @@ public class VASSARInterface {
     public void clear() {
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof isGABinaryInputRunning_args)
@@ -17000,8 +17000,8 @@ public class VASSARInterface {
     }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("isGABinaryInputRunning_args(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("isGABinaryInputRunning_args(");
       boolean first = true;
 
       sb.append(")");
@@ -17021,7 +17021,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -17106,7 +17106,7 @@ public class VASSARInterface {
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       SUCCESS((short)0, "success");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -17132,21 +17132,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -17155,7 +17155,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -17224,43 +17224,43 @@ public class VASSARInterface {
       __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __SUCCESS_ISSET_ID, value);
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case SUCCESS:
         if (value == null) {
           unsetSuccess();
         } else {
-          setSuccess((java.lang.Boolean)value);
+          setSuccess((Boolean)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case SUCCESS:
         return isSuccess();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case SUCCESS:
         return isSetSuccess();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof isGABinaryInputRunning_result)
@@ -17303,7 +17303,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -17329,8 +17329,8 @@ public class VASSARInterface {
       }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("isGABinaryInputRunning_result(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("isGABinaryInputRunning_result(");
       boolean first = true;
 
       sb.append("success:");
@@ -17353,7 +17353,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
         __isset_bitfield = 0;
@@ -17462,9 +17462,9 @@ public class VASSARInterface {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new toggleGABinaryInput_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new toggleGABinaryInput_argsTupleSchemeFactory();
 
-    public java.lang.String problem; // required
+    public String problem; // required
     public java.util.List<BinaryInputArchitecture> dataset; // required
-    public java.lang.String username; // required
+    public String username; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -17472,7 +17472,7 @@ public class VASSARInterface {
       DATASET((short)2, "dataset"),
       USERNAME((short)3, "username");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -17502,21 +17502,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -17525,7 +17525,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -17549,9 +17549,9 @@ public class VASSARInterface {
     }
 
     public toggleGABinaryInput_args(
-      java.lang.String problem,
+      String problem,
       java.util.List<BinaryInputArchitecture> dataset,
-      java.lang.String username)
+      String username)
     {
       this();
       this.problem = problem;
@@ -17589,11 +17589,11 @@ public class VASSARInterface {
       this.username = null;
     }
 
-    public java.lang.String getProblem() {
+    public String getProblem() {
       return this.problem;
     }
 
-    public toggleGABinaryInput_args setProblem(java.lang.String problem) {
+    public toggleGABinaryInput_args setProblem(String problem) {
       this.problem = problem;
       return this;
     }
@@ -17652,11 +17652,11 @@ public class VASSARInterface {
       }
     }
 
-    public java.lang.String getUsername() {
+    public String getUsername() {
       return this.username;
     }
 
-    public toggleGABinaryInput_args setUsername(java.lang.String username) {
+    public toggleGABinaryInput_args setUsername(String username) {
       this.username = username;
       return this;
     }
@@ -17676,13 +17676,13 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case PROBLEM:
         if (value == null) {
           unsetProblem();
         } else {
-          setProblem((java.lang.String)value);
+          setProblem((String)value);
         }
         break;
 
@@ -17698,14 +17698,14 @@ public class VASSARInterface {
         if (value == null) {
           unsetUsername();
         } else {
-          setUsername((java.lang.String)value);
+          setUsername((String)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case PROBLEM:
         return getProblem();
@@ -17717,13 +17717,13 @@ public class VASSARInterface {
         return getUsername();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
@@ -17734,11 +17734,11 @@ public class VASSARInterface {
       case USERNAME:
         return isSetUsername();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof toggleGABinaryInput_args)
@@ -17809,7 +17809,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
+      lastComparison = Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -17819,7 +17819,7 @@ public class VASSARInterface {
           return lastComparison;
         }
       }
-      lastComparison = java.lang.Boolean.valueOf(isSetDataset()).compareTo(other.isSetDataset());
+      lastComparison = Boolean.valueOf(isSetDataset()).compareTo(other.isSetDataset());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -17829,7 +17829,7 @@ public class VASSARInterface {
           return lastComparison;
         }
       }
-      lastComparison = java.lang.Boolean.valueOf(isSetUsername()).compareTo(other.isSetUsername());
+      lastComparison = Boolean.valueOf(isSetUsername()).compareTo(other.isSetUsername());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -17855,8 +17855,8 @@ public class VASSARInterface {
     }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("toggleGABinaryInput_args(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("toggleGABinaryInput_args(");
       boolean first = true;
 
       sb.append("problem:");
@@ -17899,7 +17899,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -18085,7 +18085,7 @@ public class VASSARInterface {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new getArchScienceInformationBinaryInput_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new getArchScienceInformationBinaryInput_argsTupleSchemeFactory();
 
-    public java.lang.String problem; // required
+    public String problem; // required
     public BinaryInputArchitecture arch; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
@@ -18093,7 +18093,7 @@ public class VASSARInterface {
       PROBLEM((short)1, "problem"),
       ARCH((short)2, "arch");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -18121,21 +18121,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -18144,7 +18144,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -18165,7 +18165,7 @@ public class VASSARInterface {
     }
 
     public getArchScienceInformationBinaryInput_args(
-      java.lang.String problem,
+      String problem,
       BinaryInputArchitecture arch)
     {
       this();
@@ -18195,11 +18195,11 @@ public class VASSARInterface {
       this.arch = null;
     }
 
-    public java.lang.String getProblem() {
+    public String getProblem() {
       return this.problem;
     }
 
-    public getArchScienceInformationBinaryInput_args setProblem(java.lang.String problem) {
+    public getArchScienceInformationBinaryInput_args setProblem(String problem) {
       this.problem = problem;
       return this;
     }
@@ -18243,13 +18243,13 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case PROBLEM:
         if (value == null) {
           unsetProblem();
         } else {
-          setProblem((java.lang.String)value);
+          setProblem((String)value);
         }
         break;
 
@@ -18264,7 +18264,7 @@ public class VASSARInterface {
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case PROBLEM:
         return getProblem();
@@ -18273,13 +18273,13 @@ public class VASSARInterface {
         return getArch();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
@@ -18288,11 +18288,11 @@ public class VASSARInterface {
       case ARCH:
         return isSetArch();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof getArchScienceInformationBinaryInput_args)
@@ -18350,7 +18350,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
+      lastComparison = Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -18360,7 +18360,7 @@ public class VASSARInterface {
           return lastComparison;
         }
       }
-      lastComparison = java.lang.Boolean.valueOf(isSetArch()).compareTo(other.isSetArch());
+      lastComparison = Boolean.valueOf(isSetArch()).compareTo(other.isSetArch());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -18386,8 +18386,8 @@ public class VASSARInterface {
     }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("getArchScienceInformationBinaryInput_args(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("getArchScienceInformationBinaryInput_args(");
       boolean first = true;
 
       sb.append("problem:");
@@ -18425,7 +18425,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -18561,7 +18561,7 @@ public class VASSARInterface {
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       SUCCESS((short)0, "success");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -18587,21 +18587,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -18610,7 +18610,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -18697,7 +18697,7 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case SUCCESS:
         if (value == null) {
@@ -18710,30 +18710,30 @@ public class VASSARInterface {
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case SUCCESS:
         return getSuccess();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case SUCCESS:
         return isSetSuccess();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof getArchScienceInformationBinaryInput_result)
@@ -18778,7 +18778,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -18804,8 +18804,8 @@ public class VASSARInterface {
       }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("getArchScienceInformationBinaryInput_result(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("getArchScienceInformationBinaryInput_result(");
       boolean first = true;
 
       sb.append("success:");
@@ -18832,7 +18832,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -18972,7 +18972,7 @@ public class VASSARInterface {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new getArchCostInformationBinaryInput_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new getArchCostInformationBinaryInput_argsTupleSchemeFactory();
 
-    public java.lang.String problem; // required
+    public String problem; // required
     public BinaryInputArchitecture arch; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
@@ -18980,7 +18980,7 @@ public class VASSARInterface {
       PROBLEM((short)1, "problem"),
       ARCH((short)2, "arch");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -19008,21 +19008,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -19031,7 +19031,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -19052,7 +19052,7 @@ public class VASSARInterface {
     }
 
     public getArchCostInformationBinaryInput_args(
-      java.lang.String problem,
+      String problem,
       BinaryInputArchitecture arch)
     {
       this();
@@ -19082,11 +19082,11 @@ public class VASSARInterface {
       this.arch = null;
     }
 
-    public java.lang.String getProblem() {
+    public String getProblem() {
       return this.problem;
     }
 
-    public getArchCostInformationBinaryInput_args setProblem(java.lang.String problem) {
+    public getArchCostInformationBinaryInput_args setProblem(String problem) {
       this.problem = problem;
       return this;
     }
@@ -19130,13 +19130,13 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case PROBLEM:
         if (value == null) {
           unsetProblem();
         } else {
-          setProblem((java.lang.String)value);
+          setProblem((String)value);
         }
         break;
 
@@ -19151,7 +19151,7 @@ public class VASSARInterface {
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case PROBLEM:
         return getProblem();
@@ -19160,13 +19160,13 @@ public class VASSARInterface {
         return getArch();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
@@ -19175,11 +19175,11 @@ public class VASSARInterface {
       case ARCH:
         return isSetArch();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof getArchCostInformationBinaryInput_args)
@@ -19237,7 +19237,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
+      lastComparison = Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -19247,7 +19247,7 @@ public class VASSARInterface {
           return lastComparison;
         }
       }
-      lastComparison = java.lang.Boolean.valueOf(isSetArch()).compareTo(other.isSetArch());
+      lastComparison = Boolean.valueOf(isSetArch()).compareTo(other.isSetArch());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -19273,8 +19273,8 @@ public class VASSARInterface {
     }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("getArchCostInformationBinaryInput_args(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("getArchCostInformationBinaryInput_args(");
       boolean first = true;
 
       sb.append("problem:");
@@ -19312,7 +19312,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -19448,7 +19448,7 @@ public class VASSARInterface {
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       SUCCESS((short)0, "success");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -19474,21 +19474,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -19497,7 +19497,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -19584,7 +19584,7 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case SUCCESS:
         if (value == null) {
@@ -19597,30 +19597,30 @@ public class VASSARInterface {
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case SUCCESS:
         return getSuccess();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case SUCCESS:
         return isSetSuccess();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof getArchCostInformationBinaryInput_result)
@@ -19665,7 +19665,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -19691,8 +19691,8 @@ public class VASSARInterface {
       }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("getArchCostInformationBinaryInput_result(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("getArchCostInformationBinaryInput_result(");
       boolean first = true;
 
       sb.append("success:");
@@ -19719,7 +19719,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -19860,9 +19860,9 @@ public class VASSARInterface {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new getSubscoreDetailsBinaryInput_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new getSubscoreDetailsBinaryInput_argsTupleSchemeFactory();
 
-    public java.lang.String problem; // required
+    public String problem; // required
     public BinaryInputArchitecture arch; // required
-    public java.lang.String subobj; // required
+    public String subobj; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -19870,7 +19870,7 @@ public class VASSARInterface {
       ARCH((short)2, "arch"),
       SUBOBJ((short)3, "subobj");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -19900,21 +19900,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -19923,7 +19923,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -19946,9 +19946,9 @@ public class VASSARInterface {
     }
 
     public getSubscoreDetailsBinaryInput_args(
-      java.lang.String problem,
+      String problem,
       BinaryInputArchitecture arch,
-      java.lang.String subobj)
+      String subobj)
     {
       this();
       this.problem = problem;
@@ -19982,11 +19982,11 @@ public class VASSARInterface {
       this.subobj = null;
     }
 
-    public java.lang.String getProblem() {
+    public String getProblem() {
       return this.problem;
     }
 
-    public getSubscoreDetailsBinaryInput_args setProblem(java.lang.String problem) {
+    public getSubscoreDetailsBinaryInput_args setProblem(String problem) {
       this.problem = problem;
       return this;
     }
@@ -20030,11 +20030,11 @@ public class VASSARInterface {
       }
     }
 
-    public java.lang.String getSubobj() {
+    public String getSubobj() {
       return this.subobj;
     }
 
-    public getSubscoreDetailsBinaryInput_args setSubobj(java.lang.String subobj) {
+    public getSubscoreDetailsBinaryInput_args setSubobj(String subobj) {
       this.subobj = subobj;
       return this;
     }
@@ -20054,13 +20054,13 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case PROBLEM:
         if (value == null) {
           unsetProblem();
         } else {
-          setProblem((java.lang.String)value);
+          setProblem((String)value);
         }
         break;
 
@@ -20076,14 +20076,14 @@ public class VASSARInterface {
         if (value == null) {
           unsetSubobj();
         } else {
-          setSubobj((java.lang.String)value);
+          setSubobj((String)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case PROBLEM:
         return getProblem();
@@ -20095,13 +20095,13 @@ public class VASSARInterface {
         return getSubobj();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
@@ -20112,11 +20112,11 @@ public class VASSARInterface {
       case SUBOBJ:
         return isSetSubobj();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof getSubscoreDetailsBinaryInput_args)
@@ -20187,7 +20187,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
+      lastComparison = Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -20197,7 +20197,7 @@ public class VASSARInterface {
           return lastComparison;
         }
       }
-      lastComparison = java.lang.Boolean.valueOf(isSetArch()).compareTo(other.isSetArch());
+      lastComparison = Boolean.valueOf(isSetArch()).compareTo(other.isSetArch());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -20207,7 +20207,7 @@ public class VASSARInterface {
           return lastComparison;
         }
       }
-      lastComparison = java.lang.Boolean.valueOf(isSetSubobj()).compareTo(other.isSetSubobj());
+      lastComparison = Boolean.valueOf(isSetSubobj()).compareTo(other.isSetSubobj());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -20233,8 +20233,8 @@ public class VASSARInterface {
     }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("getSubscoreDetailsBinaryInput_args(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("getSubscoreDetailsBinaryInput_args(");
       boolean first = true;
 
       sb.append("problem:");
@@ -20280,7 +20280,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -20439,7 +20439,7 @@ public class VASSARInterface {
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       SUCCESS((short)0, "success");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -20465,21 +20465,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -20488,7 +20488,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -20555,7 +20555,7 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case SUCCESS:
         if (value == null) {
@@ -20568,30 +20568,30 @@ public class VASSARInterface {
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case SUCCESS:
         return getSuccess();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case SUCCESS:
         return isSetSuccess();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof getSubscoreDetailsBinaryInput_result)
@@ -20636,7 +20636,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -20662,8 +20662,8 @@ public class VASSARInterface {
       }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("getSubscoreDetailsBinaryInput_result(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("getSubscoreDetailsBinaryInput_result(");
       boolean first = true;
 
       sb.append("success:");
@@ -20693,7 +20693,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -20804,7 +20804,7 @@ public class VASSARInterface {
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
 ;
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -20828,21 +20828,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -20851,7 +20851,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -20879,30 +20879,30 @@ public class VASSARInterface {
     public void clear() {
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof isGADiscreteInputRunning_args)
@@ -20950,8 +20950,8 @@ public class VASSARInterface {
     }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("isGADiscreteInputRunning_args(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("isGADiscreteInputRunning_args(");
       boolean first = true;
 
       sb.append(")");
@@ -20971,7 +20971,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -21056,7 +21056,7 @@ public class VASSARInterface {
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       SUCCESS((short)0, "success");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -21082,21 +21082,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -21105,7 +21105,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -21174,43 +21174,43 @@ public class VASSARInterface {
       __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __SUCCESS_ISSET_ID, value);
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case SUCCESS:
         if (value == null) {
           unsetSuccess();
         } else {
-          setSuccess((java.lang.Boolean)value);
+          setSuccess((Boolean)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case SUCCESS:
         return isSuccess();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case SUCCESS:
         return isSetSuccess();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof isGADiscreteInputRunning_result)
@@ -21253,7 +21253,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -21279,8 +21279,8 @@ public class VASSARInterface {
       }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("isGADiscreteInputRunning_result(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("isGADiscreteInputRunning_result(");
       boolean first = true;
 
       sb.append("success:");
@@ -21303,7 +21303,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
         __isset_bitfield = 0;
@@ -21412,9 +21412,9 @@ public class VASSARInterface {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new toggleGADiscreteInput_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new toggleGADiscreteInput_argsTupleSchemeFactory();
 
-    public java.lang.String problem; // required
+    public String problem; // required
     public java.util.List<DiscreteInputArchitecture> dataset; // required
-    public java.lang.String username; // required
+    public String username; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -21422,7 +21422,7 @@ public class VASSARInterface {
       DATASET((short)2, "dataset"),
       USERNAME((short)3, "username");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -21452,21 +21452,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -21475,7 +21475,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -21499,9 +21499,9 @@ public class VASSARInterface {
     }
 
     public toggleGADiscreteInput_args(
-      java.lang.String problem,
+      String problem,
       java.util.List<DiscreteInputArchitecture> dataset,
-      java.lang.String username)
+      String username)
     {
       this();
       this.problem = problem;
@@ -21539,11 +21539,11 @@ public class VASSARInterface {
       this.username = null;
     }
 
-    public java.lang.String getProblem() {
+    public String getProblem() {
       return this.problem;
     }
 
-    public toggleGADiscreteInput_args setProblem(java.lang.String problem) {
+    public toggleGADiscreteInput_args setProblem(String problem) {
       this.problem = problem;
       return this;
     }
@@ -21602,11 +21602,11 @@ public class VASSARInterface {
       }
     }
 
-    public java.lang.String getUsername() {
+    public String getUsername() {
       return this.username;
     }
 
-    public toggleGADiscreteInput_args setUsername(java.lang.String username) {
+    public toggleGADiscreteInput_args setUsername(String username) {
       this.username = username;
       return this;
     }
@@ -21626,13 +21626,13 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case PROBLEM:
         if (value == null) {
           unsetProblem();
         } else {
-          setProblem((java.lang.String)value);
+          setProblem((String)value);
         }
         break;
 
@@ -21648,14 +21648,14 @@ public class VASSARInterface {
         if (value == null) {
           unsetUsername();
         } else {
-          setUsername((java.lang.String)value);
+          setUsername((String)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case PROBLEM:
         return getProblem();
@@ -21667,13 +21667,13 @@ public class VASSARInterface {
         return getUsername();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
@@ -21684,11 +21684,11 @@ public class VASSARInterface {
       case USERNAME:
         return isSetUsername();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof toggleGADiscreteInput_args)
@@ -21759,7 +21759,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
+      lastComparison = Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -21769,7 +21769,7 @@ public class VASSARInterface {
           return lastComparison;
         }
       }
-      lastComparison = java.lang.Boolean.valueOf(isSetDataset()).compareTo(other.isSetDataset());
+      lastComparison = Boolean.valueOf(isSetDataset()).compareTo(other.isSetDataset());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -21779,7 +21779,7 @@ public class VASSARInterface {
           return lastComparison;
         }
       }
-      lastComparison = java.lang.Boolean.valueOf(isSetUsername()).compareTo(other.isSetUsername());
+      lastComparison = Boolean.valueOf(isSetUsername()).compareTo(other.isSetUsername());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -21805,8 +21805,8 @@ public class VASSARInterface {
     }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("toggleGADiscreteInput_args(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("toggleGADiscreteInput_args(");
       boolean first = true;
 
       sb.append("problem:");
@@ -21849,7 +21849,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -22035,7 +22035,7 @@ public class VASSARInterface {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new getArchScienceInformationDiscreteInput_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new getArchScienceInformationDiscreteInput_argsTupleSchemeFactory();
 
-    public java.lang.String problem; // required
+    public String problem; // required
     public DiscreteInputArchitecture arch; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
@@ -22043,7 +22043,7 @@ public class VASSARInterface {
       PROBLEM((short)1, "problem"),
       ARCH((short)2, "arch");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -22071,21 +22071,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -22094,7 +22094,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -22115,7 +22115,7 @@ public class VASSARInterface {
     }
 
     public getArchScienceInformationDiscreteInput_args(
-      java.lang.String problem,
+      String problem,
       DiscreteInputArchitecture arch)
     {
       this();
@@ -22145,11 +22145,11 @@ public class VASSARInterface {
       this.arch = null;
     }
 
-    public java.lang.String getProblem() {
+    public String getProblem() {
       return this.problem;
     }
 
-    public getArchScienceInformationDiscreteInput_args setProblem(java.lang.String problem) {
+    public getArchScienceInformationDiscreteInput_args setProblem(String problem) {
       this.problem = problem;
       return this;
     }
@@ -22193,13 +22193,13 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case PROBLEM:
         if (value == null) {
           unsetProblem();
         } else {
-          setProblem((java.lang.String)value);
+          setProblem((String)value);
         }
         break;
 
@@ -22214,7 +22214,7 @@ public class VASSARInterface {
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case PROBLEM:
         return getProblem();
@@ -22223,13 +22223,13 @@ public class VASSARInterface {
         return getArch();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
@@ -22238,11 +22238,11 @@ public class VASSARInterface {
       case ARCH:
         return isSetArch();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof getArchScienceInformationDiscreteInput_args)
@@ -22300,7 +22300,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
+      lastComparison = Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -22310,7 +22310,7 @@ public class VASSARInterface {
           return lastComparison;
         }
       }
-      lastComparison = java.lang.Boolean.valueOf(isSetArch()).compareTo(other.isSetArch());
+      lastComparison = Boolean.valueOf(isSetArch()).compareTo(other.isSetArch());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -22336,8 +22336,8 @@ public class VASSARInterface {
     }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("getArchScienceInformationDiscreteInput_args(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("getArchScienceInformationDiscreteInput_args(");
       boolean first = true;
 
       sb.append("problem:");
@@ -22375,7 +22375,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -22511,7 +22511,7 @@ public class VASSARInterface {
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       SUCCESS((short)0, "success");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -22537,21 +22537,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -22560,7 +22560,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -22647,7 +22647,7 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case SUCCESS:
         if (value == null) {
@@ -22660,30 +22660,30 @@ public class VASSARInterface {
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case SUCCESS:
         return getSuccess();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case SUCCESS:
         return isSetSuccess();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof getArchScienceInformationDiscreteInput_result)
@@ -22728,7 +22728,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -22754,8 +22754,8 @@ public class VASSARInterface {
       }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("getArchScienceInformationDiscreteInput_result(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("getArchScienceInformationDiscreteInput_result(");
       boolean first = true;
 
       sb.append("success:");
@@ -22782,7 +22782,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -22922,7 +22922,7 @@ public class VASSARInterface {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new getArchCostInformationDiscreteInput_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new getArchCostInformationDiscreteInput_argsTupleSchemeFactory();
 
-    public java.lang.String problem; // required
+    public String problem; // required
     public DiscreteInputArchitecture arch; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
@@ -22930,7 +22930,7 @@ public class VASSARInterface {
       PROBLEM((short)1, "problem"),
       ARCH((short)2, "arch");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -22958,21 +22958,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -22981,7 +22981,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -23002,7 +23002,7 @@ public class VASSARInterface {
     }
 
     public getArchCostInformationDiscreteInput_args(
-      java.lang.String problem,
+      String problem,
       DiscreteInputArchitecture arch)
     {
       this();
@@ -23032,11 +23032,11 @@ public class VASSARInterface {
       this.arch = null;
     }
 
-    public java.lang.String getProblem() {
+    public String getProblem() {
       return this.problem;
     }
 
-    public getArchCostInformationDiscreteInput_args setProblem(java.lang.String problem) {
+    public getArchCostInformationDiscreteInput_args setProblem(String problem) {
       this.problem = problem;
       return this;
     }
@@ -23080,13 +23080,13 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case PROBLEM:
         if (value == null) {
           unsetProblem();
         } else {
-          setProblem((java.lang.String)value);
+          setProblem((String)value);
         }
         break;
 
@@ -23101,7 +23101,7 @@ public class VASSARInterface {
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case PROBLEM:
         return getProblem();
@@ -23110,13 +23110,13 @@ public class VASSARInterface {
         return getArch();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
@@ -23125,11 +23125,11 @@ public class VASSARInterface {
       case ARCH:
         return isSetArch();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof getArchCostInformationDiscreteInput_args)
@@ -23187,7 +23187,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
+      lastComparison = Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -23197,7 +23197,7 @@ public class VASSARInterface {
           return lastComparison;
         }
       }
-      lastComparison = java.lang.Boolean.valueOf(isSetArch()).compareTo(other.isSetArch());
+      lastComparison = Boolean.valueOf(isSetArch()).compareTo(other.isSetArch());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -23223,8 +23223,8 @@ public class VASSARInterface {
     }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("getArchCostInformationDiscreteInput_args(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("getArchCostInformationDiscreteInput_args(");
       boolean first = true;
 
       sb.append("problem:");
@@ -23262,7 +23262,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -23398,7 +23398,7 @@ public class VASSARInterface {
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       SUCCESS((short)0, "success");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -23424,21 +23424,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -23447,7 +23447,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -23534,7 +23534,7 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case SUCCESS:
         if (value == null) {
@@ -23547,30 +23547,30 @@ public class VASSARInterface {
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case SUCCESS:
         return getSuccess();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case SUCCESS:
         return isSetSuccess();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof getArchCostInformationDiscreteInput_result)
@@ -23615,7 +23615,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -23641,8 +23641,8 @@ public class VASSARInterface {
       }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("getArchCostInformationDiscreteInput_result(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("getArchCostInformationDiscreteInput_result(");
       boolean first = true;
 
       sb.append("success:");
@@ -23669,7 +23669,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -23810,9 +23810,9 @@ public class VASSARInterface {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new getSubscoreDetailsDiscreteInput_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new getSubscoreDetailsDiscreteInput_argsTupleSchemeFactory();
 
-    public java.lang.String problem; // required
+    public String problem; // required
     public DiscreteInputArchitecture arch; // required
-    public java.lang.String subobj; // required
+    public String subobj; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -23820,7 +23820,7 @@ public class VASSARInterface {
       ARCH((short)2, "arch"),
       SUBOBJ((short)3, "subobj");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -23850,21 +23850,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -23873,7 +23873,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -23896,9 +23896,9 @@ public class VASSARInterface {
     }
 
     public getSubscoreDetailsDiscreteInput_args(
-      java.lang.String problem,
+      String problem,
       DiscreteInputArchitecture arch,
-      java.lang.String subobj)
+      String subobj)
     {
       this();
       this.problem = problem;
@@ -23932,11 +23932,11 @@ public class VASSARInterface {
       this.subobj = null;
     }
 
-    public java.lang.String getProblem() {
+    public String getProblem() {
       return this.problem;
     }
 
-    public getSubscoreDetailsDiscreteInput_args setProblem(java.lang.String problem) {
+    public getSubscoreDetailsDiscreteInput_args setProblem(String problem) {
       this.problem = problem;
       return this;
     }
@@ -23980,11 +23980,11 @@ public class VASSARInterface {
       }
     }
 
-    public java.lang.String getSubobj() {
+    public String getSubobj() {
       return this.subobj;
     }
 
-    public getSubscoreDetailsDiscreteInput_args setSubobj(java.lang.String subobj) {
+    public getSubscoreDetailsDiscreteInput_args setSubobj(String subobj) {
       this.subobj = subobj;
       return this;
     }
@@ -24004,13 +24004,13 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case PROBLEM:
         if (value == null) {
           unsetProblem();
         } else {
-          setProblem((java.lang.String)value);
+          setProblem((String)value);
         }
         break;
 
@@ -24026,14 +24026,14 @@ public class VASSARInterface {
         if (value == null) {
           unsetSubobj();
         } else {
-          setSubobj((java.lang.String)value);
+          setSubobj((String)value);
         }
         break;
 
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case PROBLEM:
         return getProblem();
@@ -24045,13 +24045,13 @@ public class VASSARInterface {
         return getSubobj();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
@@ -24062,11 +24062,11 @@ public class VASSARInterface {
       case SUBOBJ:
         return isSetSubobj();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof getSubscoreDetailsDiscreteInput_args)
@@ -24137,7 +24137,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
+      lastComparison = Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -24147,7 +24147,7 @@ public class VASSARInterface {
           return lastComparison;
         }
       }
-      lastComparison = java.lang.Boolean.valueOf(isSetArch()).compareTo(other.isSetArch());
+      lastComparison = Boolean.valueOf(isSetArch()).compareTo(other.isSetArch());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -24157,7 +24157,7 @@ public class VASSARInterface {
           return lastComparison;
         }
       }
-      lastComparison = java.lang.Boolean.valueOf(isSetSubobj()).compareTo(other.isSetSubobj());
+      lastComparison = Boolean.valueOf(isSetSubobj()).compareTo(other.isSetSubobj());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -24183,8 +24183,8 @@ public class VASSARInterface {
     }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("getSubscoreDetailsDiscreteInput_args(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("getSubscoreDetailsDiscreteInput_args(");
       boolean first = true;
 
       sb.append("problem:");
@@ -24230,7 +24230,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
@@ -24389,7 +24389,7 @@ public class VASSARInterface {
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       SUCCESS((short)0, "success");
 
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
       static {
         for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -24415,21 +24415,21 @@ public class VASSARInterface {
        */
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
       /**
        * Find the _Fields constant that matches name, or null if its not found.
        */
-      public static _Fields findByName(java.lang.String name) {
+      public static _Fields findByName(String name) {
         return byName.get(name);
       }
 
       private final short _thriftId;
-      private final java.lang.String _fieldName;
+      private final String _fieldName;
 
-      _Fields(short thriftId, java.lang.String fieldName) {
+      _Fields(short thriftId, String fieldName) {
         _thriftId = thriftId;
         _fieldName = fieldName;
       }
@@ -24438,7 +24438,7 @@ public class VASSARInterface {
         return _thriftId;
       }
 
-      public java.lang.String getFieldName() {
+      public String getFieldName() {
         return _fieldName;
       }
     }
@@ -24505,7 +24505,7 @@ public class VASSARInterface {
       }
     }
 
-    public void setFieldValue(_Fields field, java.lang.Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case SUCCESS:
         if (value == null) {
@@ -24518,30 +24518,30 @@ public class VASSARInterface {
       }
     }
 
-    public java.lang.Object getFieldValue(_Fields field) {
+    public Object getFieldValue(_Fields field) {
       switch (field) {
       case SUCCESS:
         return getSuccess();
 
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
     public boolean isSet(_Fields field) {
       if (field == null) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
 
       switch (field) {
       case SUCCESS:
         return isSetSuccess();
       }
-      throw new java.lang.IllegalStateException();
+      throw new IllegalStateException();
     }
 
     @Override
-    public boolean equals(java.lang.Object that) {
+    public boolean equals(Object that) {
       if (that == null)
         return false;
       if (that instanceof getSubscoreDetailsDiscreteInput_result)
@@ -24586,7 +24586,7 @@ public class VASSARInterface {
 
       int lastComparison = 0;
 
-      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -24612,8 +24612,8 @@ public class VASSARInterface {
       }
 
     @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("getSubscoreDetailsDiscreteInput_result(");
+    public String toString() {
+      StringBuilder sb = new StringBuilder("getSubscoreDetailsDiscreteInput_result(");
       boolean first = true;
 
       sb.append("success:");
@@ -24643,7 +24643,7 @@ public class VASSARInterface {
       }
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {

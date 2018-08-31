@@ -16,9 +16,9 @@
 # specific language governing permissions and limitations
 # under the License.
 #
-"""Implementation of non-blocking server.
+"""Implementation of non-blocking seak.vassar_server.server.
 
-The main idea of the server is to receive and send requests
+The main idea of the seak.vassar_server.server is to receive and send requests
 only from the main thread.
 
 The thread poool should be sized for concurrent tasks, not
@@ -224,7 +224,7 @@ class Connection(object):
 
 
 class TNonblockingServer(object):
-    """Non-blocking server."""
+    """Non-blocking seak.vassar_server.server."""
 
     def __init__(self,
                  processor,
@@ -250,7 +250,7 @@ class TNonblockingServer(object):
         self.threads = num
 
     def prepare(self):
-        """Prepares server for serve requests."""
+        """Prepares seak.vassar_server.server for serve requests."""
         if self.prepared:
             return
         self.socket.listen()
@@ -263,7 +263,7 @@ class TNonblockingServer(object):
     def wake_up(self):
         """Wake up main thread.
 
-        The server usually waits in select call in we should terminate one.
+        The seak.vassar_server.server usually waits in select call in we should terminate one.
         The simplest way is using socketpair.
 
         Select always wait to read from the first socket of socketpair.
@@ -274,15 +274,15 @@ class TNonblockingServer(object):
         self._write.send(b'1')
 
     def stop(self):
-        """Stop the server.
+        """Stop the seak.vassar_server.server.
 
         This method causes the serve() method to return.  stop() may be invoked
         from within your handler, or from another thread.
 
-        After stop() is called, serve() will return but the server will still
+        After stop() is called, serve() will return but the seak.vassar_server.server will still
         be listening on the socket.  serve() may then be called again to resume
         processing requests.  Alternatively, close() may be called after
-        serve() returns to close the server socket and shutdown all worker
+        serve() returns to close the seak.vassar_server.server socket and shutdown all worker
         threads.
         """
         self._stop = True
@@ -333,7 +333,7 @@ class TNonblockingServer(object):
             del self.clients[oob]
 
     def close(self):
-        """Closes the server."""
+        """Closes the seak.vassar_server.server."""
         for _ in range(self.threads):
             self.tasks.put([None, None, None, None, None])
         self.socket.close()

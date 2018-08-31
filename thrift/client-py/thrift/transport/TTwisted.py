@@ -26,7 +26,7 @@ from twisted.internet.protocol import ServerFactory, ClientFactory, \
 from twisted.internet import defer
 from twisted.internet.threads import deferToThread
 from twisted.protocols import basic
-from twisted.web import server, resource, http
+from twisted.web import seak.vassar_server.server, resource, http
 
 from thrift.transport import TTransport
 
@@ -122,8 +122,8 @@ class ThriftSASLClientProtocol(ThriftClientProtocol):
     def __init__(self, client_class, iprot_factory, oprot_factory=None,
                  host=None, service=None, mechanism='GSSAPI', **sasl_kwargs):
         """
-        host: the name of the server, from a SASL perspective
-        service: the name of the server's service, from a SASL perspective
+        host: the name of the seak.vassar_server.server, from a SASL perspective
+        service: the name of the seak.vassar_server.server's service, from a SASL perspective
         mechanism: the name of the preferred mechanism to use
 
         All other kwargs will be passed to the puresasl.client.SASLClient
@@ -163,7 +163,7 @@ class ThriftSASLClientProtocol(ThriftClientProtocol):
                 self._sendSASLMessage(self.OK, response)
             elif status == self.COMPLETE:
                 if not self.sasl.complete:
-                    msg = "The server erroneously indicated that SASL " \
+                    msg = "The seak.vassar_server.server erroneously indicated that SASL " \
                           "negotiation was complete"
                     raise TTransport.TTransportException(msg, message=msg)
                 else:
@@ -328,4 +328,4 @@ class ThriftResource(resource.Resource):
 
         d = self.processor.process(iprot, oprot)
         d.addCallback(self._cbProcess, request, tmo)
-        return server.NOT_DONE_YET
+        return seak.vassar_server.server.NOT_DONE_YET

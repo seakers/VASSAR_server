@@ -19,14 +19,12 @@ package seak.vassar_server.server;
  * under the License.
  */
 
-
+import seak.vassar_server.javaInterface.VASSARInterface;
 import org.apache.thrift.server.TServer;
 import org.apache.thrift.server.TServer.Args;
 import org.apache.thrift.server.TSimpleServer;
 import org.apache.thrift.transport.TServerSocket;
 import org.apache.thrift.transport.TServerTransport;
-
-import seak.vassar_server.javaInterface.VASSARInterface;
 
 public class JavaServer {
 

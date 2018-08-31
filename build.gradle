@@ -1,23 +1,15 @@
 plugins {
-    id 'com.github.johnrengelman.shadow' version '2.0.4'
+    id 'java'
+    id 'application'
 }
 
-group 'seak.vassar_server'
+group 'seak'
 version '1.0'
-
-apply plugin: 'java'
 
 sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
-}
-
-jar {
-    manifest {
-        attributes 'Main-Class': 'server.JavaServer'
-        //attributes 'Main-Class': 'test.Test'
-    }
 }
 
 dependencies {
@@ -34,7 +26,9 @@ dependencies {
     compile 'org.apache.thrift:libthrift:0.11.0'
     compile 'com.google.code.gson:gson:2.8.4'
     compile 'io.lettuce:lettuce-core:5.0.4.RELEASE'
-    compile 'org.jtwig:jtwig-core:5.87.0.RELEASE'
+    compile 'io.pebbletemplates:pebble:3.0.2'
     compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
     testCompile 'org.junit.jupiter:junit-jupiter-api:5.2.0'
 }
+
+mainClassName = "seak.vassar_server.server.JavaServer"

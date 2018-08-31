@@ -40,7 +40,7 @@ class TSSLBase(object):
     # ciphers argument is not available for Python < 2.7.0
     _has_ciphers = sys.hexversion >= 0x020700F0
 
-    # For pythoon >= 2.7.9, use latest TLS that both client and server
+    # For pythoon >= 2.7.9, use latest TLS that both client and seak.vassar_server.server
     # supports.
     # SSL 2.0 and 3.0 are disabled via ssl.OP_NO_SSLv2 and ssl.OP_NO_SSLv3.
     # For pythoon < 2.7.9, use TLS 1.0 since TLSv1_X nor OP_NO_SSLvX is
@@ -163,7 +163,7 @@ class TSSLBase(object):
     @certfile.setter
     def certfile(self, certfile):
         if self._server_side and not certfile:
-            raise ValueError('certfile is needed for server-side')
+            raise ValueError('certfile is needed for seak.vassar_server.server-side')
         if certfile and not os.access(certfile, os.R_OK):
             raise IOError('No such certfile found: %s' % (certfile))
         self._certfile = certfile
@@ -350,11 +350,11 @@ class TSSLServerSocket(TSocket.TServerSocket, TSSLBase):
                              'module to verify client certificate')
 
     def setCertfile(self, certfile):
-        """Set or change the server certificate file used to wrap new
+        """Set or change the seak.vassar_server.server certificate file used to wrap new
         connections.
 
-        @param certfile: The filename of the server certificate,
-                         i.e. '/etc/certs/server.pem'
+        @param certfile: The filename of the seak.vassar_server.server certificate,
+                         i.e. '/etc/certs/seak.vassar_server.server.pem'
         @type certfile: str
 
         Raises an IOError exception if the certfile is not present or unreadable.
