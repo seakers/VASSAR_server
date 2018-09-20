@@ -12,6 +12,8 @@ import java.util.ArrayList;
 
 public class AssigningPatternCategorical extends seakers.architecture.pattern.Assigning{
 
+    private static final long serialVersionUID = 1L;
+
     protected int mNodes;
     protected int nNodes;
 

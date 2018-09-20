@@ -30,12 +30,12 @@ public class JavaServer {
 
   public static VASSARInterfaceHandler handler;
 
-  public static VASSARInterface.Processor processor;
+  public static VASSARInterface.Processor<VASSARInterfaceHandler> processor;
 
   public static void main(String [] args) {
       try {
           handler = new VASSARInterfaceHandler();
-          processor = new VASSARInterface.Processor(handler);
+          processor = new VASSARInterface.Processor<>(handler);
 
           Runnable simple = new Runnable() {
               public void run() {
@@ -50,7 +50,7 @@ public class JavaServer {
       }
   }
 
-  public static void simple(VASSARInterface.Processor processor) {
+  public static void simple(VASSARInterface.Processor<VASSARInterfaceHandler> processor) {
     try {
         TServerTransport serverTransport = new TServerSocket(9090);
         TServer server = new TSimpleServer(new Args(serverTransport).processor(processor));
