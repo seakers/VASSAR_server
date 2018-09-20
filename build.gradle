@@ -3,13 +3,14 @@ plugins {
     id 'application'
 }
 
-group 'seak'
+group 'seakers'
 version '1.0'
 
 sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
 dependencies {
@@ -17,10 +18,10 @@ dependencies {
     compile 'com.googlecode.combinatoricslib:combinatoricslib:2.1'
     compile 'org.apache.commons:commons-lang3:3.7'
     compile 'org.hipparchus:hipparchus-stat:1.0'
-    compile files('lib/orekit.jar')
-    compile files('lib/jess.jar')
-    compile files('lib/SystemArchitectureProblems.jar')
-    compile files('lib/vassar.jar')
+    compile 'seakers:orekit:1.0'
+    compile 'gov.sandia:jess:7.1p2'
+    compile 'seakers:system-architecture-problems:1.0'
+    compile 'seakers:vassar:1.0'
     compile 'net.sourceforge.jexcelapi:jxl:2.6.12'
     compile 'org.moeaframework:moeaframework:2.12'
     compile 'org.apache.thrift:libthrift:0.11.0'
@@ -31,4 +32,4 @@ dependencies {
     testCompile 'org.junit.jupiter:junit-jupiter-api:5.2.0'
 }
 
-mainClassName = "seak.vassar_server.server.JavaServer"
+mainClassName = "seakers.engineerserver.server.JavaServer"
