@@ -52,6 +52,7 @@ import seakers.engineerserver.javaInterface.*;
 import seakers.engineerserver.search.problems.PartitioningAndAssigning.PartitioningAndAssigningProblem;
 import seakers.engineerserver.search.problems.PartitioningAndAssigning.operators.PartitioningAndAssigningCrossover;
 import seakers.engineerserver.search.problems.PartitioningAndAssigning.operators.PartitioningAndAssigningMutation;
+import seakers.orekit.util.OrekitConfig;
 import seakers.vassar.Result;
 import seakers.vassar.architecture.AbstractArchitecture;
 import seakers.vassar.evaluation.AbstractArchitectureEvaluator;
@@ -64,7 +65,7 @@ import seakers.vassar.problems.PartitioningAndAssigning.Decadal2017AerosolsParam
 
 public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
-    private String root;
+    private String resourcesPath;
     private Map<String, BaseParams> paramsMap;
     private Map<String, ArchitectureEvaluationManager> architectureEvaluationManagerMap;
 
@@ -76,7 +77,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
     public VASSARInterfaceHandler() {
         // Set a path to the project folder
-        this.root = System.getProperty("user.dir");
+        this.resourcesPath = "../VASSAR_resources";
         this.paramsMap = new HashMap<>();
         this.architectureEvaluationManagerMap = new HashMap<>();
 
@@ -85,16 +86,15 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
         this.binaryInputQueue =  new ConcurrentLinkedQueue<>();
         this.discreteInputQueue = new ConcurrentLinkedQueue<>();
+
+        OrekitConfig.init(4, this.resourcesPath + File.separator + "orekit");
     }
 
     private Runnable generateBinaryInputGATask(String problem, List<BinaryInputArchitecture> dataset, String username) {
         return () -> {
             System.out.println("Starting GA for binary input data");
 
-            //PATH
-            String path = ".";
-
-            ExecutorService pool = Executors.newFixedThreadPool(8);
+            ExecutorService pool = Executors.newFixedThreadPool(1);
             CompletionService<Algorithm> ecs = new ExecutorCompletionService<>(pool);
 
             //parameters and operators for seakers.vassar_server.search
@@ -115,11 +115,6 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
             //setup for epsilon MOEA
             double[] epsilonDouble = new double[]{0.001, 1};
-
-            //setup for saving results
-            properties.setBoolean("saveQuality", true);
-            properties.setBoolean("saveCredits", true);
-            properties.setBoolean("saveSelection", true);
 
             //initialize problem
             BaseParams params = this.getProblemParameters(problem);
@@ -193,10 +188,8 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
     private Runnable generateDiscreteInputGATask(String problem, List<DiscreteInputArchitecture> dataset, String username) {
         return () -> {
             System.out.println("Starting GA for discrete input data");
-            //PATH
-            String path = ".";
 
-            ExecutorService pool = Executors.newFixedThreadPool(8);
+            ExecutorService pool = Executors.newFixedThreadPool(1);
             CompletionService<Algorithm> ecs = new ExecutorCompletionService<>(pool);
 
             //parameters and operators for seakers.vassar_server.search
@@ -214,11 +207,6 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
             //setup for epsilon MOEA
             double[] epsilonDouble = new double[]{0.001, 1};
-
-            //setup for saving results
-            properties.setBoolean("saveQuality", true);
-            properties.setBoolean("saveCredits", true);
-            properties.setBoolean("saveSelection", true);
 
             //initialize problem
             BaseParams params = this.getProblemParameters(problem);
@@ -312,15 +300,14 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
         if (problem.equalsIgnoreCase("SMAP") || problem.equalsIgnoreCase("ClimateCentric")) {
             key = problem;
-            String resourcesPath = "../VASSAR_resources";
 
             if (problem.equalsIgnoreCase("SMAP")) {
-                params = new SMAPParams(resourcesPath, "CRISP-ATTRIBUTES",
+                params = new SMAPParams(this.resourcesPath, "CRISP-ATTRIBUTES",
                         "test", "normal", search_clps);
 
             }
             else if (problem.equalsIgnoreCase("ClimateCentric")) {
-                params = new ClimateCentricParams(resourcesPath, "FUZZY-ATTRIBUTES",
+                params = new ClimateCentricParams(this.resourcesPath, "FUZZY-ATTRIBUTES",
                         "test", "normal", search_clps);
             }
             else {
@@ -332,11 +319,8 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         }
         else if (problem.equalsIgnoreCase("Decadal2017Aerosols")) {
             key = "Decadal2017Aerosols";
-            String path = this.root +
-                    File.separator + "problems" +
-                    File.separator + "SMAP";
 
-            params = new Decadal2017AerosolsParams(path, "CRISP-ATTRIBUTES",
+            params = new Decadal2017AerosolsParams(this.resourcesPath, "CRISP-ATTRIBUTES",
                     "test", "normal", search_clps);
             evaluator = new seakers.vassar.problems.PartitioningAndAssigning.ArchitectureEvaluator(params);
         }
@@ -347,7 +331,6 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         if (this.paramsMap.keySet().contains(key)) {
             // Already initialized
             return;
-
         }
 
         AEM = new ArchitectureEvaluationManager(params, evaluator);
