@@ -19,7 +19,7 @@ package seakers.engineerserver.server;
  * under the License.
  */
 
-import seakers.engineerserver.javaInterface.VASSARInterface;
+import seakers.engineerserver.thriftinterface.VASSARInterface;
 import org.apache.thrift.server.TServer;
 import org.apache.thrift.server.TServer.Args;
 import org.apache.thrift.server.TSimpleServer;

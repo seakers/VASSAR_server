@@ -13,7 +13,7 @@ import io.lettuce.core.api.StatefulRedisConnection;
 import io.lettuce.core.api.sync.RedisCommands;
 import io.lettuce.core.pubsub.StatefulRedisPubSubConnection;
 import io.lettuce.core.pubsub.api.sync.RedisPubSubCommands;
-import seakers.engineerserver.javaInterface.DiscreteInputArchitecture;
+import seakers.engineerserver.thriftinterface.DiscreteInputArchitecture;
 import org.moeaframework.algorithm.AbstractEvolutionaryAlgorithm;
 import org.moeaframework.core.Algorithm;
 import org.moeaframework.core.Population;
@@ -27,7 +27,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  *
- * @author nozomihitomi
+ * @author antoni
  */
 public class DiscreteInputInteractiveSearch implements Callable<Algorithm> {
 
@@ -58,6 +58,8 @@ public class DiscreteInputInteractiveSearch implements Callable<Algorithm> {
         alg.step();
         long startTime = System.currentTimeMillis();
 
+        Population archive = ((AbstractEvolutionaryAlgorithm)alg).getArchive();
+
         while (!alg.isTerminated() && (alg.getNumberOfEvaluations() < maxEvaluations) && !isStopped) {
             Integer message = messageQueue.poll();
             if (message != null) {
@@ -70,31 +72,41 @@ public class DiscreteInputInteractiveSearch implements Callable<Algorithm> {
             StatefulRedisConnection<String, String> connection = redisClient.connect();
             RedisCommands<String, String> syncCommands = connection.sync();
 
-            for(int i = 0; i < pop.size(); i++){
-                Solution s = pop.get(i);
-                s.setAttribute("NFE", alg.getNumberOfEvaluations());
-                // Send the new architectures through REDIS
-                // But first, turn it into something easier in JSON
-                DiscreteInputArchitecture json_arch = new DiscreteInputArchitecture();
-                json_arch.inputs = new ArrayList<>();
-                json_arch.outputs = new ArrayList<>();
-                for (int j = 0; j < s.getNumberOfVariables(); ++j) {
-                    IntegerVariable var = (IntegerVariable)s.getVariable(j);
-                    int val = var.getValue();
-                    json_arch.inputs.add(val);
+            // Only send back those architectures that improve the pareto frontier
+            Population newArchive = ((AbstractEvolutionaryAlgorithm)alg).getArchive();
+            for (int i = 0; i < newArchive.size(); ++i) {
+                Solution newSol = newArchive.get(i);
+                boolean alreadyThere = archive.contains(newSol);
+                if (!alreadyThere) {
+                    newSol.setAttribute("NFE", alg.getNumberOfEvaluations());
+                    // Send the new architectures through REDIS
+                    // But first, turn it into something easier in JSON
+                    DiscreteInputArchitecture json_arch = new DiscreteInputArchitecture();
+                    json_arch.inputs = new ArrayList<>();
+                    json_arch.outputs = new ArrayList<>();
+                    for (int j = 0; j < newSol.getNumberOfVariables(); ++j) {
+                        IntegerVariable var = (IntegerVariable)newSol.getVariable(j);
+                        int val = var.getValue();
+                        json_arch.inputs.add(val);
+                    }
+                    json_arch.outputs.add(-newSol.getObjective(0));
+                    json_arch.outputs.add(newSol.getObjective(1));
+                    Gson gson = new GsonBuilder().create();
+                    Long retval = syncCommands.rpush(this.username, gson.toJson(json_arch));
+
+                    // Notify listeners of new architectures in username channel
+                    StatefulRedisPubSubConnection<String, String> pubsubConnection = redisClient.connectPubSub();
+                    RedisPubSubCommands<String, String> sync = pubsubConnection.sync();
+                    sync.publish(this.username, "new_arch");
+                    pubsubConnection.close();
                 }
-                json_arch.outputs.add(-s.getObjective(0));
-                json_arch.outputs.add(s.getObjective(1));
-                Gson gson = new GsonBuilder().create();
-                Long retval = syncCommands.rpush(this.username, gson.toJson(json_arch));
             }
+
             syncCommands.ltrim(this.username, -1000, -1);
             connection.close();
-            // Notify listeners of new architectures in username channel
-            StatefulRedisPubSubConnection<String, String> pubsubConnection = redisClient.connectPubSub();
-            RedisPubSubCommands<String, String> sync = pubsubConnection.sync();
-            sync.publish(this.username, "new_arch");
-            pubsubConnection.close();
+
+            // Change the archive reference to the new one
+            archive = newArchive;
         }
 
         alg.terminate();

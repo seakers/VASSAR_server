@@ -1,7 +1,7 @@
 package seakers.engineerserver.search;
 
 
-import seakers.engineerserver.javaInterface.DiscreteInputArchitecture;
+import seakers.engineerserver.thriftinterface.DiscreteInputArchitecture;
 
 import java.util.ArrayList;
 import java.util.List;

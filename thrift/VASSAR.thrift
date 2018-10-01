@@ -17,8 +17,8 @@
  */
 
 
-namespace java seakers.vassar_server.javaInterface
-namespace py pyInterface
+namespace java seakers.engineerserver.thriftinterface
+namespace py thriftinterface
 
 typedef i32 int
 
@@ -126,7 +126,9 @@ service VASSARInterface {
 
     bool isGABinaryInputRunning(),
 
-    oneway void toggleGABinaryInput(1:string problem, 2:list<BinaryInputArchitecture> dataset, 3:string username),
+    int startGABinaryInput(1:string problem, 2:list<BinaryInputArchitecture> dataset, 3:string username),
+
+    int stopGABinaryInput(1:string username),
 
     list<SubscoreInformation> getArchScienceInformationBinaryInput(1:string problem, 2:BinaryInputArchitecture arch),
 
@@ -136,7 +138,9 @@ service VASSARInterface {
 
     bool isGADiscreteInputRunning(),
 
-    oneway void toggleGADiscreteInput(1:string problem, 2:list<DiscreteInputArchitecture> dataset, 3:string username),
+    int startGADiscreteInput(1:string problem, 2:list<DiscreteInputArchitecture> dataset, 3:string username),
+
+    int stopGADiscreteInput(1:string username),
 
     list<SubscoreInformation> getArchScienceInformationDiscreteInput(1:string problem, 2:DiscreteInputArchitecture arch),
 

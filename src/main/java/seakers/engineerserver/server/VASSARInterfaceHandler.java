@@ -48,7 +48,7 @@ import seakers.engineerserver.search.problems.Assigning.AssigningArchitecture;
 import seakers.engineerserver.search.problems.Assigning.AssigningProblem;
 import seakers.engineerserver.search.problems.PartitioningAndAssigning.PartitioningAndAssigningArchitecture;
 import seakers.engineerserver.search.problems.PartitioningAndAssigning.PartitioningAndAssigningInitialization;
-import seakers.engineerserver.javaInterface.*;
+import seakers.engineerserver.thriftinterface.*;
 import seakers.engineerserver.search.problems.PartitioningAndAssigning.PartitioningAndAssigningProblem;
 import seakers.engineerserver.search.problems.PartitioningAndAssigning.operators.PartitioningAndAssigningCrossover;
 import seakers.engineerserver.search.problems.PartitioningAndAssigning.operators.PartitioningAndAssigningMutation;
@@ -84,7 +84,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         this.binaryInputGAThread = new Thread();
         this.discreteInputGAThread = new Thread();
 
-        this.binaryInputQueue =  new ConcurrentLinkedQueue<>();
+        this.binaryInputQueue = new ConcurrentLinkedQueue<>();
         this.discreteInputQueue = new ConcurrentLinkedQueue<>();
 
         OrekitConfig.init(4, this.resourcesPath + File.separator + "orekit");
@@ -100,10 +100,9 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             //parameters and operators for seakers.vassar_server.search
             TypedProperties properties = new TypedProperties();
             //seakers.vassar_server.search paramaters set here
-            int popSize = 50;
             int maxEvals = 3000;
             properties.setInt("maxEvaluations", maxEvals);
-            properties.setInt("populationSize", popSize);
+            properties.setInt("populationSize", dataset.size());
             double crossoverProbability = 1.0;
             properties.setDouble("crossoverProbability", crossoverProbability);
             double mutationProbability = 1. / 60.;
@@ -122,27 +121,24 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
             Problem assignmentProblem = new AssigningProblem(new int[]{1}, problem, AEM, params);
 
-            Random r = new Random();
-
             // Create a solution for each input arch in the dataset
             List<Solution> initial = new ArrayList<>(dataset.size());
-            for (int i = 0; i < popSize && !dataset.isEmpty(); ++i) {
+            for (BinaryInputArchitecture arch : dataset) {
                 AssigningArchitecture new_arch = new AssigningArchitecture(new int[]{1},
                         params.getNumInstr(), params.getNumOrbits(), 2);
 
-                int newIndex = r.nextInt(dataset.size());
-
                 for (int j = 1; j < new_arch.getNumberOfVariables(); ++j) {
                     BinaryVariable var = new BinaryVariable(1);
-                    var.set(0, dataset.get(newIndex).inputs.get(j-1));
+                    var.set(0, arch.inputs.get(j-1));
                     new_arch.setVariable(j, var);
                 }
-                new_arch.setObjective(0, dataset.get(newIndex).outputs.get(0));
-                new_arch.setObjective(1, dataset.get(newIndex).outputs.get(1));
+                new_arch.setObjective(0, -arch.outputs.get(0));
+                new_arch.setObjective(1, arch.outputs.get(1));
+                new_arch.setAlreadyEvaluated(true);
                 initial.add(new_arch);
-                dataset.remove(newIndex);
             }
-            initialization = new InjectedInitialization(assignmentProblem, popSize, initial);
+
+            initialization = new InjectedInitialization(assignmentProblem, dataset.size(), initial);
 
             //initialize population structure for algorithm
             Population population = new Population();
@@ -181,6 +177,8 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
             redisClient.shutdown();
             pool.shutdown();
+
+            binaryInputQueue.clear();
             System.out.println("DONE");
         };
     }
@@ -195,10 +193,9 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             //parameters and operators for seakers.vassar_server.search
             TypedProperties properties = new TypedProperties();
             //search paramaters set here
-            int popSize = 50;
             int maxEvals = 3000;
             properties.setInt("maxEvaluations", maxEvals);
-            properties.setInt("populationSize", popSize);
+            properties.setInt("populationSize", dataset.size());
 
             double crossoverProbability = 1.0;
             properties.setDouble("crossoverProbability", crossoverProbability);
@@ -214,37 +211,33 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
             Problem partitioningAndAssigningProblem = new PartitioningAndAssigningProblem(problem, AEM, params);
 
-            Random r = new Random();
-
             // Create a solution for each input arch in the dataset
             List<Solution> initial = new ArrayList<>(dataset.size());
-            for (int i = 0; i < popSize && !dataset.isEmpty(); ++i) {
+            for (DiscreteInputArchitecture arch : dataset) {
                 PartitioningAndAssigningArchitecture new_arch = new PartitioningAndAssigningArchitecture(
                         params.getNumInstr(), params.getNumOrbits(), 2);
 
                 int numPartitioningVariables = params.getNumInstr();
                 int numAssignmentVariables = params.getNumInstr();
 
-                int newIndex = r.nextInt(dataset.size());
-
                 for (int j = 0; j < numPartitioningVariables; ++j) {
-                    IntegerVariable var = new IntegerVariable(dataset.get(newIndex).inputs.get(j), 0, params.getNumInstr());
+                    IntegerVariable var = new IntegerVariable(arch.inputs.get(j), 0, params.getNumInstr());
                     new_arch.setVariable(j, var);
                 }
 
                 for (int j = numPartitioningVariables; j < numPartitioningVariables + numAssignmentVariables; ++j) {
-                    IntegerVariable var = new IntegerVariable(dataset.get(newIndex).inputs.get(j), -1, params.getNumOrbits());
+                    IntegerVariable var = new IntegerVariable(arch.inputs.get(j), -1, params.getNumOrbits());
                     new_arch.setVariable(j, var);
                 }
 
-                new_arch.setObjective(0, dataset.get(newIndex).outputs.get(0));
-                new_arch.setObjective(1, dataset.get(newIndex).outputs.get(1));
+                new_arch.setObjective(0, -arch.outputs.get(0));
+                new_arch.setObjective(1, arch.outputs.get(1));
+                new_arch.setAlreadyEvaluated(true);
                 initial.add(new_arch);
-
-                dataset.remove(newIndex);
             }
 
-            Initialization initialization = new PartitioningAndAssigningInitialization(partitioningAndAssigningProblem, popSize, initial, params);
+            Initialization initialization = new PartitioningAndAssigningInitialization(partitioningAndAssigningProblem,
+                    dataset.size(), initial, params);
 
             //initialize population structure for algorithm
             Population population = new Population();
@@ -283,6 +276,8 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
             redisClient.shutdown();
             pool.shutdown();
+
+            discreteInputQueue.clear();
             System.out.println("DONE");
         };
     }
@@ -1065,14 +1060,22 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
     }
 
     @Override
-    public void toggleGABinaryInput(String problem, List<BinaryInputArchitecture> dataset, String username) {
-        if (binaryInputGAThread.isAlive()) {
-            binaryInputQueue.add(0);
-        }
-        else {
+    public int startGABinaryInput(String problem, List<BinaryInputArchitecture> dataset, String username) {
+        if (!binaryInputGAThread.isAlive()) {
             binaryInputGAThread = new Thread(this.generateBinaryInputGATask(problem, dataset, username));
             binaryInputGAThread.start();
+            return 0;
         }
+        return 1;
+    }
+
+    @Override
+    public int stopGABinaryInput(String username) {
+        if (binaryInputGAThread.isAlive()) {
+            binaryInputQueue.add(0);
+            return 0;
+        }
+        return 1;
     }
 
     @Override
@@ -1081,14 +1084,21 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
     }
 
     @Override
-    public void toggleGADiscreteInput(String problem, List<DiscreteInputArchitecture> dataset, String username) {
-        if (discreteInputGAThread.isAlive()) {
-            discreteInputQueue.add(0);
-        }
-        else {
+    public int startGADiscreteInput(String problem, List<DiscreteInputArchitecture> dataset, String username) {
+        if (!discreteInputGAThread.isAlive()) {
             discreteInputGAThread = new Thread(this.generateDiscreteInputGATask(problem, dataset, username));
             discreteInputGAThread.start();
+            return 0;
         }
+        return 1;
+    }
 
+    @Override
+    public int stopGADiscreteInput(String username) {
+        if (discreteInputGAThread.isAlive()) {
+            discreteInputQueue.add(0);
+            return 0;
+        }
+        return 1;
     }
 }

@@ -19,7 +19,7 @@ import org.moeaframework.core.Population;
 import org.moeaframework.core.Solution;
 import org.moeaframework.core.variable.BinaryVariable;
 import org.moeaframework.util.TypedProperties;
-import seakers.engineerserver.javaInterface.BinaryInputArchitecture;
+import seakers.engineerserver.thriftinterface.BinaryInputArchitecture;
 
 import java.util.ArrayList;
 import java.util.concurrent.Callable;
@@ -27,7 +27,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  *
- * @author nozomihitomi
+ * @author antoni
  */
 public class BinaryInputInteractiveSearch implements Callable<Algorithm> {
 
@@ -58,6 +58,8 @@ public class BinaryInputInteractiveSearch implements Callable<Algorithm> {
         alg.step();
         long startTime = System.currentTimeMillis();
 
+        Population archive = new Population(((AbstractEvolutionaryAlgorithm)alg).getArchive());
+
         while (!alg.isTerminated() && (alg.getNumberOfEvaluations() < maxEvaluations) && !isStopped) {
             Integer message = messageQueue.poll();
             if (message != null) {
@@ -69,31 +71,43 @@ public class BinaryInputInteractiveSearch implements Callable<Algorithm> {
             Population pop = ((AbstractEvolutionaryAlgorithm) alg).getPopulation();
             StatefulRedisConnection<String, String> connection = redisClient.connect();
             RedisCommands<String, String> syncCommands = connection.sync();
-            for(int i=1; i<3; i++){
-                Solution s = pop.get(pop.size() - i);
-                s.setAttribute("NFE", alg.getNumberOfEvaluations());
-                // Send the new architectures through REDIS
-                // But first, turn it into something easier in JSON
-                BinaryInputArchitecture json_arch = new BinaryInputArchitecture();
-                json_arch.inputs = new ArrayList<>();
-                json_arch.outputs = new ArrayList<>();
-                for (int j = 1; j < s.getNumberOfVariables(); ++j) {
-                    BinaryVariable var = (BinaryVariable)s.getVariable(j);
-                    boolean binaryVal = var.get(0);
-                    json_arch.inputs.add(binaryVal);
+
+            // Only send back those architectures that improve the pareto frontier
+            Population newArchive = ((AbstractEvolutionaryAlgorithm)alg).getArchive();
+            for (int i = 0; i < newArchive.size(); ++i) {
+                Solution newSol = newArchive.get(i);
+                boolean alreadyThere = archive.contains(newSol);
+                if (!alreadyThere) {
+                    System.out.println("Sending new arch!");
+                    newSol.setAttribute("NFE", alg.getNumberOfEvaluations());
+                    // Send the new architectures through REDIS
+                    // But first, turn it into something easier in JSON
+                    BinaryInputArchitecture json_arch = new BinaryInputArchitecture();
+                    json_arch.inputs = new ArrayList<>();
+                    json_arch.outputs = new ArrayList<>();
+                    for (int j = 1; j < newSol.getNumberOfVariables(); ++j) {
+                        BinaryVariable var = (BinaryVariable)newSol.getVariable(j);
+                        boolean binaryVal = var.get(0);
+                        json_arch.inputs.add(binaryVal);
+                    }
+                    json_arch.outputs.add(-newSol.getObjective(0));
+                    json_arch.outputs.add(newSol.getObjective(1));
+                    Gson gson = new GsonBuilder().create();
+                    Long retval = syncCommands.rpush(this.username, gson.toJson(json_arch));
+
+                    // Notify listeners of new architectures in username channel
+                    StatefulRedisPubSubConnection<String, String> pubsubConnection = redisClient.connectPubSub();
+                    RedisPubSubCommands<String, String> sync = pubsubConnection.sync();
+                    sync.publish(this.username, "new_arch");
+                    pubsubConnection.close();
                 }
-                json_arch.outputs.add(-s.getObjective(0));
-                json_arch.outputs.add(s.getObjective(1));
-                Gson gson = new GsonBuilder().create();
-                Long retval = syncCommands.rpush(this.username, gson.toJson(json_arch));
             }
+
             syncCommands.ltrim(this.username, -1000, -1);
             connection.close();
-            // Notify listeners of new architectures in username channel
-            StatefulRedisPubSubConnection<String, String> pubsubConnection = redisClient.connectPubSub();
-            RedisPubSubCommands<String, String> sync = pubsubConnection.sync();
-            sync.publish(this.username, "new_arch");
-            pubsubConnection.close();
+
+            // Change the archive reference to the new one
+            archive = new Population(newArchive);
         }
 
         alg.terminate();
