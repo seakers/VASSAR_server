@@ -333,7 +333,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         this.architectureEvaluationManagerMap.put(key, AEM);
 
         // Initialization
-        AEM.init(1);
+        AEM.init(2);
     }
 
     private BaseParams getProblemParameters(String problem) {
