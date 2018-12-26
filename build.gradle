@@ -6,7 +6,7 @@ plugins {
 group 'seakers'
 version '1.0'
 
-sourceCompatibility = 1.8
+sourceCompatibility = 11
 
 compileJava {
     options.compilerArgs += ["-Xlint"]
@@ -33,6 +33,7 @@ dependencies {
     compile 'io.lettuce:lettuce-core:5.0.4.RELEASE'
     compile 'io.pebbletemplates:pebble:3.0.2'
     compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
+    compile group: 'javax.annotation', name: 'javax.annotation-api', version: '1.3.2'
     testCompile 'org.junit.jupiter:junit-jupiter-api:5.2.0'
 }
 
