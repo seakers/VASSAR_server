@@ -24,6 +24,9 @@ import java.io.File;
 import java.util.*;
 import java.util.concurrent.*;
 
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
 import io.lettuce.core.RedisClient;
 import io.lettuce.core.pubsub.StatefulRedisPubSubConnection;
 import io.lettuce.core.pubsub.api.sync.RedisPubSubCommands;
@@ -72,9 +75,6 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
     private Thread binaryInputGAThread;
     private Thread discreteInputGAThread;
 
-    private ConcurrentLinkedQueue<Integer> binaryInputQueue;
-    private ConcurrentLinkedQueue<Integer> discreteInputQueue;
-
     public VASSARInterfaceHandler() {
         // Set a path to the project folder
         this.resourcesPath = "../VASSAR_resources";
@@ -83,9 +83,6 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
         this.binaryInputGAThread = new Thread();
         this.discreteInputGAThread = new Thread();
-
-        this.binaryInputQueue = new ConcurrentLinkedQueue<>();
-        this.discreteInputQueue = new ConcurrentLinkedQueue<>();
 
         OrekitConfig.init(4, this.resourcesPath + File.separator + "orekit");
     }
@@ -151,17 +148,23 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             intergerMutation = new IntegerUM(mutationProbability);
             CompoundVariation var = new CompoundVariation(singlecross, bitFlip, intergerMutation);
 
-            // REDIS
-            RedisClient redisClient = RedisClient.create("redis://localhost:6379/0");
-
-            // Notify listeners of GA starting in username channel
-            StatefulRedisPubSubConnection<String, String> pubsubConnection = redisClient.connectPubSub();
-            RedisPubSubCommands<String, String> sync = pubsubConnection.sync();
-            sync.publish(username, "ga_started");
-            pubsubConnection.close();
-
             Algorithm eMOEA = new EpsilonMOEA(assignmentProblem, population, archive, selection, var, initialization);
-            ecs.submit(new BinaryInputInteractiveSearch(eMOEA, properties, username, redisClient, binaryInputQueue));
+            ecs.submit(new BinaryInputInteractiveSearch(eMOEA, properties, username));
+
+            // Message queue
+            // Notify listeners of GA starting in username channel
+            ConnectionFactory factory = new ConnectionFactory();
+            factory.setHost("localhost");
+            String sendbackQueueName = username + "_gabrain";
+
+            try (Connection connection = factory.newConnection(); Channel channel = connection.createChannel()) {
+                channel.queueDeclare(sendbackQueueName, false, false, false, null);
+                String message = "{ \"type\": \"ga_started\" }";
+                channel.basicPublish("", sendbackQueueName, null, message.getBytes("UTF-8"));
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
 
             try {
                 Algorithm alg = ecs.take().get();
@@ -170,15 +173,17 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             }
 
             // Notify listeners of new architectures in username channel
-            StatefulRedisPubSubConnection<String, String> pubsubConnection2 = redisClient.connectPubSub();
-            RedisPubSubCommands<String, String> sync2 = pubsubConnection2.sync();
-            sync2.publish(username, "ga_done");
-            pubsubConnection2.close();
+            try (Connection connection = factory.newConnection(); Channel channel = connection.createChannel()) {
+                channel.queueDeclare(sendbackQueueName, false, false, false, null);
+                String message = "{ \"type\": \"ga_done\" }";
+                channel.basicPublish("", sendbackQueueName, null, message.getBytes("UTF-8"));
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
 
-            redisClient.shutdown();
             pool.shutdown();
 
-            binaryInputQueue.clear();
             System.out.println("DONE");
         };
     }
@@ -251,16 +256,31 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             CompoundVariation var = new CompoundVariation(singlecross, intergerMutation);
 
             // REDIS
-            RedisClient redisClient = RedisClient.create("redis://localhost:6379/0");
-
-            // Notify listeners of GA starting in username channel
-            StatefulRedisPubSubConnection<String, String> pubsubConnection = redisClient.connectPubSub();
-            RedisPubSubCommands<String, String> sync = pubsubConnection.sync();
-            sync.publish(username, "ga_started");
-            pubsubConnection.close();
+//            RedisClient redisClient = RedisClient.create("redis://localhost:6379/0");
+//
+//            // Notify listeners of GA starting in username channel
+//            StatefulRedisPubSubConnection<String, String> pubsubConnection = redisClient.connectPubSub();
+//            RedisPubSubCommands<String, String> sync = pubsubConnection.sync();
+//            sync.publish(username, "ga_started");
+//            pubsubConnection.close();
 
             Algorithm eMOEA = new EpsilonMOEA(partitioningAndAssigningProblem, population, archive, selection, var, initialization);
-            ecs.submit(new DiscreteInputInteractiveSearch(eMOEA, properties, username, redisClient, discreteInputQueue));
+            ecs.submit(new DiscreteInputInteractiveSearch(eMOEA, properties, username));
+
+            // Message queue
+            // Notify listeners of GA starting in username channel
+            ConnectionFactory factory = new ConnectionFactory();
+            factory.setHost("localhost");
+            String sendbackQueueName = username + "_gabrain";
+
+            try (Connection connection = factory.newConnection(); Channel channel = connection.createChannel()) {
+                channel.queueDeclare(sendbackQueueName, false, false, false, null);
+                String message = "{ \"type\": \"ga_started\" }";
+                channel.basicPublish("", sendbackQueueName, null, message.getBytes("UTF-8"));
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
 
             try {
                 Algorithm alg = ecs.take().get();
@@ -269,15 +289,23 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             }
 
             // Notify listeners of new architectures in username channel
-            StatefulRedisPubSubConnection<String, String> pubsubConnection2 = redisClient.connectPubSub();
-            RedisPubSubCommands<String, String> sync2 = pubsubConnection2.sync();
-            sync2.publish(username, "ga_done");
-            pubsubConnection2.close();
+            try (Connection connection = factory.newConnection(); Channel channel = connection.createChannel()) {
+                channel.queueDeclare(sendbackQueueName, false, false, false, null);
+                String message = " \"{ \"type\": \"ga_done\" }\"";
+                channel.basicPublish("", sendbackQueueName, null, message.getBytes("UTF-8"));
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
 
-            redisClient.shutdown();
+//            // Notify listeners of new architectures in username channel
+//            StatefulRedisPubSubConnection<String, String> pubsubConnection2 = redisClient.connectPubSub();
+//            RedisPubSubCommands<String, String> sync2 = pubsubConnection2.sync();
+//            sync2.publish(username, "ga_done");
+//            pubsubConnection2.close();
+
             pool.shutdown();
 
-            discreteInputQueue.clear();
             System.out.println("DONE");
         };
     }
@@ -1072,7 +1100,18 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
     @Override
     public int stopGABinaryInput(String username) {
         if (binaryInputGAThread.isAlive()) {
-            binaryInputQueue.add(0);
+            ConnectionFactory factory = new ConnectionFactory();
+            factory.setHost("localhost");
+            String queueName = username + "_brainga";
+
+            try (Connection connection = factory.newConnection(); Channel channel = connection.createChannel()) {
+                channel.queueDeclare(queueName, false, false, false, null);
+                String message = "close";
+                channel.basicPublish("", queueName, null, message.getBytes("UTF-8"));
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
             return 0;
         }
         return 1;
@@ -1096,7 +1135,18 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
     @Override
     public int stopGADiscreteInput(String username) {
         if (discreteInputGAThread.isAlive()) {
-            discreteInputQueue.add(0);
+            ConnectionFactory factory = new ConnectionFactory();
+            factory.setHost("localhost");
+            String queueName = username + "_brainga";
+
+            try (Connection connection = factory.newConnection(); Channel channel = connection.createChannel()) {
+                channel.queueDeclare(queueName, false, false, false, null);
+                String message = "close";
+                channel.basicPublish("", queueName, null, message.getBytes("UTF-8"));
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
             return 0;
         }
         return 1;
