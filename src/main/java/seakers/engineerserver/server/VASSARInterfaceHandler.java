@@ -255,15 +255,6 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             Variation intergerMutation = new PartitioningAndAssigningMutation(mutationProbability, params);
             CompoundVariation var = new CompoundVariation(singlecross, intergerMutation);
 
-            // REDIS
-//            RedisClient redisClient = RedisClient.create("redis://localhost:6379/0");
-//
-//            // Notify listeners of GA starting in username channel
-//            StatefulRedisPubSubConnection<String, String> pubsubConnection = redisClient.connectPubSub();
-//            RedisPubSubCommands<String, String> sync = pubsubConnection.sync();
-//            sync.publish(username, "ga_started");
-//            pubsubConnection.close();
-
             Algorithm eMOEA = new EpsilonMOEA(partitioningAndAssigningProblem, population, archive, selection, var, initialization);
             ecs.submit(new DiscreteInputInteractiveSearch(eMOEA, properties, username));
 
@@ -297,12 +288,6 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             catch (Exception e) {
                 e.printStackTrace();
             }
-
-//            // Notify listeners of new architectures in username channel
-//            StatefulRedisPubSubConnection<String, String> pubsubConnection2 = redisClient.connectPubSub();
-//            RedisPubSubCommands<String, String> sync2 = pubsubConnection2.sync();
-//            sync2.publish(username, "ga_done");
-//            pubsubConnection2.close();
 
             pool.shutdown();
 
