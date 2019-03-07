@@ -69,7 +69,9 @@ public class AssigningProblem extends AbstractProblem implements SystemArchitect
             }
 
             AbstractArchitecture arch_old;
-            if (problem.equalsIgnoreCase("SMAP") || problem.equalsIgnoreCase("ClimateCentric")) {
+            if (problem.equalsIgnoreCase("SMAP") || problem.equalsIgnoreCase("SMAP_JPL1")
+                    || problem.equalsIgnoreCase("SMAP_JPL2")
+                    || problem.equalsIgnoreCase("ClimateCentric")) {
                 // Generate a new architecture
                 arch_old = new Architecture(bitStringBuilder.toString(), 1, (AssigningParams)params);
             }

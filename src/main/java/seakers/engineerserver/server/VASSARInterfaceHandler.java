@@ -27,9 +27,6 @@ import java.util.concurrent.*;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
-import io.lettuce.core.RedisClient;
-import io.lettuce.core.pubsub.StatefulRedisPubSubConnection;
-import io.lettuce.core.pubsub.api.sync.RedisPubSubCommands;
 import jess.Fact;
 import jess.JessException;
 import jess.Value;
@@ -61,9 +58,7 @@ import seakers.vassar.architecture.AbstractArchitecture;
 import seakers.vassar.evaluation.AbstractArchitectureEvaluator;
 import seakers.vassar.evaluation.ArchitectureEvaluationManager;
 import seakers.vassar.local.BaseParams;
-import seakers.vassar.problems.Assigning.AssigningParams;
-import seakers.vassar.problems.Assigning.ClimateCentricParams;
-import seakers.vassar.problems.Assigning.SMAPParams;
+import seakers.vassar.problems.Assigning.*;
 import seakers.vassar.problems.PartitioningAndAssigning.Decadal2017AerosolsParams;
 
 public class VASSARInterfaceHandler implements VASSARInterface.Iface {
@@ -306,13 +301,22 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         String key;
         String search_clps = "";
 
-        if (problem.equalsIgnoreCase("SMAP") || problem.equalsIgnoreCase("ClimateCentric")) {
+        if (problem.equalsIgnoreCase("SMAP") || problem.equalsIgnoreCase("SMAP_JPL1")
+                || problem.equalsIgnoreCase("SMAP_JPL2")
+                || problem.equalsIgnoreCase("ClimateCentric")) {
             key = problem;
 
             if (problem.equalsIgnoreCase("SMAP")) {
                 params = new SMAPParams(this.resourcesPath, "CRISP-ATTRIBUTES",
                         "test", "normal", search_clps);
-
+            }
+            else if (problem.equalsIgnoreCase("SMAP_JPL1")) {
+                params = new SMAPJPL1Params(this.resourcesPath, "CRISP-ATTRIBUTES",
+                        "test", "normal", search_clps);
+            }
+            else if (problem.equalsIgnoreCase("SMAP_JPL2")) {
+                params = new SMAPJPL2Params(this.resourcesPath, "CRISP-ATTRIBUTES",
+                        "test", "normal", search_clps);
             }
             else if (problem.equalsIgnoreCase("ClimateCentric")) {
                 params = new ClimateCentricParams(this.resourcesPath, "FUZZY-ATTRIBUTES",
@@ -355,6 +359,12 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         if (problem.equalsIgnoreCase("SMAP")) {
             key = "SMAP";
         }
+        else if (problem.equalsIgnoreCase("SMAP_JPL1")) {
+            key = "SMAP_JPL1";
+        }
+        else if (problem.equalsIgnoreCase("SMAP_JPL2")) {
+            key = "SMAP_JPL2";
+        }
         else if(problem.equalsIgnoreCase("ClimateCentric")){
             key = "ClimateCentric";
         }
@@ -377,7 +387,9 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
     private AbstractArchitecture getArchitectureBinaryInput(String problem, String bitString, int numSatellites, BaseParams params) {
         AbstractArchitecture architecture;
 
-        if (problem.equalsIgnoreCase("SMAP") || problem.equalsIgnoreCase("ClimateCentric")) {
+        if (problem.equalsIgnoreCase("SMAP") || problem.equalsIgnoreCase("SMAP_JPL1")
+                || problem.equalsIgnoreCase("SMAP_JPL2")
+                || problem.equalsIgnoreCase("ClimateCentric")) {
             // Generate a new architecture
             architecture = new seakers.vassar.problems.Assigning.Architecture(bitString, numSatellites, (AssigningParams) params);
 
@@ -600,7 +612,9 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
         System.out.println(bitString);
 
-        if (problem.equalsIgnoreCase("SMAP") || problem.equalsIgnoreCase("ClimateCentric")) {
+        if (problem.equalsIgnoreCase("SMAP") || problem.equalsIgnoreCase("SMAP_JPL1")
+                || problem.equalsIgnoreCase("SMAP_JPL2")
+                || problem.equalsIgnoreCase("ClimateCentric")) {
 
             seakers.vassar.problems.Assigning.AssigningParams params = (seakers.vassar.problems.Assigning.AssigningParams) this.getProblemParameters(problem);
             ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
