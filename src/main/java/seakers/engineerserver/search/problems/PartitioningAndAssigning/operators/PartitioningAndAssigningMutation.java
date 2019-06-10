@@ -5,7 +5,7 @@ import seakers.architecture.Architecture;
 import seakers.architecture.operators.IntegerUM;
 import seakers.architecture.util.IntegerVariable;
 import seakers.engineerserver.search.problems.PartitioningAndAssigning.PartitioningAndAssigningArchitecture;
-import seakers.vassar.local.BaseParams;
+import seakers.vassar.BaseParams;
 
 import java.util.*;
 

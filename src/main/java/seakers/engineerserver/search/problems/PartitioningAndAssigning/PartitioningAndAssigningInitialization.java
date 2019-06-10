@@ -5,7 +5,7 @@ import org.moeaframework.core.Problem;
 import org.moeaframework.core.Solution;
 import seakers.architecture.util.IntegerVariable;
 import seakers.vassar.architecture.AbstractArchitecture;
-import seakers.vassar.local.BaseParams;
+import seakers.vassar.BaseParams;
 import seakers.vassar.problems.PartitioningAndAssigning.Architecture;
 import seakers.vassar.problems.PartitioningAndAssigning.ArchitectureGenerator;
 import seakers.vassar.problems.PartitioningAndAssigning.PartitioningAndAssigningParams;

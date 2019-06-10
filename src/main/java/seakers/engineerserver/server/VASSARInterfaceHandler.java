@@ -57,7 +57,7 @@ import seakers.vassar.Result;
 import seakers.vassar.architecture.AbstractArchitecture;
 import seakers.vassar.evaluation.AbstractArchitectureEvaluator;
 import seakers.vassar.evaluation.ArchitectureEvaluationManager;
-import seakers.vassar.local.BaseParams;
+import seakers.vassar.BaseParams;
 import seakers.vassar.problems.Assigning.*;
 import seakers.vassar.problems.PartitioningAndAssigning.Decadal2017AerosolsParams;
 
@@ -79,7 +79,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         this.binaryInputGAThread = new Thread();
         this.discreteInputGAThread = new Thread();
 
-        OrekitConfig.init(4, this.resourcesPath + File.separator + "orekit");
+        OrekitConfig.init(1, this.resourcesPath + File.separator + "orekit");
     }
 
     private Runnable generateBinaryInputGATask(String problem, List<BinaryInputArchitecture> dataset, String username) {
@@ -308,33 +308,33 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
             if (problem.equalsIgnoreCase("SMAP")) {
                 params = new SMAPParams(this.resourcesPath, "CRISP-ATTRIBUTES",
-                        "test", "normal", search_clps);
+                        "test", "normal");
             }
             else if (problem.equalsIgnoreCase("SMAP_JPL1")) {
                 params = new SMAPJPL1Params(this.resourcesPath, "CRISP-ATTRIBUTES",
-                        "test", "normal", search_clps);
+                        "test", "normal");
             }
             else if (problem.equalsIgnoreCase("SMAP_JPL2")) {
                 params = new SMAPJPL2Params(this.resourcesPath, "CRISP-ATTRIBUTES",
-                        "test", "normal", search_clps);
+                        "test", "normal");
             }
             else if (problem.equalsIgnoreCase("ClimateCentric")) {
                 params = new ClimateCentricParams(this.resourcesPath, "FUZZY-ATTRIBUTES",
-                        "test", "normal", search_clps);
+                        "test", "normal");
             }
             else {
                 throw new RuntimeException();
             }
 
-            evaluator = new seakers.vassar.problems.Assigning.ArchitectureEvaluator(params);
+            evaluator = new seakers.vassar.problems.Assigning.ArchitectureEvaluator();
 
         }
         else if (problem.equalsIgnoreCase("Decadal2017Aerosols")) {
             key = "Decadal2017Aerosols";
 
             params = new Decadal2017AerosolsParams(this.resourcesPath, "CRISP-ATTRIBUTES",
-                    "test", "normal", search_clps);
-            evaluator = new seakers.vassar.problems.PartitioningAndAssigning.ArchitectureEvaluator(params);
+                    "test", "normal");
+            evaluator = new seakers.vassar.problems.PartitioningAndAssigning.ArchitectureEvaluator();
         }
         else {
             throw new IllegalArgumentException("Unrecorgnizable problem type: " + problem);
@@ -350,7 +350,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         this.architectureEvaluationManagerMap.put(key, AEM);
 
         // Initialization
-        AEM.init(4);
+        AEM.init(2);
     }
 
     private BaseParams getProblemParameters(String problem) {
@@ -623,7 +623,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             architecture = this.getArchitectureBinaryInput(problem, bitString, 1, params);
 
             // Initialize Critique Generator
-            seakers.vassar.problems.Assigning.CritiqueGenerator critiquer = new seakers.vassar.problems.Assigning.CritiqueGenerator(params, AEM.getResourcePool(), architecture);
+            seakers.vassar.problems.Assigning.CritiqueGenerator critiquer = new seakers.vassar.problems.Assigning.CritiqueGenerator(AEM.getResourcePool(), architecture);
 
             return critiquer.getCritique();
 
@@ -651,7 +651,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             architecture = this.getArchitectureDiscreteInput(problem, intArray, 1, params);
 
             // Initialize Critique Generator
-            seakers.vassar.problems.PartitioningAndAssigning.CritiqueGenerator critiquer = new seakers.vassar.problems.PartitioningAndAssigning.CritiqueGenerator(params, AEM.getResourcePool(), architecture);
+            seakers.vassar.problems.PartitioningAndAssigning.CritiqueGenerator critiquer = new seakers.vassar.problems.PartitioningAndAssigning.CritiqueGenerator(AEM.getResourcePool(), architecture);
 
             return critiquer.getCritique();
 

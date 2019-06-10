@@ -12,7 +12,7 @@ import seakers.architecture.util.IntegerVariable;
 import seakers.vassar.Result;
 import seakers.vassar.architecture.AbstractArchitecture;
 import seakers.vassar.evaluation.ArchitectureEvaluationManager;
-import seakers.vassar.local.BaseParams;
+import seakers.vassar.BaseParams;
 import seakers.vassar.problems.PartitioningAndAssigning.Architecture;
 
 import java.util.HashSet;

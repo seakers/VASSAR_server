@@ -5,7 +5,7 @@ import org.moeaframework.core.Variation;
 import seakers.architecture.Architecture;
 import seakers.architecture.util.IntegerVariable;
 import seakers.engineerserver.search.problems.PartitioningAndAssigning.PartitioningAndAssigningArchitecture;
-import seakers.vassar.local.BaseParams;
+import seakers.vassar.BaseParams;
 
 import java.util.Arrays;
 import java.util.Random;

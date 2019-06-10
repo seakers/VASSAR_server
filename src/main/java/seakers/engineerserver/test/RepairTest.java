@@ -13,7 +13,7 @@ import seakers.engineerserver.search.problems.PartitioningAndAssigning.Partition
 import seakers.engineerserver.search.problems.PartitioningAndAssigning.operators.PartitioningAndAssigningMutation;
 import seakers.vassar.evaluation.AbstractArchitectureEvaluator;
 import seakers.vassar.evaluation.ArchitectureEvaluationManager;
-import seakers.vassar.local.BaseParams;
+import seakers.vassar.BaseParams;
 import seakers.vassar.problems.PartitioningAndAssigning.ArchitectureEvaluator;
 import seakers.vassar.problems.PartitioningAndAssigning.Decadal2017AerosolsParams;
 
@@ -34,8 +34,8 @@ public class RepairTest {
                 File.separator + "problems" +
                 File.separator + "SMAP";
 
-        BaseParams params = new Decadal2017AerosolsParams(path, "CRISP-ATTRIBUTES", "seakers/engineerserver/test", "normal", search_clps);
-        AbstractArchitectureEvaluator evaluator = new ArchitectureEvaluator(params);
+        BaseParams params = new Decadal2017AerosolsParams(path, "CRISP-ATTRIBUTES", "seakers/engineerserver/test", "normal");
+        AbstractArchitectureEvaluator evaluator = new ArchitectureEvaluator();
         ArchitectureEvaluationManager AEM = new ArchitectureEvaluationManager(params, evaluator);
 
         //parameters and operators for search
