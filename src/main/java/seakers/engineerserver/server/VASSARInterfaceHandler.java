@@ -319,7 +319,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
                         "test", "normal");
             }
             else if (problem.equalsIgnoreCase("ClimateCentric")) {
-                params = new ClimateCentricParams(this.resourcesPath, "FUZZY-ATTRIBUTES",
+                params = new ClimateCentricParams(this.resourcesPath, "CRISP-ATTRIBUTES",
                         "test", "normal");
             }
             else {
