@@ -53,6 +53,7 @@ import seakers.engineerserver.search.problems.PartitioningAndAssigning.Partition
 import seakers.engineerserver.search.problems.PartitioningAndAssigning.operators.PartitioningAndAssigningCrossover;
 import seakers.engineerserver.search.problems.PartitioningAndAssigning.operators.PartitioningAndAssigningMutation;
 import seakers.orekit.util.OrekitConfig;
+import seakers.vassar.Resource;
 import seakers.vassar.Result;
 import seakers.vassar.architecture.AbstractArchitecture;
 import seakers.vassar.evaluation.AbstractArchitectureEvaluator;
@@ -425,8 +426,10 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             bitString += b ? "1" : "0";
         }
 
-        BaseParams params = this.getProblemParameters(problem);
         ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
+        Resource res = AEM.getResourcePool().getResource();
+        BaseParams params = res.getParams();
+        AEM.getResourcePool().freeResource(res);
         AbstractArchitecture architecture = this.getArchitectureBinaryInput(problem, bitString, 1, params);
 
         // Evaluate the architecture
@@ -451,8 +454,10 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             intArray[i] = intList.get(i);
         }
 
-        BaseParams params = this.getProblemParameters(problem);
         ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
+        Resource res = AEM.getResourcePool().getResource();
+        BaseParams params = res.getParams();
+        AEM.getResourcePool().freeResource(res);
         AbstractArchitecture architecture = this.getArchitectureDiscreteInput(problem, intArray, 1, params);
 
         // Evaluate the architecture
@@ -473,8 +478,10 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
     @Override
     public List<BinaryInputArchitecture> runLocalSearchBinaryInput(String problem, List<Boolean> boolList) {
 
-        BaseParams params = this.getProblemParameters(problem);
         ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
+        Resource res = AEM.getResourcePool().getResource();
+        BaseParams params = res.getParams();
+        AEM.getResourcePool().freeResource(res);
 
         String bitString = "";
         for (Boolean b : boolList) {
@@ -509,8 +516,10 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
     @Override
     public List<DiscreteInputArchitecture> runLocalSearchDiscreteInput(String problem, List<Integer> inputs) {
-        BaseParams params = this.getProblemParameters(problem);
         ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
+        Resource res = AEM.getResourcePool().getResource();
+        BaseParams params = res.getParams();
+        AEM.getResourcePool().freeResource(res);
 
         int[] inputsArray = new int[inputs.size()];
         for(int i = 0; i < inputs.size(); i++){
@@ -709,8 +718,10 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             bitString += b ? "1" : "0";
         }
 
-        BaseParams params = this.getProblemParameters(problem);
         ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
+        Resource res = AEM.getResourcePool().getResource();
+        BaseParams params = res.getParams();
+        AEM.getResourcePool().freeResource(res);
 
         // Generate a new architecture
         AbstractArchitecture architecture = this.getArchitectureBinaryInput(problem, bitString, 1, params);
@@ -768,8 +779,10 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             bitString += b ? "1" : "0";
         }
 
-        BaseParams params = this.getProblemParameters(problem);
         ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
+        Resource res = AEM.getResourcePool().getResource();
+        BaseParams params = res.getParams();
+        AEM.getResourcePool().freeResource(res);
 
         // Generate a new architecture
         AbstractArchitecture architecture = this.getArchitectureBinaryInput(problem, bitString, 1, params);
@@ -951,6 +964,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
         return information;
     }
+
     @Override
     public List<SubscoreInformation> getArchScienceInformationBinaryInput(String problem, BinaryInputArchitecture architecture) {
         String bitString = "";
@@ -958,8 +972,10 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             bitString += b ? "1" : "0";
         }
 
-        BaseParams params = this.getProblemParameters(problem);
         ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
+        Resource res = AEM.getResourcePool().getResource();
+        BaseParams params = res.getParams();
+        AEM.getResourcePool().freeResource(res);
         AbstractArchitecture absArchitecture = this.getArchitectureBinaryInput(problem, bitString, 1, params);
         Result result = AEM.evaluateArchitectureSync(absArchitecture, "Slow", true);
 
@@ -973,8 +989,10 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             intArray[i] = architecture.inputs.get(i);
         }
 
-        BaseParams params = this.getProblemParameters(problem);
         ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
+        Resource res = AEM.getResourcePool().getResource();
+        BaseParams params = res.getParams();
+        AEM.getResourcePool().freeResource(res);
         AbstractArchitecture absArchitecture = this.getArchitectureDiscreteInput(problem, intArray, 1, params);
 
         // Evaluate the architecture
@@ -1056,8 +1074,10 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             bitString += b ? "1" : "0";
         }
 
-        BaseParams params = this.getProblemParameters(problem);
         ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
+        Resource res = AEM.getResourcePool().getResource();
+        BaseParams params = res.getParams();
+        AEM.getResourcePool().freeResource(res);
         AbstractArchitecture absArchitecture = this.getArchitectureBinaryInput(problem, bitString, 1, params);
         Result result = AEM.evaluateArchitectureSync(absArchitecture, "Slow", true);
 
@@ -1071,8 +1091,10 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             intArray[i] = architecture.inputs.get(i);
         }
 
-        BaseParams params = this.getProblemParameters(problem);
         ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
+        Resource res = AEM.getResourcePool().getResource();
+        BaseParams params = res.getParams();
+        AEM.getResourcePool().freeResource(res);
         AbstractArchitecture absArchitecture = this.getArchitectureDiscreteInput(problem, intArray, 1, params);
 
         // Evaluate the architecture
