@@ -53,12 +53,12 @@ import seakers.engineerserver.search.problems.PartitioningAndAssigning.Partition
 import seakers.engineerserver.search.problems.PartitioningAndAssigning.operators.PartitioningAndAssigningCrossover;
 import seakers.engineerserver.search.problems.PartitioningAndAssigning.operators.PartitioningAndAssigningMutation;
 import seakers.orekit.util.OrekitConfig;
+import seakers.vassar.BaseParams;
 import seakers.vassar.Resource;
 import seakers.vassar.Result;
 import seakers.vassar.architecture.AbstractArchitecture;
 import seakers.vassar.evaluation.AbstractArchitectureEvaluator;
 import seakers.vassar.evaluation.ArchitectureEvaluationManager;
-import seakers.vassar.BaseParams;
 import seakers.vassar.problems.Assigning.*;
 import seakers.vassar.problems.PartitioningAndAssigning.Decadal2017AerosolsParams;
 
