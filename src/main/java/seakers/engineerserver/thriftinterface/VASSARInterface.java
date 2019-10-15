@@ -23,9 +23,9 @@ public class VASSARInterface {
 
     public DiscreteInputArchitecture evalDiscreteInputArch(String problem, java.util.List<Integer> inputs) throws org.apache.thrift.TException;
 
-    public java.util.List<BinaryInputArchitecture> runLocalSearchBinaryInput(String problem, java.util.List<Boolean> inputs) throws org.apache.thrift.TException;
+    public java.util.List<BinaryInputArchitecture> runLocalSearchBinaryInput(String problem, BinaryInputArchitecture arch) throws org.apache.thrift.TException;
 
-    public java.util.List<DiscreteInputArchitecture> runLocalSearchDiscreteInput(String problem, java.util.List<Integer> inputs) throws org.apache.thrift.TException;
+    public java.util.List<DiscreteInputArchitecture> runLocalSearchDiscreteInput(String problem, DiscreteInputArchitecture arch) throws org.apache.thrift.TException;
 
     public java.util.List<String> getOrbitList(String problem) throws org.apache.thrift.TException;
 
@@ -33,19 +33,21 @@ public class VASSARInterface {
 
     public java.util.List<String> getObjectiveList(String problem) throws org.apache.thrift.TException;
 
+    public java.util.List<String> getSubobjectiveList(String problem) throws org.apache.thrift.TException;
+
     public java.util.List<String> getInstrumentsForObjective(String problem, String objective) throws org.apache.thrift.TException;
 
     public java.util.List<String> getInstrumentsForPanel(String problem, String panel) throws org.apache.thrift.TException;
 
-    public java.util.List<String> getCritiqueBinaryInputArch(String problem, java.util.List<Boolean> inputs) throws org.apache.thrift.TException;
+    public java.util.List<String> getCritiqueBinaryInputArch(String problem, BinaryInputArchitecture inputs) throws org.apache.thrift.TException;
 
-    public java.util.List<String> getCritiqueDiscreteInputArch(String problem, java.util.List<Integer> inputs) throws org.apache.thrift.TException;
+    public java.util.List<String> getCritiqueDiscreteInputArch(String problem, DiscreteInputArchitecture inputs) throws org.apache.thrift.TException;
 
-    public java.util.List<ObjectiveSatisfaction> getArchitectureScoreExplanation(String problem, java.util.List<Boolean> arch) throws org.apache.thrift.TException;
+    public java.util.List<ObjectiveSatisfaction> getArchitectureScoreExplanation(String problem, BinaryInputArchitecture arch) throws org.apache.thrift.TException;
 
-    public java.util.List<ObjectiveSatisfaction> getPanelScoreExplanation(String problem, java.util.List<Boolean> arch, String panel) throws org.apache.thrift.TException;
+    public java.util.List<ObjectiveSatisfaction> getPanelScoreExplanation(String problem, BinaryInputArchitecture arch, String panel) throws org.apache.thrift.TException;
 
-    public java.util.List<ObjectiveSatisfaction> getObjectiveScoreExplanation(String problem, java.util.List<Boolean> arch, String objective) throws org.apache.thrift.TException;
+    public java.util.List<ObjectiveSatisfaction> getObjectiveScoreExplanation(String problem, BinaryInputArchitecture arch, String objective) throws org.apache.thrift.TException;
 
     public boolean isGABinaryInputRunning() throws org.apache.thrift.TException;
 
@@ -81,9 +83,9 @@ public class VASSARInterface {
 
     public void evalDiscreteInputArch(String problem, java.util.List<Integer> inputs, org.apache.thrift.async.AsyncMethodCallback<DiscreteInputArchitecture> resultHandler) throws org.apache.thrift.TException;
 
-    public void runLocalSearchBinaryInput(String problem, java.util.List<Boolean> inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<BinaryInputArchitecture>> resultHandler) throws org.apache.thrift.TException;
+    public void runLocalSearchBinaryInput(String problem, BinaryInputArchitecture arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<BinaryInputArchitecture>> resultHandler) throws org.apache.thrift.TException;
 
-    public void runLocalSearchDiscreteInput(String problem, java.util.List<Integer> inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<DiscreteInputArchitecture>> resultHandler) throws org.apache.thrift.TException;
+    public void runLocalSearchDiscreteInput(String problem, DiscreteInputArchitecture arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<DiscreteInputArchitecture>> resultHandler) throws org.apache.thrift.TException;
 
     public void getOrbitList(String problem, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler) throws org.apache.thrift.TException;
 
@@ -91,19 +93,21 @@ public class VASSARInterface {
 
     public void getObjectiveList(String problem, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler) throws org.apache.thrift.TException;
 
+    public void getSubobjectiveList(String problem, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler) throws org.apache.thrift.TException;
+
     public void getInstrumentsForObjective(String problem, String objective, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler) throws org.apache.thrift.TException;
 
     public void getInstrumentsForPanel(String problem, String panel, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler) throws org.apache.thrift.TException;
 
-    public void getCritiqueBinaryInputArch(String problem, java.util.List<Boolean> inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler) throws org.apache.thrift.TException;
+    public void getCritiqueBinaryInputArch(String problem, BinaryInputArchitecture inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler) throws org.apache.thrift.TException;
 
-    public void getCritiqueDiscreteInputArch(String problem, java.util.List<Integer> inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler) throws org.apache.thrift.TException;
+    public void getCritiqueDiscreteInputArch(String problem, DiscreteInputArchitecture inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler) throws org.apache.thrift.TException;
 
-    public void getArchitectureScoreExplanation(String problem, java.util.List<Boolean> arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ObjectiveSatisfaction>> resultHandler) throws org.apache.thrift.TException;
+    public void getArchitectureScoreExplanation(String problem, BinaryInputArchitecture arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ObjectiveSatisfaction>> resultHandler) throws org.apache.thrift.TException;
 
-    public void getPanelScoreExplanation(String problem, java.util.List<Boolean> arch, String panel, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ObjectiveSatisfaction>> resultHandler) throws org.apache.thrift.TException;
+    public void getPanelScoreExplanation(String problem, BinaryInputArchitecture arch, String panel, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ObjectiveSatisfaction>> resultHandler) throws org.apache.thrift.TException;
 
-    public void getObjectiveScoreExplanation(String problem, java.util.List<Boolean> arch, String objective, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ObjectiveSatisfaction>> resultHandler) throws org.apache.thrift.TException;
+    public void getObjectiveScoreExplanation(String problem, BinaryInputArchitecture arch, String objective, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ObjectiveSatisfaction>> resultHandler) throws org.apache.thrift.TException;
 
     public void isGABinaryInputRunning(org.apache.thrift.async.AsyncMethodCallback<Boolean> resultHandler) throws org.apache.thrift.TException;
 
@@ -218,17 +222,17 @@ public class VASSARInterface {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "evalDiscreteInputArch failed: unknown result");
     }
 
-    public java.util.List<BinaryInputArchitecture> runLocalSearchBinaryInput(String problem, java.util.List<Boolean> inputs) throws org.apache.thrift.TException
+    public java.util.List<BinaryInputArchitecture> runLocalSearchBinaryInput(String problem, BinaryInputArchitecture arch) throws org.apache.thrift.TException
     {
-      send_runLocalSearchBinaryInput(problem, inputs);
+      send_runLocalSearchBinaryInput(problem, arch);
       return recv_runLocalSearchBinaryInput();
     }
 
-    public void send_runLocalSearchBinaryInput(String problem, java.util.List<Boolean> inputs) throws org.apache.thrift.TException
+    public void send_runLocalSearchBinaryInput(String problem, BinaryInputArchitecture arch) throws org.apache.thrift.TException
     {
       runLocalSearchBinaryInput_args args = new runLocalSearchBinaryInput_args();
       args.setProblem(problem);
-      args.setInputs(inputs);
+      args.setArch(arch);
       sendBase("runLocalSearchBinaryInput", args);
     }
 
@@ -242,17 +246,17 @@ public class VASSARInterface {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "runLocalSearchBinaryInput failed: unknown result");
     }
 
-    public java.util.List<DiscreteInputArchitecture> runLocalSearchDiscreteInput(String problem, java.util.List<Integer> inputs) throws org.apache.thrift.TException
+    public java.util.List<DiscreteInputArchitecture> runLocalSearchDiscreteInput(String problem, DiscreteInputArchitecture arch) throws org.apache.thrift.TException
     {
-      send_runLocalSearchDiscreteInput(problem, inputs);
+      send_runLocalSearchDiscreteInput(problem, arch);
       return recv_runLocalSearchDiscreteInput();
     }
 
-    public void send_runLocalSearchDiscreteInput(String problem, java.util.List<Integer> inputs) throws org.apache.thrift.TException
+    public void send_runLocalSearchDiscreteInput(String problem, DiscreteInputArchitecture arch) throws org.apache.thrift.TException
     {
       runLocalSearchDiscreteInput_args args = new runLocalSearchDiscreteInput_args();
       args.setProblem(problem);
-      args.setInputs(inputs);
+      args.setArch(arch);
       sendBase("runLocalSearchDiscreteInput", args);
     }
 
@@ -335,6 +339,29 @@ public class VASSARInterface {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "getObjectiveList failed: unknown result");
     }
 
+    public java.util.List<String> getSubobjectiveList(String problem) throws org.apache.thrift.TException
+    {
+      send_getSubobjectiveList(problem);
+      return recv_getSubobjectiveList();
+    }
+
+    public void send_getSubobjectiveList(String problem) throws org.apache.thrift.TException
+    {
+      getSubobjectiveList_args args = new getSubobjectiveList_args();
+      args.setProblem(problem);
+      sendBase("getSubobjectiveList", args);
+    }
+
+    public java.util.List<String> recv_getSubobjectiveList() throws org.apache.thrift.TException
+    {
+      getSubobjectiveList_result result = new getSubobjectiveList_result();
+      receiveBase(result, "getSubobjectiveList");
+      if (result.isSetSuccess()) {
+        return result.success;
+      }
+      throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "getSubobjectiveList failed: unknown result");
+    }
+
     public java.util.List<String> getInstrumentsForObjective(String problem, String objective) throws org.apache.thrift.TException
     {
       send_getInstrumentsForObjective(problem, objective);
@@ -383,13 +410,13 @@ public class VASSARInterface {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "getInstrumentsForPanel failed: unknown result");
     }
 
-    public java.util.List<String> getCritiqueBinaryInputArch(String problem, java.util.List<Boolean> inputs) throws org.apache.thrift.TException
+    public java.util.List<String> getCritiqueBinaryInputArch(String problem, BinaryInputArchitecture inputs) throws org.apache.thrift.TException
     {
       send_getCritiqueBinaryInputArch(problem, inputs);
       return recv_getCritiqueBinaryInputArch();
     }
 
-    public void send_getCritiqueBinaryInputArch(String problem, java.util.List<Boolean> inputs) throws org.apache.thrift.TException
+    public void send_getCritiqueBinaryInputArch(String problem, BinaryInputArchitecture inputs) throws org.apache.thrift.TException
     {
       getCritiqueBinaryInputArch_args args = new getCritiqueBinaryInputArch_args();
       args.setProblem(problem);
@@ -407,13 +434,13 @@ public class VASSARInterface {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "getCritiqueBinaryInputArch failed: unknown result");
     }
 
-    public java.util.List<String> getCritiqueDiscreteInputArch(String problem, java.util.List<Integer> inputs) throws org.apache.thrift.TException
+    public java.util.List<String> getCritiqueDiscreteInputArch(String problem, DiscreteInputArchitecture inputs) throws org.apache.thrift.TException
     {
       send_getCritiqueDiscreteInputArch(problem, inputs);
       return recv_getCritiqueDiscreteInputArch();
     }
 
-    public void send_getCritiqueDiscreteInputArch(String problem, java.util.List<Integer> inputs) throws org.apache.thrift.TException
+    public void send_getCritiqueDiscreteInputArch(String problem, DiscreteInputArchitecture inputs) throws org.apache.thrift.TException
     {
       getCritiqueDiscreteInputArch_args args = new getCritiqueDiscreteInputArch_args();
       args.setProblem(problem);
@@ -431,13 +458,13 @@ public class VASSARInterface {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "getCritiqueDiscreteInputArch failed: unknown result");
     }
 
-    public java.util.List<ObjectiveSatisfaction> getArchitectureScoreExplanation(String problem, java.util.List<Boolean> arch) throws org.apache.thrift.TException
+    public java.util.List<ObjectiveSatisfaction> getArchitectureScoreExplanation(String problem, BinaryInputArchitecture arch) throws org.apache.thrift.TException
     {
       send_getArchitectureScoreExplanation(problem, arch);
       return recv_getArchitectureScoreExplanation();
     }
 
-    public void send_getArchitectureScoreExplanation(String problem, java.util.List<Boolean> arch) throws org.apache.thrift.TException
+    public void send_getArchitectureScoreExplanation(String problem, BinaryInputArchitecture arch) throws org.apache.thrift.TException
     {
       getArchitectureScoreExplanation_args args = new getArchitectureScoreExplanation_args();
       args.setProblem(problem);
@@ -455,13 +482,13 @@ public class VASSARInterface {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "getArchitectureScoreExplanation failed: unknown result");
     }
 
-    public java.util.List<ObjectiveSatisfaction> getPanelScoreExplanation(String problem, java.util.List<Boolean> arch, String panel) throws org.apache.thrift.TException
+    public java.util.List<ObjectiveSatisfaction> getPanelScoreExplanation(String problem, BinaryInputArchitecture arch, String panel) throws org.apache.thrift.TException
     {
       send_getPanelScoreExplanation(problem, arch, panel);
       return recv_getPanelScoreExplanation();
     }
 
-    public void send_getPanelScoreExplanation(String problem, java.util.List<Boolean> arch, String panel) throws org.apache.thrift.TException
+    public void send_getPanelScoreExplanation(String problem, BinaryInputArchitecture arch, String panel) throws org.apache.thrift.TException
     {
       getPanelScoreExplanation_args args = new getPanelScoreExplanation_args();
       args.setProblem(problem);
@@ -480,13 +507,13 @@ public class VASSARInterface {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "getPanelScoreExplanation failed: unknown result");
     }
 
-    public java.util.List<ObjectiveSatisfaction> getObjectiveScoreExplanation(String problem, java.util.List<Boolean> arch, String objective) throws org.apache.thrift.TException
+    public java.util.List<ObjectiveSatisfaction> getObjectiveScoreExplanation(String problem, BinaryInputArchitecture arch, String objective) throws org.apache.thrift.TException
     {
       send_getObjectiveScoreExplanation(problem, arch, objective);
       return recv_getObjectiveScoreExplanation();
     }
 
-    public void send_getObjectiveScoreExplanation(String problem, java.util.List<Boolean> arch, String objective) throws org.apache.thrift.TException
+    public void send_getObjectiveScoreExplanation(String problem, BinaryInputArchitecture arch, String objective) throws org.apache.thrift.TException
     {
       getObjectiveScoreExplanation_args args = new getObjectiveScoreExplanation_args();
       args.setProblem(problem);
@@ -908,27 +935,27 @@ public class VASSARInterface {
       }
     }
 
-    public void runLocalSearchBinaryInput(String problem, java.util.List<Boolean> inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<BinaryInputArchitecture>> resultHandler) throws org.apache.thrift.TException {
+    public void runLocalSearchBinaryInput(String problem, BinaryInputArchitecture arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<BinaryInputArchitecture>> resultHandler) throws org.apache.thrift.TException {
       checkReady();
-      runLocalSearchBinaryInput_call method_call = new runLocalSearchBinaryInput_call(problem, inputs, resultHandler, this, ___protocolFactory, ___transport);
+      runLocalSearchBinaryInput_call method_call = new runLocalSearchBinaryInput_call(problem, arch, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
     public static class runLocalSearchBinaryInput_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<BinaryInputArchitecture>> {
       private String problem;
-      private java.util.List<Boolean> inputs;
-      public runLocalSearchBinaryInput_call(String problem, java.util.List<Boolean> inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<BinaryInputArchitecture>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      private BinaryInputArchitecture arch;
+      public runLocalSearchBinaryInput_call(String problem, BinaryInputArchitecture arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<BinaryInputArchitecture>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.problem = problem;
-        this.inputs = inputs;
+        this.arch = arch;
       }
 
       public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
         prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("runLocalSearchBinaryInput", org.apache.thrift.protocol.TMessageType.CALL, 0));
         runLocalSearchBinaryInput_args args = new runLocalSearchBinaryInput_args();
         args.setProblem(problem);
-        args.setInputs(inputs);
+        args.setArch(arch);
         args.write(prot);
         prot.writeMessageEnd();
       }
@@ -943,27 +970,27 @@ public class VASSARInterface {
       }
     }
 
-    public void runLocalSearchDiscreteInput(String problem, java.util.List<Integer> inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<DiscreteInputArchitecture>> resultHandler) throws org.apache.thrift.TException {
+    public void runLocalSearchDiscreteInput(String problem, DiscreteInputArchitecture arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<DiscreteInputArchitecture>> resultHandler) throws org.apache.thrift.TException {
       checkReady();
-      runLocalSearchDiscreteInput_call method_call = new runLocalSearchDiscreteInput_call(problem, inputs, resultHandler, this, ___protocolFactory, ___transport);
+      runLocalSearchDiscreteInput_call method_call = new runLocalSearchDiscreteInput_call(problem, arch, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
     public static class runLocalSearchDiscreteInput_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<DiscreteInputArchitecture>> {
       private String problem;
-      private java.util.List<Integer> inputs;
-      public runLocalSearchDiscreteInput_call(String problem, java.util.List<Integer> inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<DiscreteInputArchitecture>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      private DiscreteInputArchitecture arch;
+      public runLocalSearchDiscreteInput_call(String problem, DiscreteInputArchitecture arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<DiscreteInputArchitecture>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.problem = problem;
-        this.inputs = inputs;
+        this.arch = arch;
       }
 
       public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
         prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("runLocalSearchDiscreteInput", org.apache.thrift.protocol.TMessageType.CALL, 0));
         runLocalSearchDiscreteInput_args args = new runLocalSearchDiscreteInput_args();
         args.setProblem(problem);
-        args.setInputs(inputs);
+        args.setArch(arch);
         args.write(prot);
         prot.writeMessageEnd();
       }
@@ -1074,6 +1101,38 @@ public class VASSARInterface {
       }
     }
 
+    public void getSubobjectiveList(String problem, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler) throws org.apache.thrift.TException {
+      checkReady();
+      getSubobjectiveList_call method_call = new getSubobjectiveList_call(problem, resultHandler, this, ___protocolFactory, ___transport);
+      this.___currentMethod = method_call;
+      ___manager.call(method_call);
+    }
+
+    public static class getSubobjectiveList_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<String>> {
+      private String problem;
+      public getSubobjectiveList_call(String problem, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+        super(client, protocolFactory, transport, resultHandler, false);
+        this.problem = problem;
+      }
+
+      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
+        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("getSubobjectiveList", org.apache.thrift.protocol.TMessageType.CALL, 0));
+        getSubobjectiveList_args args = new getSubobjectiveList_args();
+        args.setProblem(problem);
+        args.write(prot);
+        prot.writeMessageEnd();
+      }
+
+      public java.util.List<String> getResult() throws org.apache.thrift.TException {
+        if (getState() != State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
+        }
+        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
+        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
+        return (new Client(prot)).recv_getSubobjectiveList();
+      }
+    }
+
     public void getInstrumentsForObjective(String problem, String objective, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       getInstrumentsForObjective_call method_call = new getInstrumentsForObjective_call(problem, objective, resultHandler, this, ___protocolFactory, ___transport);
@@ -1144,7 +1203,7 @@ public class VASSARInterface {
       }
     }
 
-    public void getCritiqueBinaryInputArch(String problem, java.util.List<Boolean> inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler) throws org.apache.thrift.TException {
+    public void getCritiqueBinaryInputArch(String problem, BinaryInputArchitecture inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       getCritiqueBinaryInputArch_call method_call = new getCritiqueBinaryInputArch_call(problem, inputs, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
@@ -1153,8 +1212,8 @@ public class VASSARInterface {
 
     public static class getCritiqueBinaryInputArch_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<String>> {
       private String problem;
-      private java.util.List<Boolean> inputs;
-      public getCritiqueBinaryInputArch_call(String problem, java.util.List<Boolean> inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      private BinaryInputArchitecture inputs;
+      public getCritiqueBinaryInputArch_call(String problem, BinaryInputArchitecture inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.problem = problem;
         this.inputs = inputs;
@@ -1179,7 +1238,7 @@ public class VASSARInterface {
       }
     }
 
-    public void getCritiqueDiscreteInputArch(String problem, java.util.List<Integer> inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler) throws org.apache.thrift.TException {
+    public void getCritiqueDiscreteInputArch(String problem, DiscreteInputArchitecture inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       getCritiqueDiscreteInputArch_call method_call = new getCritiqueDiscreteInputArch_call(problem, inputs, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
@@ -1188,8 +1247,8 @@ public class VASSARInterface {
 
     public static class getCritiqueDiscreteInputArch_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<String>> {
       private String problem;
-      private java.util.List<Integer> inputs;
-      public getCritiqueDiscreteInputArch_call(String problem, java.util.List<Integer> inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      private DiscreteInputArchitecture inputs;
+      public getCritiqueDiscreteInputArch_call(String problem, DiscreteInputArchitecture inputs, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.problem = problem;
         this.inputs = inputs;
@@ -1214,7 +1273,7 @@ public class VASSARInterface {
       }
     }
 
-    public void getArchitectureScoreExplanation(String problem, java.util.List<Boolean> arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ObjectiveSatisfaction>> resultHandler) throws org.apache.thrift.TException {
+    public void getArchitectureScoreExplanation(String problem, BinaryInputArchitecture arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ObjectiveSatisfaction>> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       getArchitectureScoreExplanation_call method_call = new getArchitectureScoreExplanation_call(problem, arch, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
@@ -1223,8 +1282,8 @@ public class VASSARInterface {
 
     public static class getArchitectureScoreExplanation_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<ObjectiveSatisfaction>> {
       private String problem;
-      private java.util.List<Boolean> arch;
-      public getArchitectureScoreExplanation_call(String problem, java.util.List<Boolean> arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ObjectiveSatisfaction>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      private BinaryInputArchitecture arch;
+      public getArchitectureScoreExplanation_call(String problem, BinaryInputArchitecture arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ObjectiveSatisfaction>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.problem = problem;
         this.arch = arch;
@@ -1249,7 +1308,7 @@ public class VASSARInterface {
       }
     }
 
-    public void getPanelScoreExplanation(String problem, java.util.List<Boolean> arch, String panel, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ObjectiveSatisfaction>> resultHandler) throws org.apache.thrift.TException {
+    public void getPanelScoreExplanation(String problem, BinaryInputArchitecture arch, String panel, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ObjectiveSatisfaction>> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       getPanelScoreExplanation_call method_call = new getPanelScoreExplanation_call(problem, arch, panel, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
@@ -1258,9 +1317,9 @@ public class VASSARInterface {
 
     public static class getPanelScoreExplanation_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<ObjectiveSatisfaction>> {
       private String problem;
-      private java.util.List<Boolean> arch;
+      private BinaryInputArchitecture arch;
       private String panel;
-      public getPanelScoreExplanation_call(String problem, java.util.List<Boolean> arch, String panel, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ObjectiveSatisfaction>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      public getPanelScoreExplanation_call(String problem, BinaryInputArchitecture arch, String panel, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ObjectiveSatisfaction>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.problem = problem;
         this.arch = arch;
@@ -1287,7 +1346,7 @@ public class VASSARInterface {
       }
     }
 
-    public void getObjectiveScoreExplanation(String problem, java.util.List<Boolean> arch, String objective, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ObjectiveSatisfaction>> resultHandler) throws org.apache.thrift.TException {
+    public void getObjectiveScoreExplanation(String problem, BinaryInputArchitecture arch, String objective, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ObjectiveSatisfaction>> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       getObjectiveScoreExplanation_call method_call = new getObjectiveScoreExplanation_call(problem, arch, objective, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
@@ -1296,9 +1355,9 @@ public class VASSARInterface {
 
     public static class getObjectiveScoreExplanation_call extends org.apache.thrift.async.TAsyncMethodCall<java.util.List<ObjectiveSatisfaction>> {
       private String problem;
-      private java.util.List<Boolean> arch;
+      private BinaryInputArchitecture arch;
       private String objective;
-      public getObjectiveScoreExplanation_call(String problem, java.util.List<Boolean> arch, String objective, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ObjectiveSatisfaction>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      public getObjectiveScoreExplanation_call(String problem, BinaryInputArchitecture arch, String objective, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ObjectiveSatisfaction>> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.problem = problem;
         this.arch = arch;
@@ -1760,6 +1819,7 @@ public class VASSARInterface {
       processMap.put("getOrbitList", new getOrbitList());
       processMap.put("getInstrumentList", new getInstrumentList());
       processMap.put("getObjectiveList", new getObjectiveList());
+      processMap.put("getSubobjectiveList", new getSubobjectiveList());
       processMap.put("getInstrumentsForObjective", new getInstrumentsForObjective());
       processMap.put("getInstrumentsForPanel", new getInstrumentsForPanel());
       processMap.put("getCritiqueBinaryInputArch", new getCritiqueBinaryInputArch());
@@ -1877,7 +1937,7 @@ public class VASSARInterface {
 
       public runLocalSearchBinaryInput_result getResult(I iface, runLocalSearchBinaryInput_args args) throws org.apache.thrift.TException {
         runLocalSearchBinaryInput_result result = new runLocalSearchBinaryInput_result();
-        result.success = iface.runLocalSearchBinaryInput(args.problem, args.inputs);
+        result.success = iface.runLocalSearchBinaryInput(args.problem, args.arch);
         return result;
       }
     }
@@ -1902,7 +1962,7 @@ public class VASSARInterface {
 
       public runLocalSearchDiscreteInput_result getResult(I iface, runLocalSearchDiscreteInput_args args) throws org.apache.thrift.TException {
         runLocalSearchDiscreteInput_result result = new runLocalSearchDiscreteInput_result();
-        result.success = iface.runLocalSearchDiscreteInput(args.problem, args.inputs);
+        result.success = iface.runLocalSearchDiscreteInput(args.problem, args.arch);
         return result;
       }
     }
@@ -1978,6 +2038,31 @@ public class VASSARInterface {
       public getObjectiveList_result getResult(I iface, getObjectiveList_args args) throws org.apache.thrift.TException {
         getObjectiveList_result result = new getObjectiveList_result();
         result.success = iface.getObjectiveList(args.problem);
+        return result;
+      }
+    }
+
+    public static class getSubobjectiveList<I extends Iface> extends org.apache.thrift.ProcessFunction<I, getSubobjectiveList_args> {
+      public getSubobjectiveList() {
+        super("getSubobjectiveList");
+      }
+
+      public getSubobjectiveList_args getEmptyArgsInstance() {
+        return new getSubobjectiveList_args();
+      }
+
+      protected boolean isOneway() {
+        return false;
+      }
+
+      @Override
+      protected boolean rethrowUnhandledExceptions() {
+        return false;
+      }
+
+      public getSubobjectiveList_result getResult(I iface, getSubobjectiveList_args args) throws org.apache.thrift.TException {
+        getSubobjectiveList_result result = new getSubobjectiveList_result();
+        result.success = iface.getSubobjectiveList(args.problem);
         return result;
       }
     }
@@ -2484,6 +2569,7 @@ public class VASSARInterface {
       processMap.put("getOrbitList", new getOrbitList());
       processMap.put("getInstrumentList", new getInstrumentList());
       processMap.put("getObjectiveList", new getObjectiveList());
+      processMap.put("getSubobjectiveList", new getSubobjectiveList());
       processMap.put("getInstrumentsForObjective", new getInstrumentsForObjective());
       processMap.put("getInstrumentsForPanel", new getInstrumentsForPanel());
       processMap.put("getCritiqueBinaryInputArch", new getCritiqueBinaryInputArch());
@@ -2745,7 +2831,7 @@ public class VASSARInterface {
       }
 
       public void start(I iface, runLocalSearchBinaryInput_args args, org.apache.thrift.async.AsyncMethodCallback<java.util.List<BinaryInputArchitecture>> resultHandler) throws org.apache.thrift.TException {
-        iface.runLocalSearchBinaryInput(args.problem, args.inputs,resultHandler);
+        iface.runLocalSearchBinaryInput(args.problem, args.arch,resultHandler);
       }
     }
 
@@ -2806,7 +2892,7 @@ public class VASSARInterface {
       }
 
       public void start(I iface, runLocalSearchDiscreteInput_args args, org.apache.thrift.async.AsyncMethodCallback<java.util.List<DiscreteInputArchitecture>> resultHandler) throws org.apache.thrift.TException {
-        iface.runLocalSearchDiscreteInput(args.problem, args.inputs,resultHandler);
+        iface.runLocalSearchDiscreteInput(args.problem, args.arch,resultHandler);
       }
     }
 
@@ -2990,6 +3076,67 @@ public class VASSARInterface {
 
       public void start(I iface, getObjectiveList_args args, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler) throws org.apache.thrift.TException {
         iface.getObjectiveList(args.problem,resultHandler);
+      }
+    }
+
+    public static class getSubobjectiveList<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, getSubobjectiveList_args, java.util.List<String>> {
+      public getSubobjectiveList() {
+        super("getSubobjectiveList");
+      }
+
+      public getSubobjectiveList_args getEmptyArgsInstance() {
+        return new getSubobjectiveList_args();
+      }
+
+      public org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+        final org.apache.thrift.AsyncProcessFunction fcall = this;
+        return new org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>>() {
+          public void onComplete(java.util.List<String> o) {
+            getSubobjectiveList_result result = new getSubobjectiveList_result();
+            result.success = o;
+            try {
+              fcall.sendResponse(fb, result, org.apache.thrift.protocol.TMessageType.REPLY,seqid);
+            } catch (org.apache.thrift.transport.TTransportException e) {
+              _LOGGER.error("TTransportException writing to internal frame buffer", e);
+              fb.close();
+            } catch (Exception e) {
+              _LOGGER.error("Exception writing to internal frame buffer", e);
+              onError(e);
+            }
+          }
+          public void onError(Exception e) {
+            byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
+            org.apache.thrift.TSerializable msg;
+            getSubobjectiveList_result result = new getSubobjectiveList_result();
+            if (e instanceof org.apache.thrift.transport.TTransportException) {
+              _LOGGER.error("TTransportException inside handler", e);
+              fb.close();
+              return;
+            } else if (e instanceof org.apache.thrift.TApplicationException) {
+              _LOGGER.error("TApplicationException inside handler", e);
+              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
+              msg = (org.apache.thrift.TApplicationException)e;
+            } else {
+              _LOGGER.error("Exception inside handler", e);
+              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
+              msg = new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.INTERNAL_ERROR, e.getMessage());
+            }
+            try {
+              fcall.sendResponse(fb,msg,msgType,seqid);
+            } catch (Exception ex) {
+              _LOGGER.error("Exception writing to internal frame buffer", ex);
+              fb.close();
+            }
+          }
+        };
+      }
+
+      protected boolean isOneway() {
+        return false;
+      }
+
+      public void start(I iface, getSubobjectiveList_args args, org.apache.thrift.async.AsyncMethodCallback<java.util.List<String>> resultHandler) throws org.apache.thrift.TException {
+        iface.getSubobjectiveList(args.problem,resultHandler);
       }
     }
 
@@ -6463,18 +6610,18 @@ public class VASSARInterface {
     private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("runLocalSearchBinaryInput_args");
 
     private static final org.apache.thrift.protocol.TField PROBLEM_FIELD_DESC = new org.apache.thrift.protocol.TField("problem", org.apache.thrift.protocol.TType.STRING, (short)1);
-    private static final org.apache.thrift.protocol.TField INPUTS_FIELD_DESC = new org.apache.thrift.protocol.TField("inputs", org.apache.thrift.protocol.TType.LIST, (short)2);
+    private static final org.apache.thrift.protocol.TField ARCH_FIELD_DESC = new org.apache.thrift.protocol.TField("arch", org.apache.thrift.protocol.TType.STRUCT, (short)2);
 
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new runLocalSearchBinaryInput_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new runLocalSearchBinaryInput_argsTupleSchemeFactory();
 
     public @org.apache.thrift.annotation.Nullable String problem; // required
-    public @org.apache.thrift.annotation.Nullable java.util.List<Boolean> inputs; // required
+    public @org.apache.thrift.annotation.Nullable BinaryInputArchitecture arch; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       PROBLEM((short)1, "problem"),
-      INPUTS((short)2, "inputs");
+      ARCH((short)2, "arch");
 
       private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
@@ -6492,8 +6639,8 @@ public class VASSARInterface {
         switch(fieldId) {
           case 1: // PROBLEM
             return PROBLEM;
-          case 2: // INPUTS
-            return INPUTS;
+          case 2: // ARCH
+            return ARCH;
           default:
             return null;
         }
@@ -6540,9 +6687,8 @@ public class VASSARInterface {
       java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
       tmpMap.put(_Fields.PROBLEM, new org.apache.thrift.meta_data.FieldMetaData("problem", org.apache.thrift.TFieldRequirementType.DEFAULT, 
           new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-      tmpMap.put(_Fields.INPUTS, new org.apache.thrift.meta_data.FieldMetaData("inputs", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
-              new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.BOOL))));
+      tmpMap.put(_Fields.ARCH, new org.apache.thrift.meta_data.FieldMetaData("arch", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, BinaryInputArchitecture.class)));
       metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
       org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(runLocalSearchBinaryInput_args.class, metaDataMap);
     }
@@ -6552,11 +6698,11 @@ public class VASSARInterface {
 
     public runLocalSearchBinaryInput_args(
       String problem,
-      java.util.List<Boolean> inputs)
+      BinaryInputArchitecture arch)
     {
       this();
       this.problem = problem;
-      this.inputs = inputs;
+      this.arch = arch;
     }
 
     /**
@@ -6566,9 +6712,8 @@ public class VASSARInterface {
       if (other.isSetProblem()) {
         this.problem = other.problem;
       }
-      if (other.isSetInputs()) {
-        java.util.List<Boolean> __this__inputs = new java.util.ArrayList<Boolean>(other.inputs);
-        this.inputs = __this__inputs;
+      if (other.isSetArch()) {
+        this.arch = new BinaryInputArchitecture(other.arch);
       }
     }
 
@@ -6579,7 +6724,7 @@ public class VASSARInterface {
     @Override
     public void clear() {
       this.problem = null;
-      this.inputs = null;
+      this.arch = null;
     }
 
     @org.apache.thrift.annotation.Nullable
@@ -6607,44 +6752,28 @@ public class VASSARInterface {
       }
     }
 
-    public int getInputsSize() {
-      return (this.inputs == null) ? 0 : this.inputs.size();
-    }
-
     @org.apache.thrift.annotation.Nullable
-    public java.util.Iterator<Boolean> getInputsIterator() {
-      return (this.inputs == null) ? null : this.inputs.iterator();
+    public BinaryInputArchitecture getArch() {
+      return this.arch;
     }
 
-    public void addToInputs(boolean elem) {
-      if (this.inputs == null) {
-        this.inputs = new java.util.ArrayList<Boolean>();
-      }
-      this.inputs.add(elem);
-    }
-
-    @org.apache.thrift.annotation.Nullable
-    public java.util.List<Boolean> getInputs() {
-      return this.inputs;
-    }
-
-    public runLocalSearchBinaryInput_args setInputs(@org.apache.thrift.annotation.Nullable java.util.List<Boolean> inputs) {
-      this.inputs = inputs;
+    public runLocalSearchBinaryInput_args setArch(@org.apache.thrift.annotation.Nullable BinaryInputArchitecture arch) {
+      this.arch = arch;
       return this;
     }
 
-    public void unsetInputs() {
-      this.inputs = null;
+    public void unsetArch() {
+      this.arch = null;
     }
 
-    /** Returns true if field inputs is set (has been assigned a value) and false otherwise */
-    public boolean isSetInputs() {
-      return this.inputs != null;
+    /** Returns true if field arch is set (has been assigned a value) and false otherwise */
+    public boolean isSetArch() {
+      return this.arch != null;
     }
 
-    public void setInputsIsSet(boolean value) {
+    public void setArchIsSet(boolean value) {
       if (!value) {
-        this.inputs = null;
+        this.arch = null;
       }
     }
 
@@ -6658,11 +6787,11 @@ public class VASSARInterface {
         }
         break;
 
-      case INPUTS:
+      case ARCH:
         if (value == null) {
-          unsetInputs();
+          unsetArch();
         } else {
-          setInputs((java.util.List<Boolean>)value);
+          setArch((BinaryInputArchitecture)value);
         }
         break;
 
@@ -6675,8 +6804,8 @@ public class VASSARInterface {
       case PROBLEM:
         return getProblem();
 
-      case INPUTS:
-        return getInputs();
+      case ARCH:
+        return getArch();
 
       }
       throw new IllegalStateException();
@@ -6691,8 +6820,8 @@ public class VASSARInterface {
       switch (field) {
       case PROBLEM:
         return isSetProblem();
-      case INPUTS:
-        return isSetInputs();
+      case ARCH:
+        return isSetArch();
       }
       throw new IllegalStateException();
     }
@@ -6721,12 +6850,12 @@ public class VASSARInterface {
           return false;
       }
 
-      boolean this_present_inputs = true && this.isSetInputs();
-      boolean that_present_inputs = true && that.isSetInputs();
-      if (this_present_inputs || that_present_inputs) {
-        if (!(this_present_inputs && that_present_inputs))
+      boolean this_present_arch = true && this.isSetArch();
+      boolean that_present_arch = true && that.isSetArch();
+      if (this_present_arch || that_present_arch) {
+        if (!(this_present_arch && that_present_arch))
           return false;
-        if (!this.inputs.equals(that.inputs))
+        if (!this.arch.equals(that.arch))
           return false;
       }
 
@@ -6741,9 +6870,9 @@ public class VASSARInterface {
       if (isSetProblem())
         hashCode = hashCode * 8191 + problem.hashCode();
 
-      hashCode = hashCode * 8191 + ((isSetInputs()) ? 131071 : 524287);
-      if (isSetInputs())
-        hashCode = hashCode * 8191 + inputs.hashCode();
+      hashCode = hashCode * 8191 + ((isSetArch()) ? 131071 : 524287);
+      if (isSetArch())
+        hashCode = hashCode * 8191 + arch.hashCode();
 
       return hashCode;
     }
@@ -6766,12 +6895,12 @@ public class VASSARInterface {
           return lastComparison;
         }
       }
-      lastComparison = Boolean.valueOf(isSetInputs()).compareTo(other.isSetInputs());
+      lastComparison = Boolean.valueOf(isSetArch()).compareTo(other.isSetArch());
       if (lastComparison != 0) {
         return lastComparison;
       }
-      if (isSetInputs()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.inputs, other.inputs);
+      if (isSetArch()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.arch, other.arch);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -6805,11 +6934,11 @@ public class VASSARInterface {
       }
       first = false;
       if (!first) sb.append(", ");
-      sb.append("inputs:");
-      if (this.inputs == null) {
+      sb.append("arch:");
+      if (this.arch == null) {
         sb.append("null");
       } else {
-        sb.append(this.inputs);
+        sb.append(this.arch);
       }
       first = false;
       sb.append(")");
@@ -6819,6 +6948,9 @@ public class VASSARInterface {
     public void validate() throws org.apache.thrift.TException {
       // check for required fields
       // check for sub-struct validity
+      if (arch != null) {
+        arch.validate();
+      }
     }
 
     private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
@@ -6863,20 +6995,11 @@ public class VASSARInterface {
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
               }
               break;
-            case 2: // INPUTS
-              if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
-                {
-                  org.apache.thrift.protocol.TList _list150 = iprot.readListBegin();
-                  struct.inputs = new java.util.ArrayList<Boolean>(_list150.size);
-                  boolean _elem151;
-                  for (int _i152 = 0; _i152 < _list150.size; ++_i152)
-                  {
-                    _elem151 = iprot.readBool();
-                    struct.inputs.add(_elem151);
-                  }
-                  iprot.readListEnd();
-                }
-                struct.setInputsIsSet(true);
+            case 2: // ARCH
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.arch = new BinaryInputArchitecture();
+                struct.arch.read(iprot);
+                struct.setArchIsSet(true);
               } else { 
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
               }
@@ -6901,16 +7024,9 @@ public class VASSARInterface {
           oprot.writeString(struct.problem);
           oprot.writeFieldEnd();
         }
-        if (struct.inputs != null) {
-          oprot.writeFieldBegin(INPUTS_FIELD_DESC);
-          {
-            oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.BOOL, struct.inputs.size()));
-            for (boolean _iter153 : struct.inputs)
-            {
-              oprot.writeBool(_iter153);
-            }
-            oprot.writeListEnd();
-          }
+        if (struct.arch != null) {
+          oprot.writeFieldBegin(ARCH_FIELD_DESC);
+          struct.arch.write(oprot);
           oprot.writeFieldEnd();
         }
         oprot.writeFieldStop();
@@ -6934,21 +7050,15 @@ public class VASSARInterface {
         if (struct.isSetProblem()) {
           optionals.set(0);
         }
-        if (struct.isSetInputs()) {
+        if (struct.isSetArch()) {
           optionals.set(1);
         }
         oprot.writeBitSet(optionals, 2);
         if (struct.isSetProblem()) {
           oprot.writeString(struct.problem);
         }
-        if (struct.isSetInputs()) {
-          {
-            oprot.writeI32(struct.inputs.size());
-            for (boolean _iter154 : struct.inputs)
-            {
-              oprot.writeBool(_iter154);
-            }
-          }
+        if (struct.isSetArch()) {
+          struct.arch.write(oprot);
         }
       }
 
@@ -6961,17 +7071,9 @@ public class VASSARInterface {
           struct.setProblemIsSet(true);
         }
         if (incoming.get(1)) {
-          {
-            org.apache.thrift.protocol.TList _list155 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.BOOL, iprot.readI32());
-            struct.inputs = new java.util.ArrayList<Boolean>(_list155.size);
-            boolean _elem156;
-            for (int _i157 = 0; _i157 < _list155.size; ++_i157)
-            {
-              _elem156 = iprot.readBool();
-              struct.inputs.add(_elem156);
-            }
-          }
-          struct.setInputsIsSet(true);
+          struct.arch = new BinaryInputArchitecture();
+          struct.arch.read(iprot);
+          struct.setArchIsSet(true);
         }
       }
     }
@@ -7301,14 +7403,14 @@ public class VASSARInterface {
             case 0: // SUCCESS
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
-                  org.apache.thrift.protocol.TList _list158 = iprot.readListBegin();
-                  struct.success = new java.util.ArrayList<BinaryInputArchitecture>(_list158.size);
-                  @org.apache.thrift.annotation.Nullable BinaryInputArchitecture _elem159;
-                  for (int _i160 = 0; _i160 < _list158.size; ++_i160)
+                  org.apache.thrift.protocol.TList _list150 = iprot.readListBegin();
+                  struct.success = new java.util.ArrayList<BinaryInputArchitecture>(_list150.size);
+                  @org.apache.thrift.annotation.Nullable BinaryInputArchitecture _elem151;
+                  for (int _i152 = 0; _i152 < _list150.size; ++_i152)
                   {
-                    _elem159 = new BinaryInputArchitecture();
-                    _elem159.read(iprot);
-                    struct.success.add(_elem159);
+                    _elem151 = new BinaryInputArchitecture();
+                    _elem151.read(iprot);
+                    struct.success.add(_elem151);
                   }
                   iprot.readListEnd();
                 }
@@ -7336,9 +7438,9 @@ public class VASSARInterface {
           oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
           {
             oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.success.size()));
-            for (BinaryInputArchitecture _iter161 : struct.success)
+            for (BinaryInputArchitecture _iter153 : struct.success)
             {
-              _iter161.write(oprot);
+              _iter153.write(oprot);
             }
             oprot.writeListEnd();
           }
@@ -7369,9 +7471,9 @@ public class VASSARInterface {
         if (struct.isSetSuccess()) {
           {
             oprot.writeI32(struct.success.size());
-            for (BinaryInputArchitecture _iter162 : struct.success)
+            for (BinaryInputArchitecture _iter154 : struct.success)
             {
-              _iter162.write(oprot);
+              _iter154.write(oprot);
             }
           }
         }
@@ -7383,14 +7485,14 @@ public class VASSARInterface {
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
           {
-            org.apache.thrift.protocol.TList _list163 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
-            struct.success = new java.util.ArrayList<BinaryInputArchitecture>(_list163.size);
-            @org.apache.thrift.annotation.Nullable BinaryInputArchitecture _elem164;
-            for (int _i165 = 0; _i165 < _list163.size; ++_i165)
+            org.apache.thrift.protocol.TList _list155 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
+            struct.success = new java.util.ArrayList<BinaryInputArchitecture>(_list155.size);
+            @org.apache.thrift.annotation.Nullable BinaryInputArchitecture _elem156;
+            for (int _i157 = 0; _i157 < _list155.size; ++_i157)
             {
-              _elem164 = new BinaryInputArchitecture();
-              _elem164.read(iprot);
-              struct.success.add(_elem164);
+              _elem156 = new BinaryInputArchitecture();
+              _elem156.read(iprot);
+              struct.success.add(_elem156);
             }
           }
           struct.setSuccessIsSet(true);
@@ -7407,18 +7509,18 @@ public class VASSARInterface {
     private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("runLocalSearchDiscreteInput_args");
 
     private static final org.apache.thrift.protocol.TField PROBLEM_FIELD_DESC = new org.apache.thrift.protocol.TField("problem", org.apache.thrift.protocol.TType.STRING, (short)1);
-    private static final org.apache.thrift.protocol.TField INPUTS_FIELD_DESC = new org.apache.thrift.protocol.TField("inputs", org.apache.thrift.protocol.TType.LIST, (short)2);
+    private static final org.apache.thrift.protocol.TField ARCH_FIELD_DESC = new org.apache.thrift.protocol.TField("arch", org.apache.thrift.protocol.TType.STRUCT, (short)2);
 
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new runLocalSearchDiscreteInput_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new runLocalSearchDiscreteInput_argsTupleSchemeFactory();
 
     public @org.apache.thrift.annotation.Nullable String problem; // required
-    public @org.apache.thrift.annotation.Nullable java.util.List<Integer> inputs; // required
+    public @org.apache.thrift.annotation.Nullable DiscreteInputArchitecture arch; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       PROBLEM((short)1, "problem"),
-      INPUTS((short)2, "inputs");
+      ARCH((short)2, "arch");
 
       private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
@@ -7436,8 +7538,8 @@ public class VASSARInterface {
         switch(fieldId) {
           case 1: // PROBLEM
             return PROBLEM;
-          case 2: // INPUTS
-            return INPUTS;
+          case 2: // ARCH
+            return ARCH;
           default:
             return null;
         }
@@ -7484,9 +7586,8 @@ public class VASSARInterface {
       java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
       tmpMap.put(_Fields.PROBLEM, new org.apache.thrift.meta_data.FieldMetaData("problem", org.apache.thrift.TFieldRequirementType.DEFAULT, 
           new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-      tmpMap.put(_Fields.INPUTS, new org.apache.thrift.meta_data.FieldMetaData("inputs", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
-              new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32              , "int"))));
+      tmpMap.put(_Fields.ARCH, new org.apache.thrift.meta_data.FieldMetaData("arch", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, DiscreteInputArchitecture.class)));
       metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
       org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(runLocalSearchDiscreteInput_args.class, metaDataMap);
     }
@@ -7496,11 +7597,11 @@ public class VASSARInterface {
 
     public runLocalSearchDiscreteInput_args(
       String problem,
-      java.util.List<Integer> inputs)
+      DiscreteInputArchitecture arch)
     {
       this();
       this.problem = problem;
-      this.inputs = inputs;
+      this.arch = arch;
     }
 
     /**
@@ -7510,12 +7611,8 @@ public class VASSARInterface {
       if (other.isSetProblem()) {
         this.problem = other.problem;
       }
-      if (other.isSetInputs()) {
-        java.util.List<Integer> __this__inputs = new java.util.ArrayList<Integer>(other.inputs.size());
-        for (Integer other_element : other.inputs) {
-          __this__inputs.add(other_element);
-        }
-        this.inputs = __this__inputs;
+      if (other.isSetArch()) {
+        this.arch = new DiscreteInputArchitecture(other.arch);
       }
     }
 
@@ -7526,7 +7623,7 @@ public class VASSARInterface {
     @Override
     public void clear() {
       this.problem = null;
-      this.inputs = null;
+      this.arch = null;
     }
 
     @org.apache.thrift.annotation.Nullable
@@ -7554,44 +7651,28 @@ public class VASSARInterface {
       }
     }
 
-    public int getInputsSize() {
-      return (this.inputs == null) ? 0 : this.inputs.size();
-    }
-
     @org.apache.thrift.annotation.Nullable
-    public java.util.Iterator<Integer> getInputsIterator() {
-      return (this.inputs == null) ? null : this.inputs.iterator();
+    public DiscreteInputArchitecture getArch() {
+      return this.arch;
     }
 
-    public void addToInputs(int elem) {
-      if (this.inputs == null) {
-        this.inputs = new java.util.ArrayList<Integer>();
-      }
-      this.inputs.add(elem);
-    }
-
-    @org.apache.thrift.annotation.Nullable
-    public java.util.List<Integer> getInputs() {
-      return this.inputs;
-    }
-
-    public runLocalSearchDiscreteInput_args setInputs(@org.apache.thrift.annotation.Nullable java.util.List<Integer> inputs) {
-      this.inputs = inputs;
+    public runLocalSearchDiscreteInput_args setArch(@org.apache.thrift.annotation.Nullable DiscreteInputArchitecture arch) {
+      this.arch = arch;
       return this;
     }
 
-    public void unsetInputs() {
-      this.inputs = null;
+    public void unsetArch() {
+      this.arch = null;
     }
 
-    /** Returns true if field inputs is set (has been assigned a value) and false otherwise */
-    public boolean isSetInputs() {
-      return this.inputs != null;
+    /** Returns true if field arch is set (has been assigned a value) and false otherwise */
+    public boolean isSetArch() {
+      return this.arch != null;
     }
 
-    public void setInputsIsSet(boolean value) {
+    public void setArchIsSet(boolean value) {
       if (!value) {
-        this.inputs = null;
+        this.arch = null;
       }
     }
 
@@ -7605,11 +7686,11 @@ public class VASSARInterface {
         }
         break;
 
-      case INPUTS:
+      case ARCH:
         if (value == null) {
-          unsetInputs();
+          unsetArch();
         } else {
-          setInputs((java.util.List<Integer>)value);
+          setArch((DiscreteInputArchitecture)value);
         }
         break;
 
@@ -7622,8 +7703,8 @@ public class VASSARInterface {
       case PROBLEM:
         return getProblem();
 
-      case INPUTS:
-        return getInputs();
+      case ARCH:
+        return getArch();
 
       }
       throw new IllegalStateException();
@@ -7638,8 +7719,8 @@ public class VASSARInterface {
       switch (field) {
       case PROBLEM:
         return isSetProblem();
-      case INPUTS:
-        return isSetInputs();
+      case ARCH:
+        return isSetArch();
       }
       throw new IllegalStateException();
     }
@@ -7668,12 +7749,12 @@ public class VASSARInterface {
           return false;
       }
 
-      boolean this_present_inputs = true && this.isSetInputs();
-      boolean that_present_inputs = true && that.isSetInputs();
-      if (this_present_inputs || that_present_inputs) {
-        if (!(this_present_inputs && that_present_inputs))
+      boolean this_present_arch = true && this.isSetArch();
+      boolean that_present_arch = true && that.isSetArch();
+      if (this_present_arch || that_present_arch) {
+        if (!(this_present_arch && that_present_arch))
           return false;
-        if (!this.inputs.equals(that.inputs))
+        if (!this.arch.equals(that.arch))
           return false;
       }
 
@@ -7688,9 +7769,9 @@ public class VASSARInterface {
       if (isSetProblem())
         hashCode = hashCode * 8191 + problem.hashCode();
 
-      hashCode = hashCode * 8191 + ((isSetInputs()) ? 131071 : 524287);
-      if (isSetInputs())
-        hashCode = hashCode * 8191 + inputs.hashCode();
+      hashCode = hashCode * 8191 + ((isSetArch()) ? 131071 : 524287);
+      if (isSetArch())
+        hashCode = hashCode * 8191 + arch.hashCode();
 
       return hashCode;
     }
@@ -7713,12 +7794,12 @@ public class VASSARInterface {
           return lastComparison;
         }
       }
-      lastComparison = Boolean.valueOf(isSetInputs()).compareTo(other.isSetInputs());
+      lastComparison = Boolean.valueOf(isSetArch()).compareTo(other.isSetArch());
       if (lastComparison != 0) {
         return lastComparison;
       }
-      if (isSetInputs()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.inputs, other.inputs);
+      if (isSetArch()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.arch, other.arch);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -7752,11 +7833,11 @@ public class VASSARInterface {
       }
       first = false;
       if (!first) sb.append(", ");
-      sb.append("inputs:");
-      if (this.inputs == null) {
+      sb.append("arch:");
+      if (this.arch == null) {
         sb.append("null");
       } else {
-        sb.append(this.inputs);
+        sb.append(this.arch);
       }
       first = false;
       sb.append(")");
@@ -7766,6 +7847,9 @@ public class VASSARInterface {
     public void validate() throws org.apache.thrift.TException {
       // check for required fields
       // check for sub-struct validity
+      if (arch != null) {
+        arch.validate();
+      }
     }
 
     private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
@@ -7810,20 +7894,11 @@ public class VASSARInterface {
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
               }
               break;
-            case 2: // INPUTS
-              if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
-                {
-                  org.apache.thrift.protocol.TList _list166 = iprot.readListBegin();
-                  struct.inputs = new java.util.ArrayList<Integer>(_list166.size);
-                  int _elem167;
-                  for (int _i168 = 0; _i168 < _list166.size; ++_i168)
-                  {
-                    _elem167 = iprot.readI32();
-                    struct.inputs.add(_elem167);
-                  }
-                  iprot.readListEnd();
-                }
-                struct.setInputsIsSet(true);
+            case 2: // ARCH
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.arch = new DiscreteInputArchitecture();
+                struct.arch.read(iprot);
+                struct.setArchIsSet(true);
               } else { 
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
               }
@@ -7848,16 +7923,9 @@ public class VASSARInterface {
           oprot.writeString(struct.problem);
           oprot.writeFieldEnd();
         }
-        if (struct.inputs != null) {
-          oprot.writeFieldBegin(INPUTS_FIELD_DESC);
-          {
-            oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.I32, struct.inputs.size()));
-            for (int _iter169 : struct.inputs)
-            {
-              oprot.writeI32(_iter169);
-            }
-            oprot.writeListEnd();
-          }
+        if (struct.arch != null) {
+          oprot.writeFieldBegin(ARCH_FIELD_DESC);
+          struct.arch.write(oprot);
           oprot.writeFieldEnd();
         }
         oprot.writeFieldStop();
@@ -7881,21 +7949,15 @@ public class VASSARInterface {
         if (struct.isSetProblem()) {
           optionals.set(0);
         }
-        if (struct.isSetInputs()) {
+        if (struct.isSetArch()) {
           optionals.set(1);
         }
         oprot.writeBitSet(optionals, 2);
         if (struct.isSetProblem()) {
           oprot.writeString(struct.problem);
         }
-        if (struct.isSetInputs()) {
-          {
-            oprot.writeI32(struct.inputs.size());
-            for (int _iter170 : struct.inputs)
-            {
-              oprot.writeI32(_iter170);
-            }
-          }
+        if (struct.isSetArch()) {
+          struct.arch.write(oprot);
         }
       }
 
@@ -7908,17 +7970,9 @@ public class VASSARInterface {
           struct.setProblemIsSet(true);
         }
         if (incoming.get(1)) {
-          {
-            org.apache.thrift.protocol.TList _list171 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.I32, iprot.readI32());
-            struct.inputs = new java.util.ArrayList<Integer>(_list171.size);
-            int _elem172;
-            for (int _i173 = 0; _i173 < _list171.size; ++_i173)
-            {
-              _elem172 = iprot.readI32();
-              struct.inputs.add(_elem172);
-            }
-          }
-          struct.setInputsIsSet(true);
+          struct.arch = new DiscreteInputArchitecture();
+          struct.arch.read(iprot);
+          struct.setArchIsSet(true);
         }
       }
     }
@@ -8248,14 +8302,14 @@ public class VASSARInterface {
             case 0: // SUCCESS
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
-                  org.apache.thrift.protocol.TList _list174 = iprot.readListBegin();
-                  struct.success = new java.util.ArrayList<DiscreteInputArchitecture>(_list174.size);
-                  @org.apache.thrift.annotation.Nullable DiscreteInputArchitecture _elem175;
-                  for (int _i176 = 0; _i176 < _list174.size; ++_i176)
+                  org.apache.thrift.protocol.TList _list158 = iprot.readListBegin();
+                  struct.success = new java.util.ArrayList<DiscreteInputArchitecture>(_list158.size);
+                  @org.apache.thrift.annotation.Nullable DiscreteInputArchitecture _elem159;
+                  for (int _i160 = 0; _i160 < _list158.size; ++_i160)
                   {
-                    _elem175 = new DiscreteInputArchitecture();
-                    _elem175.read(iprot);
-                    struct.success.add(_elem175);
+                    _elem159 = new DiscreteInputArchitecture();
+                    _elem159.read(iprot);
+                    struct.success.add(_elem159);
                   }
                   iprot.readListEnd();
                 }
@@ -8283,9 +8337,9 @@ public class VASSARInterface {
           oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
           {
             oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.success.size()));
-            for (DiscreteInputArchitecture _iter177 : struct.success)
+            for (DiscreteInputArchitecture _iter161 : struct.success)
             {
-              _iter177.write(oprot);
+              _iter161.write(oprot);
             }
             oprot.writeListEnd();
           }
@@ -8316,9 +8370,9 @@ public class VASSARInterface {
         if (struct.isSetSuccess()) {
           {
             oprot.writeI32(struct.success.size());
-            for (DiscreteInputArchitecture _iter178 : struct.success)
+            for (DiscreteInputArchitecture _iter162 : struct.success)
             {
-              _iter178.write(oprot);
+              _iter162.write(oprot);
             }
           }
         }
@@ -8330,14 +8384,14 @@ public class VASSARInterface {
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
           {
-            org.apache.thrift.protocol.TList _list179 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
-            struct.success = new java.util.ArrayList<DiscreteInputArchitecture>(_list179.size);
-            @org.apache.thrift.annotation.Nullable DiscreteInputArchitecture _elem180;
-            for (int _i181 = 0; _i181 < _list179.size; ++_i181)
+            org.apache.thrift.protocol.TList _list163 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
+            struct.success = new java.util.ArrayList<DiscreteInputArchitecture>(_list163.size);
+            @org.apache.thrift.annotation.Nullable DiscreteInputArchitecture _elem164;
+            for (int _i165 = 0; _i165 < _list163.size; ++_i165)
             {
-              _elem180 = new DiscreteInputArchitecture();
-              _elem180.read(iprot);
-              struct.success.add(_elem180);
+              _elem164 = new DiscreteInputArchitecture();
+              _elem164.read(iprot);
+              struct.success.add(_elem164);
             }
           }
           struct.setSuccessIsSet(true);
@@ -9034,13 +9088,13 @@ public class VASSARInterface {
             case 0: // SUCCESS
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
-                  org.apache.thrift.protocol.TList _list182 = iprot.readListBegin();
-                  struct.success = new java.util.ArrayList<String>(_list182.size);
-                  @org.apache.thrift.annotation.Nullable String _elem183;
-                  for (int _i184 = 0; _i184 < _list182.size; ++_i184)
+                  org.apache.thrift.protocol.TList _list166 = iprot.readListBegin();
+                  struct.success = new java.util.ArrayList<String>(_list166.size);
+                  @org.apache.thrift.annotation.Nullable String _elem167;
+                  for (int _i168 = 0; _i168 < _list166.size; ++_i168)
                   {
-                    _elem183 = iprot.readString();
-                    struct.success.add(_elem183);
+                    _elem167 = iprot.readString();
+                    struct.success.add(_elem167);
                   }
                   iprot.readListEnd();
                 }
@@ -9068,9 +9122,9 @@ public class VASSARInterface {
           oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
           {
             oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, struct.success.size()));
-            for (String _iter185 : struct.success)
+            for (String _iter169 : struct.success)
             {
-              oprot.writeString(_iter185);
+              oprot.writeString(_iter169);
             }
             oprot.writeListEnd();
           }
@@ -9101,9 +9155,9 @@ public class VASSARInterface {
         if (struct.isSetSuccess()) {
           {
             oprot.writeI32(struct.success.size());
-            for (String _iter186 : struct.success)
+            for (String _iter170 : struct.success)
             {
-              oprot.writeString(_iter186);
+              oprot.writeString(_iter170);
             }
           }
         }
@@ -9115,13 +9169,13 @@ public class VASSARInterface {
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
           {
-            org.apache.thrift.protocol.TList _list187 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, iprot.readI32());
-            struct.success = new java.util.ArrayList<String>(_list187.size);
-            @org.apache.thrift.annotation.Nullable String _elem188;
-            for (int _i189 = 0; _i189 < _list187.size; ++_i189)
+            org.apache.thrift.protocol.TList _list171 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, iprot.readI32());
+            struct.success = new java.util.ArrayList<String>(_list171.size);
+            @org.apache.thrift.annotation.Nullable String _elem172;
+            for (int _i173 = 0; _i173 < _list171.size; ++_i173)
             {
-              _elem188 = iprot.readString();
-              struct.success.add(_elem188);
+              _elem172 = iprot.readString();
+              struct.success.add(_elem172);
             }
           }
           struct.setSuccessIsSet(true);
@@ -9818,13 +9872,13 @@ public class VASSARInterface {
             case 0: // SUCCESS
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
-                  org.apache.thrift.protocol.TList _list190 = iprot.readListBegin();
-                  struct.success = new java.util.ArrayList<String>(_list190.size);
-                  @org.apache.thrift.annotation.Nullable String _elem191;
-                  for (int _i192 = 0; _i192 < _list190.size; ++_i192)
+                  org.apache.thrift.protocol.TList _list174 = iprot.readListBegin();
+                  struct.success = new java.util.ArrayList<String>(_list174.size);
+                  @org.apache.thrift.annotation.Nullable String _elem175;
+                  for (int _i176 = 0; _i176 < _list174.size; ++_i176)
                   {
-                    _elem191 = iprot.readString();
-                    struct.success.add(_elem191);
+                    _elem175 = iprot.readString();
+                    struct.success.add(_elem175);
                   }
                   iprot.readListEnd();
                 }
@@ -9852,9 +9906,9 @@ public class VASSARInterface {
           oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
           {
             oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, struct.success.size()));
-            for (String _iter193 : struct.success)
+            for (String _iter177 : struct.success)
             {
-              oprot.writeString(_iter193);
+              oprot.writeString(_iter177);
             }
             oprot.writeListEnd();
           }
@@ -9885,9 +9939,9 @@ public class VASSARInterface {
         if (struct.isSetSuccess()) {
           {
             oprot.writeI32(struct.success.size());
-            for (String _iter194 : struct.success)
+            for (String _iter178 : struct.success)
             {
-              oprot.writeString(_iter194);
+              oprot.writeString(_iter178);
             }
           }
         }
@@ -9899,13 +9953,13 @@ public class VASSARInterface {
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
           {
-            org.apache.thrift.protocol.TList _list195 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, iprot.readI32());
-            struct.success = new java.util.ArrayList<String>(_list195.size);
-            @org.apache.thrift.annotation.Nullable String _elem196;
-            for (int _i197 = 0; _i197 < _list195.size; ++_i197)
+            org.apache.thrift.protocol.TList _list179 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, iprot.readI32());
+            struct.success = new java.util.ArrayList<String>(_list179.size);
+            @org.apache.thrift.annotation.Nullable String _elem180;
+            for (int _i181 = 0; _i181 < _list179.size; ++_i181)
             {
-              _elem196 = iprot.readString();
-              struct.success.add(_elem196);
+              _elem180 = iprot.readString();
+              struct.success.add(_elem180);
             }
           }
           struct.setSuccessIsSet(true);
@@ -10602,13 +10656,13 @@ public class VASSARInterface {
             case 0: // SUCCESS
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
-                  org.apache.thrift.protocol.TList _list198 = iprot.readListBegin();
-                  struct.success = new java.util.ArrayList<String>(_list198.size);
-                  @org.apache.thrift.annotation.Nullable String _elem199;
-                  for (int _i200 = 0; _i200 < _list198.size; ++_i200)
+                  org.apache.thrift.protocol.TList _list182 = iprot.readListBegin();
+                  struct.success = new java.util.ArrayList<String>(_list182.size);
+                  @org.apache.thrift.annotation.Nullable String _elem183;
+                  for (int _i184 = 0; _i184 < _list182.size; ++_i184)
                   {
-                    _elem199 = iprot.readString();
-                    struct.success.add(_elem199);
+                    _elem183 = iprot.readString();
+                    struct.success.add(_elem183);
                   }
                   iprot.readListEnd();
                 }
@@ -10636,9 +10690,9 @@ public class VASSARInterface {
           oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
           {
             oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, struct.success.size()));
-            for (String _iter201 : struct.success)
+            for (String _iter185 : struct.success)
             {
-              oprot.writeString(_iter201);
+              oprot.writeString(_iter185);
             }
             oprot.writeListEnd();
           }
@@ -10669,9 +10723,9 @@ public class VASSARInterface {
         if (struct.isSetSuccess()) {
           {
             oprot.writeI32(struct.success.size());
-            for (String _iter202 : struct.success)
+            for (String _iter186 : struct.success)
             {
-              oprot.writeString(_iter202);
+              oprot.writeString(_iter186);
             }
           }
         }
@@ -10683,13 +10737,797 @@ public class VASSARInterface {
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
           {
-            org.apache.thrift.protocol.TList _list203 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, iprot.readI32());
-            struct.success = new java.util.ArrayList<String>(_list203.size);
-            @org.apache.thrift.annotation.Nullable String _elem204;
-            for (int _i205 = 0; _i205 < _list203.size; ++_i205)
+            org.apache.thrift.protocol.TList _list187 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, iprot.readI32());
+            struct.success = new java.util.ArrayList<String>(_list187.size);
+            @org.apache.thrift.annotation.Nullable String _elem188;
+            for (int _i189 = 0; _i189 < _list187.size; ++_i189)
             {
-              _elem204 = iprot.readString();
-              struct.success.add(_elem204);
+              _elem188 = iprot.readString();
+              struct.success.add(_elem188);
+            }
+          }
+          struct.setSuccessIsSet(true);
+        }
+      }
+    }
+
+    private static <S extends org.apache.thrift.scheme.IScheme> S scheme(org.apache.thrift.protocol.TProtocol proto) {
+      return (org.apache.thrift.scheme.StandardScheme.class.equals(proto.getScheme()) ? STANDARD_SCHEME_FACTORY : TUPLE_SCHEME_FACTORY).getScheme();
+    }
+  }
+
+  public static class getSubobjectiveList_args implements org.apache.thrift.TBase<getSubobjectiveList_args, getSubobjectiveList_args._Fields>, java.io.Serializable, Cloneable, Comparable<getSubobjectiveList_args>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("getSubobjectiveList_args");
+
+    private static final org.apache.thrift.protocol.TField PROBLEM_FIELD_DESC = new org.apache.thrift.protocol.TField("problem", org.apache.thrift.protocol.TType.STRING, (short)1);
+
+    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new getSubobjectiveList_argsStandardSchemeFactory();
+    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new getSubobjectiveList_argsTupleSchemeFactory();
+
+    public @org.apache.thrift.annotation.Nullable String problem; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      PROBLEM((short)1, "problem");
+
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
+
+      static {
+        for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 1: // PROBLEM
+            return PROBLEM;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByName(String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final String _fieldName;
+
+      _Fields(short thriftId, String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.PROBLEM, new org.apache.thrift.meta_data.FieldMetaData("problem", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+      metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(getSubobjectiveList_args.class, metaDataMap);
+    }
+
+    public getSubobjectiveList_args() {
+    }
+
+    public getSubobjectiveList_args(
+      String problem)
+    {
+      this();
+      this.problem = problem;
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public getSubobjectiveList_args(getSubobjectiveList_args other) {
+      if (other.isSetProblem()) {
+        this.problem = other.problem;
+      }
+    }
+
+    public getSubobjectiveList_args deepCopy() {
+      return new getSubobjectiveList_args(this);
+    }
+
+    @Override
+    public void clear() {
+      this.problem = null;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public String getProblem() {
+      return this.problem;
+    }
+
+    public getSubobjectiveList_args setProblem(@org.apache.thrift.annotation.Nullable String problem) {
+      this.problem = problem;
+      return this;
+    }
+
+    public void unsetProblem() {
+      this.problem = null;
+    }
+
+    /** Returns true if field problem is set (has been assigned a value) and false otherwise */
+    public boolean isSetProblem() {
+      return this.problem != null;
+    }
+
+    public void setProblemIsSet(boolean value) {
+      if (!value) {
+        this.problem = null;
+      }
+    }
+
+    public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable Object value) {
+      switch (field) {
+      case PROBLEM:
+        if (value == null) {
+          unsetProblem();
+        } else {
+          setProblem((String)value);
+        }
+        break;
+
+      }
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public Object getFieldValue(_Fields field) {
+      switch (field) {
+      case PROBLEM:
+        return getProblem();
+
+      }
+      throw new IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new IllegalArgumentException();
+      }
+
+      switch (field) {
+      case PROBLEM:
+        return isSetProblem();
+      }
+      throw new IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof getSubobjectiveList_args)
+        return this.equals((getSubobjectiveList_args)that);
+      return false;
+    }
+
+    public boolean equals(getSubobjectiveList_args that) {
+      if (that == null)
+        return false;
+      if (this == that)
+        return true;
+
+      boolean this_present_problem = true && this.isSetProblem();
+      boolean that_present_problem = true && that.isSetProblem();
+      if (this_present_problem || that_present_problem) {
+        if (!(this_present_problem && that_present_problem))
+          return false;
+        if (!this.problem.equals(that.problem))
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      int hashCode = 1;
+
+      hashCode = hashCode * 8191 + ((isSetProblem()) ? 131071 : 524287);
+      if (isSetProblem())
+        hashCode = hashCode * 8191 + problem.hashCode();
+
+      return hashCode;
+    }
+
+    @Override
+    public int compareTo(getSubobjectiveList_args other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetProblem()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.problem, other.problem);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      scheme(iprot).read(iprot, this);
+    }
+
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      scheme(oprot).write(oprot, this);
+    }
+
+    @Override
+    public String toString() {
+      StringBuilder sb = new StringBuilder("getSubobjectiveList_args(");
+      boolean first = true;
+
+      sb.append("problem:");
+      if (this.problem == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.problem);
+      }
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      // check for sub-struct validity
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
+      try {
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class getSubobjectiveList_argsStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public getSubobjectiveList_argsStandardScheme getScheme() {
+        return new getSubobjectiveList_argsStandardScheme();
+      }
+    }
+
+    private static class getSubobjectiveList_argsStandardScheme extends org.apache.thrift.scheme.StandardScheme<getSubobjectiveList_args> {
+
+      public void read(org.apache.thrift.protocol.TProtocol iprot, getSubobjectiveList_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case 1: // PROBLEM
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
+                struct.problem = iprot.readString();
+                struct.setProblemIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      public void write(org.apache.thrift.protocol.TProtocol oprot, getSubobjectiveList_args struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        if (struct.problem != null) {
+          oprot.writeFieldBegin(PROBLEM_FIELD_DESC);
+          oprot.writeString(struct.problem);
+          oprot.writeFieldEnd();
+        }
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class getSubobjectiveList_argsTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public getSubobjectiveList_argsTupleScheme getScheme() {
+        return new getSubobjectiveList_argsTupleScheme();
+      }
+    }
+
+    private static class getSubobjectiveList_argsTupleScheme extends org.apache.thrift.scheme.TupleScheme<getSubobjectiveList_args> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, getSubobjectiveList_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet optionals = new java.util.BitSet();
+        if (struct.isSetProblem()) {
+          optionals.set(0);
+        }
+        oprot.writeBitSet(optionals, 1);
+        if (struct.isSetProblem()) {
+          oprot.writeString(struct.problem);
+        }
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, getSubobjectiveList_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet incoming = iprot.readBitSet(1);
+        if (incoming.get(0)) {
+          struct.problem = iprot.readString();
+          struct.setProblemIsSet(true);
+        }
+      }
+    }
+
+    private static <S extends org.apache.thrift.scheme.IScheme> S scheme(org.apache.thrift.protocol.TProtocol proto) {
+      return (org.apache.thrift.scheme.StandardScheme.class.equals(proto.getScheme()) ? STANDARD_SCHEME_FACTORY : TUPLE_SCHEME_FACTORY).getScheme();
+    }
+  }
+
+  public static class getSubobjectiveList_result implements org.apache.thrift.TBase<getSubobjectiveList_result, getSubobjectiveList_result._Fields>, java.io.Serializable, Cloneable, Comparable<getSubobjectiveList_result>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("getSubobjectiveList_result");
+
+    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.LIST, (short)0);
+
+    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new getSubobjectiveList_resultStandardSchemeFactory();
+    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new getSubobjectiveList_resultTupleSchemeFactory();
+
+    public @org.apache.thrift.annotation.Nullable java.util.List<String> success; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      SUCCESS((short)0, "success");
+
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
+
+      static {
+        for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 0: // SUCCESS
+            return SUCCESS;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByName(String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final String _fieldName;
+
+      _Fields(short thriftId, String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
+              new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING))));
+      metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(getSubobjectiveList_result.class, metaDataMap);
+    }
+
+    public getSubobjectiveList_result() {
+    }
+
+    public getSubobjectiveList_result(
+      java.util.List<String> success)
+    {
+      this();
+      this.success = success;
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public getSubobjectiveList_result(getSubobjectiveList_result other) {
+      if (other.isSetSuccess()) {
+        java.util.List<String> __this__success = new java.util.ArrayList<String>(other.success);
+        this.success = __this__success;
+      }
+    }
+
+    public getSubobjectiveList_result deepCopy() {
+      return new getSubobjectiveList_result(this);
+    }
+
+    @Override
+    public void clear() {
+      this.success = null;
+    }
+
+    public int getSuccessSize() {
+      return (this.success == null) ? 0 : this.success.size();
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public java.util.Iterator<String> getSuccessIterator() {
+      return (this.success == null) ? null : this.success.iterator();
+    }
+
+    public void addToSuccess(String elem) {
+      if (this.success == null) {
+        this.success = new java.util.ArrayList<String>();
+      }
+      this.success.add(elem);
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public java.util.List<String> getSuccess() {
+      return this.success;
+    }
+
+    public getSubobjectiveList_result setSuccess(@org.apache.thrift.annotation.Nullable java.util.List<String> success) {
+      this.success = success;
+      return this;
+    }
+
+    public void unsetSuccess() {
+      this.success = null;
+    }
+
+    /** Returns true if field success is set (has been assigned a value) and false otherwise */
+    public boolean isSetSuccess() {
+      return this.success != null;
+    }
+
+    public void setSuccessIsSet(boolean value) {
+      if (!value) {
+        this.success = null;
+      }
+    }
+
+    public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable Object value) {
+      switch (field) {
+      case SUCCESS:
+        if (value == null) {
+          unsetSuccess();
+        } else {
+          setSuccess((java.util.List<String>)value);
+        }
+        break;
+
+      }
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public Object getFieldValue(_Fields field) {
+      switch (field) {
+      case SUCCESS:
+        return getSuccess();
+
+      }
+      throw new IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new IllegalArgumentException();
+      }
+
+      switch (field) {
+      case SUCCESS:
+        return isSetSuccess();
+      }
+      throw new IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof getSubobjectiveList_result)
+        return this.equals((getSubobjectiveList_result)that);
+      return false;
+    }
+
+    public boolean equals(getSubobjectiveList_result that) {
+      if (that == null)
+        return false;
+      if (this == that)
+        return true;
+
+      boolean this_present_success = true && this.isSetSuccess();
+      boolean that_present_success = true && that.isSetSuccess();
+      if (this_present_success || that_present_success) {
+        if (!(this_present_success && that_present_success))
+          return false;
+        if (!this.success.equals(that.success))
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      int hashCode = 1;
+
+      hashCode = hashCode * 8191 + ((isSetSuccess()) ? 131071 : 524287);
+      if (isSetSuccess())
+        hashCode = hashCode * 8191 + success.hashCode();
+
+      return hashCode;
+    }
+
+    @Override
+    public int compareTo(getSubobjectiveList_result other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetSuccess()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.success, other.success);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      scheme(iprot).read(iprot, this);
+    }
+
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      scheme(oprot).write(oprot, this);
+      }
+
+    @Override
+    public String toString() {
+      StringBuilder sb = new StringBuilder("getSubobjectiveList_result(");
+      boolean first = true;
+
+      sb.append("success:");
+      if (this.success == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.success);
+      }
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      // check for sub-struct validity
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
+      try {
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class getSubobjectiveList_resultStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public getSubobjectiveList_resultStandardScheme getScheme() {
+        return new getSubobjectiveList_resultStandardScheme();
+      }
+    }
+
+    private static class getSubobjectiveList_resultStandardScheme extends org.apache.thrift.scheme.StandardScheme<getSubobjectiveList_result> {
+
+      public void read(org.apache.thrift.protocol.TProtocol iprot, getSubobjectiveList_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case 0: // SUCCESS
+              if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
+                {
+                  org.apache.thrift.protocol.TList _list190 = iprot.readListBegin();
+                  struct.success = new java.util.ArrayList<String>(_list190.size);
+                  @org.apache.thrift.annotation.Nullable String _elem191;
+                  for (int _i192 = 0; _i192 < _list190.size; ++_i192)
+                  {
+                    _elem191 = iprot.readString();
+                    struct.success.add(_elem191);
+                  }
+                  iprot.readListEnd();
+                }
+                struct.setSuccessIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      public void write(org.apache.thrift.protocol.TProtocol oprot, getSubobjectiveList_result struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        if (struct.success != null) {
+          oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
+          {
+            oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, struct.success.size()));
+            for (String _iter193 : struct.success)
+            {
+              oprot.writeString(_iter193);
+            }
+            oprot.writeListEnd();
+          }
+          oprot.writeFieldEnd();
+        }
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class getSubobjectiveList_resultTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public getSubobjectiveList_resultTupleScheme getScheme() {
+        return new getSubobjectiveList_resultTupleScheme();
+      }
+    }
+
+    private static class getSubobjectiveList_resultTupleScheme extends org.apache.thrift.scheme.TupleScheme<getSubobjectiveList_result> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, getSubobjectiveList_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet optionals = new java.util.BitSet();
+        if (struct.isSetSuccess()) {
+          optionals.set(0);
+        }
+        oprot.writeBitSet(optionals, 1);
+        if (struct.isSetSuccess()) {
+          {
+            oprot.writeI32(struct.success.size());
+            for (String _iter194 : struct.success)
+            {
+              oprot.writeString(_iter194);
+            }
+          }
+        }
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, getSubobjectiveList_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet incoming = iprot.readBitSet(1);
+        if (incoming.get(0)) {
+          {
+            org.apache.thrift.protocol.TList _list195 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, iprot.readI32());
+            struct.success = new java.util.ArrayList<String>(_list195.size);
+            @org.apache.thrift.annotation.Nullable String _elem196;
+            for (int _i197 = 0; _i197 < _list195.size; ++_i197)
+            {
+              _elem196 = iprot.readString();
+              struct.success.add(_elem196);
             }
           }
           struct.setSuccessIsSet(true);
@@ -11491,13 +12329,13 @@ public class VASSARInterface {
             case 0: // SUCCESS
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
-                  org.apache.thrift.protocol.TList _list206 = iprot.readListBegin();
-                  struct.success = new java.util.ArrayList<String>(_list206.size);
-                  @org.apache.thrift.annotation.Nullable String _elem207;
-                  for (int _i208 = 0; _i208 < _list206.size; ++_i208)
+                  org.apache.thrift.protocol.TList _list198 = iprot.readListBegin();
+                  struct.success = new java.util.ArrayList<String>(_list198.size);
+                  @org.apache.thrift.annotation.Nullable String _elem199;
+                  for (int _i200 = 0; _i200 < _list198.size; ++_i200)
                   {
-                    _elem207 = iprot.readString();
-                    struct.success.add(_elem207);
+                    _elem199 = iprot.readString();
+                    struct.success.add(_elem199);
                   }
                   iprot.readListEnd();
                 }
@@ -11525,9 +12363,9 @@ public class VASSARInterface {
           oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
           {
             oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, struct.success.size()));
-            for (String _iter209 : struct.success)
+            for (String _iter201 : struct.success)
             {
-              oprot.writeString(_iter209);
+              oprot.writeString(_iter201);
             }
             oprot.writeListEnd();
           }
@@ -11558,9 +12396,9 @@ public class VASSARInterface {
         if (struct.isSetSuccess()) {
           {
             oprot.writeI32(struct.success.size());
-            for (String _iter210 : struct.success)
+            for (String _iter202 : struct.success)
             {
-              oprot.writeString(_iter210);
+              oprot.writeString(_iter202);
             }
           }
         }
@@ -11572,13 +12410,13 @@ public class VASSARInterface {
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
           {
-            org.apache.thrift.protocol.TList _list211 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, iprot.readI32());
-            struct.success = new java.util.ArrayList<String>(_list211.size);
-            @org.apache.thrift.annotation.Nullable String _elem212;
-            for (int _i213 = 0; _i213 < _list211.size; ++_i213)
+            org.apache.thrift.protocol.TList _list203 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, iprot.readI32());
+            struct.success = new java.util.ArrayList<String>(_list203.size);
+            @org.apache.thrift.annotation.Nullable String _elem204;
+            for (int _i205 = 0; _i205 < _list203.size; ++_i205)
             {
-              _elem212 = iprot.readString();
-              struct.success.add(_elem212);
+              _elem204 = iprot.readString();
+              struct.success.add(_elem204);
             }
           }
           struct.setSuccessIsSet(true);
@@ -12380,13 +13218,13 @@ public class VASSARInterface {
             case 0: // SUCCESS
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
-                  org.apache.thrift.protocol.TList _list214 = iprot.readListBegin();
-                  struct.success = new java.util.ArrayList<String>(_list214.size);
-                  @org.apache.thrift.annotation.Nullable String _elem215;
-                  for (int _i216 = 0; _i216 < _list214.size; ++_i216)
+                  org.apache.thrift.protocol.TList _list206 = iprot.readListBegin();
+                  struct.success = new java.util.ArrayList<String>(_list206.size);
+                  @org.apache.thrift.annotation.Nullable String _elem207;
+                  for (int _i208 = 0; _i208 < _list206.size; ++_i208)
                   {
-                    _elem215 = iprot.readString();
-                    struct.success.add(_elem215);
+                    _elem207 = iprot.readString();
+                    struct.success.add(_elem207);
                   }
                   iprot.readListEnd();
                 }
@@ -12414,9 +13252,9 @@ public class VASSARInterface {
           oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
           {
             oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, struct.success.size()));
-            for (String _iter217 : struct.success)
+            for (String _iter209 : struct.success)
             {
-              oprot.writeString(_iter217);
+              oprot.writeString(_iter209);
             }
             oprot.writeListEnd();
           }
@@ -12447,9 +13285,9 @@ public class VASSARInterface {
         if (struct.isSetSuccess()) {
           {
             oprot.writeI32(struct.success.size());
-            for (String _iter218 : struct.success)
+            for (String _iter210 : struct.success)
             {
-              oprot.writeString(_iter218);
+              oprot.writeString(_iter210);
             }
           }
         }
@@ -12461,13 +13299,13 @@ public class VASSARInterface {
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
           {
-            org.apache.thrift.protocol.TList _list219 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, iprot.readI32());
-            struct.success = new java.util.ArrayList<String>(_list219.size);
-            @org.apache.thrift.annotation.Nullable String _elem220;
-            for (int _i221 = 0; _i221 < _list219.size; ++_i221)
+            org.apache.thrift.protocol.TList _list211 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, iprot.readI32());
+            struct.success = new java.util.ArrayList<String>(_list211.size);
+            @org.apache.thrift.annotation.Nullable String _elem212;
+            for (int _i213 = 0; _i213 < _list211.size; ++_i213)
             {
-              _elem220 = iprot.readString();
-              struct.success.add(_elem220);
+              _elem212 = iprot.readString();
+              struct.success.add(_elem212);
             }
           }
           struct.setSuccessIsSet(true);
@@ -12484,13 +13322,13 @@ public class VASSARInterface {
     private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("getCritiqueBinaryInputArch_args");
 
     private static final org.apache.thrift.protocol.TField PROBLEM_FIELD_DESC = new org.apache.thrift.protocol.TField("problem", org.apache.thrift.protocol.TType.STRING, (short)1);
-    private static final org.apache.thrift.protocol.TField INPUTS_FIELD_DESC = new org.apache.thrift.protocol.TField("inputs", org.apache.thrift.protocol.TType.LIST, (short)2);
+    private static final org.apache.thrift.protocol.TField INPUTS_FIELD_DESC = new org.apache.thrift.protocol.TField("inputs", org.apache.thrift.protocol.TType.STRUCT, (short)2);
 
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new getCritiqueBinaryInputArch_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new getCritiqueBinaryInputArch_argsTupleSchemeFactory();
 
     public @org.apache.thrift.annotation.Nullable String problem; // required
-    public @org.apache.thrift.annotation.Nullable java.util.List<Boolean> inputs; // required
+    public @org.apache.thrift.annotation.Nullable BinaryInputArchitecture inputs; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -12562,8 +13400,7 @@ public class VASSARInterface {
       tmpMap.put(_Fields.PROBLEM, new org.apache.thrift.meta_data.FieldMetaData("problem", org.apache.thrift.TFieldRequirementType.DEFAULT, 
           new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
       tmpMap.put(_Fields.INPUTS, new org.apache.thrift.meta_data.FieldMetaData("inputs", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
-              new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.BOOL))));
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, BinaryInputArchitecture.class)));
       metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
       org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(getCritiqueBinaryInputArch_args.class, metaDataMap);
     }
@@ -12573,7 +13410,7 @@ public class VASSARInterface {
 
     public getCritiqueBinaryInputArch_args(
       String problem,
-      java.util.List<Boolean> inputs)
+      BinaryInputArchitecture inputs)
     {
       this();
       this.problem = problem;
@@ -12588,8 +13425,7 @@ public class VASSARInterface {
         this.problem = other.problem;
       }
       if (other.isSetInputs()) {
-        java.util.List<Boolean> __this__inputs = new java.util.ArrayList<Boolean>(other.inputs);
-        this.inputs = __this__inputs;
+        this.inputs = new BinaryInputArchitecture(other.inputs);
       }
     }
 
@@ -12628,28 +13464,12 @@ public class VASSARInterface {
       }
     }
 
-    public int getInputsSize() {
-      return (this.inputs == null) ? 0 : this.inputs.size();
-    }
-
     @org.apache.thrift.annotation.Nullable
-    public java.util.Iterator<Boolean> getInputsIterator() {
-      return (this.inputs == null) ? null : this.inputs.iterator();
-    }
-
-    public void addToInputs(boolean elem) {
-      if (this.inputs == null) {
-        this.inputs = new java.util.ArrayList<Boolean>();
-      }
-      this.inputs.add(elem);
-    }
-
-    @org.apache.thrift.annotation.Nullable
-    public java.util.List<Boolean> getInputs() {
+    public BinaryInputArchitecture getInputs() {
       return this.inputs;
     }
 
-    public getCritiqueBinaryInputArch_args setInputs(@org.apache.thrift.annotation.Nullable java.util.List<Boolean> inputs) {
+    public getCritiqueBinaryInputArch_args setInputs(@org.apache.thrift.annotation.Nullable BinaryInputArchitecture inputs) {
       this.inputs = inputs;
       return this;
     }
@@ -12683,7 +13503,7 @@ public class VASSARInterface {
         if (value == null) {
           unsetInputs();
         } else {
-          setInputs((java.util.List<Boolean>)value);
+          setInputs((BinaryInputArchitecture)value);
         }
         break;
 
@@ -12840,6 +13660,9 @@ public class VASSARInterface {
     public void validate() throws org.apache.thrift.TException {
       // check for required fields
       // check for sub-struct validity
+      if (inputs != null) {
+        inputs.validate();
+      }
     }
 
     private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
@@ -12885,18 +13708,9 @@ public class VASSARInterface {
               }
               break;
             case 2: // INPUTS
-              if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
-                {
-                  org.apache.thrift.protocol.TList _list222 = iprot.readListBegin();
-                  struct.inputs = new java.util.ArrayList<Boolean>(_list222.size);
-                  boolean _elem223;
-                  for (int _i224 = 0; _i224 < _list222.size; ++_i224)
-                  {
-                    _elem223 = iprot.readBool();
-                    struct.inputs.add(_elem223);
-                  }
-                  iprot.readListEnd();
-                }
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.inputs = new BinaryInputArchitecture();
+                struct.inputs.read(iprot);
                 struct.setInputsIsSet(true);
               } else { 
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
@@ -12924,14 +13738,7 @@ public class VASSARInterface {
         }
         if (struct.inputs != null) {
           oprot.writeFieldBegin(INPUTS_FIELD_DESC);
-          {
-            oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.BOOL, struct.inputs.size()));
-            for (boolean _iter225 : struct.inputs)
-            {
-              oprot.writeBool(_iter225);
-            }
-            oprot.writeListEnd();
-          }
+          struct.inputs.write(oprot);
           oprot.writeFieldEnd();
         }
         oprot.writeFieldStop();
@@ -12963,13 +13770,7 @@ public class VASSARInterface {
           oprot.writeString(struct.problem);
         }
         if (struct.isSetInputs()) {
-          {
-            oprot.writeI32(struct.inputs.size());
-            for (boolean _iter226 : struct.inputs)
-            {
-              oprot.writeBool(_iter226);
-            }
-          }
+          struct.inputs.write(oprot);
         }
       }
 
@@ -12982,16 +13783,8 @@ public class VASSARInterface {
           struct.setProblemIsSet(true);
         }
         if (incoming.get(1)) {
-          {
-            org.apache.thrift.protocol.TList _list227 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.BOOL, iprot.readI32());
-            struct.inputs = new java.util.ArrayList<Boolean>(_list227.size);
-            boolean _elem228;
-            for (int _i229 = 0; _i229 < _list227.size; ++_i229)
-            {
-              _elem228 = iprot.readBool();
-              struct.inputs.add(_elem228);
-            }
-          }
+          struct.inputs = new BinaryInputArchitecture();
+          struct.inputs.read(iprot);
           struct.setInputsIsSet(true);
         }
       }
@@ -13319,13 +14112,13 @@ public class VASSARInterface {
             case 0: // SUCCESS
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
-                  org.apache.thrift.protocol.TList _list230 = iprot.readListBegin();
-                  struct.success = new java.util.ArrayList<String>(_list230.size);
-                  @org.apache.thrift.annotation.Nullable String _elem231;
-                  for (int _i232 = 0; _i232 < _list230.size; ++_i232)
+                  org.apache.thrift.protocol.TList _list214 = iprot.readListBegin();
+                  struct.success = new java.util.ArrayList<String>(_list214.size);
+                  @org.apache.thrift.annotation.Nullable String _elem215;
+                  for (int _i216 = 0; _i216 < _list214.size; ++_i216)
                   {
-                    _elem231 = iprot.readString();
-                    struct.success.add(_elem231);
+                    _elem215 = iprot.readString();
+                    struct.success.add(_elem215);
                   }
                   iprot.readListEnd();
                 }
@@ -13353,9 +14146,9 @@ public class VASSARInterface {
           oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
           {
             oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, struct.success.size()));
-            for (String _iter233 : struct.success)
+            for (String _iter217 : struct.success)
             {
-              oprot.writeString(_iter233);
+              oprot.writeString(_iter217);
             }
             oprot.writeListEnd();
           }
@@ -13386,9 +14179,9 @@ public class VASSARInterface {
         if (struct.isSetSuccess()) {
           {
             oprot.writeI32(struct.success.size());
-            for (String _iter234 : struct.success)
+            for (String _iter218 : struct.success)
             {
-              oprot.writeString(_iter234);
+              oprot.writeString(_iter218);
             }
           }
         }
@@ -13400,13 +14193,13 @@ public class VASSARInterface {
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
           {
-            org.apache.thrift.protocol.TList _list235 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, iprot.readI32());
-            struct.success = new java.util.ArrayList<String>(_list235.size);
-            @org.apache.thrift.annotation.Nullable String _elem236;
-            for (int _i237 = 0; _i237 < _list235.size; ++_i237)
+            org.apache.thrift.protocol.TList _list219 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, iprot.readI32());
+            struct.success = new java.util.ArrayList<String>(_list219.size);
+            @org.apache.thrift.annotation.Nullable String _elem220;
+            for (int _i221 = 0; _i221 < _list219.size; ++_i221)
             {
-              _elem236 = iprot.readString();
-              struct.success.add(_elem236);
+              _elem220 = iprot.readString();
+              struct.success.add(_elem220);
             }
           }
           struct.setSuccessIsSet(true);
@@ -13423,13 +14216,13 @@ public class VASSARInterface {
     private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("getCritiqueDiscreteInputArch_args");
 
     private static final org.apache.thrift.protocol.TField PROBLEM_FIELD_DESC = new org.apache.thrift.protocol.TField("problem", org.apache.thrift.protocol.TType.STRING, (short)1);
-    private static final org.apache.thrift.protocol.TField INPUTS_FIELD_DESC = new org.apache.thrift.protocol.TField("inputs", org.apache.thrift.protocol.TType.LIST, (short)2);
+    private static final org.apache.thrift.protocol.TField INPUTS_FIELD_DESC = new org.apache.thrift.protocol.TField("inputs", org.apache.thrift.protocol.TType.STRUCT, (short)2);
 
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new getCritiqueDiscreteInputArch_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new getCritiqueDiscreteInputArch_argsTupleSchemeFactory();
 
     public @org.apache.thrift.annotation.Nullable String problem; // required
-    public @org.apache.thrift.annotation.Nullable java.util.List<Integer> inputs; // required
+    public @org.apache.thrift.annotation.Nullable DiscreteInputArchitecture inputs; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -13501,8 +14294,7 @@ public class VASSARInterface {
       tmpMap.put(_Fields.PROBLEM, new org.apache.thrift.meta_data.FieldMetaData("problem", org.apache.thrift.TFieldRequirementType.DEFAULT, 
           new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
       tmpMap.put(_Fields.INPUTS, new org.apache.thrift.meta_data.FieldMetaData("inputs", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
-              new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32              , "int"))));
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, DiscreteInputArchitecture.class)));
       metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
       org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(getCritiqueDiscreteInputArch_args.class, metaDataMap);
     }
@@ -13512,7 +14304,7 @@ public class VASSARInterface {
 
     public getCritiqueDiscreteInputArch_args(
       String problem,
-      java.util.List<Integer> inputs)
+      DiscreteInputArchitecture inputs)
     {
       this();
       this.problem = problem;
@@ -13527,11 +14319,7 @@ public class VASSARInterface {
         this.problem = other.problem;
       }
       if (other.isSetInputs()) {
-        java.util.List<Integer> __this__inputs = new java.util.ArrayList<Integer>(other.inputs.size());
-        for (Integer other_element : other.inputs) {
-          __this__inputs.add(other_element);
-        }
-        this.inputs = __this__inputs;
+        this.inputs = new DiscreteInputArchitecture(other.inputs);
       }
     }
 
@@ -13570,28 +14358,12 @@ public class VASSARInterface {
       }
     }
 
-    public int getInputsSize() {
-      return (this.inputs == null) ? 0 : this.inputs.size();
-    }
-
     @org.apache.thrift.annotation.Nullable
-    public java.util.Iterator<Integer> getInputsIterator() {
-      return (this.inputs == null) ? null : this.inputs.iterator();
-    }
-
-    public void addToInputs(int elem) {
-      if (this.inputs == null) {
-        this.inputs = new java.util.ArrayList<Integer>();
-      }
-      this.inputs.add(elem);
-    }
-
-    @org.apache.thrift.annotation.Nullable
-    public java.util.List<Integer> getInputs() {
+    public DiscreteInputArchitecture getInputs() {
       return this.inputs;
     }
 
-    public getCritiqueDiscreteInputArch_args setInputs(@org.apache.thrift.annotation.Nullable java.util.List<Integer> inputs) {
+    public getCritiqueDiscreteInputArch_args setInputs(@org.apache.thrift.annotation.Nullable DiscreteInputArchitecture inputs) {
       this.inputs = inputs;
       return this;
     }
@@ -13625,7 +14397,7 @@ public class VASSARInterface {
         if (value == null) {
           unsetInputs();
         } else {
-          setInputs((java.util.List<Integer>)value);
+          setInputs((DiscreteInputArchitecture)value);
         }
         break;
 
@@ -13782,6 +14554,9 @@ public class VASSARInterface {
     public void validate() throws org.apache.thrift.TException {
       // check for required fields
       // check for sub-struct validity
+      if (inputs != null) {
+        inputs.validate();
+      }
     }
 
     private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
@@ -13827,18 +14602,9 @@ public class VASSARInterface {
               }
               break;
             case 2: // INPUTS
-              if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
-                {
-                  org.apache.thrift.protocol.TList _list238 = iprot.readListBegin();
-                  struct.inputs = new java.util.ArrayList<Integer>(_list238.size);
-                  int _elem239;
-                  for (int _i240 = 0; _i240 < _list238.size; ++_i240)
-                  {
-                    _elem239 = iprot.readI32();
-                    struct.inputs.add(_elem239);
-                  }
-                  iprot.readListEnd();
-                }
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.inputs = new DiscreteInputArchitecture();
+                struct.inputs.read(iprot);
                 struct.setInputsIsSet(true);
               } else { 
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
@@ -13866,14 +14632,7 @@ public class VASSARInterface {
         }
         if (struct.inputs != null) {
           oprot.writeFieldBegin(INPUTS_FIELD_DESC);
-          {
-            oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.I32, struct.inputs.size()));
-            for (int _iter241 : struct.inputs)
-            {
-              oprot.writeI32(_iter241);
-            }
-            oprot.writeListEnd();
-          }
+          struct.inputs.write(oprot);
           oprot.writeFieldEnd();
         }
         oprot.writeFieldStop();
@@ -13905,13 +14664,7 @@ public class VASSARInterface {
           oprot.writeString(struct.problem);
         }
         if (struct.isSetInputs()) {
-          {
-            oprot.writeI32(struct.inputs.size());
-            for (int _iter242 : struct.inputs)
-            {
-              oprot.writeI32(_iter242);
-            }
-          }
+          struct.inputs.write(oprot);
         }
       }
 
@@ -13924,16 +14677,8 @@ public class VASSARInterface {
           struct.setProblemIsSet(true);
         }
         if (incoming.get(1)) {
-          {
-            org.apache.thrift.protocol.TList _list243 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.I32, iprot.readI32());
-            struct.inputs = new java.util.ArrayList<Integer>(_list243.size);
-            int _elem244;
-            for (int _i245 = 0; _i245 < _list243.size; ++_i245)
-            {
-              _elem244 = iprot.readI32();
-              struct.inputs.add(_elem244);
-            }
-          }
+          struct.inputs = new DiscreteInputArchitecture();
+          struct.inputs.read(iprot);
           struct.setInputsIsSet(true);
         }
       }
@@ -14261,13 +15006,13 @@ public class VASSARInterface {
             case 0: // SUCCESS
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
-                  org.apache.thrift.protocol.TList _list246 = iprot.readListBegin();
-                  struct.success = new java.util.ArrayList<String>(_list246.size);
-                  @org.apache.thrift.annotation.Nullable String _elem247;
-                  for (int _i248 = 0; _i248 < _list246.size; ++_i248)
+                  org.apache.thrift.protocol.TList _list222 = iprot.readListBegin();
+                  struct.success = new java.util.ArrayList<String>(_list222.size);
+                  @org.apache.thrift.annotation.Nullable String _elem223;
+                  for (int _i224 = 0; _i224 < _list222.size; ++_i224)
                   {
-                    _elem247 = iprot.readString();
-                    struct.success.add(_elem247);
+                    _elem223 = iprot.readString();
+                    struct.success.add(_elem223);
                   }
                   iprot.readListEnd();
                 }
@@ -14295,9 +15040,9 @@ public class VASSARInterface {
           oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
           {
             oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, struct.success.size()));
-            for (String _iter249 : struct.success)
+            for (String _iter225 : struct.success)
             {
-              oprot.writeString(_iter249);
+              oprot.writeString(_iter225);
             }
             oprot.writeListEnd();
           }
@@ -14328,9 +15073,9 @@ public class VASSARInterface {
         if (struct.isSetSuccess()) {
           {
             oprot.writeI32(struct.success.size());
-            for (String _iter250 : struct.success)
+            for (String _iter226 : struct.success)
             {
-              oprot.writeString(_iter250);
+              oprot.writeString(_iter226);
             }
           }
         }
@@ -14342,13 +15087,13 @@ public class VASSARInterface {
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
           {
-            org.apache.thrift.protocol.TList _list251 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, iprot.readI32());
-            struct.success = new java.util.ArrayList<String>(_list251.size);
-            @org.apache.thrift.annotation.Nullable String _elem252;
-            for (int _i253 = 0; _i253 < _list251.size; ++_i253)
+            org.apache.thrift.protocol.TList _list227 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, iprot.readI32());
+            struct.success = new java.util.ArrayList<String>(_list227.size);
+            @org.apache.thrift.annotation.Nullable String _elem228;
+            for (int _i229 = 0; _i229 < _list227.size; ++_i229)
             {
-              _elem252 = iprot.readString();
-              struct.success.add(_elem252);
+              _elem228 = iprot.readString();
+              struct.success.add(_elem228);
             }
           }
           struct.setSuccessIsSet(true);
@@ -14365,13 +15110,13 @@ public class VASSARInterface {
     private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("getArchitectureScoreExplanation_args");
 
     private static final org.apache.thrift.protocol.TField PROBLEM_FIELD_DESC = new org.apache.thrift.protocol.TField("problem", org.apache.thrift.protocol.TType.STRING, (short)1);
-    private static final org.apache.thrift.protocol.TField ARCH_FIELD_DESC = new org.apache.thrift.protocol.TField("arch", org.apache.thrift.protocol.TType.LIST, (short)2);
+    private static final org.apache.thrift.protocol.TField ARCH_FIELD_DESC = new org.apache.thrift.protocol.TField("arch", org.apache.thrift.protocol.TType.STRUCT, (short)2);
 
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new getArchitectureScoreExplanation_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new getArchitectureScoreExplanation_argsTupleSchemeFactory();
 
     public @org.apache.thrift.annotation.Nullable String problem; // required
-    public @org.apache.thrift.annotation.Nullable java.util.List<Boolean> arch; // required
+    public @org.apache.thrift.annotation.Nullable BinaryInputArchitecture arch; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -14443,8 +15188,7 @@ public class VASSARInterface {
       tmpMap.put(_Fields.PROBLEM, new org.apache.thrift.meta_data.FieldMetaData("problem", org.apache.thrift.TFieldRequirementType.DEFAULT, 
           new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
       tmpMap.put(_Fields.ARCH, new org.apache.thrift.meta_data.FieldMetaData("arch", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
-              new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.BOOL))));
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, BinaryInputArchitecture.class)));
       metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
       org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(getArchitectureScoreExplanation_args.class, metaDataMap);
     }
@@ -14454,7 +15198,7 @@ public class VASSARInterface {
 
     public getArchitectureScoreExplanation_args(
       String problem,
-      java.util.List<Boolean> arch)
+      BinaryInputArchitecture arch)
     {
       this();
       this.problem = problem;
@@ -14469,8 +15213,7 @@ public class VASSARInterface {
         this.problem = other.problem;
       }
       if (other.isSetArch()) {
-        java.util.List<Boolean> __this__arch = new java.util.ArrayList<Boolean>(other.arch);
-        this.arch = __this__arch;
+        this.arch = new BinaryInputArchitecture(other.arch);
       }
     }
 
@@ -14509,28 +15252,12 @@ public class VASSARInterface {
       }
     }
 
-    public int getArchSize() {
-      return (this.arch == null) ? 0 : this.arch.size();
-    }
-
     @org.apache.thrift.annotation.Nullable
-    public java.util.Iterator<Boolean> getArchIterator() {
-      return (this.arch == null) ? null : this.arch.iterator();
-    }
-
-    public void addToArch(boolean elem) {
-      if (this.arch == null) {
-        this.arch = new java.util.ArrayList<Boolean>();
-      }
-      this.arch.add(elem);
-    }
-
-    @org.apache.thrift.annotation.Nullable
-    public java.util.List<Boolean> getArch() {
+    public BinaryInputArchitecture getArch() {
       return this.arch;
     }
 
-    public getArchitectureScoreExplanation_args setArch(@org.apache.thrift.annotation.Nullable java.util.List<Boolean> arch) {
+    public getArchitectureScoreExplanation_args setArch(@org.apache.thrift.annotation.Nullable BinaryInputArchitecture arch) {
       this.arch = arch;
       return this;
     }
@@ -14564,7 +15291,7 @@ public class VASSARInterface {
         if (value == null) {
           unsetArch();
         } else {
-          setArch((java.util.List<Boolean>)value);
+          setArch((BinaryInputArchitecture)value);
         }
         break;
 
@@ -14721,6 +15448,9 @@ public class VASSARInterface {
     public void validate() throws org.apache.thrift.TException {
       // check for required fields
       // check for sub-struct validity
+      if (arch != null) {
+        arch.validate();
+      }
     }
 
     private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
@@ -14766,18 +15496,9 @@ public class VASSARInterface {
               }
               break;
             case 2: // ARCH
-              if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
-                {
-                  org.apache.thrift.protocol.TList _list254 = iprot.readListBegin();
-                  struct.arch = new java.util.ArrayList<Boolean>(_list254.size);
-                  boolean _elem255;
-                  for (int _i256 = 0; _i256 < _list254.size; ++_i256)
-                  {
-                    _elem255 = iprot.readBool();
-                    struct.arch.add(_elem255);
-                  }
-                  iprot.readListEnd();
-                }
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.arch = new BinaryInputArchitecture();
+                struct.arch.read(iprot);
                 struct.setArchIsSet(true);
               } else { 
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
@@ -14805,14 +15526,7 @@ public class VASSARInterface {
         }
         if (struct.arch != null) {
           oprot.writeFieldBegin(ARCH_FIELD_DESC);
-          {
-            oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.BOOL, struct.arch.size()));
-            for (boolean _iter257 : struct.arch)
-            {
-              oprot.writeBool(_iter257);
-            }
-            oprot.writeListEnd();
-          }
+          struct.arch.write(oprot);
           oprot.writeFieldEnd();
         }
         oprot.writeFieldStop();
@@ -14844,13 +15558,7 @@ public class VASSARInterface {
           oprot.writeString(struct.problem);
         }
         if (struct.isSetArch()) {
-          {
-            oprot.writeI32(struct.arch.size());
-            for (boolean _iter258 : struct.arch)
-            {
-              oprot.writeBool(_iter258);
-            }
-          }
+          struct.arch.write(oprot);
         }
       }
 
@@ -14863,16 +15571,8 @@ public class VASSARInterface {
           struct.setProblemIsSet(true);
         }
         if (incoming.get(1)) {
-          {
-            org.apache.thrift.protocol.TList _list259 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.BOOL, iprot.readI32());
-            struct.arch = new java.util.ArrayList<Boolean>(_list259.size);
-            boolean _elem260;
-            for (int _i261 = 0; _i261 < _list259.size; ++_i261)
-            {
-              _elem260 = iprot.readBool();
-              struct.arch.add(_elem260);
-            }
-          }
+          struct.arch = new BinaryInputArchitecture();
+          struct.arch.read(iprot);
           struct.setArchIsSet(true);
         }
       }
@@ -15203,14 +15903,14 @@ public class VASSARInterface {
             case 0: // SUCCESS
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
-                  org.apache.thrift.protocol.TList _list262 = iprot.readListBegin();
-                  struct.success = new java.util.ArrayList<ObjectiveSatisfaction>(_list262.size);
-                  @org.apache.thrift.annotation.Nullable ObjectiveSatisfaction _elem263;
-                  for (int _i264 = 0; _i264 < _list262.size; ++_i264)
+                  org.apache.thrift.protocol.TList _list230 = iprot.readListBegin();
+                  struct.success = new java.util.ArrayList<ObjectiveSatisfaction>(_list230.size);
+                  @org.apache.thrift.annotation.Nullable ObjectiveSatisfaction _elem231;
+                  for (int _i232 = 0; _i232 < _list230.size; ++_i232)
                   {
-                    _elem263 = new ObjectiveSatisfaction();
-                    _elem263.read(iprot);
-                    struct.success.add(_elem263);
+                    _elem231 = new ObjectiveSatisfaction();
+                    _elem231.read(iprot);
+                    struct.success.add(_elem231);
                   }
                   iprot.readListEnd();
                 }
@@ -15238,9 +15938,9 @@ public class VASSARInterface {
           oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
           {
             oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.success.size()));
-            for (ObjectiveSatisfaction _iter265 : struct.success)
+            for (ObjectiveSatisfaction _iter233 : struct.success)
             {
-              _iter265.write(oprot);
+              _iter233.write(oprot);
             }
             oprot.writeListEnd();
           }
@@ -15271,9 +15971,9 @@ public class VASSARInterface {
         if (struct.isSetSuccess()) {
           {
             oprot.writeI32(struct.success.size());
-            for (ObjectiveSatisfaction _iter266 : struct.success)
+            for (ObjectiveSatisfaction _iter234 : struct.success)
             {
-              _iter266.write(oprot);
+              _iter234.write(oprot);
             }
           }
         }
@@ -15285,14 +15985,14 @@ public class VASSARInterface {
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
           {
-            org.apache.thrift.protocol.TList _list267 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
-            struct.success = new java.util.ArrayList<ObjectiveSatisfaction>(_list267.size);
-            @org.apache.thrift.annotation.Nullable ObjectiveSatisfaction _elem268;
-            for (int _i269 = 0; _i269 < _list267.size; ++_i269)
+            org.apache.thrift.protocol.TList _list235 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
+            struct.success = new java.util.ArrayList<ObjectiveSatisfaction>(_list235.size);
+            @org.apache.thrift.annotation.Nullable ObjectiveSatisfaction _elem236;
+            for (int _i237 = 0; _i237 < _list235.size; ++_i237)
             {
-              _elem268 = new ObjectiveSatisfaction();
-              _elem268.read(iprot);
-              struct.success.add(_elem268);
+              _elem236 = new ObjectiveSatisfaction();
+              _elem236.read(iprot);
+              struct.success.add(_elem236);
             }
           }
           struct.setSuccessIsSet(true);
@@ -15309,14 +16009,14 @@ public class VASSARInterface {
     private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("getPanelScoreExplanation_args");
 
     private static final org.apache.thrift.protocol.TField PROBLEM_FIELD_DESC = new org.apache.thrift.protocol.TField("problem", org.apache.thrift.protocol.TType.STRING, (short)1);
-    private static final org.apache.thrift.protocol.TField ARCH_FIELD_DESC = new org.apache.thrift.protocol.TField("arch", org.apache.thrift.protocol.TType.LIST, (short)2);
+    private static final org.apache.thrift.protocol.TField ARCH_FIELD_DESC = new org.apache.thrift.protocol.TField("arch", org.apache.thrift.protocol.TType.STRUCT, (short)2);
     private static final org.apache.thrift.protocol.TField PANEL_FIELD_DESC = new org.apache.thrift.protocol.TField("panel", org.apache.thrift.protocol.TType.STRING, (short)3);
 
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new getPanelScoreExplanation_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new getPanelScoreExplanation_argsTupleSchemeFactory();
 
     public @org.apache.thrift.annotation.Nullable String problem; // required
-    public @org.apache.thrift.annotation.Nullable java.util.List<Boolean> arch; // required
+    public @org.apache.thrift.annotation.Nullable BinaryInputArchitecture arch; // required
     public @org.apache.thrift.annotation.Nullable String panel; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
@@ -15392,8 +16092,7 @@ public class VASSARInterface {
       tmpMap.put(_Fields.PROBLEM, new org.apache.thrift.meta_data.FieldMetaData("problem", org.apache.thrift.TFieldRequirementType.DEFAULT, 
           new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
       tmpMap.put(_Fields.ARCH, new org.apache.thrift.meta_data.FieldMetaData("arch", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
-              new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.BOOL))));
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, BinaryInputArchitecture.class)));
       tmpMap.put(_Fields.PANEL, new org.apache.thrift.meta_data.FieldMetaData("panel", org.apache.thrift.TFieldRequirementType.DEFAULT, 
           new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
       metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
@@ -15405,7 +16104,7 @@ public class VASSARInterface {
 
     public getPanelScoreExplanation_args(
       String problem,
-      java.util.List<Boolean> arch,
+      BinaryInputArchitecture arch,
       String panel)
     {
       this();
@@ -15422,8 +16121,7 @@ public class VASSARInterface {
         this.problem = other.problem;
       }
       if (other.isSetArch()) {
-        java.util.List<Boolean> __this__arch = new java.util.ArrayList<Boolean>(other.arch);
-        this.arch = __this__arch;
+        this.arch = new BinaryInputArchitecture(other.arch);
       }
       if (other.isSetPanel()) {
         this.panel = other.panel;
@@ -15466,28 +16164,12 @@ public class VASSARInterface {
       }
     }
 
-    public int getArchSize() {
-      return (this.arch == null) ? 0 : this.arch.size();
-    }
-
     @org.apache.thrift.annotation.Nullable
-    public java.util.Iterator<Boolean> getArchIterator() {
-      return (this.arch == null) ? null : this.arch.iterator();
-    }
-
-    public void addToArch(boolean elem) {
-      if (this.arch == null) {
-        this.arch = new java.util.ArrayList<Boolean>();
-      }
-      this.arch.add(elem);
-    }
-
-    @org.apache.thrift.annotation.Nullable
-    public java.util.List<Boolean> getArch() {
+    public BinaryInputArchitecture getArch() {
       return this.arch;
     }
 
-    public getPanelScoreExplanation_args setArch(@org.apache.thrift.annotation.Nullable java.util.List<Boolean> arch) {
+    public getPanelScoreExplanation_args setArch(@org.apache.thrift.annotation.Nullable BinaryInputArchitecture arch) {
       this.arch = arch;
       return this;
     }
@@ -15546,7 +16228,7 @@ public class VASSARInterface {
         if (value == null) {
           unsetArch();
         } else {
-          setArch((java.util.List<Boolean>)value);
+          setArch((BinaryInputArchitecture)value);
         }
         break;
 
@@ -15747,6 +16429,9 @@ public class VASSARInterface {
     public void validate() throws org.apache.thrift.TException {
       // check for required fields
       // check for sub-struct validity
+      if (arch != null) {
+        arch.validate();
+      }
     }
 
     private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
@@ -15792,18 +16477,9 @@ public class VASSARInterface {
               }
               break;
             case 2: // ARCH
-              if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
-                {
-                  org.apache.thrift.protocol.TList _list270 = iprot.readListBegin();
-                  struct.arch = new java.util.ArrayList<Boolean>(_list270.size);
-                  boolean _elem271;
-                  for (int _i272 = 0; _i272 < _list270.size; ++_i272)
-                  {
-                    _elem271 = iprot.readBool();
-                    struct.arch.add(_elem271);
-                  }
-                  iprot.readListEnd();
-                }
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.arch = new BinaryInputArchitecture();
+                struct.arch.read(iprot);
                 struct.setArchIsSet(true);
               } else { 
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
@@ -15839,14 +16515,7 @@ public class VASSARInterface {
         }
         if (struct.arch != null) {
           oprot.writeFieldBegin(ARCH_FIELD_DESC);
-          {
-            oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.BOOL, struct.arch.size()));
-            for (boolean _iter273 : struct.arch)
-            {
-              oprot.writeBool(_iter273);
-            }
-            oprot.writeListEnd();
-          }
+          struct.arch.write(oprot);
           oprot.writeFieldEnd();
         }
         if (struct.panel != null) {
@@ -15886,13 +16555,7 @@ public class VASSARInterface {
           oprot.writeString(struct.problem);
         }
         if (struct.isSetArch()) {
-          {
-            oprot.writeI32(struct.arch.size());
-            for (boolean _iter274 : struct.arch)
-            {
-              oprot.writeBool(_iter274);
-            }
-          }
+          struct.arch.write(oprot);
         }
         if (struct.isSetPanel()) {
           oprot.writeString(struct.panel);
@@ -15908,16 +16571,8 @@ public class VASSARInterface {
           struct.setProblemIsSet(true);
         }
         if (incoming.get(1)) {
-          {
-            org.apache.thrift.protocol.TList _list275 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.BOOL, iprot.readI32());
-            struct.arch = new java.util.ArrayList<Boolean>(_list275.size);
-            boolean _elem276;
-            for (int _i277 = 0; _i277 < _list275.size; ++_i277)
-            {
-              _elem276 = iprot.readBool();
-              struct.arch.add(_elem276);
-            }
-          }
+          struct.arch = new BinaryInputArchitecture();
+          struct.arch.read(iprot);
           struct.setArchIsSet(true);
         }
         if (incoming.get(2)) {
@@ -16252,14 +16907,14 @@ public class VASSARInterface {
             case 0: // SUCCESS
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
-                  org.apache.thrift.protocol.TList _list278 = iprot.readListBegin();
-                  struct.success = new java.util.ArrayList<ObjectiveSatisfaction>(_list278.size);
-                  @org.apache.thrift.annotation.Nullable ObjectiveSatisfaction _elem279;
-                  for (int _i280 = 0; _i280 < _list278.size; ++_i280)
+                  org.apache.thrift.protocol.TList _list238 = iprot.readListBegin();
+                  struct.success = new java.util.ArrayList<ObjectiveSatisfaction>(_list238.size);
+                  @org.apache.thrift.annotation.Nullable ObjectiveSatisfaction _elem239;
+                  for (int _i240 = 0; _i240 < _list238.size; ++_i240)
                   {
-                    _elem279 = new ObjectiveSatisfaction();
-                    _elem279.read(iprot);
-                    struct.success.add(_elem279);
+                    _elem239 = new ObjectiveSatisfaction();
+                    _elem239.read(iprot);
+                    struct.success.add(_elem239);
                   }
                   iprot.readListEnd();
                 }
@@ -16287,9 +16942,9 @@ public class VASSARInterface {
           oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
           {
             oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.success.size()));
-            for (ObjectiveSatisfaction _iter281 : struct.success)
+            for (ObjectiveSatisfaction _iter241 : struct.success)
             {
-              _iter281.write(oprot);
+              _iter241.write(oprot);
             }
             oprot.writeListEnd();
           }
@@ -16320,9 +16975,9 @@ public class VASSARInterface {
         if (struct.isSetSuccess()) {
           {
             oprot.writeI32(struct.success.size());
-            for (ObjectiveSatisfaction _iter282 : struct.success)
+            for (ObjectiveSatisfaction _iter242 : struct.success)
             {
-              _iter282.write(oprot);
+              _iter242.write(oprot);
             }
           }
         }
@@ -16334,14 +16989,14 @@ public class VASSARInterface {
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
           {
-            org.apache.thrift.protocol.TList _list283 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
-            struct.success = new java.util.ArrayList<ObjectiveSatisfaction>(_list283.size);
-            @org.apache.thrift.annotation.Nullable ObjectiveSatisfaction _elem284;
-            for (int _i285 = 0; _i285 < _list283.size; ++_i285)
+            org.apache.thrift.protocol.TList _list243 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
+            struct.success = new java.util.ArrayList<ObjectiveSatisfaction>(_list243.size);
+            @org.apache.thrift.annotation.Nullable ObjectiveSatisfaction _elem244;
+            for (int _i245 = 0; _i245 < _list243.size; ++_i245)
             {
-              _elem284 = new ObjectiveSatisfaction();
-              _elem284.read(iprot);
-              struct.success.add(_elem284);
+              _elem244 = new ObjectiveSatisfaction();
+              _elem244.read(iprot);
+              struct.success.add(_elem244);
             }
           }
           struct.setSuccessIsSet(true);
@@ -16358,14 +17013,14 @@ public class VASSARInterface {
     private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("getObjectiveScoreExplanation_args");
 
     private static final org.apache.thrift.protocol.TField PROBLEM_FIELD_DESC = new org.apache.thrift.protocol.TField("problem", org.apache.thrift.protocol.TType.STRING, (short)1);
-    private static final org.apache.thrift.protocol.TField ARCH_FIELD_DESC = new org.apache.thrift.protocol.TField("arch", org.apache.thrift.protocol.TType.LIST, (short)2);
+    private static final org.apache.thrift.protocol.TField ARCH_FIELD_DESC = new org.apache.thrift.protocol.TField("arch", org.apache.thrift.protocol.TType.STRUCT, (short)2);
     private static final org.apache.thrift.protocol.TField OBJECTIVE_FIELD_DESC = new org.apache.thrift.protocol.TField("objective", org.apache.thrift.protocol.TType.STRING, (short)3);
 
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new getObjectiveScoreExplanation_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new getObjectiveScoreExplanation_argsTupleSchemeFactory();
 
     public @org.apache.thrift.annotation.Nullable String problem; // required
-    public @org.apache.thrift.annotation.Nullable java.util.List<Boolean> arch; // required
+    public @org.apache.thrift.annotation.Nullable BinaryInputArchitecture arch; // required
     public @org.apache.thrift.annotation.Nullable String objective; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
@@ -16441,8 +17096,7 @@ public class VASSARInterface {
       tmpMap.put(_Fields.PROBLEM, new org.apache.thrift.meta_data.FieldMetaData("problem", org.apache.thrift.TFieldRequirementType.DEFAULT, 
           new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
       tmpMap.put(_Fields.ARCH, new org.apache.thrift.meta_data.FieldMetaData("arch", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
-              new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.BOOL))));
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, BinaryInputArchitecture.class)));
       tmpMap.put(_Fields.OBJECTIVE, new org.apache.thrift.meta_data.FieldMetaData("objective", org.apache.thrift.TFieldRequirementType.DEFAULT, 
           new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
       metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
@@ -16454,7 +17108,7 @@ public class VASSARInterface {
 
     public getObjectiveScoreExplanation_args(
       String problem,
-      java.util.List<Boolean> arch,
+      BinaryInputArchitecture arch,
       String objective)
     {
       this();
@@ -16471,8 +17125,7 @@ public class VASSARInterface {
         this.problem = other.problem;
       }
       if (other.isSetArch()) {
-        java.util.List<Boolean> __this__arch = new java.util.ArrayList<Boolean>(other.arch);
-        this.arch = __this__arch;
+        this.arch = new BinaryInputArchitecture(other.arch);
       }
       if (other.isSetObjective()) {
         this.objective = other.objective;
@@ -16515,28 +17168,12 @@ public class VASSARInterface {
       }
     }
 
-    public int getArchSize() {
-      return (this.arch == null) ? 0 : this.arch.size();
-    }
-
     @org.apache.thrift.annotation.Nullable
-    public java.util.Iterator<Boolean> getArchIterator() {
-      return (this.arch == null) ? null : this.arch.iterator();
-    }
-
-    public void addToArch(boolean elem) {
-      if (this.arch == null) {
-        this.arch = new java.util.ArrayList<Boolean>();
-      }
-      this.arch.add(elem);
-    }
-
-    @org.apache.thrift.annotation.Nullable
-    public java.util.List<Boolean> getArch() {
+    public BinaryInputArchitecture getArch() {
       return this.arch;
     }
 
-    public getObjectiveScoreExplanation_args setArch(@org.apache.thrift.annotation.Nullable java.util.List<Boolean> arch) {
+    public getObjectiveScoreExplanation_args setArch(@org.apache.thrift.annotation.Nullable BinaryInputArchitecture arch) {
       this.arch = arch;
       return this;
     }
@@ -16595,7 +17232,7 @@ public class VASSARInterface {
         if (value == null) {
           unsetArch();
         } else {
-          setArch((java.util.List<Boolean>)value);
+          setArch((BinaryInputArchitecture)value);
         }
         break;
 
@@ -16796,6 +17433,9 @@ public class VASSARInterface {
     public void validate() throws org.apache.thrift.TException {
       // check for required fields
       // check for sub-struct validity
+      if (arch != null) {
+        arch.validate();
+      }
     }
 
     private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
@@ -16841,18 +17481,9 @@ public class VASSARInterface {
               }
               break;
             case 2: // ARCH
-              if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
-                {
-                  org.apache.thrift.protocol.TList _list286 = iprot.readListBegin();
-                  struct.arch = new java.util.ArrayList<Boolean>(_list286.size);
-                  boolean _elem287;
-                  for (int _i288 = 0; _i288 < _list286.size; ++_i288)
-                  {
-                    _elem287 = iprot.readBool();
-                    struct.arch.add(_elem287);
-                  }
-                  iprot.readListEnd();
-                }
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.arch = new BinaryInputArchitecture();
+                struct.arch.read(iprot);
                 struct.setArchIsSet(true);
               } else { 
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
@@ -16888,14 +17519,7 @@ public class VASSARInterface {
         }
         if (struct.arch != null) {
           oprot.writeFieldBegin(ARCH_FIELD_DESC);
-          {
-            oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.BOOL, struct.arch.size()));
-            for (boolean _iter289 : struct.arch)
-            {
-              oprot.writeBool(_iter289);
-            }
-            oprot.writeListEnd();
-          }
+          struct.arch.write(oprot);
           oprot.writeFieldEnd();
         }
         if (struct.objective != null) {
@@ -16935,13 +17559,7 @@ public class VASSARInterface {
           oprot.writeString(struct.problem);
         }
         if (struct.isSetArch()) {
-          {
-            oprot.writeI32(struct.arch.size());
-            for (boolean _iter290 : struct.arch)
-            {
-              oprot.writeBool(_iter290);
-            }
-          }
+          struct.arch.write(oprot);
         }
         if (struct.isSetObjective()) {
           oprot.writeString(struct.objective);
@@ -16957,16 +17575,8 @@ public class VASSARInterface {
           struct.setProblemIsSet(true);
         }
         if (incoming.get(1)) {
-          {
-            org.apache.thrift.protocol.TList _list291 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.BOOL, iprot.readI32());
-            struct.arch = new java.util.ArrayList<Boolean>(_list291.size);
-            boolean _elem292;
-            for (int _i293 = 0; _i293 < _list291.size; ++_i293)
-            {
-              _elem292 = iprot.readBool();
-              struct.arch.add(_elem292);
-            }
-          }
+          struct.arch = new BinaryInputArchitecture();
+          struct.arch.read(iprot);
           struct.setArchIsSet(true);
         }
         if (incoming.get(2)) {
@@ -17301,14 +17911,14 @@ public class VASSARInterface {
             case 0: // SUCCESS
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
-                  org.apache.thrift.protocol.TList _list294 = iprot.readListBegin();
-                  struct.success = new java.util.ArrayList<ObjectiveSatisfaction>(_list294.size);
-                  @org.apache.thrift.annotation.Nullable ObjectiveSatisfaction _elem295;
-                  for (int _i296 = 0; _i296 < _list294.size; ++_i296)
+                  org.apache.thrift.protocol.TList _list246 = iprot.readListBegin();
+                  struct.success = new java.util.ArrayList<ObjectiveSatisfaction>(_list246.size);
+                  @org.apache.thrift.annotation.Nullable ObjectiveSatisfaction _elem247;
+                  for (int _i248 = 0; _i248 < _list246.size; ++_i248)
                   {
-                    _elem295 = new ObjectiveSatisfaction();
-                    _elem295.read(iprot);
-                    struct.success.add(_elem295);
+                    _elem247 = new ObjectiveSatisfaction();
+                    _elem247.read(iprot);
+                    struct.success.add(_elem247);
                   }
                   iprot.readListEnd();
                 }
@@ -17336,9 +17946,9 @@ public class VASSARInterface {
           oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
           {
             oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.success.size()));
-            for (ObjectiveSatisfaction _iter297 : struct.success)
+            for (ObjectiveSatisfaction _iter249 : struct.success)
             {
-              _iter297.write(oprot);
+              _iter249.write(oprot);
             }
             oprot.writeListEnd();
           }
@@ -17369,9 +17979,9 @@ public class VASSARInterface {
         if (struct.isSetSuccess()) {
           {
             oprot.writeI32(struct.success.size());
-            for (ObjectiveSatisfaction _iter298 : struct.success)
+            for (ObjectiveSatisfaction _iter250 : struct.success)
             {
-              _iter298.write(oprot);
+              _iter250.write(oprot);
             }
           }
         }
@@ -17383,14 +17993,14 @@ public class VASSARInterface {
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
           {
-            org.apache.thrift.protocol.TList _list299 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
-            struct.success = new java.util.ArrayList<ObjectiveSatisfaction>(_list299.size);
-            @org.apache.thrift.annotation.Nullable ObjectiveSatisfaction _elem300;
-            for (int _i301 = 0; _i301 < _list299.size; ++_i301)
+            org.apache.thrift.protocol.TList _list251 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
+            struct.success = new java.util.ArrayList<ObjectiveSatisfaction>(_list251.size);
+            @org.apache.thrift.annotation.Nullable ObjectiveSatisfaction _elem252;
+            for (int _i253 = 0; _i253 < _list251.size; ++_i253)
             {
-              _elem300 = new ObjectiveSatisfaction();
-              _elem300.read(iprot);
-              struct.success.add(_elem300);
+              _elem252 = new ObjectiveSatisfaction();
+              _elem252.read(iprot);
+              struct.success.add(_elem252);
             }
           }
           struct.setSuccessIsSet(true);
@@ -18513,14 +19123,14 @@ public class VASSARInterface {
             case 2: // DATASET
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
-                  org.apache.thrift.protocol.TList _list302 = iprot.readListBegin();
-                  struct.dataset = new java.util.ArrayList<BinaryInputArchitecture>(_list302.size);
-                  @org.apache.thrift.annotation.Nullable BinaryInputArchitecture _elem303;
-                  for (int _i304 = 0; _i304 < _list302.size; ++_i304)
+                  org.apache.thrift.protocol.TList _list254 = iprot.readListBegin();
+                  struct.dataset = new java.util.ArrayList<BinaryInputArchitecture>(_list254.size);
+                  @org.apache.thrift.annotation.Nullable BinaryInputArchitecture _elem255;
+                  for (int _i256 = 0; _i256 < _list254.size; ++_i256)
                   {
-                    _elem303 = new BinaryInputArchitecture();
-                    _elem303.read(iprot);
-                    struct.dataset.add(_elem303);
+                    _elem255 = new BinaryInputArchitecture();
+                    _elem255.read(iprot);
+                    struct.dataset.add(_elem255);
                   }
                   iprot.readListEnd();
                 }
@@ -18561,9 +19171,9 @@ public class VASSARInterface {
           oprot.writeFieldBegin(DATASET_FIELD_DESC);
           {
             oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.dataset.size()));
-            for (BinaryInputArchitecture _iter305 : struct.dataset)
+            for (BinaryInputArchitecture _iter257 : struct.dataset)
             {
-              _iter305.write(oprot);
+              _iter257.write(oprot);
             }
             oprot.writeListEnd();
           }
@@ -18608,9 +19218,9 @@ public class VASSARInterface {
         if (struct.isSetDataset()) {
           {
             oprot.writeI32(struct.dataset.size());
-            for (BinaryInputArchitecture _iter306 : struct.dataset)
+            for (BinaryInputArchitecture _iter258 : struct.dataset)
             {
-              _iter306.write(oprot);
+              _iter258.write(oprot);
             }
           }
         }
@@ -18629,14 +19239,14 @@ public class VASSARInterface {
         }
         if (incoming.get(1)) {
           {
-            org.apache.thrift.protocol.TList _list307 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
-            struct.dataset = new java.util.ArrayList<BinaryInputArchitecture>(_list307.size);
-            @org.apache.thrift.annotation.Nullable BinaryInputArchitecture _elem308;
-            for (int _i309 = 0; _i309 < _list307.size; ++_i309)
+            org.apache.thrift.protocol.TList _list259 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
+            struct.dataset = new java.util.ArrayList<BinaryInputArchitecture>(_list259.size);
+            @org.apache.thrift.annotation.Nullable BinaryInputArchitecture _elem260;
+            for (int _i261 = 0; _i261 < _list259.size; ++_i261)
             {
-              _elem308 = new BinaryInputArchitecture();
-              _elem308.read(iprot);
-              struct.dataset.add(_elem308);
+              _elem260 = new BinaryInputArchitecture();
+              _elem260.read(iprot);
+              struct.dataset.add(_elem260);
             }
           }
           struct.setDatasetIsSet(true);
@@ -20545,14 +21155,14 @@ public class VASSARInterface {
             case 0: // SUCCESS
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
-                  org.apache.thrift.protocol.TList _list310 = iprot.readListBegin();
-                  struct.success = new java.util.ArrayList<SubscoreInformation>(_list310.size);
-                  @org.apache.thrift.annotation.Nullable SubscoreInformation _elem311;
-                  for (int _i312 = 0; _i312 < _list310.size; ++_i312)
+                  org.apache.thrift.protocol.TList _list262 = iprot.readListBegin();
+                  struct.success = new java.util.ArrayList<SubscoreInformation>(_list262.size);
+                  @org.apache.thrift.annotation.Nullable SubscoreInformation _elem263;
+                  for (int _i264 = 0; _i264 < _list262.size; ++_i264)
                   {
-                    _elem311 = new SubscoreInformation();
-                    _elem311.read(iprot);
-                    struct.success.add(_elem311);
+                    _elem263 = new SubscoreInformation();
+                    _elem263.read(iprot);
+                    struct.success.add(_elem263);
                   }
                   iprot.readListEnd();
                 }
@@ -20580,9 +21190,9 @@ public class VASSARInterface {
           oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
           {
             oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.success.size()));
-            for (SubscoreInformation _iter313 : struct.success)
+            for (SubscoreInformation _iter265 : struct.success)
             {
-              _iter313.write(oprot);
+              _iter265.write(oprot);
             }
             oprot.writeListEnd();
           }
@@ -20613,9 +21223,9 @@ public class VASSARInterface {
         if (struct.isSetSuccess()) {
           {
             oprot.writeI32(struct.success.size());
-            for (SubscoreInformation _iter314 : struct.success)
+            for (SubscoreInformation _iter266 : struct.success)
             {
-              _iter314.write(oprot);
+              _iter266.write(oprot);
             }
           }
         }
@@ -20627,14 +21237,14 @@ public class VASSARInterface {
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
           {
-            org.apache.thrift.protocol.TList _list315 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
-            struct.success = new java.util.ArrayList<SubscoreInformation>(_list315.size);
-            @org.apache.thrift.annotation.Nullable SubscoreInformation _elem316;
-            for (int _i317 = 0; _i317 < _list315.size; ++_i317)
+            org.apache.thrift.protocol.TList _list267 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
+            struct.success = new java.util.ArrayList<SubscoreInformation>(_list267.size);
+            @org.apache.thrift.annotation.Nullable SubscoreInformation _elem268;
+            for (int _i269 = 0; _i269 < _list267.size; ++_i269)
             {
-              _elem316 = new SubscoreInformation();
-              _elem316.read(iprot);
-              struct.success.add(_elem316);
+              _elem268 = new SubscoreInformation();
+              _elem268.read(iprot);
+              struct.success.add(_elem268);
             }
           }
           struct.setSuccessIsSet(true);
@@ -21444,14 +22054,14 @@ public class VASSARInterface {
             case 0: // SUCCESS
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
-                  org.apache.thrift.protocol.TList _list318 = iprot.readListBegin();
-                  struct.success = new java.util.ArrayList<MissionCostInformation>(_list318.size);
-                  @org.apache.thrift.annotation.Nullable MissionCostInformation _elem319;
-                  for (int _i320 = 0; _i320 < _list318.size; ++_i320)
+                  org.apache.thrift.protocol.TList _list270 = iprot.readListBegin();
+                  struct.success = new java.util.ArrayList<MissionCostInformation>(_list270.size);
+                  @org.apache.thrift.annotation.Nullable MissionCostInformation _elem271;
+                  for (int _i272 = 0; _i272 < _list270.size; ++_i272)
                   {
-                    _elem319 = new MissionCostInformation();
-                    _elem319.read(iprot);
-                    struct.success.add(_elem319);
+                    _elem271 = new MissionCostInformation();
+                    _elem271.read(iprot);
+                    struct.success.add(_elem271);
                   }
                   iprot.readListEnd();
                 }
@@ -21479,9 +22089,9 @@ public class VASSARInterface {
           oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
           {
             oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.success.size()));
-            for (MissionCostInformation _iter321 : struct.success)
+            for (MissionCostInformation _iter273 : struct.success)
             {
-              _iter321.write(oprot);
+              _iter273.write(oprot);
             }
             oprot.writeListEnd();
           }
@@ -21512,9 +22122,9 @@ public class VASSARInterface {
         if (struct.isSetSuccess()) {
           {
             oprot.writeI32(struct.success.size());
-            for (MissionCostInformation _iter322 : struct.success)
+            for (MissionCostInformation _iter274 : struct.success)
             {
-              _iter322.write(oprot);
+              _iter274.write(oprot);
             }
           }
         }
@@ -21526,14 +22136,14 @@ public class VASSARInterface {
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
           {
-            org.apache.thrift.protocol.TList _list323 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
-            struct.success = new java.util.ArrayList<MissionCostInformation>(_list323.size);
-            @org.apache.thrift.annotation.Nullable MissionCostInformation _elem324;
-            for (int _i325 = 0; _i325 < _list323.size; ++_i325)
+            org.apache.thrift.protocol.TList _list275 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
+            struct.success = new java.util.ArrayList<MissionCostInformation>(_list275.size);
+            @org.apache.thrift.annotation.Nullable MissionCostInformation _elem276;
+            for (int _i277 = 0; _i277 < _list275.size; ++_i277)
             {
-              _elem324 = new MissionCostInformation();
-              _elem324.read(iprot);
-              struct.success.add(_elem324);
+              _elem276 = new MissionCostInformation();
+              _elem276.read(iprot);
+              struct.success.add(_elem276);
             }
           }
           struct.setSuccessIsSet(true);
@@ -23610,14 +24220,14 @@ public class VASSARInterface {
             case 2: // DATASET
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
-                  org.apache.thrift.protocol.TList _list326 = iprot.readListBegin();
-                  struct.dataset = new java.util.ArrayList<DiscreteInputArchitecture>(_list326.size);
-                  @org.apache.thrift.annotation.Nullable DiscreteInputArchitecture _elem327;
-                  for (int _i328 = 0; _i328 < _list326.size; ++_i328)
+                  org.apache.thrift.protocol.TList _list278 = iprot.readListBegin();
+                  struct.dataset = new java.util.ArrayList<DiscreteInputArchitecture>(_list278.size);
+                  @org.apache.thrift.annotation.Nullable DiscreteInputArchitecture _elem279;
+                  for (int _i280 = 0; _i280 < _list278.size; ++_i280)
                   {
-                    _elem327 = new DiscreteInputArchitecture();
-                    _elem327.read(iprot);
-                    struct.dataset.add(_elem327);
+                    _elem279 = new DiscreteInputArchitecture();
+                    _elem279.read(iprot);
+                    struct.dataset.add(_elem279);
                   }
                   iprot.readListEnd();
                 }
@@ -23658,9 +24268,9 @@ public class VASSARInterface {
           oprot.writeFieldBegin(DATASET_FIELD_DESC);
           {
             oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.dataset.size()));
-            for (DiscreteInputArchitecture _iter329 : struct.dataset)
+            for (DiscreteInputArchitecture _iter281 : struct.dataset)
             {
-              _iter329.write(oprot);
+              _iter281.write(oprot);
             }
             oprot.writeListEnd();
           }
@@ -23705,9 +24315,9 @@ public class VASSARInterface {
         if (struct.isSetDataset()) {
           {
             oprot.writeI32(struct.dataset.size());
-            for (DiscreteInputArchitecture _iter330 : struct.dataset)
+            for (DiscreteInputArchitecture _iter282 : struct.dataset)
             {
-              _iter330.write(oprot);
+              _iter282.write(oprot);
             }
           }
         }
@@ -23726,14 +24336,14 @@ public class VASSARInterface {
         }
         if (incoming.get(1)) {
           {
-            org.apache.thrift.protocol.TList _list331 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
-            struct.dataset = new java.util.ArrayList<DiscreteInputArchitecture>(_list331.size);
-            @org.apache.thrift.annotation.Nullable DiscreteInputArchitecture _elem332;
-            for (int _i333 = 0; _i333 < _list331.size; ++_i333)
+            org.apache.thrift.protocol.TList _list283 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
+            struct.dataset = new java.util.ArrayList<DiscreteInputArchitecture>(_list283.size);
+            @org.apache.thrift.annotation.Nullable DiscreteInputArchitecture _elem284;
+            for (int _i285 = 0; _i285 < _list283.size; ++_i285)
             {
-              _elem332 = new DiscreteInputArchitecture();
-              _elem332.read(iprot);
-              struct.dataset.add(_elem332);
+              _elem284 = new DiscreteInputArchitecture();
+              _elem284.read(iprot);
+              struct.dataset.add(_elem284);
             }
           }
           struct.setDatasetIsSet(true);
@@ -25642,14 +26252,14 @@ public class VASSARInterface {
             case 0: // SUCCESS
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
-                  org.apache.thrift.protocol.TList _list334 = iprot.readListBegin();
-                  struct.success = new java.util.ArrayList<SubscoreInformation>(_list334.size);
-                  @org.apache.thrift.annotation.Nullable SubscoreInformation _elem335;
-                  for (int _i336 = 0; _i336 < _list334.size; ++_i336)
+                  org.apache.thrift.protocol.TList _list286 = iprot.readListBegin();
+                  struct.success = new java.util.ArrayList<SubscoreInformation>(_list286.size);
+                  @org.apache.thrift.annotation.Nullable SubscoreInformation _elem287;
+                  for (int _i288 = 0; _i288 < _list286.size; ++_i288)
                   {
-                    _elem335 = new SubscoreInformation();
-                    _elem335.read(iprot);
-                    struct.success.add(_elem335);
+                    _elem287 = new SubscoreInformation();
+                    _elem287.read(iprot);
+                    struct.success.add(_elem287);
                   }
                   iprot.readListEnd();
                 }
@@ -25677,9 +26287,9 @@ public class VASSARInterface {
           oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
           {
             oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.success.size()));
-            for (SubscoreInformation _iter337 : struct.success)
+            for (SubscoreInformation _iter289 : struct.success)
             {
-              _iter337.write(oprot);
+              _iter289.write(oprot);
             }
             oprot.writeListEnd();
           }
@@ -25710,9 +26320,9 @@ public class VASSARInterface {
         if (struct.isSetSuccess()) {
           {
             oprot.writeI32(struct.success.size());
-            for (SubscoreInformation _iter338 : struct.success)
+            for (SubscoreInformation _iter290 : struct.success)
             {
-              _iter338.write(oprot);
+              _iter290.write(oprot);
             }
           }
         }
@@ -25724,14 +26334,14 @@ public class VASSARInterface {
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
           {
-            org.apache.thrift.protocol.TList _list339 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
-            struct.success = new java.util.ArrayList<SubscoreInformation>(_list339.size);
-            @org.apache.thrift.annotation.Nullable SubscoreInformation _elem340;
-            for (int _i341 = 0; _i341 < _list339.size; ++_i341)
+            org.apache.thrift.protocol.TList _list291 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
+            struct.success = new java.util.ArrayList<SubscoreInformation>(_list291.size);
+            @org.apache.thrift.annotation.Nullable SubscoreInformation _elem292;
+            for (int _i293 = 0; _i293 < _list291.size; ++_i293)
             {
-              _elem340 = new SubscoreInformation();
-              _elem340.read(iprot);
-              struct.success.add(_elem340);
+              _elem292 = new SubscoreInformation();
+              _elem292.read(iprot);
+              struct.success.add(_elem292);
             }
           }
           struct.setSuccessIsSet(true);
@@ -26541,14 +27151,14 @@ public class VASSARInterface {
             case 0: // SUCCESS
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
-                  org.apache.thrift.protocol.TList _list342 = iprot.readListBegin();
-                  struct.success = new java.util.ArrayList<MissionCostInformation>(_list342.size);
-                  @org.apache.thrift.annotation.Nullable MissionCostInformation _elem343;
-                  for (int _i344 = 0; _i344 < _list342.size; ++_i344)
+                  org.apache.thrift.protocol.TList _list294 = iprot.readListBegin();
+                  struct.success = new java.util.ArrayList<MissionCostInformation>(_list294.size);
+                  @org.apache.thrift.annotation.Nullable MissionCostInformation _elem295;
+                  for (int _i296 = 0; _i296 < _list294.size; ++_i296)
                   {
-                    _elem343 = new MissionCostInformation();
-                    _elem343.read(iprot);
-                    struct.success.add(_elem343);
+                    _elem295 = new MissionCostInformation();
+                    _elem295.read(iprot);
+                    struct.success.add(_elem295);
                   }
                   iprot.readListEnd();
                 }
@@ -26576,9 +27186,9 @@ public class VASSARInterface {
           oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
           {
             oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.success.size()));
-            for (MissionCostInformation _iter345 : struct.success)
+            for (MissionCostInformation _iter297 : struct.success)
             {
-              _iter345.write(oprot);
+              _iter297.write(oprot);
             }
             oprot.writeListEnd();
           }
@@ -26609,9 +27219,9 @@ public class VASSARInterface {
         if (struct.isSetSuccess()) {
           {
             oprot.writeI32(struct.success.size());
-            for (MissionCostInformation _iter346 : struct.success)
+            for (MissionCostInformation _iter298 : struct.success)
             {
-              _iter346.write(oprot);
+              _iter298.write(oprot);
             }
           }
         }
@@ -26623,14 +27233,14 @@ public class VASSARInterface {
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
           {
-            org.apache.thrift.protocol.TList _list347 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
-            struct.success = new java.util.ArrayList<MissionCostInformation>(_list347.size);
-            @org.apache.thrift.annotation.Nullable MissionCostInformation _elem348;
-            for (int _i349 = 0; _i349 < _list347.size; ++_i349)
+            org.apache.thrift.protocol.TList _list299 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
+            struct.success = new java.util.ArrayList<MissionCostInformation>(_list299.size);
+            @org.apache.thrift.annotation.Nullable MissionCostInformation _elem300;
+            for (int _i301 = 0; _i301 < _list299.size; ++_i301)
             {
-              _elem348 = new MissionCostInformation();
-              _elem348.read(iprot);
-              struct.success.add(_elem348);
+              _elem300 = new MissionCostInformation();
+              _elem300.read(iprot);
+              struct.success.add(_elem300);
             }
           }
           struct.setSuccessIsSet(true);

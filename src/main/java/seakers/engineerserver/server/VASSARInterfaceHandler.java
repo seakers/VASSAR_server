@@ -476,7 +476,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
 
     @Override
-    public List<BinaryInputArchitecture> runLocalSearchBinaryInput(String problem, List<Boolean> boolList) {
+    public List<BinaryInputArchitecture> runLocalSearchBinaryInput(String problem, BinaryInputArchitecture inputArch) {
 
         ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
         Resource res = AEM.getResourcePool().getResource();
@@ -484,7 +484,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         AEM.getResourcePool().freeResource(res);
 
         String bitString = "";
-        for (Boolean b : boolList) {
+        for (Boolean b : inputArch.inputs) {
             bitString += b ? "1" : "0";
         }
 
@@ -515,15 +515,15 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
     }
 
     @Override
-    public List<DiscreteInputArchitecture> runLocalSearchDiscreteInput(String problem, List<Integer> inputs) {
+    public List<DiscreteInputArchitecture> runLocalSearchDiscreteInput(String problem, DiscreteInputArchitecture inputArch) {
         ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
         Resource res = AEM.getResourcePool().getResource();
         BaseParams params = res.getParams();
         AEM.getResourcePool().freeResource(res);
 
-        int[] inputsArray = new int[inputs.size()];
-        for(int i = 0; i < inputs.size(); i++){
-            inputsArray[i] = inputs.get(i);
+        int[] inputsArray = new int[inputArch.inputs.size()];
+        for(int i = 0; i < inputArch.inputs.size(); i++){
+            inputsArray[i] = inputArch.inputs.get(i);
         }
 
         ArrayList<int[]> samples = randomLocalChangeDiscreteInput(inputsArray, 4, params);
@@ -610,10 +610,10 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
     }
 
     @Override
-    public List<String> getCritiqueBinaryInputArch(String problem, List<Boolean> boolList) {
+    public List<String> getCritiqueBinaryInputArch(String problem, BinaryInputArchitecture inputArch) {
 
         String bitString = "";
-        for (Boolean b : boolList) {
+        for (Boolean b : inputArch.inputs) {
             bitString += b ? "1" : "0";
         }
 
@@ -642,11 +642,11 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
     }
 
     @Override
-    public List<String> getCritiqueDiscreteInputArch(String problem, List<Integer> intList) {
+    public List<String> getCritiqueDiscreteInputArch(String problem, DiscreteInputArchitecture inputArch) {
 
         AbstractArchitecture architecture;
 
-        System.out.println(intList);
+        System.out.println(inputArch.inputs);
 
         if (problem.equalsIgnoreCase("Decadal2017Aerosols")) {
 
@@ -654,9 +654,9 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
 
             // Generate a new architecture
-            int[] intArray = new int[intList.size()];
+            int[] intArray = new int[inputArch.inputs.size()];
             for(int i = 0; i < intArray.length; i++)
-                intArray[i] = intList.get(i);
+                intArray[i] = inputArch.inputs.get(i);
             architecture = this.getArchitectureDiscreteInput(problem, intArray, 1, params);
 
             // Initialize Critique Generator
@@ -712,24 +712,47 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
     }
 
     @Override
+    public ArrayList<String> getSubobjectiveList(String problem) {
+        this.getProblemParameters(problem);
+        ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
+        Resource res = AEM.getResourcePool().getResource();
+        BaseParams params = res.getParams();
+        AEM.getResourcePool().freeResource(res);
+        ArrayList<String> subobjectiveList = new ArrayList<>();
+        params.subobjDescriptions.forEach((k, v) -> {
+            subobjectiveList.add(k);
+        });
+        return subobjectiveList;
+    }
+
+    @Override
     public ArrayList<String> getInstrumentsForObjective(String problem, String objective) {
-        BaseParams params = this.getProblemParameters(problem);
+        this.getProblemParameters(problem);
+        ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
+        Resource res = AEM.getResourcePool().getResource();
+        BaseParams params = res.getParams();
+        AEM.getResourcePool().freeResource(res);
         return new ArrayList<>(params.objectivesToInstruments.get(objective));
     }
 
     @Override
     public ArrayList<String> getInstrumentsForPanel(String problem, String panel) {
-        BaseParams params = this.getProblemParameters(problem);
+        this.getProblemParameters(problem);
+        ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
+        Resource res = AEM.getResourcePool().getResource();
+        BaseParams params = res.getParams();
+        AEM.getResourcePool().freeResource(res);
         return new ArrayList<>(params.panelsToInstruments.get(panel));
     }
 
     @Override
-    public List<ObjectiveSatisfaction> getArchitectureScoreExplanation(String problem, List<Boolean> arch) {
+    public List<ObjectiveSatisfaction> getArchitectureScoreExplanation(String problem, BinaryInputArchitecture arch) {
         String bitString = "";
-        for (Boolean b : arch) {
+        for (Boolean b : arch.inputs) {
             bitString += b ? "1" : "0";
         }
 
+        this.getProblemParameters(problem);
         ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
         Resource res = AEM.getResourcePool().getResource();
         BaseParams params = res.getParams();
@@ -754,14 +777,17 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
 
     @Override
-    public List<ObjectiveSatisfaction> getPanelScoreExplanation(String problem, List<Boolean> arch, String panel) {
+    public List<ObjectiveSatisfaction> getPanelScoreExplanation(String problem, BinaryInputArchitecture arch, String panel) {
         String bitString = "";
-        for (Boolean b : arch) {
+        for (Boolean b : arch.inputs) {
             bitString += b ? "1" : "0";
         }
 
-        BaseParams params = this.getProblemParameters(problem);
+        this.getProblemParameters(problem);
         ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
+        Resource res = AEM.getResourcePool().getResource();
+        BaseParams params = res.getParams();
+        AEM.getResourcePool().freeResource(res);
 
         // Generate a new architecture
         AbstractArchitecture architecture = this.getArchitectureBinaryInput(problem, bitString, 1, params);
@@ -785,12 +811,13 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
     }
 
     @Override
-    public List<ObjectiveSatisfaction> getObjectiveScoreExplanation(String problem, List<Boolean> arch, String objective) {
+    public List<ObjectiveSatisfaction> getObjectiveScoreExplanation(String problem, BinaryInputArchitecture arch, String objective) {
         String bitString = "";
-        for (Boolean b : arch) {
+        for (Boolean b : arch.inputs) {
             bitString += b ? "1" : "0";
         }
 
+        this.getProblemParameters(problem);
         ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
         Resource res = AEM.getResourcePool().getResource();
         BaseParams params = res.getParams();
@@ -987,6 +1014,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             bitString += b ? "1" : "0";
         }
 
+        this.getProblemParameters(problem);
         ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
         Resource res = AEM.getResourcePool().getResource();
         BaseParams params = res.getParams();
@@ -1004,6 +1032,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             intArray[i] = architecture.inputs.get(i);
         }
 
+        this.getProblemParameters(problem);
         ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
         Resource res = AEM.getResourcePool().getResource();
         BaseParams params = res.getParams();

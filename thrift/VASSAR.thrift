@@ -97,9 +97,9 @@ service VASSARInterface {
 
     DiscreteInputArchitecture evalDiscreteInputArch(1:string problem, 2:list<int> inputs),
 
-    list<BinaryInputArchitecture> runLocalSearchBinaryInput(1:string problem, 2:list<bool> inputs),
+    list<BinaryInputArchitecture> runLocalSearchBinaryInput(1:string problem, 2:BinaryInputArchitecture arch),
 
-    list<DiscreteInputArchitecture> runLocalSearchDiscreteInput(1:string problem, 2:list<int> inputs),
+    list<DiscreteInputArchitecture> runLocalSearchDiscreteInput(1:string problem, 2:DiscreteInputArchitecture arch),
 
 
     list<string> getOrbitList(1:string problem),
@@ -108,20 +108,22 @@ service VASSARInterface {
 
     list<string> getObjectiveList(1:string problem),
 
+    list<string> getSubobjectiveList(1:string problem),
+
     list<string> getInstrumentsForObjective(1:string problem, 2:string objective),
 
     list<string> getInstrumentsForPanel(1:string problem, 2:string panel),
 
-    list<string> getCritiqueBinaryInputArch(1:string problem, 2:list<bool> inputs),
+    list<string> getCritiqueBinaryInputArch(1:string problem, 2:BinaryInputArchitecture inputs),
 
-    list<string> getCritiqueDiscreteInputArch(1:string problem, 2:list<int> inputs),
+    list<string> getCritiqueDiscreteInputArch(1:string problem, 2:DiscreteInputArchitecture inputs),
     
 
-    list<ObjectiveSatisfaction> getArchitectureScoreExplanation(1:string problem, 2:list<bool> arch),
+    list<ObjectiveSatisfaction> getArchitectureScoreExplanation(1:string problem, 2:BinaryInputArchitecture arch),
 
-    list<ObjectiveSatisfaction> getPanelScoreExplanation(1:string problem, 2:list<bool> arch, 3:string panel),
+    list<ObjectiveSatisfaction> getPanelScoreExplanation(1:string problem, 2:BinaryInputArchitecture arch, 3:string panel),
 
-    list<ObjectiveSatisfaction> getObjectiveScoreExplanation(1:string problem, 2:list<bool> arch, 3:string objective),
+    list<ObjectiveSatisfaction> getObjectiveScoreExplanation(1:string problem, 2:BinaryInputArchitecture arch, 3:string objective),
 
 
     bool isGABinaryInputRunning(),

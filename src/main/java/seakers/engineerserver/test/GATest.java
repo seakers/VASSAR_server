@@ -36,9 +36,7 @@ public class GATest {
         String root = System.getProperty("user.dir");
 
         //PATH
-        String path = root +
-                File.separator + "problems" +
-                File.separator + "SMAP";
+        String path = "../VASSAR_resources/problems/Decadal2017Aerosols";
 
         BaseParams params = new Decadal2017AerosolsParams(path, "CRISP-ATTRIBUTES", "test", "normal");
         AbstractArchitectureEvaluator evaluator = new ArchitectureEvaluator();
