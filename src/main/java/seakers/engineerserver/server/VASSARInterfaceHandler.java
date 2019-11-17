@@ -67,23 +67,19 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
     private String resourcesPath;
     private Map<String, BaseParams> paramsMap;
     private Map<String, ArchitectureEvaluationManager> architectureEvaluationManagerMap;
-
-    private Thread binaryInputGAThread;
-    private Thread discreteInputGAThread;
+    private Map<String, Thread> gaThreads;
 
     public VASSARInterfaceHandler() {
         // Set a path to the project folder
         this.resourcesPath = "../VASSAR_resources";
         this.paramsMap = new HashMap<>();
         this.architectureEvaluationManagerMap = new HashMap<>();
-
-        this.binaryInputGAThread = new Thread();
-        this.discreteInputGAThread = new Thread();
+        this.gaThreads = new HashMap<>();
 
         OrekitConfig.init(1, this.resourcesPath + File.separator + "orekit");
     }
 
-    private Runnable generateBinaryInputGATask(String problem, List<BinaryInputArchitecture> dataset, String username) {
+    private Runnable generateBinaryInputGATask(String problem, List<BinaryInputArchitecture> dataset, String id) {
         return () -> {
             System.out.println("Starting GA for binary input data");
 
@@ -145,13 +141,13 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             CompoundVariation var = new CompoundVariation(singlecross, bitFlip, intergerMutation);
 
             Algorithm eMOEA = new EpsilonMOEA(assignmentProblem, population, archive, selection, var, initialization);
-            ecs.submit(new BinaryInputInteractiveSearch(eMOEA, properties, username));
+            ecs.submit(new BinaryInputInteractiveSearch(eMOEA, properties, id));
 
             // Message queue
             // Notify listeners of GA starting in username channel
             ConnectionFactory factory = new ConnectionFactory();
             factory.setHost("localhost");
-            String sendbackQueueName = username + "_gabrain";
+            String sendbackQueueName = id + "_gabrain";
 
             try (Connection connection = factory.newConnection(); Channel channel = connection.createChannel()) {
                 channel.queueDeclare(sendbackQueueName, false, false, false, null);
@@ -184,7 +180,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         };
     }
 
-    private Runnable generateDiscreteInputGATask(String problem, List<DiscreteInputArchitecture> dataset, String username) {
+    private Runnable generateDiscreteInputGATask(String problem, List<DiscreteInputArchitecture> dataset, String id) {
         return () -> {
             System.out.println("Starting GA for discrete input data");
 
@@ -252,13 +248,13 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             CompoundVariation var = new CompoundVariation(singlecross, intergerMutation);
 
             Algorithm eMOEA = new EpsilonMOEA(partitioningAndAssigningProblem, population, archive, selection, var, initialization);
-            ecs.submit(new DiscreteInputInteractiveSearch(eMOEA, properties, username));
+            ecs.submit(new DiscreteInputInteractiveSearch(eMOEA, properties, id));
 
             // Message queue
             // Notify listeners of GA starting in username channel
             ConnectionFactory factory = new ConnectionFactory();
             factory.setHost("localhost");
-            String sendbackQueueName = username + "_gabrain";
+            String sendbackQueueName = id + "_gabrain";
 
             try (Connection connection = factory.newConnection(); Channel channel = connection.createChannel()) {
                 channel.queueDeclare(sendbackQueueName, false, false, false, null);
@@ -1147,27 +1143,21 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         return getArchCostInformation(result);
     }
 
-    @Override
-    public boolean isGABinaryInputRunning() {
-        return this.binaryInputGAThread.isAlive();
+    private void deleteAllDoneGAs() {
+        this.gaThreads.entrySet().removeIf(entry -> !entry.getValue().isAlive());
     }
 
     @Override
-    public int startGABinaryInput(String problem, List<BinaryInputArchitecture> dataset, String username) {
-        if (!binaryInputGAThread.isAlive()) {
-            binaryInputGAThread = new Thread(this.generateBinaryInputGATask(problem, dataset, username));
-            binaryInputGAThread.start();
-            return 0;
-        }
-        return 1;
+    public boolean isGARunning(String id) {
+        return this.gaThreads.get(id).isAlive();
     }
 
     @Override
-    public int stopGABinaryInput(String username) {
-        if (binaryInputGAThread.isAlive()) {
+    public int stopGA(String id) {
+        if (this.gaThreads.containsKey(id) && this.gaThreads.get(id).isAlive())  {
             ConnectionFactory factory = new ConnectionFactory();
             factory.setHost("localhost");
-            String queueName = username + "_brainga";
+            String queueName = id + "_brainga";
 
             try (Connection connection = factory.newConnection(); Channel channel = connection.createChannel()) {
                 channel.queueDeclare(queueName, false, false, false, null);
@@ -1179,41 +1169,27 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             }
             return 0;
         }
+
+        // Remove all dead Threads
+        deleteAllDoneGAs();
         return 1;
     }
 
     @Override
-    public boolean isGADiscreteInputRunning() {
-        return this.discreteInputGAThread.isAlive();
+    public String startGABinaryInput(String problem, List<BinaryInputArchitecture> dataset, String username) {
+        String gaId = UUID.randomUUID().toString() + "_" + username + "_" + problem;
+        deleteAllDoneGAs();
+        this.gaThreads.put(gaId, new Thread(this.generateBinaryInputGATask(problem, dataset, gaId)));
+        this.gaThreads.get(gaId).start();
+        return gaId;
     }
 
     @Override
-    public int startGADiscreteInput(String problem, List<DiscreteInputArchitecture> dataset, String username) {
-        if (!discreteInputGAThread.isAlive()) {
-            discreteInputGAThread = new Thread(this.generateDiscreteInputGATask(problem, dataset, username));
-            discreteInputGAThread.start();
-            return 0;
-        }
-        return 1;
-    }
-
-    @Override
-    public int stopGADiscreteInput(String username) {
-        if (discreteInputGAThread.isAlive()) {
-            ConnectionFactory factory = new ConnectionFactory();
-            factory.setHost("localhost");
-            String queueName = username + "_brainga";
-
-            try (Connection connection = factory.newConnection(); Channel channel = connection.createChannel()) {
-                channel.queueDeclare(queueName, false, false, false, null);
-                String message = "close";
-                channel.basicPublish("", queueName, null, message.getBytes("UTF-8"));
-            }
-            catch (Exception e) {
-                e.printStackTrace();
-            }
-            return 0;
-        }
-        return 1;
+    public String startGADiscreteInput(String problem, List<DiscreteInputArchitecture> dataset, String username) {
+        String gaId = UUID.randomUUID().toString() + "_" + username + "_" + problem;
+        deleteAllDoneGAs();
+        this.gaThreads.put(gaId, new Thread(this.generateDiscreteInputGATask(problem, dataset, username)));
+        this.gaThreads.get(gaId).start();
+        return gaId;
     }
 }

@@ -17,20 +17,20 @@ import java.util.concurrent.Callable;
 public abstract class AbstractInteractiveSearch implements Callable<Algorithm> {
     private final Algorithm alg;
     private final TypedProperties properties;
-    private final String username;
+    private final String id;
     private boolean isStopped;
     private Connection mqConnection;
     private Channel mqChannel;
     private String receiveQueue;
     private String sendQueue;
 
-    public AbstractInteractiveSearch(Algorithm alg, TypedProperties properties, String username) {
+    public AbstractInteractiveSearch(Algorithm alg, TypedProperties properties, String id) {
         this.alg = alg;
         this.properties = properties;
-        this.username = username;
+        this.id = id;
         this.isStopped = false;
-        receiveQueue = username + "_brainga";
-        sendQueue = username + "_gabrain";
+        receiveQueue = id + "_brainga";
+        sendQueue = id + "_gabrain";
 
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");

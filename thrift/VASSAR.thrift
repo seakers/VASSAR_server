@@ -126,23 +126,20 @@ service VASSARInterface {
     list<ObjectiveSatisfaction> getObjectiveScoreExplanation(1:string problem, 2:BinaryInputArchitecture arch, 3:string objective),
 
 
-    bool isGABinaryInputRunning(),
+    bool isGARunning(1:string id),
 
-    int startGABinaryInput(1:string problem, 2:list<BinaryInputArchitecture> dataset, 3:string username),
+    int stopGA(1:string id),
 
-    int stopGABinaryInput(1:string username),
+    string startGABinaryInput(1:string problem, 2:list<BinaryInputArchitecture> dataset, 3:string username),
+
+    string startGADiscreteInput(1:string problem, 2:list<DiscreteInputArchitecture> dataset, 3:string username),
+
 
     list<SubscoreInformation> getArchScienceInformationBinaryInput(1:string problem, 2:BinaryInputArchitecture arch),
 
     list<MissionCostInformation> getArchCostInformationBinaryInput(1:string problem, 2:BinaryInputArchitecture arch),
 
     SubobjectiveDetails getSubscoreDetailsBinaryInput(1:string problem, 2:BinaryInputArchitecture arch, 3:string subobj),
-
-    bool isGADiscreteInputRunning(),
-
-    int startGADiscreteInput(1:string problem, 2:list<DiscreteInputArchitecture> dataset, 3:string username),
-
-    int stopGADiscreteInput(1:string username),
 
     list<SubscoreInformation> getArchScienceInformationDiscreteInput(1:string problem, 2:DiscreteInputArchitecture arch),
 

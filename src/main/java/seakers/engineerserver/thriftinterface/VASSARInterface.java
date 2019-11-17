@@ -49,23 +49,19 @@ public class VASSARInterface {
 
     public java.util.List<ObjectiveSatisfaction> getObjectiveScoreExplanation(String problem, BinaryInputArchitecture arch, String objective) throws org.apache.thrift.TException;
 
-    public boolean isGABinaryInputRunning() throws org.apache.thrift.TException;
+    public boolean isGARunning(String id) throws org.apache.thrift.TException;
 
-    public int startGABinaryInput(String problem, java.util.List<BinaryInputArchitecture> dataset, String username) throws org.apache.thrift.TException;
+    public int stopGA(String id) throws org.apache.thrift.TException;
 
-    public int stopGABinaryInput(String username) throws org.apache.thrift.TException;
+    public String startGABinaryInput(String problem, java.util.List<BinaryInputArchitecture> dataset, String username) throws org.apache.thrift.TException;
+
+    public String startGADiscreteInput(String problem, java.util.List<DiscreteInputArchitecture> dataset, String username) throws org.apache.thrift.TException;
 
     public java.util.List<SubscoreInformation> getArchScienceInformationBinaryInput(String problem, BinaryInputArchitecture arch) throws org.apache.thrift.TException;
 
     public java.util.List<MissionCostInformation> getArchCostInformationBinaryInput(String problem, BinaryInputArchitecture arch) throws org.apache.thrift.TException;
 
     public SubobjectiveDetails getSubscoreDetailsBinaryInput(String problem, BinaryInputArchitecture arch, String subobj) throws org.apache.thrift.TException;
-
-    public boolean isGADiscreteInputRunning() throws org.apache.thrift.TException;
-
-    public int startGADiscreteInput(String problem, java.util.List<DiscreteInputArchitecture> dataset, String username) throws org.apache.thrift.TException;
-
-    public int stopGADiscreteInput(String username) throws org.apache.thrift.TException;
 
     public java.util.List<SubscoreInformation> getArchScienceInformationDiscreteInput(String problem, DiscreteInputArchitecture arch) throws org.apache.thrift.TException;
 
@@ -109,23 +105,19 @@ public class VASSARInterface {
 
     public void getObjectiveScoreExplanation(String problem, BinaryInputArchitecture arch, String objective, org.apache.thrift.async.AsyncMethodCallback<java.util.List<ObjectiveSatisfaction>> resultHandler) throws org.apache.thrift.TException;
 
-    public void isGABinaryInputRunning(org.apache.thrift.async.AsyncMethodCallback<Boolean> resultHandler) throws org.apache.thrift.TException;
+    public void isGARunning(String id, org.apache.thrift.async.AsyncMethodCallback<Boolean> resultHandler) throws org.apache.thrift.TException;
 
-    public void startGABinaryInput(String problem, java.util.List<BinaryInputArchitecture> dataset, String username, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler) throws org.apache.thrift.TException;
+    public void stopGA(String id, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler) throws org.apache.thrift.TException;
 
-    public void stopGABinaryInput(String username, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler) throws org.apache.thrift.TException;
+    public void startGABinaryInput(String problem, java.util.List<BinaryInputArchitecture> dataset, String username, org.apache.thrift.async.AsyncMethodCallback<String> resultHandler) throws org.apache.thrift.TException;
+
+    public void startGADiscreteInput(String problem, java.util.List<DiscreteInputArchitecture> dataset, String username, org.apache.thrift.async.AsyncMethodCallback<String> resultHandler) throws org.apache.thrift.TException;
 
     public void getArchScienceInformationBinaryInput(String problem, BinaryInputArchitecture arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<SubscoreInformation>> resultHandler) throws org.apache.thrift.TException;
 
     public void getArchCostInformationBinaryInput(String problem, BinaryInputArchitecture arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<MissionCostInformation>> resultHandler) throws org.apache.thrift.TException;
 
     public void getSubscoreDetailsBinaryInput(String problem, BinaryInputArchitecture arch, String subobj, org.apache.thrift.async.AsyncMethodCallback<SubobjectiveDetails> resultHandler) throws org.apache.thrift.TException;
-
-    public void isGADiscreteInputRunning(org.apache.thrift.async.AsyncMethodCallback<Boolean> resultHandler) throws org.apache.thrift.TException;
-
-    public void startGADiscreteInput(String problem, java.util.List<DiscreteInputArchitecture> dataset, String username, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler) throws org.apache.thrift.TException;
-
-    public void stopGADiscreteInput(String username, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler) throws org.apache.thrift.TException;
 
     public void getArchScienceInformationDiscreteInput(String problem, DiscreteInputArchitecture arch, org.apache.thrift.async.AsyncMethodCallback<java.util.List<SubscoreInformation>> resultHandler) throws org.apache.thrift.TException;
 
@@ -532,29 +524,53 @@ public class VASSARInterface {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "getObjectiveScoreExplanation failed: unknown result");
     }
 
-    public boolean isGABinaryInputRunning() throws org.apache.thrift.TException
+    public boolean isGARunning(String id) throws org.apache.thrift.TException
     {
-      send_isGABinaryInputRunning();
-      return recv_isGABinaryInputRunning();
+      send_isGARunning(id);
+      return recv_isGARunning();
     }
 
-    public void send_isGABinaryInputRunning() throws org.apache.thrift.TException
+    public void send_isGARunning(String id) throws org.apache.thrift.TException
     {
-      isGABinaryInputRunning_args args = new isGABinaryInputRunning_args();
-      sendBase("isGABinaryInputRunning", args);
+      isGARunning_args args = new isGARunning_args();
+      args.setId(id);
+      sendBase("isGARunning", args);
     }
 
-    public boolean recv_isGABinaryInputRunning() throws org.apache.thrift.TException
+    public boolean recv_isGARunning() throws org.apache.thrift.TException
     {
-      isGABinaryInputRunning_result result = new isGABinaryInputRunning_result();
-      receiveBase(result, "isGABinaryInputRunning");
+      isGARunning_result result = new isGARunning_result();
+      receiveBase(result, "isGARunning");
       if (result.isSetSuccess()) {
         return result.success;
       }
-      throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "isGABinaryInputRunning failed: unknown result");
+      throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "isGARunning failed: unknown result");
     }
 
-    public int startGABinaryInput(String problem, java.util.List<BinaryInputArchitecture> dataset, String username) throws org.apache.thrift.TException
+    public int stopGA(String id) throws org.apache.thrift.TException
+    {
+      send_stopGA(id);
+      return recv_stopGA();
+    }
+
+    public void send_stopGA(String id) throws org.apache.thrift.TException
+    {
+      stopGA_args args = new stopGA_args();
+      args.setId(id);
+      sendBase("stopGA", args);
+    }
+
+    public int recv_stopGA() throws org.apache.thrift.TException
+    {
+      stopGA_result result = new stopGA_result();
+      receiveBase(result, "stopGA");
+      if (result.isSetSuccess()) {
+        return result.success;
+      }
+      throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "stopGA failed: unknown result");
+    }
+
+    public String startGABinaryInput(String problem, java.util.List<BinaryInputArchitecture> dataset, String username) throws org.apache.thrift.TException
     {
       send_startGABinaryInput(problem, dataset, username);
       return recv_startGABinaryInput();
@@ -569,7 +585,7 @@ public class VASSARInterface {
       sendBase("startGABinaryInput", args);
     }
 
-    public int recv_startGABinaryInput() throws org.apache.thrift.TException
+    public String recv_startGABinaryInput() throws org.apache.thrift.TException
     {
       startGABinaryInput_result result = new startGABinaryInput_result();
       receiveBase(result, "startGABinaryInput");
@@ -579,27 +595,29 @@ public class VASSARInterface {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "startGABinaryInput failed: unknown result");
     }
 
-    public int stopGABinaryInput(String username) throws org.apache.thrift.TException
+    public String startGADiscreteInput(String problem, java.util.List<DiscreteInputArchitecture> dataset, String username) throws org.apache.thrift.TException
     {
-      send_stopGABinaryInput(username);
-      return recv_stopGABinaryInput();
+      send_startGADiscreteInput(problem, dataset, username);
+      return recv_startGADiscreteInput();
     }
 
-    public void send_stopGABinaryInput(String username) throws org.apache.thrift.TException
+    public void send_startGADiscreteInput(String problem, java.util.List<DiscreteInputArchitecture> dataset, String username) throws org.apache.thrift.TException
     {
-      stopGABinaryInput_args args = new stopGABinaryInput_args();
+      startGADiscreteInput_args args = new startGADiscreteInput_args();
+      args.setProblem(problem);
+      args.setDataset(dataset);
       args.setUsername(username);
-      sendBase("stopGABinaryInput", args);
+      sendBase("startGADiscreteInput", args);
     }
 
-    public int recv_stopGABinaryInput() throws org.apache.thrift.TException
+    public String recv_startGADiscreteInput() throws org.apache.thrift.TException
     {
-      stopGABinaryInput_result result = new stopGABinaryInput_result();
-      receiveBase(result, "stopGABinaryInput");
+      startGADiscreteInput_result result = new startGADiscreteInput_result();
+      receiveBase(result, "startGADiscreteInput");
       if (result.isSetSuccess()) {
         return result.success;
       }
-      throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "stopGABinaryInput failed: unknown result");
+      throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "startGADiscreteInput failed: unknown result");
     }
 
     public java.util.List<SubscoreInformation> getArchScienceInformationBinaryInput(String problem, BinaryInputArchitecture arch) throws org.apache.thrift.TException
@@ -673,76 +691,6 @@ public class VASSARInterface {
         return result.success;
       }
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "getSubscoreDetailsBinaryInput failed: unknown result");
-    }
-
-    public boolean isGADiscreteInputRunning() throws org.apache.thrift.TException
-    {
-      send_isGADiscreteInputRunning();
-      return recv_isGADiscreteInputRunning();
-    }
-
-    public void send_isGADiscreteInputRunning() throws org.apache.thrift.TException
-    {
-      isGADiscreteInputRunning_args args = new isGADiscreteInputRunning_args();
-      sendBase("isGADiscreteInputRunning", args);
-    }
-
-    public boolean recv_isGADiscreteInputRunning() throws org.apache.thrift.TException
-    {
-      isGADiscreteInputRunning_result result = new isGADiscreteInputRunning_result();
-      receiveBase(result, "isGADiscreteInputRunning");
-      if (result.isSetSuccess()) {
-        return result.success;
-      }
-      throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "isGADiscreteInputRunning failed: unknown result");
-    }
-
-    public int startGADiscreteInput(String problem, java.util.List<DiscreteInputArchitecture> dataset, String username) throws org.apache.thrift.TException
-    {
-      send_startGADiscreteInput(problem, dataset, username);
-      return recv_startGADiscreteInput();
-    }
-
-    public void send_startGADiscreteInput(String problem, java.util.List<DiscreteInputArchitecture> dataset, String username) throws org.apache.thrift.TException
-    {
-      startGADiscreteInput_args args = new startGADiscreteInput_args();
-      args.setProblem(problem);
-      args.setDataset(dataset);
-      args.setUsername(username);
-      sendBase("startGADiscreteInput", args);
-    }
-
-    public int recv_startGADiscreteInput() throws org.apache.thrift.TException
-    {
-      startGADiscreteInput_result result = new startGADiscreteInput_result();
-      receiveBase(result, "startGADiscreteInput");
-      if (result.isSetSuccess()) {
-        return result.success;
-      }
-      throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "startGADiscreteInput failed: unknown result");
-    }
-
-    public int stopGADiscreteInput(String username) throws org.apache.thrift.TException
-    {
-      send_stopGADiscreteInput(username);
-      return recv_stopGADiscreteInput();
-    }
-
-    public void send_stopGADiscreteInput(String username) throws org.apache.thrift.TException
-    {
-      stopGADiscreteInput_args args = new stopGADiscreteInput_args();
-      args.setUsername(username);
-      sendBase("stopGADiscreteInput", args);
-    }
-
-    public int recv_stopGADiscreteInput() throws org.apache.thrift.TException
-    {
-      stopGADiscreteInput_result result = new stopGADiscreteInput_result();
-      receiveBase(result, "stopGADiscreteInput");
-      if (result.isSetSuccess()) {
-        return result.success;
-      }
-      throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "stopGADiscreteInput failed: unknown result");
     }
 
     public java.util.List<SubscoreInformation> getArchScienceInformationDiscreteInput(String problem, DiscreteInputArchitecture arch) throws org.apache.thrift.TException
@@ -1384,21 +1332,24 @@ public class VASSARInterface {
       }
     }
 
-    public void isGABinaryInputRunning(org.apache.thrift.async.AsyncMethodCallback<Boolean> resultHandler) throws org.apache.thrift.TException {
+    public void isGARunning(String id, org.apache.thrift.async.AsyncMethodCallback<Boolean> resultHandler) throws org.apache.thrift.TException {
       checkReady();
-      isGABinaryInputRunning_call method_call = new isGABinaryInputRunning_call(resultHandler, this, ___protocolFactory, ___transport);
+      isGARunning_call method_call = new isGARunning_call(id, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class isGABinaryInputRunning_call extends org.apache.thrift.async.TAsyncMethodCall<Boolean> {
-      public isGABinaryInputRunning_call(org.apache.thrift.async.AsyncMethodCallback<Boolean> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+    public static class isGARunning_call extends org.apache.thrift.async.TAsyncMethodCall<Boolean> {
+      private String id;
+      public isGARunning_call(String id, org.apache.thrift.async.AsyncMethodCallback<Boolean> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
+        this.id = id;
       }
 
       public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
-        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("isGABinaryInputRunning", org.apache.thrift.protocol.TMessageType.CALL, 0));
-        isGABinaryInputRunning_args args = new isGABinaryInputRunning_args();
+        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("isGARunning", org.apache.thrift.protocol.TMessageType.CALL, 0));
+        isGARunning_args args = new isGARunning_args();
+        args.setId(id);
         args.write(prot);
         prot.writeMessageEnd();
       }
@@ -1409,22 +1360,54 @@ public class VASSARInterface {
         }
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
-        return (new Client(prot)).recv_isGABinaryInputRunning();
+        return (new Client(prot)).recv_isGARunning();
       }
     }
 
-    public void startGABinaryInput(String problem, java.util.List<BinaryInputArchitecture> dataset, String username, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler) throws org.apache.thrift.TException {
+    public void stopGA(String id, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler) throws org.apache.thrift.TException {
+      checkReady();
+      stopGA_call method_call = new stopGA_call(id, resultHandler, this, ___protocolFactory, ___transport);
+      this.___currentMethod = method_call;
+      ___manager.call(method_call);
+    }
+
+    public static class stopGA_call extends org.apache.thrift.async.TAsyncMethodCall<Integer> {
+      private String id;
+      public stopGA_call(String id, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+        super(client, protocolFactory, transport, resultHandler, false);
+        this.id = id;
+      }
+
+      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
+        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("stopGA", org.apache.thrift.protocol.TMessageType.CALL, 0));
+        stopGA_args args = new stopGA_args();
+        args.setId(id);
+        args.write(prot);
+        prot.writeMessageEnd();
+      }
+
+      public Integer getResult() throws org.apache.thrift.TException {
+        if (getState() != State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
+        }
+        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
+        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
+        return (new Client(prot)).recv_stopGA();
+      }
+    }
+
+    public void startGABinaryInput(String problem, java.util.List<BinaryInputArchitecture> dataset, String username, org.apache.thrift.async.AsyncMethodCallback<String> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       startGABinaryInput_call method_call = new startGABinaryInput_call(problem, dataset, username, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class startGABinaryInput_call extends org.apache.thrift.async.TAsyncMethodCall<Integer> {
+    public static class startGABinaryInput_call extends org.apache.thrift.async.TAsyncMethodCall<String> {
       private String problem;
       private java.util.List<BinaryInputArchitecture> dataset;
       private String username;
-      public startGABinaryInput_call(String problem, java.util.List<BinaryInputArchitecture> dataset, String username, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      public startGABinaryInput_call(String problem, java.util.List<BinaryInputArchitecture> dataset, String username, org.apache.thrift.async.AsyncMethodCallback<String> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.problem = problem;
         this.dataset = dataset;
@@ -1441,7 +1424,7 @@ public class VASSARInterface {
         prot.writeMessageEnd();
       }
 
-      public Integer getResult() throws org.apache.thrift.TException {
+      public String getResult() throws org.apache.thrift.TException {
         if (getState() != State.RESPONSE_READ) {
           throw new IllegalStateException("Method call not finished!");
         }
@@ -1451,35 +1434,41 @@ public class VASSARInterface {
       }
     }
 
-    public void stopGABinaryInput(String username, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler) throws org.apache.thrift.TException {
+    public void startGADiscreteInput(String problem, java.util.List<DiscreteInputArchitecture> dataset, String username, org.apache.thrift.async.AsyncMethodCallback<String> resultHandler) throws org.apache.thrift.TException {
       checkReady();
-      stopGABinaryInput_call method_call = new stopGABinaryInput_call(username, resultHandler, this, ___protocolFactory, ___transport);
+      startGADiscreteInput_call method_call = new startGADiscreteInput_call(problem, dataset, username, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class stopGABinaryInput_call extends org.apache.thrift.async.TAsyncMethodCall<Integer> {
+    public static class startGADiscreteInput_call extends org.apache.thrift.async.TAsyncMethodCall<String> {
+      private String problem;
+      private java.util.List<DiscreteInputArchitecture> dataset;
       private String username;
-      public stopGABinaryInput_call(String username, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      public startGADiscreteInput_call(String problem, java.util.List<DiscreteInputArchitecture> dataset, String username, org.apache.thrift.async.AsyncMethodCallback<String> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
+        this.problem = problem;
+        this.dataset = dataset;
         this.username = username;
       }
 
       public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
-        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("stopGABinaryInput", org.apache.thrift.protocol.TMessageType.CALL, 0));
-        stopGABinaryInput_args args = new stopGABinaryInput_args();
+        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("startGADiscreteInput", org.apache.thrift.protocol.TMessageType.CALL, 0));
+        startGADiscreteInput_args args = new startGADiscreteInput_args();
+        args.setProblem(problem);
+        args.setDataset(dataset);
         args.setUsername(username);
         args.write(prot);
         prot.writeMessageEnd();
       }
 
-      public Integer getResult() throws org.apache.thrift.TException {
+      public String getResult() throws org.apache.thrift.TException {
         if (getState() != State.RESPONSE_READ) {
           throw new IllegalStateException("Method call not finished!");
         }
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
-        return (new Client(prot)).recv_stopGABinaryInput();
+        return (new Client(prot)).recv_startGADiscreteInput();
       }
     }
 
@@ -1588,105 +1577,6 @@ public class VASSARInterface {
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
         return (new Client(prot)).recv_getSubscoreDetailsBinaryInput();
-      }
-    }
-
-    public void isGADiscreteInputRunning(org.apache.thrift.async.AsyncMethodCallback<Boolean> resultHandler) throws org.apache.thrift.TException {
-      checkReady();
-      isGADiscreteInputRunning_call method_call = new isGADiscreteInputRunning_call(resultHandler, this, ___protocolFactory, ___transport);
-      this.___currentMethod = method_call;
-      ___manager.call(method_call);
-    }
-
-    public static class isGADiscreteInputRunning_call extends org.apache.thrift.async.TAsyncMethodCall<Boolean> {
-      public isGADiscreteInputRunning_call(org.apache.thrift.async.AsyncMethodCallback<Boolean> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
-        super(client, protocolFactory, transport, resultHandler, false);
-      }
-
-      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
-        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("isGADiscreteInputRunning", org.apache.thrift.protocol.TMessageType.CALL, 0));
-        isGADiscreteInputRunning_args args = new isGADiscreteInputRunning_args();
-        args.write(prot);
-        prot.writeMessageEnd();
-      }
-
-      public Boolean getResult() throws org.apache.thrift.TException {
-        if (getState() != State.RESPONSE_READ) {
-          throw new IllegalStateException("Method call not finished!");
-        }
-        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
-        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
-        return (new Client(prot)).recv_isGADiscreteInputRunning();
-      }
-    }
-
-    public void startGADiscreteInput(String problem, java.util.List<DiscreteInputArchitecture> dataset, String username, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler) throws org.apache.thrift.TException {
-      checkReady();
-      startGADiscreteInput_call method_call = new startGADiscreteInput_call(problem, dataset, username, resultHandler, this, ___protocolFactory, ___transport);
-      this.___currentMethod = method_call;
-      ___manager.call(method_call);
-    }
-
-    public static class startGADiscreteInput_call extends org.apache.thrift.async.TAsyncMethodCall<Integer> {
-      private String problem;
-      private java.util.List<DiscreteInputArchitecture> dataset;
-      private String username;
-      public startGADiscreteInput_call(String problem, java.util.List<DiscreteInputArchitecture> dataset, String username, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
-        super(client, protocolFactory, transport, resultHandler, false);
-        this.problem = problem;
-        this.dataset = dataset;
-        this.username = username;
-      }
-
-      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
-        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("startGADiscreteInput", org.apache.thrift.protocol.TMessageType.CALL, 0));
-        startGADiscreteInput_args args = new startGADiscreteInput_args();
-        args.setProblem(problem);
-        args.setDataset(dataset);
-        args.setUsername(username);
-        args.write(prot);
-        prot.writeMessageEnd();
-      }
-
-      public Integer getResult() throws org.apache.thrift.TException {
-        if (getState() != State.RESPONSE_READ) {
-          throw new IllegalStateException("Method call not finished!");
-        }
-        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
-        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
-        return (new Client(prot)).recv_startGADiscreteInput();
-      }
-    }
-
-    public void stopGADiscreteInput(String username, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler) throws org.apache.thrift.TException {
-      checkReady();
-      stopGADiscreteInput_call method_call = new stopGADiscreteInput_call(username, resultHandler, this, ___protocolFactory, ___transport);
-      this.___currentMethod = method_call;
-      ___manager.call(method_call);
-    }
-
-    public static class stopGADiscreteInput_call extends org.apache.thrift.async.TAsyncMethodCall<Integer> {
-      private String username;
-      public stopGADiscreteInput_call(String username, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
-        super(client, protocolFactory, transport, resultHandler, false);
-        this.username = username;
-      }
-
-      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
-        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("stopGADiscreteInput", org.apache.thrift.protocol.TMessageType.CALL, 0));
-        stopGADiscreteInput_args args = new stopGADiscreteInput_args();
-        args.setUsername(username);
-        args.write(prot);
-        prot.writeMessageEnd();
-      }
-
-      public Integer getResult() throws org.apache.thrift.TException {
-        if (getState() != State.RESPONSE_READ) {
-          throw new IllegalStateException("Method call not finished!");
-        }
-        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
-        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
-        return (new Client(prot)).recv_stopGADiscreteInput();
       }
     }
 
@@ -1827,15 +1717,13 @@ public class VASSARInterface {
       processMap.put("getArchitectureScoreExplanation", new getArchitectureScoreExplanation());
       processMap.put("getPanelScoreExplanation", new getPanelScoreExplanation());
       processMap.put("getObjectiveScoreExplanation", new getObjectiveScoreExplanation());
-      processMap.put("isGABinaryInputRunning", new isGABinaryInputRunning());
+      processMap.put("isGARunning", new isGARunning());
+      processMap.put("stopGA", new stopGA());
       processMap.put("startGABinaryInput", new startGABinaryInput());
-      processMap.put("stopGABinaryInput", new stopGABinaryInput());
+      processMap.put("startGADiscreteInput", new startGADiscreteInput());
       processMap.put("getArchScienceInformationBinaryInput", new getArchScienceInformationBinaryInput());
       processMap.put("getArchCostInformationBinaryInput", new getArchCostInformationBinaryInput());
       processMap.put("getSubscoreDetailsBinaryInput", new getSubscoreDetailsBinaryInput());
-      processMap.put("isGADiscreteInputRunning", new isGADiscreteInputRunning());
-      processMap.put("startGADiscreteInput", new startGADiscreteInput());
-      processMap.put("stopGADiscreteInput", new stopGADiscreteInput());
       processMap.put("getArchScienceInformationDiscreteInput", new getArchScienceInformationDiscreteInput());
       processMap.put("getArchCostInformationDiscreteInput", new getArchCostInformationDiscreteInput());
       processMap.put("getSubscoreDetailsDiscreteInput", new getSubscoreDetailsDiscreteInput());
@@ -2242,13 +2130,13 @@ public class VASSARInterface {
       }
     }
 
-    public static class isGABinaryInputRunning<I extends Iface> extends org.apache.thrift.ProcessFunction<I, isGABinaryInputRunning_args> {
-      public isGABinaryInputRunning() {
-        super("isGABinaryInputRunning");
+    public static class isGARunning<I extends Iface> extends org.apache.thrift.ProcessFunction<I, isGARunning_args> {
+      public isGARunning() {
+        super("isGARunning");
       }
 
-      public isGABinaryInputRunning_args getEmptyArgsInstance() {
-        return new isGABinaryInputRunning_args();
+      public isGARunning_args getEmptyArgsInstance() {
+        return new isGARunning_args();
       }
 
       protected boolean isOneway() {
@@ -2260,9 +2148,35 @@ public class VASSARInterface {
         return false;
       }
 
-      public isGABinaryInputRunning_result getResult(I iface, isGABinaryInputRunning_args args) throws org.apache.thrift.TException {
-        isGABinaryInputRunning_result result = new isGABinaryInputRunning_result();
-        result.success = iface.isGABinaryInputRunning();
+      public isGARunning_result getResult(I iface, isGARunning_args args) throws org.apache.thrift.TException {
+        isGARunning_result result = new isGARunning_result();
+        result.success = iface.isGARunning(args.id);
+        result.setSuccessIsSet(true);
+        return result;
+      }
+    }
+
+    public static class stopGA<I extends Iface> extends org.apache.thrift.ProcessFunction<I, stopGA_args> {
+      public stopGA() {
+        super("stopGA");
+      }
+
+      public stopGA_args getEmptyArgsInstance() {
+        return new stopGA_args();
+      }
+
+      protected boolean isOneway() {
+        return false;
+      }
+
+      @Override
+      protected boolean rethrowUnhandledExceptions() {
+        return false;
+      }
+
+      public stopGA_result getResult(I iface, stopGA_args args) throws org.apache.thrift.TException {
+        stopGA_result result = new stopGA_result();
+        result.success = iface.stopGA(args.id);
         result.setSuccessIsSet(true);
         return result;
       }
@@ -2289,18 +2203,17 @@ public class VASSARInterface {
       public startGABinaryInput_result getResult(I iface, startGABinaryInput_args args) throws org.apache.thrift.TException {
         startGABinaryInput_result result = new startGABinaryInput_result();
         result.success = iface.startGABinaryInput(args.problem, args.dataset, args.username);
-        result.setSuccessIsSet(true);
         return result;
       }
     }
 
-    public static class stopGABinaryInput<I extends Iface> extends org.apache.thrift.ProcessFunction<I, stopGABinaryInput_args> {
-      public stopGABinaryInput() {
-        super("stopGABinaryInput");
+    public static class startGADiscreteInput<I extends Iface> extends org.apache.thrift.ProcessFunction<I, startGADiscreteInput_args> {
+      public startGADiscreteInput() {
+        super("startGADiscreteInput");
       }
 
-      public stopGABinaryInput_args getEmptyArgsInstance() {
-        return new stopGABinaryInput_args();
+      public startGADiscreteInput_args getEmptyArgsInstance() {
+        return new startGADiscreteInput_args();
       }
 
       protected boolean isOneway() {
@@ -2312,10 +2225,9 @@ public class VASSARInterface {
         return false;
       }
 
-      public stopGABinaryInput_result getResult(I iface, stopGABinaryInput_args args) throws org.apache.thrift.TException {
-        stopGABinaryInput_result result = new stopGABinaryInput_result();
-        result.success = iface.stopGABinaryInput(args.username);
-        result.setSuccessIsSet(true);
+      public startGADiscreteInput_result getResult(I iface, startGADiscreteInput_args args) throws org.apache.thrift.TException {
+        startGADiscreteInput_result result = new startGADiscreteInput_result();
+        result.success = iface.startGADiscreteInput(args.problem, args.dataset, args.username);
         return result;
       }
     }
@@ -2391,84 +2303,6 @@ public class VASSARInterface {
       public getSubscoreDetailsBinaryInput_result getResult(I iface, getSubscoreDetailsBinaryInput_args args) throws org.apache.thrift.TException {
         getSubscoreDetailsBinaryInput_result result = new getSubscoreDetailsBinaryInput_result();
         result.success = iface.getSubscoreDetailsBinaryInput(args.problem, args.arch, args.subobj);
-        return result;
-      }
-    }
-
-    public static class isGADiscreteInputRunning<I extends Iface> extends org.apache.thrift.ProcessFunction<I, isGADiscreteInputRunning_args> {
-      public isGADiscreteInputRunning() {
-        super("isGADiscreteInputRunning");
-      }
-
-      public isGADiscreteInputRunning_args getEmptyArgsInstance() {
-        return new isGADiscreteInputRunning_args();
-      }
-
-      protected boolean isOneway() {
-        return false;
-      }
-
-      @Override
-      protected boolean rethrowUnhandledExceptions() {
-        return false;
-      }
-
-      public isGADiscreteInputRunning_result getResult(I iface, isGADiscreteInputRunning_args args) throws org.apache.thrift.TException {
-        isGADiscreteInputRunning_result result = new isGADiscreteInputRunning_result();
-        result.success = iface.isGADiscreteInputRunning();
-        result.setSuccessIsSet(true);
-        return result;
-      }
-    }
-
-    public static class startGADiscreteInput<I extends Iface> extends org.apache.thrift.ProcessFunction<I, startGADiscreteInput_args> {
-      public startGADiscreteInput() {
-        super("startGADiscreteInput");
-      }
-
-      public startGADiscreteInput_args getEmptyArgsInstance() {
-        return new startGADiscreteInput_args();
-      }
-
-      protected boolean isOneway() {
-        return false;
-      }
-
-      @Override
-      protected boolean rethrowUnhandledExceptions() {
-        return false;
-      }
-
-      public startGADiscreteInput_result getResult(I iface, startGADiscreteInput_args args) throws org.apache.thrift.TException {
-        startGADiscreteInput_result result = new startGADiscreteInput_result();
-        result.success = iface.startGADiscreteInput(args.problem, args.dataset, args.username);
-        result.setSuccessIsSet(true);
-        return result;
-      }
-    }
-
-    public static class stopGADiscreteInput<I extends Iface> extends org.apache.thrift.ProcessFunction<I, stopGADiscreteInput_args> {
-      public stopGADiscreteInput() {
-        super("stopGADiscreteInput");
-      }
-
-      public stopGADiscreteInput_args getEmptyArgsInstance() {
-        return new stopGADiscreteInput_args();
-      }
-
-      protected boolean isOneway() {
-        return false;
-      }
-
-      @Override
-      protected boolean rethrowUnhandledExceptions() {
-        return false;
-      }
-
-      public stopGADiscreteInput_result getResult(I iface, stopGADiscreteInput_args args) throws org.apache.thrift.TException {
-        stopGADiscreteInput_result result = new stopGADiscreteInput_result();
-        result.success = iface.stopGADiscreteInput(args.username);
-        result.setSuccessIsSet(true);
         return result;
       }
     }
@@ -2577,15 +2411,13 @@ public class VASSARInterface {
       processMap.put("getArchitectureScoreExplanation", new getArchitectureScoreExplanation());
       processMap.put("getPanelScoreExplanation", new getPanelScoreExplanation());
       processMap.put("getObjectiveScoreExplanation", new getObjectiveScoreExplanation());
-      processMap.put("isGABinaryInputRunning", new isGABinaryInputRunning());
+      processMap.put("isGARunning", new isGARunning());
+      processMap.put("stopGA", new stopGA());
       processMap.put("startGABinaryInput", new startGABinaryInput());
-      processMap.put("stopGABinaryInput", new stopGABinaryInput());
+      processMap.put("startGADiscreteInput", new startGADiscreteInput());
       processMap.put("getArchScienceInformationBinaryInput", new getArchScienceInformationBinaryInput());
       processMap.put("getArchCostInformationBinaryInput", new getArchCostInformationBinaryInput());
       processMap.put("getSubscoreDetailsBinaryInput", new getSubscoreDetailsBinaryInput());
-      processMap.put("isGADiscreteInputRunning", new isGADiscreteInputRunning());
-      processMap.put("startGADiscreteInput", new startGADiscreteInput());
-      processMap.put("stopGADiscreteInput", new stopGADiscreteInput());
       processMap.put("getArchScienceInformationDiscreteInput", new getArchScienceInformationDiscreteInput());
       processMap.put("getArchCostInformationDiscreteInput", new getArchCostInformationDiscreteInput());
       processMap.put("getSubscoreDetailsDiscreteInput", new getSubscoreDetailsDiscreteInput());
@@ -3567,20 +3399,20 @@ public class VASSARInterface {
       }
     }
 
-    public static class isGABinaryInputRunning<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, isGABinaryInputRunning_args, Boolean> {
-      public isGABinaryInputRunning() {
-        super("isGABinaryInputRunning");
+    public static class isGARunning<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, isGARunning_args, Boolean> {
+      public isGARunning() {
+        super("isGARunning");
       }
 
-      public isGABinaryInputRunning_args getEmptyArgsInstance() {
-        return new isGABinaryInputRunning_args();
+      public isGARunning_args getEmptyArgsInstance() {
+        return new isGARunning_args();
       }
 
       public org.apache.thrift.async.AsyncMethodCallback<Boolean> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
         final org.apache.thrift.AsyncProcessFunction fcall = this;
         return new org.apache.thrift.async.AsyncMethodCallback<Boolean>() {
           public void onComplete(Boolean o) {
-            isGABinaryInputRunning_result result = new isGABinaryInputRunning_result();
+            isGARunning_result result = new isGARunning_result();
             result.success = o;
             result.setSuccessIsSet(true);
             try {
@@ -3596,7 +3428,7 @@ public class VASSARInterface {
           public void onError(Exception e) {
             byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
             org.apache.thrift.TSerializable msg;
-            isGABinaryInputRunning_result result = new isGABinaryInputRunning_result();
+            isGARunning_result result = new isGARunning_result();
             if (e instanceof org.apache.thrift.transport.TTransportException) {
               _LOGGER.error("TTransportException inside handler", e);
               fb.close();
@@ -3624,12 +3456,74 @@ public class VASSARInterface {
         return false;
       }
 
-      public void start(I iface, isGABinaryInputRunning_args args, org.apache.thrift.async.AsyncMethodCallback<Boolean> resultHandler) throws org.apache.thrift.TException {
-        iface.isGABinaryInputRunning(resultHandler);
+      public void start(I iface, isGARunning_args args, org.apache.thrift.async.AsyncMethodCallback<Boolean> resultHandler) throws org.apache.thrift.TException {
+        iface.isGARunning(args.id,resultHandler);
       }
     }
 
-    public static class startGABinaryInput<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, startGABinaryInput_args, Integer> {
+    public static class stopGA<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, stopGA_args, Integer> {
+      public stopGA() {
+        super("stopGA");
+      }
+
+      public stopGA_args getEmptyArgsInstance() {
+        return new stopGA_args();
+      }
+
+      public org.apache.thrift.async.AsyncMethodCallback<Integer> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+        final org.apache.thrift.AsyncProcessFunction fcall = this;
+        return new org.apache.thrift.async.AsyncMethodCallback<Integer>() {
+          public void onComplete(Integer o) {
+            stopGA_result result = new stopGA_result();
+            result.success = o;
+            result.setSuccessIsSet(true);
+            try {
+              fcall.sendResponse(fb, result, org.apache.thrift.protocol.TMessageType.REPLY,seqid);
+            } catch (org.apache.thrift.transport.TTransportException e) {
+              _LOGGER.error("TTransportException writing to internal frame buffer", e);
+              fb.close();
+            } catch (Exception e) {
+              _LOGGER.error("Exception writing to internal frame buffer", e);
+              onError(e);
+            }
+          }
+          public void onError(Exception e) {
+            byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
+            org.apache.thrift.TSerializable msg;
+            stopGA_result result = new stopGA_result();
+            if (e instanceof org.apache.thrift.transport.TTransportException) {
+              _LOGGER.error("TTransportException inside handler", e);
+              fb.close();
+              return;
+            } else if (e instanceof org.apache.thrift.TApplicationException) {
+              _LOGGER.error("TApplicationException inside handler", e);
+              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
+              msg = (org.apache.thrift.TApplicationException)e;
+            } else {
+              _LOGGER.error("Exception inside handler", e);
+              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
+              msg = new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.INTERNAL_ERROR, e.getMessage());
+            }
+            try {
+              fcall.sendResponse(fb,msg,msgType,seqid);
+            } catch (Exception ex) {
+              _LOGGER.error("Exception writing to internal frame buffer", ex);
+              fb.close();
+            }
+          }
+        };
+      }
+
+      protected boolean isOneway() {
+        return false;
+      }
+
+      public void start(I iface, stopGA_args args, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler) throws org.apache.thrift.TException {
+        iface.stopGA(args.id,resultHandler);
+      }
+    }
+
+    public static class startGABinaryInput<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, startGABinaryInput_args, String> {
       public startGABinaryInput() {
         super("startGABinaryInput");
       }
@@ -3638,13 +3532,12 @@ public class VASSARInterface {
         return new startGABinaryInput_args();
       }
 
-      public org.apache.thrift.async.AsyncMethodCallback<Integer> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+      public org.apache.thrift.async.AsyncMethodCallback<String> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
         final org.apache.thrift.AsyncProcessFunction fcall = this;
-        return new org.apache.thrift.async.AsyncMethodCallback<Integer>() {
-          public void onComplete(Integer o) {
+        return new org.apache.thrift.async.AsyncMethodCallback<String>() {
+          public void onComplete(String o) {
             startGABinaryInput_result result = new startGABinaryInput_result();
             result.success = o;
-            result.setSuccessIsSet(true);
             try {
               fcall.sendResponse(fb, result, org.apache.thrift.protocol.TMessageType.REPLY,seqid);
             } catch (org.apache.thrift.transport.TTransportException e) {
@@ -3686,27 +3579,26 @@ public class VASSARInterface {
         return false;
       }
 
-      public void start(I iface, startGABinaryInput_args args, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler) throws org.apache.thrift.TException {
+      public void start(I iface, startGABinaryInput_args args, org.apache.thrift.async.AsyncMethodCallback<String> resultHandler) throws org.apache.thrift.TException {
         iface.startGABinaryInput(args.problem, args.dataset, args.username,resultHandler);
       }
     }
 
-    public static class stopGABinaryInput<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, stopGABinaryInput_args, Integer> {
-      public stopGABinaryInput() {
-        super("stopGABinaryInput");
+    public static class startGADiscreteInput<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, startGADiscreteInput_args, String> {
+      public startGADiscreteInput() {
+        super("startGADiscreteInput");
       }
 
-      public stopGABinaryInput_args getEmptyArgsInstance() {
-        return new stopGABinaryInput_args();
+      public startGADiscreteInput_args getEmptyArgsInstance() {
+        return new startGADiscreteInput_args();
       }
 
-      public org.apache.thrift.async.AsyncMethodCallback<Integer> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+      public org.apache.thrift.async.AsyncMethodCallback<String> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
         final org.apache.thrift.AsyncProcessFunction fcall = this;
-        return new org.apache.thrift.async.AsyncMethodCallback<Integer>() {
-          public void onComplete(Integer o) {
-            stopGABinaryInput_result result = new stopGABinaryInput_result();
+        return new org.apache.thrift.async.AsyncMethodCallback<String>() {
+          public void onComplete(String o) {
+            startGADiscreteInput_result result = new startGADiscreteInput_result();
             result.success = o;
-            result.setSuccessIsSet(true);
             try {
               fcall.sendResponse(fb, result, org.apache.thrift.protocol.TMessageType.REPLY,seqid);
             } catch (org.apache.thrift.transport.TTransportException e) {
@@ -3720,7 +3612,7 @@ public class VASSARInterface {
           public void onError(Exception e) {
             byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
             org.apache.thrift.TSerializable msg;
-            stopGABinaryInput_result result = new stopGABinaryInput_result();
+            startGADiscreteInput_result result = new startGADiscreteInput_result();
             if (e instanceof org.apache.thrift.transport.TTransportException) {
               _LOGGER.error("TTransportException inside handler", e);
               fb.close();
@@ -3748,8 +3640,8 @@ public class VASSARInterface {
         return false;
       }
 
-      public void start(I iface, stopGABinaryInput_args args, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler) throws org.apache.thrift.TException {
-        iface.stopGABinaryInput(args.username,resultHandler);
+      public void start(I iface, startGADiscreteInput_args args, org.apache.thrift.async.AsyncMethodCallback<String> resultHandler) throws org.apache.thrift.TException {
+        iface.startGADiscreteInput(args.problem, args.dataset, args.username,resultHandler);
       }
     }
 
@@ -3933,192 +3825,6 @@ public class VASSARInterface {
 
       public void start(I iface, getSubscoreDetailsBinaryInput_args args, org.apache.thrift.async.AsyncMethodCallback<SubobjectiveDetails> resultHandler) throws org.apache.thrift.TException {
         iface.getSubscoreDetailsBinaryInput(args.problem, args.arch, args.subobj,resultHandler);
-      }
-    }
-
-    public static class isGADiscreteInputRunning<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, isGADiscreteInputRunning_args, Boolean> {
-      public isGADiscreteInputRunning() {
-        super("isGADiscreteInputRunning");
-      }
-
-      public isGADiscreteInputRunning_args getEmptyArgsInstance() {
-        return new isGADiscreteInputRunning_args();
-      }
-
-      public org.apache.thrift.async.AsyncMethodCallback<Boolean> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
-        final org.apache.thrift.AsyncProcessFunction fcall = this;
-        return new org.apache.thrift.async.AsyncMethodCallback<Boolean>() {
-          public void onComplete(Boolean o) {
-            isGADiscreteInputRunning_result result = new isGADiscreteInputRunning_result();
-            result.success = o;
-            result.setSuccessIsSet(true);
-            try {
-              fcall.sendResponse(fb, result, org.apache.thrift.protocol.TMessageType.REPLY,seqid);
-            } catch (org.apache.thrift.transport.TTransportException e) {
-              _LOGGER.error("TTransportException writing to internal frame buffer", e);
-              fb.close();
-            } catch (Exception e) {
-              _LOGGER.error("Exception writing to internal frame buffer", e);
-              onError(e);
-            }
-          }
-          public void onError(Exception e) {
-            byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
-            org.apache.thrift.TSerializable msg;
-            isGADiscreteInputRunning_result result = new isGADiscreteInputRunning_result();
-            if (e instanceof org.apache.thrift.transport.TTransportException) {
-              _LOGGER.error("TTransportException inside handler", e);
-              fb.close();
-              return;
-            } else if (e instanceof org.apache.thrift.TApplicationException) {
-              _LOGGER.error("TApplicationException inside handler", e);
-              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
-              msg = (org.apache.thrift.TApplicationException)e;
-            } else {
-              _LOGGER.error("Exception inside handler", e);
-              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
-              msg = new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.INTERNAL_ERROR, e.getMessage());
-            }
-            try {
-              fcall.sendResponse(fb,msg,msgType,seqid);
-            } catch (Exception ex) {
-              _LOGGER.error("Exception writing to internal frame buffer", ex);
-              fb.close();
-            }
-          }
-        };
-      }
-
-      protected boolean isOneway() {
-        return false;
-      }
-
-      public void start(I iface, isGADiscreteInputRunning_args args, org.apache.thrift.async.AsyncMethodCallback<Boolean> resultHandler) throws org.apache.thrift.TException {
-        iface.isGADiscreteInputRunning(resultHandler);
-      }
-    }
-
-    public static class startGADiscreteInput<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, startGADiscreteInput_args, Integer> {
-      public startGADiscreteInput() {
-        super("startGADiscreteInput");
-      }
-
-      public startGADiscreteInput_args getEmptyArgsInstance() {
-        return new startGADiscreteInput_args();
-      }
-
-      public org.apache.thrift.async.AsyncMethodCallback<Integer> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
-        final org.apache.thrift.AsyncProcessFunction fcall = this;
-        return new org.apache.thrift.async.AsyncMethodCallback<Integer>() {
-          public void onComplete(Integer o) {
-            startGADiscreteInput_result result = new startGADiscreteInput_result();
-            result.success = o;
-            result.setSuccessIsSet(true);
-            try {
-              fcall.sendResponse(fb, result, org.apache.thrift.protocol.TMessageType.REPLY,seqid);
-            } catch (org.apache.thrift.transport.TTransportException e) {
-              _LOGGER.error("TTransportException writing to internal frame buffer", e);
-              fb.close();
-            } catch (Exception e) {
-              _LOGGER.error("Exception writing to internal frame buffer", e);
-              onError(e);
-            }
-          }
-          public void onError(Exception e) {
-            byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
-            org.apache.thrift.TSerializable msg;
-            startGADiscreteInput_result result = new startGADiscreteInput_result();
-            if (e instanceof org.apache.thrift.transport.TTransportException) {
-              _LOGGER.error("TTransportException inside handler", e);
-              fb.close();
-              return;
-            } else if (e instanceof org.apache.thrift.TApplicationException) {
-              _LOGGER.error("TApplicationException inside handler", e);
-              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
-              msg = (org.apache.thrift.TApplicationException)e;
-            } else {
-              _LOGGER.error("Exception inside handler", e);
-              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
-              msg = new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.INTERNAL_ERROR, e.getMessage());
-            }
-            try {
-              fcall.sendResponse(fb,msg,msgType,seqid);
-            } catch (Exception ex) {
-              _LOGGER.error("Exception writing to internal frame buffer", ex);
-              fb.close();
-            }
-          }
-        };
-      }
-
-      protected boolean isOneway() {
-        return false;
-      }
-
-      public void start(I iface, startGADiscreteInput_args args, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler) throws org.apache.thrift.TException {
-        iface.startGADiscreteInput(args.problem, args.dataset, args.username,resultHandler);
-      }
-    }
-
-    public static class stopGADiscreteInput<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, stopGADiscreteInput_args, Integer> {
-      public stopGADiscreteInput() {
-        super("stopGADiscreteInput");
-      }
-
-      public stopGADiscreteInput_args getEmptyArgsInstance() {
-        return new stopGADiscreteInput_args();
-      }
-
-      public org.apache.thrift.async.AsyncMethodCallback<Integer> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
-        final org.apache.thrift.AsyncProcessFunction fcall = this;
-        return new org.apache.thrift.async.AsyncMethodCallback<Integer>() {
-          public void onComplete(Integer o) {
-            stopGADiscreteInput_result result = new stopGADiscreteInput_result();
-            result.success = o;
-            result.setSuccessIsSet(true);
-            try {
-              fcall.sendResponse(fb, result, org.apache.thrift.protocol.TMessageType.REPLY,seqid);
-            } catch (org.apache.thrift.transport.TTransportException e) {
-              _LOGGER.error("TTransportException writing to internal frame buffer", e);
-              fb.close();
-            } catch (Exception e) {
-              _LOGGER.error("Exception writing to internal frame buffer", e);
-              onError(e);
-            }
-          }
-          public void onError(Exception e) {
-            byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
-            org.apache.thrift.TSerializable msg;
-            stopGADiscreteInput_result result = new stopGADiscreteInput_result();
-            if (e instanceof org.apache.thrift.transport.TTransportException) {
-              _LOGGER.error("TTransportException inside handler", e);
-              fb.close();
-              return;
-            } else if (e instanceof org.apache.thrift.TApplicationException) {
-              _LOGGER.error("TApplicationException inside handler", e);
-              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
-              msg = (org.apache.thrift.TApplicationException)e;
-            } else {
-              _LOGGER.error("Exception inside handler", e);
-              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
-              msg = new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.INTERNAL_ERROR, e.getMessage());
-            }
-            try {
-              fcall.sendResponse(fb,msg,msgType,seqid);
-            } catch (Exception ex) {
-              _LOGGER.error("Exception writing to internal frame buffer", ex);
-              fb.close();
-            }
-          }
-        };
-      }
-
-      protected boolean isOneway() {
-        return false;
-      }
-
-      public void start(I iface, stopGADiscreteInput_args args, org.apache.thrift.async.AsyncMethodCallback<Integer> resultHandler) throws org.apache.thrift.TException {
-        iface.stopGADiscreteInput(args.username,resultHandler);
       }
     }
 
@@ -18013,17 +17719,19 @@ public class VASSARInterface {
     }
   }
 
-  public static class isGABinaryInputRunning_args implements org.apache.thrift.TBase<isGABinaryInputRunning_args, isGABinaryInputRunning_args._Fields>, java.io.Serializable, Cloneable, Comparable<isGABinaryInputRunning_args>   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("isGABinaryInputRunning_args");
+  public static class isGARunning_args implements org.apache.thrift.TBase<isGARunning_args, isGARunning_args._Fields>, java.io.Serializable, Cloneable, Comparable<isGARunning_args>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("isGARunning_args");
 
+    private static final org.apache.thrift.protocol.TField ID_FIELD_DESC = new org.apache.thrift.protocol.TField("id", org.apache.thrift.protocol.TType.STRING, (short)1);
 
-    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new isGABinaryInputRunning_argsStandardSchemeFactory();
-    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new isGABinaryInputRunning_argsTupleSchemeFactory();
+    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new isGARunning_argsStandardSchemeFactory();
+    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new isGARunning_argsTupleSchemeFactory();
 
+    public @org.apache.thrift.annotation.Nullable String id; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
-;
+      ID((short)1, "id");
 
       private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
@@ -18039,6 +17747,8 @@ public class VASSARInterface {
       @org.apache.thrift.annotation.Nullable
       public static _Fields findByThriftId(int fieldId) {
         switch(fieldId) {
+          case 1: // ID
+            return ID;
           default:
             return null;
         }
@@ -18078,38 +17788,89 @@ public class VASSARInterface {
         return _fieldName;
       }
     }
+
+    // isset id assignments
     public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
     static {
       java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.ID, new org.apache.thrift.meta_data.FieldMetaData("id", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
       metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(isGABinaryInputRunning_args.class, metaDataMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(isGARunning_args.class, metaDataMap);
     }
 
-    public isGABinaryInputRunning_args() {
+    public isGARunning_args() {
+    }
+
+    public isGARunning_args(
+      String id)
+    {
+      this();
+      this.id = id;
     }
 
     /**
      * Performs a deep copy on <i>other</i>.
      */
-    public isGABinaryInputRunning_args(isGABinaryInputRunning_args other) {
+    public isGARunning_args(isGARunning_args other) {
+      if (other.isSetId()) {
+        this.id = other.id;
+      }
     }
 
-    public isGABinaryInputRunning_args deepCopy() {
-      return new isGABinaryInputRunning_args(this);
+    public isGARunning_args deepCopy() {
+      return new isGARunning_args(this);
     }
 
     @Override
     public void clear() {
+      this.id = null;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public String getId() {
+      return this.id;
+    }
+
+    public isGARunning_args setId(@org.apache.thrift.annotation.Nullable String id) {
+      this.id = id;
+      return this;
+    }
+
+    public void unsetId() {
+      this.id = null;
+    }
+
+    /** Returns true if field id is set (has been assigned a value) and false otherwise */
+    public boolean isSetId() {
+      return this.id != null;
+    }
+
+    public void setIdIsSet(boolean value) {
+      if (!value) {
+        this.id = null;
+      }
     }
 
     public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable Object value) {
       switch (field) {
+      case ID:
+        if (value == null) {
+          unsetId();
+        } else {
+          setId((String)value);
+        }
+        break;
+
       }
     }
 
     @org.apache.thrift.annotation.Nullable
     public Object getFieldValue(_Fields field) {
       switch (field) {
+      case ID:
+        return getId();
+
       }
       throw new IllegalStateException();
     }
@@ -18121,6 +17882,8 @@ public class VASSARInterface {
       }
 
       switch (field) {
+      case ID:
+        return isSetId();
       }
       throw new IllegalStateException();
     }
@@ -18129,16 +17892,25 @@ public class VASSARInterface {
     public boolean equals(Object that) {
       if (that == null)
         return false;
-      if (that instanceof isGABinaryInputRunning_args)
-        return this.equals((isGABinaryInputRunning_args)that);
+      if (that instanceof isGARunning_args)
+        return this.equals((isGARunning_args)that);
       return false;
     }
 
-    public boolean equals(isGABinaryInputRunning_args that) {
+    public boolean equals(isGARunning_args that) {
       if (that == null)
         return false;
       if (this == that)
         return true;
+
+      boolean this_present_id = true && this.isSetId();
+      boolean that_present_id = true && that.isSetId();
+      if (this_present_id || that_present_id) {
+        if (!(this_present_id && that_present_id))
+          return false;
+        if (!this.id.equals(that.id))
+          return false;
+      }
 
       return true;
     }
@@ -18147,17 +17919,31 @@ public class VASSARInterface {
     public int hashCode() {
       int hashCode = 1;
 
+      hashCode = hashCode * 8191 + ((isSetId()) ? 131071 : 524287);
+      if (isSetId())
+        hashCode = hashCode * 8191 + id.hashCode();
+
       return hashCode;
     }
 
     @Override
-    public int compareTo(isGABinaryInputRunning_args other) {
+    public int compareTo(isGARunning_args other) {
       if (!getClass().equals(other.getClass())) {
         return getClass().getName().compareTo(other.getClass().getName());
       }
 
       int lastComparison = 0;
 
+      lastComparison = Boolean.valueOf(isSetId()).compareTo(other.isSetId());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetId()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.id, other.id);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
       return 0;
     }
 
@@ -18176,9 +17962,16 @@ public class VASSARInterface {
 
     @Override
     public String toString() {
-      StringBuilder sb = new StringBuilder("isGABinaryInputRunning_args(");
+      StringBuilder sb = new StringBuilder("isGARunning_args(");
       boolean first = true;
 
+      sb.append("id:");
+      if (this.id == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.id);
+      }
+      first = false;
       sb.append(")");
       return sb.toString();
     }
@@ -18204,15 +17997,15 @@ public class VASSARInterface {
       }
     }
 
-    private static class isGABinaryInputRunning_argsStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
-      public isGABinaryInputRunning_argsStandardScheme getScheme() {
-        return new isGABinaryInputRunning_argsStandardScheme();
+    private static class isGARunning_argsStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public isGARunning_argsStandardScheme getScheme() {
+        return new isGARunning_argsStandardScheme();
       }
     }
 
-    private static class isGABinaryInputRunning_argsStandardScheme extends org.apache.thrift.scheme.StandardScheme<isGABinaryInputRunning_args> {
+    private static class isGARunning_argsStandardScheme extends org.apache.thrift.scheme.StandardScheme<isGARunning_args> {
 
-      public void read(org.apache.thrift.protocol.TProtocol iprot, isGABinaryInputRunning_args struct) throws org.apache.thrift.TException {
+      public void read(org.apache.thrift.protocol.TProtocol iprot, isGARunning_args struct) throws org.apache.thrift.TException {
         org.apache.thrift.protocol.TField schemeField;
         iprot.readStructBegin();
         while (true)
@@ -18222,6 +18015,14 @@ public class VASSARInterface {
             break;
           }
           switch (schemeField.id) {
+            case 1: // ID
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
+                struct.id = iprot.readString();
+                struct.setIdIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
             default:
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
           }
@@ -18233,32 +18034,50 @@ public class VASSARInterface {
         struct.validate();
       }
 
-      public void write(org.apache.thrift.protocol.TProtocol oprot, isGABinaryInputRunning_args struct) throws org.apache.thrift.TException {
+      public void write(org.apache.thrift.protocol.TProtocol oprot, isGARunning_args struct) throws org.apache.thrift.TException {
         struct.validate();
 
         oprot.writeStructBegin(STRUCT_DESC);
+        if (struct.id != null) {
+          oprot.writeFieldBegin(ID_FIELD_DESC);
+          oprot.writeString(struct.id);
+          oprot.writeFieldEnd();
+        }
         oprot.writeFieldStop();
         oprot.writeStructEnd();
       }
 
     }
 
-    private static class isGABinaryInputRunning_argsTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
-      public isGABinaryInputRunning_argsTupleScheme getScheme() {
-        return new isGABinaryInputRunning_argsTupleScheme();
+    private static class isGARunning_argsTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public isGARunning_argsTupleScheme getScheme() {
+        return new isGARunning_argsTupleScheme();
       }
     }
 
-    private static class isGABinaryInputRunning_argsTupleScheme extends org.apache.thrift.scheme.TupleScheme<isGABinaryInputRunning_args> {
+    private static class isGARunning_argsTupleScheme extends org.apache.thrift.scheme.TupleScheme<isGARunning_args> {
 
       @Override
-      public void write(org.apache.thrift.protocol.TProtocol prot, isGABinaryInputRunning_args struct) throws org.apache.thrift.TException {
+      public void write(org.apache.thrift.protocol.TProtocol prot, isGARunning_args struct) throws org.apache.thrift.TException {
         org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet optionals = new java.util.BitSet();
+        if (struct.isSetId()) {
+          optionals.set(0);
+        }
+        oprot.writeBitSet(optionals, 1);
+        if (struct.isSetId()) {
+          oprot.writeString(struct.id);
+        }
       }
 
       @Override
-      public void read(org.apache.thrift.protocol.TProtocol prot, isGABinaryInputRunning_args struct) throws org.apache.thrift.TException {
+      public void read(org.apache.thrift.protocol.TProtocol prot, isGARunning_args struct) throws org.apache.thrift.TException {
         org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet incoming = iprot.readBitSet(1);
+        if (incoming.get(0)) {
+          struct.id = iprot.readString();
+          struct.setIdIsSet(true);
+        }
       }
     }
 
@@ -18267,13 +18086,13 @@ public class VASSARInterface {
     }
   }
 
-  public static class isGABinaryInputRunning_result implements org.apache.thrift.TBase<isGABinaryInputRunning_result, isGABinaryInputRunning_result._Fields>, java.io.Serializable, Cloneable, Comparable<isGABinaryInputRunning_result>   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("isGABinaryInputRunning_result");
+  public static class isGARunning_result implements org.apache.thrift.TBase<isGARunning_result, isGARunning_result._Fields>, java.io.Serializable, Cloneable, Comparable<isGARunning_result>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("isGARunning_result");
 
     private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.BOOL, (short)0);
 
-    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new isGABinaryInputRunning_resultStandardSchemeFactory();
-    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new isGABinaryInputRunning_resultTupleSchemeFactory();
+    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new isGARunning_resultStandardSchemeFactory();
+    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new isGARunning_resultTupleSchemeFactory();
 
     public boolean success; // required
 
@@ -18346,13 +18165,13 @@ public class VASSARInterface {
       tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
           new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.BOOL)));
       metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(isGABinaryInputRunning_result.class, metaDataMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(isGARunning_result.class, metaDataMap);
     }
 
-    public isGABinaryInputRunning_result() {
+    public isGARunning_result() {
     }
 
-    public isGABinaryInputRunning_result(
+    public isGARunning_result(
       boolean success)
     {
       this();
@@ -18363,13 +18182,13 @@ public class VASSARInterface {
     /**
      * Performs a deep copy on <i>other</i>.
      */
-    public isGABinaryInputRunning_result(isGABinaryInputRunning_result other) {
+    public isGARunning_result(isGARunning_result other) {
       __isset_bitfield = other.__isset_bitfield;
       this.success = other.success;
     }
 
-    public isGABinaryInputRunning_result deepCopy() {
-      return new isGABinaryInputRunning_result(this);
+    public isGARunning_result deepCopy() {
+      return new isGARunning_result(this);
     }
 
     @Override
@@ -18382,7 +18201,7 @@ public class VASSARInterface {
       return this.success;
     }
 
-    public isGABinaryInputRunning_result setSuccess(boolean success) {
+    public isGARunning_result setSuccess(boolean success) {
       this.success = success;
       setSuccessIsSet(true);
       return this;
@@ -18441,12 +18260,12 @@ public class VASSARInterface {
     public boolean equals(Object that) {
       if (that == null)
         return false;
-      if (that instanceof isGABinaryInputRunning_result)
-        return this.equals((isGABinaryInputRunning_result)that);
+      if (that instanceof isGARunning_result)
+        return this.equals((isGARunning_result)that);
       return false;
     }
 
-    public boolean equals(isGABinaryInputRunning_result that) {
+    public boolean equals(isGARunning_result that) {
       if (that == null)
         return false;
       if (this == that)
@@ -18474,7 +18293,7 @@ public class VASSARInterface {
     }
 
     @Override
-    public int compareTo(isGABinaryInputRunning_result other) {
+    public int compareTo(isGARunning_result other) {
       if (!getClass().equals(other.getClass())) {
         return getClass().getName().compareTo(other.getClass().getName());
       }
@@ -18509,7 +18328,7 @@ public class VASSARInterface {
 
     @Override
     public String toString() {
-      StringBuilder sb = new StringBuilder("isGABinaryInputRunning_result(");
+      StringBuilder sb = new StringBuilder("isGARunning_result(");
       boolean first = true;
 
       sb.append("success:");
@@ -18542,15 +18361,15 @@ public class VASSARInterface {
       }
     }
 
-    private static class isGABinaryInputRunning_resultStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
-      public isGABinaryInputRunning_resultStandardScheme getScheme() {
-        return new isGABinaryInputRunning_resultStandardScheme();
+    private static class isGARunning_resultStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public isGARunning_resultStandardScheme getScheme() {
+        return new isGARunning_resultStandardScheme();
       }
     }
 
-    private static class isGABinaryInputRunning_resultStandardScheme extends org.apache.thrift.scheme.StandardScheme<isGABinaryInputRunning_result> {
+    private static class isGARunning_resultStandardScheme extends org.apache.thrift.scheme.StandardScheme<isGARunning_result> {
 
-      public void read(org.apache.thrift.protocol.TProtocol iprot, isGABinaryInputRunning_result struct) throws org.apache.thrift.TException {
+      public void read(org.apache.thrift.protocol.TProtocol iprot, isGARunning_result struct) throws org.apache.thrift.TException {
         org.apache.thrift.protocol.TField schemeField;
         iprot.readStructBegin();
         while (true)
@@ -18579,7 +18398,7 @@ public class VASSARInterface {
         struct.validate();
       }
 
-      public void write(org.apache.thrift.protocol.TProtocol oprot, isGABinaryInputRunning_result struct) throws org.apache.thrift.TException {
+      public void write(org.apache.thrift.protocol.TProtocol oprot, isGARunning_result struct) throws org.apache.thrift.TException {
         struct.validate();
 
         oprot.writeStructBegin(STRUCT_DESC);
@@ -18594,16 +18413,16 @@ public class VASSARInterface {
 
     }
 
-    private static class isGABinaryInputRunning_resultTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
-      public isGABinaryInputRunning_resultTupleScheme getScheme() {
-        return new isGABinaryInputRunning_resultTupleScheme();
+    private static class isGARunning_resultTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public isGARunning_resultTupleScheme getScheme() {
+        return new isGARunning_resultTupleScheme();
       }
     }
 
-    private static class isGABinaryInputRunning_resultTupleScheme extends org.apache.thrift.scheme.TupleScheme<isGABinaryInputRunning_result> {
+    private static class isGARunning_resultTupleScheme extends org.apache.thrift.scheme.TupleScheme<isGARunning_result> {
 
       @Override
-      public void write(org.apache.thrift.protocol.TProtocol prot, isGABinaryInputRunning_result struct) throws org.apache.thrift.TException {
+      public void write(org.apache.thrift.protocol.TProtocol prot, isGARunning_result struct) throws org.apache.thrift.TException {
         org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
         java.util.BitSet optionals = new java.util.BitSet();
         if (struct.isSetSuccess()) {
@@ -18616,11 +18435,742 @@ public class VASSARInterface {
       }
 
       @Override
-      public void read(org.apache.thrift.protocol.TProtocol prot, isGABinaryInputRunning_result struct) throws org.apache.thrift.TException {
+      public void read(org.apache.thrift.protocol.TProtocol prot, isGARunning_result struct) throws org.apache.thrift.TException {
         org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
           struct.success = iprot.readBool();
+          struct.setSuccessIsSet(true);
+        }
+      }
+    }
+
+    private static <S extends org.apache.thrift.scheme.IScheme> S scheme(org.apache.thrift.protocol.TProtocol proto) {
+      return (org.apache.thrift.scheme.StandardScheme.class.equals(proto.getScheme()) ? STANDARD_SCHEME_FACTORY : TUPLE_SCHEME_FACTORY).getScheme();
+    }
+  }
+
+  public static class stopGA_args implements org.apache.thrift.TBase<stopGA_args, stopGA_args._Fields>, java.io.Serializable, Cloneable, Comparable<stopGA_args>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("stopGA_args");
+
+    private static final org.apache.thrift.protocol.TField ID_FIELD_DESC = new org.apache.thrift.protocol.TField("id", org.apache.thrift.protocol.TType.STRING, (short)1);
+
+    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new stopGA_argsStandardSchemeFactory();
+    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new stopGA_argsTupleSchemeFactory();
+
+    public @org.apache.thrift.annotation.Nullable String id; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      ID((short)1, "id");
+
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
+
+      static {
+        for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 1: // ID
+            return ID;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByName(String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final String _fieldName;
+
+      _Fields(short thriftId, String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.ID, new org.apache.thrift.meta_data.FieldMetaData("id", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+      metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(stopGA_args.class, metaDataMap);
+    }
+
+    public stopGA_args() {
+    }
+
+    public stopGA_args(
+      String id)
+    {
+      this();
+      this.id = id;
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public stopGA_args(stopGA_args other) {
+      if (other.isSetId()) {
+        this.id = other.id;
+      }
+    }
+
+    public stopGA_args deepCopy() {
+      return new stopGA_args(this);
+    }
+
+    @Override
+    public void clear() {
+      this.id = null;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public String getId() {
+      return this.id;
+    }
+
+    public stopGA_args setId(@org.apache.thrift.annotation.Nullable String id) {
+      this.id = id;
+      return this;
+    }
+
+    public void unsetId() {
+      this.id = null;
+    }
+
+    /** Returns true if field id is set (has been assigned a value) and false otherwise */
+    public boolean isSetId() {
+      return this.id != null;
+    }
+
+    public void setIdIsSet(boolean value) {
+      if (!value) {
+        this.id = null;
+      }
+    }
+
+    public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable Object value) {
+      switch (field) {
+      case ID:
+        if (value == null) {
+          unsetId();
+        } else {
+          setId((String)value);
+        }
+        break;
+
+      }
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public Object getFieldValue(_Fields field) {
+      switch (field) {
+      case ID:
+        return getId();
+
+      }
+      throw new IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new IllegalArgumentException();
+      }
+
+      switch (field) {
+      case ID:
+        return isSetId();
+      }
+      throw new IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof stopGA_args)
+        return this.equals((stopGA_args)that);
+      return false;
+    }
+
+    public boolean equals(stopGA_args that) {
+      if (that == null)
+        return false;
+      if (this == that)
+        return true;
+
+      boolean this_present_id = true && this.isSetId();
+      boolean that_present_id = true && that.isSetId();
+      if (this_present_id || that_present_id) {
+        if (!(this_present_id && that_present_id))
+          return false;
+        if (!this.id.equals(that.id))
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      int hashCode = 1;
+
+      hashCode = hashCode * 8191 + ((isSetId()) ? 131071 : 524287);
+      if (isSetId())
+        hashCode = hashCode * 8191 + id.hashCode();
+
+      return hashCode;
+    }
+
+    @Override
+    public int compareTo(stopGA_args other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = Boolean.valueOf(isSetId()).compareTo(other.isSetId());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetId()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.id, other.id);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      scheme(iprot).read(iprot, this);
+    }
+
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      scheme(oprot).write(oprot, this);
+    }
+
+    @Override
+    public String toString() {
+      StringBuilder sb = new StringBuilder("stopGA_args(");
+      boolean first = true;
+
+      sb.append("id:");
+      if (this.id == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.id);
+      }
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      // check for sub-struct validity
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
+      try {
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class stopGA_argsStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public stopGA_argsStandardScheme getScheme() {
+        return new stopGA_argsStandardScheme();
+      }
+    }
+
+    private static class stopGA_argsStandardScheme extends org.apache.thrift.scheme.StandardScheme<stopGA_args> {
+
+      public void read(org.apache.thrift.protocol.TProtocol iprot, stopGA_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case 1: // ID
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
+                struct.id = iprot.readString();
+                struct.setIdIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      public void write(org.apache.thrift.protocol.TProtocol oprot, stopGA_args struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        if (struct.id != null) {
+          oprot.writeFieldBegin(ID_FIELD_DESC);
+          oprot.writeString(struct.id);
+          oprot.writeFieldEnd();
+        }
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class stopGA_argsTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public stopGA_argsTupleScheme getScheme() {
+        return new stopGA_argsTupleScheme();
+      }
+    }
+
+    private static class stopGA_argsTupleScheme extends org.apache.thrift.scheme.TupleScheme<stopGA_args> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, stopGA_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet optionals = new java.util.BitSet();
+        if (struct.isSetId()) {
+          optionals.set(0);
+        }
+        oprot.writeBitSet(optionals, 1);
+        if (struct.isSetId()) {
+          oprot.writeString(struct.id);
+        }
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, stopGA_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet incoming = iprot.readBitSet(1);
+        if (incoming.get(0)) {
+          struct.id = iprot.readString();
+          struct.setIdIsSet(true);
+        }
+      }
+    }
+
+    private static <S extends org.apache.thrift.scheme.IScheme> S scheme(org.apache.thrift.protocol.TProtocol proto) {
+      return (org.apache.thrift.scheme.StandardScheme.class.equals(proto.getScheme()) ? STANDARD_SCHEME_FACTORY : TUPLE_SCHEME_FACTORY).getScheme();
+    }
+  }
+
+  public static class stopGA_result implements org.apache.thrift.TBase<stopGA_result, stopGA_result._Fields>, java.io.Serializable, Cloneable, Comparable<stopGA_result>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("stopGA_result");
+
+    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.I32, (short)0);
+
+    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new stopGA_resultStandardSchemeFactory();
+    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new stopGA_resultTupleSchemeFactory();
+
+    public int success; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      SUCCESS((short)0, "success");
+
+      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
+
+      static {
+        for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 0: // SUCCESS
+            return SUCCESS;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByName(String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final String _fieldName;
+
+      _Fields(short thriftId, String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    private static final int __SUCCESS_ISSET_ID = 0;
+    private byte __isset_bitfield = 0;
+    public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32          , "int")));
+      metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(stopGA_result.class, metaDataMap);
+    }
+
+    public stopGA_result() {
+    }
+
+    public stopGA_result(
+      int success)
+    {
+      this();
+      this.success = success;
+      setSuccessIsSet(true);
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public stopGA_result(stopGA_result other) {
+      __isset_bitfield = other.__isset_bitfield;
+      this.success = other.success;
+    }
+
+    public stopGA_result deepCopy() {
+      return new stopGA_result(this);
+    }
+
+    @Override
+    public void clear() {
+      setSuccessIsSet(false);
+      this.success = 0;
+    }
+
+    public int getSuccess() {
+      return this.success;
+    }
+
+    public stopGA_result setSuccess(int success) {
+      this.success = success;
+      setSuccessIsSet(true);
+      return this;
+    }
+
+    public void unsetSuccess() {
+      __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __SUCCESS_ISSET_ID);
+    }
+
+    /** Returns true if field success is set (has been assigned a value) and false otherwise */
+    public boolean isSetSuccess() {
+      return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __SUCCESS_ISSET_ID);
+    }
+
+    public void setSuccessIsSet(boolean value) {
+      __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __SUCCESS_ISSET_ID, value);
+    }
+
+    public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable Object value) {
+      switch (field) {
+      case SUCCESS:
+        if (value == null) {
+          unsetSuccess();
+        } else {
+          setSuccess((Integer)value);
+        }
+        break;
+
+      }
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public Object getFieldValue(_Fields field) {
+      switch (field) {
+      case SUCCESS:
+        return getSuccess();
+
+      }
+      throw new IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new IllegalArgumentException();
+      }
+
+      switch (field) {
+      case SUCCESS:
+        return isSetSuccess();
+      }
+      throw new IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof stopGA_result)
+        return this.equals((stopGA_result)that);
+      return false;
+    }
+
+    public boolean equals(stopGA_result that) {
+      if (that == null)
+        return false;
+      if (this == that)
+        return true;
+
+      boolean this_present_success = true;
+      boolean that_present_success = true;
+      if (this_present_success || that_present_success) {
+        if (!(this_present_success && that_present_success))
+          return false;
+        if (this.success != that.success)
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      int hashCode = 1;
+
+      hashCode = hashCode * 8191 + success;
+
+      return hashCode;
+    }
+
+    @Override
+    public int compareTo(stopGA_result other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetSuccess()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.success, other.success);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      scheme(iprot).read(iprot, this);
+    }
+
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      scheme(oprot).write(oprot, this);
+      }
+
+    @Override
+    public String toString() {
+      StringBuilder sb = new StringBuilder("stopGA_result(");
+      boolean first = true;
+
+      sb.append("success:");
+      sb.append(this.success);
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      // check for sub-struct validity
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
+      try {
+        // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
+        __isset_bitfield = 0;
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class stopGA_resultStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public stopGA_resultStandardScheme getScheme() {
+        return new stopGA_resultStandardScheme();
+      }
+    }
+
+    private static class stopGA_resultStandardScheme extends org.apache.thrift.scheme.StandardScheme<stopGA_result> {
+
+      public void read(org.apache.thrift.protocol.TProtocol iprot, stopGA_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case 0: // SUCCESS
+              if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
+                struct.success = iprot.readI32();
+                struct.setSuccessIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      public void write(org.apache.thrift.protocol.TProtocol oprot, stopGA_result struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        if (struct.isSetSuccess()) {
+          oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
+          oprot.writeI32(struct.success);
+          oprot.writeFieldEnd();
+        }
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class stopGA_resultTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public stopGA_resultTupleScheme getScheme() {
+        return new stopGA_resultTupleScheme();
+      }
+    }
+
+    private static class stopGA_resultTupleScheme extends org.apache.thrift.scheme.TupleScheme<stopGA_result> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, stopGA_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet optionals = new java.util.BitSet();
+        if (struct.isSetSuccess()) {
+          optionals.set(0);
+        }
+        oprot.writeBitSet(optionals, 1);
+        if (struct.isSetSuccess()) {
+          oprot.writeI32(struct.success);
+        }
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, stopGA_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet incoming = iprot.readBitSet(1);
+        if (incoming.get(0)) {
+          struct.success = iprot.readI32();
           struct.setSuccessIsSet(true);
         }
       }
@@ -19266,12 +19816,12 @@ public class VASSARInterface {
   public static class startGABinaryInput_result implements org.apache.thrift.TBase<startGABinaryInput_result, startGABinaryInput_result._Fields>, java.io.Serializable, Cloneable, Comparable<startGABinaryInput_result>   {
     private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("startGABinaryInput_result");
 
-    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.I32, (short)0);
+    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.STRING, (short)0);
 
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new startGABinaryInput_resultStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new startGABinaryInput_resultTupleSchemeFactory();
 
-    public int success; // required
+    public @org.apache.thrift.annotation.Nullable String success; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -19334,13 +19884,11 @@ public class VASSARInterface {
     }
 
     // isset id assignments
-    private static final int __SUCCESS_ISSET_ID = 0;
-    private byte __isset_bitfield = 0;
     public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
     static {
       java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
       tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32          , "int")));
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
       metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
       org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(startGABinaryInput_result.class, metaDataMap);
     }
@@ -19349,19 +19897,19 @@ public class VASSARInterface {
     }
 
     public startGABinaryInput_result(
-      int success)
+      String success)
     {
       this();
       this.success = success;
-      setSuccessIsSet(true);
     }
 
     /**
      * Performs a deep copy on <i>other</i>.
      */
     public startGABinaryInput_result(startGABinaryInput_result other) {
-      __isset_bitfield = other.__isset_bitfield;
-      this.success = other.success;
+      if (other.isSetSuccess()) {
+        this.success = other.success;
+      }
     }
 
     public startGABinaryInput_result deepCopy() {
@@ -19370,31 +19918,32 @@ public class VASSARInterface {
 
     @Override
     public void clear() {
-      setSuccessIsSet(false);
-      this.success = 0;
+      this.success = null;
     }
 
-    public int getSuccess() {
+    @org.apache.thrift.annotation.Nullable
+    public String getSuccess() {
       return this.success;
     }
 
-    public startGABinaryInput_result setSuccess(int success) {
+    public startGABinaryInput_result setSuccess(@org.apache.thrift.annotation.Nullable String success) {
       this.success = success;
-      setSuccessIsSet(true);
       return this;
     }
 
     public void unsetSuccess() {
-      __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __SUCCESS_ISSET_ID);
+      this.success = null;
     }
 
     /** Returns true if field success is set (has been assigned a value) and false otherwise */
     public boolean isSetSuccess() {
-      return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __SUCCESS_ISSET_ID);
+      return this.success != null;
     }
 
     public void setSuccessIsSet(boolean value) {
-      __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __SUCCESS_ISSET_ID, value);
+      if (!value) {
+        this.success = null;
+      }
     }
 
     public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable Object value) {
@@ -19403,7 +19952,7 @@ public class VASSARInterface {
         if (value == null) {
           unsetSuccess();
         } else {
-          setSuccess((Integer)value);
+          setSuccess((String)value);
         }
         break;
 
@@ -19448,12 +19997,12 @@ public class VASSARInterface {
       if (this == that)
         return true;
 
-      boolean this_present_success = true;
-      boolean that_present_success = true;
+      boolean this_present_success = true && this.isSetSuccess();
+      boolean that_present_success = true && that.isSetSuccess();
       if (this_present_success || that_present_success) {
         if (!(this_present_success && that_present_success))
           return false;
-        if (this.success != that.success)
+        if (!this.success.equals(that.success))
           return false;
       }
 
@@ -19464,7 +20013,9 @@ public class VASSARInterface {
     public int hashCode() {
       int hashCode = 1;
 
-      hashCode = hashCode * 8191 + success;
+      hashCode = hashCode * 8191 + ((isSetSuccess()) ? 131071 : 524287);
+      if (isSetSuccess())
+        hashCode = hashCode * 8191 + success.hashCode();
 
       return hashCode;
     }
@@ -19509,7 +20060,11 @@ public class VASSARInterface {
       boolean first = true;
 
       sb.append("success:");
-      sb.append(this.success);
+      if (this.success == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.success);
+      }
       first = false;
       sb.append(")");
       return sb.toString();
@@ -19530,8 +20085,6 @@ public class VASSARInterface {
 
     private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
-        // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
-        __isset_bitfield = 0;
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
         throw new java.io.IOException(te);
@@ -19557,8 +20110,8 @@ public class VASSARInterface {
           }
           switch (schemeField.id) {
             case 0: // SUCCESS
-              if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
-                struct.success = iprot.readI32();
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
+                struct.success = iprot.readString();
                 struct.setSuccessIsSet(true);
               } else { 
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
@@ -19579,9 +20132,9 @@ public class VASSARInterface {
         struct.validate();
 
         oprot.writeStructBegin(STRUCT_DESC);
-        if (struct.isSetSuccess()) {
+        if (struct.success != null) {
           oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
-          oprot.writeI32(struct.success);
+          oprot.writeString(struct.success);
           oprot.writeFieldEnd();
         }
         oprot.writeFieldStop();
@@ -19607,7 +20160,7 @@ public class VASSARInterface {
         }
         oprot.writeBitSet(optionals, 1);
         if (struct.isSetSuccess()) {
-          oprot.writeI32(struct.success);
+          oprot.writeString(struct.success);
         }
       }
 
@@ -19616,7 +20169,7 @@ public class VASSARInterface {
         org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
-          struct.success = iprot.readI32();
+          struct.success = iprot.readString();
           struct.setSuccessIsSet(true);
         }
       }
@@ -19627,19 +20180,25 @@ public class VASSARInterface {
     }
   }
 
-  public static class stopGABinaryInput_args implements org.apache.thrift.TBase<stopGABinaryInput_args, stopGABinaryInput_args._Fields>, java.io.Serializable, Cloneable, Comparable<stopGABinaryInput_args>   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("stopGABinaryInput_args");
+  public static class startGADiscreteInput_args implements org.apache.thrift.TBase<startGADiscreteInput_args, startGADiscreteInput_args._Fields>, java.io.Serializable, Cloneable, Comparable<startGADiscreteInput_args>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("startGADiscreteInput_args");
 
-    private static final org.apache.thrift.protocol.TField USERNAME_FIELD_DESC = new org.apache.thrift.protocol.TField("username", org.apache.thrift.protocol.TType.STRING, (short)1);
+    private static final org.apache.thrift.protocol.TField PROBLEM_FIELD_DESC = new org.apache.thrift.protocol.TField("problem", org.apache.thrift.protocol.TType.STRING, (short)1);
+    private static final org.apache.thrift.protocol.TField DATASET_FIELD_DESC = new org.apache.thrift.protocol.TField("dataset", org.apache.thrift.protocol.TType.LIST, (short)2);
+    private static final org.apache.thrift.protocol.TField USERNAME_FIELD_DESC = new org.apache.thrift.protocol.TField("username", org.apache.thrift.protocol.TType.STRING, (short)3);
 
-    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new stopGABinaryInput_argsStandardSchemeFactory();
-    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new stopGABinaryInput_argsTupleSchemeFactory();
+    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new startGADiscreteInput_argsStandardSchemeFactory();
+    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new startGADiscreteInput_argsTupleSchemeFactory();
 
+    public @org.apache.thrift.annotation.Nullable String problem; // required
+    public @org.apache.thrift.annotation.Nullable java.util.List<DiscreteInputArchitecture> dataset; // required
     public @org.apache.thrift.annotation.Nullable String username; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
-      USERNAME((short)1, "username");
+      PROBLEM((short)1, "problem"),
+      DATASET((short)2, "dataset"),
+      USERNAME((short)3, "username");
 
       private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
@@ -19655,7 +20214,11 @@ public class VASSARInterface {
       @org.apache.thrift.annotation.Nullable
       public static _Fields findByThriftId(int fieldId) {
         switch(fieldId) {
-          case 1: // USERNAME
+          case 1: // PROBLEM
+            return PROBLEM;
+          case 2: // DATASET
+            return DATASET;
+          case 3: // USERNAME
             return USERNAME;
           default:
             return null;
@@ -19701,38 +20264,125 @@ public class VASSARInterface {
     public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
     static {
       java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.PROBLEM, new org.apache.thrift.meta_data.FieldMetaData("problem", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+      tmpMap.put(_Fields.DATASET, new org.apache.thrift.meta_data.FieldMetaData("dataset", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
+              new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, DiscreteInputArchitecture.class))));
       tmpMap.put(_Fields.USERNAME, new org.apache.thrift.meta_data.FieldMetaData("username", org.apache.thrift.TFieldRequirementType.DEFAULT, 
           new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
       metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(stopGABinaryInput_args.class, metaDataMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(startGADiscreteInput_args.class, metaDataMap);
     }
 
-    public stopGABinaryInput_args() {
+    public startGADiscreteInput_args() {
     }
 
-    public stopGABinaryInput_args(
+    public startGADiscreteInput_args(
+      String problem,
+      java.util.List<DiscreteInputArchitecture> dataset,
       String username)
     {
       this();
+      this.problem = problem;
+      this.dataset = dataset;
       this.username = username;
     }
 
     /**
      * Performs a deep copy on <i>other</i>.
      */
-    public stopGABinaryInput_args(stopGABinaryInput_args other) {
+    public startGADiscreteInput_args(startGADiscreteInput_args other) {
+      if (other.isSetProblem()) {
+        this.problem = other.problem;
+      }
+      if (other.isSetDataset()) {
+        java.util.List<DiscreteInputArchitecture> __this__dataset = new java.util.ArrayList<DiscreteInputArchitecture>(other.dataset.size());
+        for (DiscreteInputArchitecture other_element : other.dataset) {
+          __this__dataset.add(new DiscreteInputArchitecture(other_element));
+        }
+        this.dataset = __this__dataset;
+      }
       if (other.isSetUsername()) {
         this.username = other.username;
       }
     }
 
-    public stopGABinaryInput_args deepCopy() {
-      return new stopGABinaryInput_args(this);
+    public startGADiscreteInput_args deepCopy() {
+      return new startGADiscreteInput_args(this);
     }
 
     @Override
     public void clear() {
+      this.problem = null;
+      this.dataset = null;
       this.username = null;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public String getProblem() {
+      return this.problem;
+    }
+
+    public startGADiscreteInput_args setProblem(@org.apache.thrift.annotation.Nullable String problem) {
+      this.problem = problem;
+      return this;
+    }
+
+    public void unsetProblem() {
+      this.problem = null;
+    }
+
+    /** Returns true if field problem is set (has been assigned a value) and false otherwise */
+    public boolean isSetProblem() {
+      return this.problem != null;
+    }
+
+    public void setProblemIsSet(boolean value) {
+      if (!value) {
+        this.problem = null;
+      }
+    }
+
+    public int getDatasetSize() {
+      return (this.dataset == null) ? 0 : this.dataset.size();
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public java.util.Iterator<DiscreteInputArchitecture> getDatasetIterator() {
+      return (this.dataset == null) ? null : this.dataset.iterator();
+    }
+
+    public void addToDataset(DiscreteInputArchitecture elem) {
+      if (this.dataset == null) {
+        this.dataset = new java.util.ArrayList<DiscreteInputArchitecture>();
+      }
+      this.dataset.add(elem);
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public java.util.List<DiscreteInputArchitecture> getDataset() {
+      return this.dataset;
+    }
+
+    public startGADiscreteInput_args setDataset(@org.apache.thrift.annotation.Nullable java.util.List<DiscreteInputArchitecture> dataset) {
+      this.dataset = dataset;
+      return this;
+    }
+
+    public void unsetDataset() {
+      this.dataset = null;
+    }
+
+    /** Returns true if field dataset is set (has been assigned a value) and false otherwise */
+    public boolean isSetDataset() {
+      return this.dataset != null;
+    }
+
+    public void setDatasetIsSet(boolean value) {
+      if (!value) {
+        this.dataset = null;
+      }
     }
 
     @org.apache.thrift.annotation.Nullable
@@ -19740,7 +20390,7 @@ public class VASSARInterface {
       return this.username;
     }
 
-    public stopGABinaryInput_args setUsername(@org.apache.thrift.annotation.Nullable String username) {
+    public startGADiscreteInput_args setUsername(@org.apache.thrift.annotation.Nullable String username) {
       this.username = username;
       return this;
     }
@@ -19762,6 +20412,22 @@ public class VASSARInterface {
 
     public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable Object value) {
       switch (field) {
+      case PROBLEM:
+        if (value == null) {
+          unsetProblem();
+        } else {
+          setProblem((String)value);
+        }
+        break;
+
+      case DATASET:
+        if (value == null) {
+          unsetDataset();
+        } else {
+          setDataset((java.util.List<DiscreteInputArchitecture>)value);
+        }
+        break;
+
       case USERNAME:
         if (value == null) {
           unsetUsername();
@@ -19776,6 +20442,12 @@ public class VASSARInterface {
     @org.apache.thrift.annotation.Nullable
     public Object getFieldValue(_Fields field) {
       switch (field) {
+      case PROBLEM:
+        return getProblem();
+
+      case DATASET:
+        return getDataset();
+
       case USERNAME:
         return getUsername();
 
@@ -19790,6 +20462,10 @@ public class VASSARInterface {
       }
 
       switch (field) {
+      case PROBLEM:
+        return isSetProblem();
+      case DATASET:
+        return isSetDataset();
       case USERNAME:
         return isSetUsername();
       }
@@ -19800,16 +20476,34 @@ public class VASSARInterface {
     public boolean equals(Object that) {
       if (that == null)
         return false;
-      if (that instanceof stopGABinaryInput_args)
-        return this.equals((stopGABinaryInput_args)that);
+      if (that instanceof startGADiscreteInput_args)
+        return this.equals((startGADiscreteInput_args)that);
       return false;
     }
 
-    public boolean equals(stopGABinaryInput_args that) {
+    public boolean equals(startGADiscreteInput_args that) {
       if (that == null)
         return false;
       if (this == that)
         return true;
+
+      boolean this_present_problem = true && this.isSetProblem();
+      boolean that_present_problem = true && that.isSetProblem();
+      if (this_present_problem || that_present_problem) {
+        if (!(this_present_problem && that_present_problem))
+          return false;
+        if (!this.problem.equals(that.problem))
+          return false;
+      }
+
+      boolean this_present_dataset = true && this.isSetDataset();
+      boolean that_present_dataset = true && that.isSetDataset();
+      if (this_present_dataset || that_present_dataset) {
+        if (!(this_present_dataset && that_present_dataset))
+          return false;
+        if (!this.dataset.equals(that.dataset))
+          return false;
+      }
 
       boolean this_present_username = true && this.isSetUsername();
       boolean that_present_username = true && that.isSetUsername();
@@ -19827,6 +20521,14 @@ public class VASSARInterface {
     public int hashCode() {
       int hashCode = 1;
 
+      hashCode = hashCode * 8191 + ((isSetProblem()) ? 131071 : 524287);
+      if (isSetProblem())
+        hashCode = hashCode * 8191 + problem.hashCode();
+
+      hashCode = hashCode * 8191 + ((isSetDataset()) ? 131071 : 524287);
+      if (isSetDataset())
+        hashCode = hashCode * 8191 + dataset.hashCode();
+
       hashCode = hashCode * 8191 + ((isSetUsername()) ? 131071 : 524287);
       if (isSetUsername())
         hashCode = hashCode * 8191 + username.hashCode();
@@ -19835,13 +20537,33 @@ public class VASSARInterface {
     }
 
     @Override
-    public int compareTo(stopGABinaryInput_args other) {
+    public int compareTo(startGADiscreteInput_args other) {
       if (!getClass().equals(other.getClass())) {
         return getClass().getName().compareTo(other.getClass().getName());
       }
 
       int lastComparison = 0;
 
+      lastComparison = Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetProblem()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.problem, other.problem);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = Boolean.valueOf(isSetDataset()).compareTo(other.isSetDataset());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetDataset()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.dataset, other.dataset);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
       lastComparison = Boolean.valueOf(isSetUsername()).compareTo(other.isSetUsername());
       if (lastComparison != 0) {
         return lastComparison;
@@ -19870,9 +20592,25 @@ public class VASSARInterface {
 
     @Override
     public String toString() {
-      StringBuilder sb = new StringBuilder("stopGABinaryInput_args(");
+      StringBuilder sb = new StringBuilder("startGADiscreteInput_args(");
       boolean first = true;
 
+      sb.append("problem:");
+      if (this.problem == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.problem);
+      }
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("dataset:");
+      if (this.dataset == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.dataset);
+      }
+      first = false;
+      if (!first) sb.append(", ");
       sb.append("username:");
       if (this.username == null) {
         sb.append("null");
@@ -19905,15 +20643,15 @@ public class VASSARInterface {
       }
     }
 
-    private static class stopGABinaryInput_argsStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
-      public stopGABinaryInput_argsStandardScheme getScheme() {
-        return new stopGABinaryInput_argsStandardScheme();
+    private static class startGADiscreteInput_argsStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public startGADiscreteInput_argsStandardScheme getScheme() {
+        return new startGADiscreteInput_argsStandardScheme();
       }
     }
 
-    private static class stopGABinaryInput_argsStandardScheme extends org.apache.thrift.scheme.StandardScheme<stopGABinaryInput_args> {
+    private static class startGADiscreteInput_argsStandardScheme extends org.apache.thrift.scheme.StandardScheme<startGADiscreteInput_args> {
 
-      public void read(org.apache.thrift.protocol.TProtocol iprot, stopGABinaryInput_args struct) throws org.apache.thrift.TException {
+      public void read(org.apache.thrift.protocol.TProtocol iprot, startGADiscreteInput_args struct) throws org.apache.thrift.TException {
         org.apache.thrift.protocol.TField schemeField;
         iprot.readStructBegin();
         while (true)
@@ -19923,7 +20661,34 @@ public class VASSARInterface {
             break;
           }
           switch (schemeField.id) {
-            case 1: // USERNAME
+            case 1: // PROBLEM
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
+                struct.problem = iprot.readString();
+                struct.setProblemIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 2: // DATASET
+              if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
+                {
+                  org.apache.thrift.protocol.TList _list262 = iprot.readListBegin();
+                  struct.dataset = new java.util.ArrayList<DiscreteInputArchitecture>(_list262.size);
+                  @org.apache.thrift.annotation.Nullable DiscreteInputArchitecture _elem263;
+                  for (int _i264 = 0; _i264 < _list262.size; ++_i264)
+                  {
+                    _elem263 = new DiscreteInputArchitecture();
+                    _elem263.read(iprot);
+                    struct.dataset.add(_elem263);
+                  }
+                  iprot.readListEnd();
+                }
+                struct.setDatasetIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 3: // USERNAME
               if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
                 struct.username = iprot.readString();
                 struct.setUsernameIsSet(true);
@@ -19942,10 +20707,27 @@ public class VASSARInterface {
         struct.validate();
       }
 
-      public void write(org.apache.thrift.protocol.TProtocol oprot, stopGABinaryInput_args struct) throws org.apache.thrift.TException {
+      public void write(org.apache.thrift.protocol.TProtocol oprot, startGADiscreteInput_args struct) throws org.apache.thrift.TException {
         struct.validate();
 
         oprot.writeStructBegin(STRUCT_DESC);
+        if (struct.problem != null) {
+          oprot.writeFieldBegin(PROBLEM_FIELD_DESC);
+          oprot.writeString(struct.problem);
+          oprot.writeFieldEnd();
+        }
+        if (struct.dataset != null) {
+          oprot.writeFieldBegin(DATASET_FIELD_DESC);
+          {
+            oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.dataset.size()));
+            for (DiscreteInputArchitecture _iter265 : struct.dataset)
+            {
+              _iter265.write(oprot);
+            }
+            oprot.writeListEnd();
+          }
+          oprot.writeFieldEnd();
+        }
         if (struct.username != null) {
           oprot.writeFieldBegin(USERNAME_FIELD_DESC);
           oprot.writeString(struct.username);
@@ -19957,32 +20739,68 @@ public class VASSARInterface {
 
     }
 
-    private static class stopGABinaryInput_argsTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
-      public stopGABinaryInput_argsTupleScheme getScheme() {
-        return new stopGABinaryInput_argsTupleScheme();
+    private static class startGADiscreteInput_argsTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public startGADiscreteInput_argsTupleScheme getScheme() {
+        return new startGADiscreteInput_argsTupleScheme();
       }
     }
 
-    private static class stopGABinaryInput_argsTupleScheme extends org.apache.thrift.scheme.TupleScheme<stopGABinaryInput_args> {
+    private static class startGADiscreteInput_argsTupleScheme extends org.apache.thrift.scheme.TupleScheme<startGADiscreteInput_args> {
 
       @Override
-      public void write(org.apache.thrift.protocol.TProtocol prot, stopGABinaryInput_args struct) throws org.apache.thrift.TException {
+      public void write(org.apache.thrift.protocol.TProtocol prot, startGADiscreteInput_args struct) throws org.apache.thrift.TException {
         org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
         java.util.BitSet optionals = new java.util.BitSet();
-        if (struct.isSetUsername()) {
+        if (struct.isSetProblem()) {
           optionals.set(0);
         }
-        oprot.writeBitSet(optionals, 1);
+        if (struct.isSetDataset()) {
+          optionals.set(1);
+        }
+        if (struct.isSetUsername()) {
+          optionals.set(2);
+        }
+        oprot.writeBitSet(optionals, 3);
+        if (struct.isSetProblem()) {
+          oprot.writeString(struct.problem);
+        }
+        if (struct.isSetDataset()) {
+          {
+            oprot.writeI32(struct.dataset.size());
+            for (DiscreteInputArchitecture _iter266 : struct.dataset)
+            {
+              _iter266.write(oprot);
+            }
+          }
+        }
         if (struct.isSetUsername()) {
           oprot.writeString(struct.username);
         }
       }
 
       @Override
-      public void read(org.apache.thrift.protocol.TProtocol prot, stopGABinaryInput_args struct) throws org.apache.thrift.TException {
+      public void read(org.apache.thrift.protocol.TProtocol prot, startGADiscreteInput_args struct) throws org.apache.thrift.TException {
         org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-        java.util.BitSet incoming = iprot.readBitSet(1);
+        java.util.BitSet incoming = iprot.readBitSet(3);
         if (incoming.get(0)) {
+          struct.problem = iprot.readString();
+          struct.setProblemIsSet(true);
+        }
+        if (incoming.get(1)) {
+          {
+            org.apache.thrift.protocol.TList _list267 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
+            struct.dataset = new java.util.ArrayList<DiscreteInputArchitecture>(_list267.size);
+            @org.apache.thrift.annotation.Nullable DiscreteInputArchitecture _elem268;
+            for (int _i269 = 0; _i269 < _list267.size; ++_i269)
+            {
+              _elem268 = new DiscreteInputArchitecture();
+              _elem268.read(iprot);
+              struct.dataset.add(_elem268);
+            }
+          }
+          struct.setDatasetIsSet(true);
+        }
+        if (incoming.get(2)) {
           struct.username = iprot.readString();
           struct.setUsernameIsSet(true);
         }
@@ -19994,15 +20812,15 @@ public class VASSARInterface {
     }
   }
 
-  public static class stopGABinaryInput_result implements org.apache.thrift.TBase<stopGABinaryInput_result, stopGABinaryInput_result._Fields>, java.io.Serializable, Cloneable, Comparable<stopGABinaryInput_result>   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("stopGABinaryInput_result");
+  public static class startGADiscreteInput_result implements org.apache.thrift.TBase<startGADiscreteInput_result, startGADiscreteInput_result._Fields>, java.io.Serializable, Cloneable, Comparable<startGADiscreteInput_result>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("startGADiscreteInput_result");
 
-    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.I32, (short)0);
+    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.STRING, (short)0);
 
-    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new stopGABinaryInput_resultStandardSchemeFactory();
-    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new stopGABinaryInput_resultTupleSchemeFactory();
+    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new startGADiscreteInput_resultStandardSchemeFactory();
+    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new startGADiscreteInput_resultTupleSchemeFactory();
 
-    public int success; // required
+    public @org.apache.thrift.annotation.Nullable String success; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -20065,67 +20883,66 @@ public class VASSARInterface {
     }
 
     // isset id assignments
-    private static final int __SUCCESS_ISSET_ID = 0;
-    private byte __isset_bitfield = 0;
     public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
     static {
       java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
       tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32          , "int")));
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
       metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(stopGABinaryInput_result.class, metaDataMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(startGADiscreteInput_result.class, metaDataMap);
     }
 
-    public stopGABinaryInput_result() {
+    public startGADiscreteInput_result() {
     }
 
-    public stopGABinaryInput_result(
-      int success)
+    public startGADiscreteInput_result(
+      String success)
     {
       this();
       this.success = success;
-      setSuccessIsSet(true);
     }
 
     /**
      * Performs a deep copy on <i>other</i>.
      */
-    public stopGABinaryInput_result(stopGABinaryInput_result other) {
-      __isset_bitfield = other.__isset_bitfield;
-      this.success = other.success;
+    public startGADiscreteInput_result(startGADiscreteInput_result other) {
+      if (other.isSetSuccess()) {
+        this.success = other.success;
+      }
     }
 
-    public stopGABinaryInput_result deepCopy() {
-      return new stopGABinaryInput_result(this);
+    public startGADiscreteInput_result deepCopy() {
+      return new startGADiscreteInput_result(this);
     }
 
     @Override
     public void clear() {
-      setSuccessIsSet(false);
-      this.success = 0;
+      this.success = null;
     }
 
-    public int getSuccess() {
+    @org.apache.thrift.annotation.Nullable
+    public String getSuccess() {
       return this.success;
     }
 
-    public stopGABinaryInput_result setSuccess(int success) {
+    public startGADiscreteInput_result setSuccess(@org.apache.thrift.annotation.Nullable String success) {
       this.success = success;
-      setSuccessIsSet(true);
       return this;
     }
 
     public void unsetSuccess() {
-      __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __SUCCESS_ISSET_ID);
+      this.success = null;
     }
 
     /** Returns true if field success is set (has been assigned a value) and false otherwise */
     public boolean isSetSuccess() {
-      return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __SUCCESS_ISSET_ID);
+      return this.success != null;
     }
 
     public void setSuccessIsSet(boolean value) {
-      __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __SUCCESS_ISSET_ID, value);
+      if (!value) {
+        this.success = null;
+      }
     }
 
     public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable Object value) {
@@ -20134,7 +20951,7 @@ public class VASSARInterface {
         if (value == null) {
           unsetSuccess();
         } else {
-          setSuccess((Integer)value);
+          setSuccess((String)value);
         }
         break;
 
@@ -20168,23 +20985,23 @@ public class VASSARInterface {
     public boolean equals(Object that) {
       if (that == null)
         return false;
-      if (that instanceof stopGABinaryInput_result)
-        return this.equals((stopGABinaryInput_result)that);
+      if (that instanceof startGADiscreteInput_result)
+        return this.equals((startGADiscreteInput_result)that);
       return false;
     }
 
-    public boolean equals(stopGABinaryInput_result that) {
+    public boolean equals(startGADiscreteInput_result that) {
       if (that == null)
         return false;
       if (this == that)
         return true;
 
-      boolean this_present_success = true;
-      boolean that_present_success = true;
+      boolean this_present_success = true && this.isSetSuccess();
+      boolean that_present_success = true && that.isSetSuccess();
       if (this_present_success || that_present_success) {
         if (!(this_present_success && that_present_success))
           return false;
-        if (this.success != that.success)
+        if (!this.success.equals(that.success))
           return false;
       }
 
@@ -20195,13 +21012,15 @@ public class VASSARInterface {
     public int hashCode() {
       int hashCode = 1;
 
-      hashCode = hashCode * 8191 + success;
+      hashCode = hashCode * 8191 + ((isSetSuccess()) ? 131071 : 524287);
+      if (isSetSuccess())
+        hashCode = hashCode * 8191 + success.hashCode();
 
       return hashCode;
     }
 
     @Override
-    public int compareTo(stopGABinaryInput_result other) {
+    public int compareTo(startGADiscreteInput_result other) {
       if (!getClass().equals(other.getClass())) {
         return getClass().getName().compareTo(other.getClass().getName());
       }
@@ -20236,11 +21055,15 @@ public class VASSARInterface {
 
     @Override
     public String toString() {
-      StringBuilder sb = new StringBuilder("stopGABinaryInput_result(");
+      StringBuilder sb = new StringBuilder("startGADiscreteInput_result(");
       boolean first = true;
 
       sb.append("success:");
-      sb.append(this.success);
+      if (this.success == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.success);
+      }
       first = false;
       sb.append(")");
       return sb.toString();
@@ -20261,23 +21084,21 @@ public class VASSARInterface {
 
     private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
-        // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
-        __isset_bitfield = 0;
         read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
       } catch (org.apache.thrift.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
-    private static class stopGABinaryInput_resultStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
-      public stopGABinaryInput_resultStandardScheme getScheme() {
-        return new stopGABinaryInput_resultStandardScheme();
+    private static class startGADiscreteInput_resultStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public startGADiscreteInput_resultStandardScheme getScheme() {
+        return new startGADiscreteInput_resultStandardScheme();
       }
     }
 
-    private static class stopGABinaryInput_resultStandardScheme extends org.apache.thrift.scheme.StandardScheme<stopGABinaryInput_result> {
+    private static class startGADiscreteInput_resultStandardScheme extends org.apache.thrift.scheme.StandardScheme<startGADiscreteInput_result> {
 
-      public void read(org.apache.thrift.protocol.TProtocol iprot, stopGABinaryInput_result struct) throws org.apache.thrift.TException {
+      public void read(org.apache.thrift.protocol.TProtocol iprot, startGADiscreteInput_result struct) throws org.apache.thrift.TException {
         org.apache.thrift.protocol.TField schemeField;
         iprot.readStructBegin();
         while (true)
@@ -20288,8 +21109,8 @@ public class VASSARInterface {
           }
           switch (schemeField.id) {
             case 0: // SUCCESS
-              if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
-                struct.success = iprot.readI32();
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
+                struct.success = iprot.readString();
                 struct.setSuccessIsSet(true);
               } else { 
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
@@ -20306,13 +21127,13 @@ public class VASSARInterface {
         struct.validate();
       }
 
-      public void write(org.apache.thrift.protocol.TProtocol oprot, stopGABinaryInput_result struct) throws org.apache.thrift.TException {
+      public void write(org.apache.thrift.protocol.TProtocol oprot, startGADiscreteInput_result struct) throws org.apache.thrift.TException {
         struct.validate();
 
         oprot.writeStructBegin(STRUCT_DESC);
-        if (struct.isSetSuccess()) {
+        if (struct.success != null) {
           oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
-          oprot.writeI32(struct.success);
+          oprot.writeString(struct.success);
           oprot.writeFieldEnd();
         }
         oprot.writeFieldStop();
@@ -20321,16 +21142,16 @@ public class VASSARInterface {
 
     }
 
-    private static class stopGABinaryInput_resultTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
-      public stopGABinaryInput_resultTupleScheme getScheme() {
-        return new stopGABinaryInput_resultTupleScheme();
+    private static class startGADiscreteInput_resultTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public startGADiscreteInput_resultTupleScheme getScheme() {
+        return new startGADiscreteInput_resultTupleScheme();
       }
     }
 
-    private static class stopGABinaryInput_resultTupleScheme extends org.apache.thrift.scheme.TupleScheme<stopGABinaryInput_result> {
+    private static class startGADiscreteInput_resultTupleScheme extends org.apache.thrift.scheme.TupleScheme<startGADiscreteInput_result> {
 
       @Override
-      public void write(org.apache.thrift.protocol.TProtocol prot, stopGABinaryInput_result struct) throws org.apache.thrift.TException {
+      public void write(org.apache.thrift.protocol.TProtocol prot, startGADiscreteInput_result struct) throws org.apache.thrift.TException {
         org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
         java.util.BitSet optionals = new java.util.BitSet();
         if (struct.isSetSuccess()) {
@@ -20338,16 +21159,16 @@ public class VASSARInterface {
         }
         oprot.writeBitSet(optionals, 1);
         if (struct.isSetSuccess()) {
-          oprot.writeI32(struct.success);
+          oprot.writeString(struct.success);
         }
       }
 
       @Override
-      public void read(org.apache.thrift.protocol.TProtocol prot, stopGABinaryInput_result struct) throws org.apache.thrift.TException {
+      public void read(org.apache.thrift.protocol.TProtocol prot, startGADiscreteInput_result struct) throws org.apache.thrift.TException {
         org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
-          struct.success = iprot.readI32();
+          struct.success = iprot.readString();
           struct.setSuccessIsSet(true);
         }
       }
@@ -21155,14 +21976,14 @@ public class VASSARInterface {
             case 0: // SUCCESS
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
-                  org.apache.thrift.protocol.TList _list262 = iprot.readListBegin();
-                  struct.success = new java.util.ArrayList<SubscoreInformation>(_list262.size);
-                  @org.apache.thrift.annotation.Nullable SubscoreInformation _elem263;
-                  for (int _i264 = 0; _i264 < _list262.size; ++_i264)
+                  org.apache.thrift.protocol.TList _list270 = iprot.readListBegin();
+                  struct.success = new java.util.ArrayList<SubscoreInformation>(_list270.size);
+                  @org.apache.thrift.annotation.Nullable SubscoreInformation _elem271;
+                  for (int _i272 = 0; _i272 < _list270.size; ++_i272)
                   {
-                    _elem263 = new SubscoreInformation();
-                    _elem263.read(iprot);
-                    struct.success.add(_elem263);
+                    _elem271 = new SubscoreInformation();
+                    _elem271.read(iprot);
+                    struct.success.add(_elem271);
                   }
                   iprot.readListEnd();
                 }
@@ -21190,9 +22011,9 @@ public class VASSARInterface {
           oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
           {
             oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.success.size()));
-            for (SubscoreInformation _iter265 : struct.success)
+            for (SubscoreInformation _iter273 : struct.success)
             {
-              _iter265.write(oprot);
+              _iter273.write(oprot);
             }
             oprot.writeListEnd();
           }
@@ -21223,9 +22044,9 @@ public class VASSARInterface {
         if (struct.isSetSuccess()) {
           {
             oprot.writeI32(struct.success.size());
-            for (SubscoreInformation _iter266 : struct.success)
+            for (SubscoreInformation _iter274 : struct.success)
             {
-              _iter266.write(oprot);
+              _iter274.write(oprot);
             }
           }
         }
@@ -21237,14 +22058,14 @@ public class VASSARInterface {
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
           {
-            org.apache.thrift.protocol.TList _list267 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
-            struct.success = new java.util.ArrayList<SubscoreInformation>(_list267.size);
-            @org.apache.thrift.annotation.Nullable SubscoreInformation _elem268;
-            for (int _i269 = 0; _i269 < _list267.size; ++_i269)
+            org.apache.thrift.protocol.TList _list275 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
+            struct.success = new java.util.ArrayList<SubscoreInformation>(_list275.size);
+            @org.apache.thrift.annotation.Nullable SubscoreInformation _elem276;
+            for (int _i277 = 0; _i277 < _list275.size; ++_i277)
             {
-              _elem268 = new SubscoreInformation();
-              _elem268.read(iprot);
-              struct.success.add(_elem268);
+              _elem276 = new SubscoreInformation();
+              _elem276.read(iprot);
+              struct.success.add(_elem276);
             }
           }
           struct.setSuccessIsSet(true);
@@ -22054,14 +22875,14 @@ public class VASSARInterface {
             case 0: // SUCCESS
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
-                  org.apache.thrift.protocol.TList _list270 = iprot.readListBegin();
-                  struct.success = new java.util.ArrayList<MissionCostInformation>(_list270.size);
-                  @org.apache.thrift.annotation.Nullable MissionCostInformation _elem271;
-                  for (int _i272 = 0; _i272 < _list270.size; ++_i272)
+                  org.apache.thrift.protocol.TList _list278 = iprot.readListBegin();
+                  struct.success = new java.util.ArrayList<MissionCostInformation>(_list278.size);
+                  @org.apache.thrift.annotation.Nullable MissionCostInformation _elem279;
+                  for (int _i280 = 0; _i280 < _list278.size; ++_i280)
                   {
-                    _elem271 = new MissionCostInformation();
-                    _elem271.read(iprot);
-                    struct.success.add(_elem271);
+                    _elem279 = new MissionCostInformation();
+                    _elem279.read(iprot);
+                    struct.success.add(_elem279);
                   }
                   iprot.readListEnd();
                 }
@@ -22089,9 +22910,9 @@ public class VASSARInterface {
           oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
           {
             oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.success.size()));
-            for (MissionCostInformation _iter273 : struct.success)
+            for (MissionCostInformation _iter281 : struct.success)
             {
-              _iter273.write(oprot);
+              _iter281.write(oprot);
             }
             oprot.writeListEnd();
           }
@@ -22122,9 +22943,9 @@ public class VASSARInterface {
         if (struct.isSetSuccess()) {
           {
             oprot.writeI32(struct.success.size());
-            for (MissionCostInformation _iter274 : struct.success)
+            for (MissionCostInformation _iter282 : struct.success)
             {
-              _iter274.write(oprot);
+              _iter282.write(oprot);
             }
           }
         }
@@ -22136,14 +22957,14 @@ public class VASSARInterface {
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
           {
-            org.apache.thrift.protocol.TList _list275 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
-            struct.success = new java.util.ArrayList<MissionCostInformation>(_list275.size);
-            @org.apache.thrift.annotation.Nullable MissionCostInformation _elem276;
-            for (int _i277 = 0; _i277 < _list275.size; ++_i277)
+            org.apache.thrift.protocol.TList _list283 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
+            struct.success = new java.util.ArrayList<MissionCostInformation>(_list283.size);
+            @org.apache.thrift.annotation.Nullable MissionCostInformation _elem284;
+            for (int _i285 = 0; _i285 < _list283.size; ++_i285)
             {
-              _elem276 = new MissionCostInformation();
-              _elem276.read(iprot);
-              struct.success.add(_elem276);
+              _elem284 = new MissionCostInformation();
+              _elem284.read(iprot);
+              struct.success.add(_elem284);
             }
           }
           struct.setSuccessIsSet(true);
@@ -23100,2351 +23921,6 @@ public class VASSARInterface {
         if (incoming.get(0)) {
           struct.success = new SubobjectiveDetails();
           struct.success.read(iprot);
-          struct.setSuccessIsSet(true);
-        }
-      }
-    }
-
-    private static <S extends org.apache.thrift.scheme.IScheme> S scheme(org.apache.thrift.protocol.TProtocol proto) {
-      return (org.apache.thrift.scheme.StandardScheme.class.equals(proto.getScheme()) ? STANDARD_SCHEME_FACTORY : TUPLE_SCHEME_FACTORY).getScheme();
-    }
-  }
-
-  public static class isGADiscreteInputRunning_args implements org.apache.thrift.TBase<isGADiscreteInputRunning_args, isGADiscreteInputRunning_args._Fields>, java.io.Serializable, Cloneable, Comparable<isGADiscreteInputRunning_args>   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("isGADiscreteInputRunning_args");
-
-
-    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new isGADiscreteInputRunning_argsStandardSchemeFactory();
-    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new isGADiscreteInputRunning_argsTupleSchemeFactory();
-
-
-    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
-;
-
-      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
-
-      static {
-        for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
-          byName.put(field.getFieldName(), field);
-        }
-      }
-
-      /**
-       * Find the _Fields constant that matches fieldId, or null if its not found.
-       */
-      @org.apache.thrift.annotation.Nullable
-      public static _Fields findByThriftId(int fieldId) {
-        switch(fieldId) {
-          default:
-            return null;
-        }
-      }
-
-      /**
-       * Find the _Fields constant that matches fieldId, throwing an exception
-       * if it is not found.
-       */
-      public static _Fields findByThriftIdOrThrow(int fieldId) {
-        _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
-        return fields;
-      }
-
-      /**
-       * Find the _Fields constant that matches name, or null if its not found.
-       */
-      @org.apache.thrift.annotation.Nullable
-      public static _Fields findByName(String name) {
-        return byName.get(name);
-      }
-
-      private final short _thriftId;
-      private final String _fieldName;
-
-      _Fields(short thriftId, String fieldName) {
-        _thriftId = thriftId;
-        _fieldName = fieldName;
-      }
-
-      public short getThriftFieldId() {
-        return _thriftId;
-      }
-
-      public String getFieldName() {
-        return _fieldName;
-      }
-    }
-    public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
-    static {
-      java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(isGADiscreteInputRunning_args.class, metaDataMap);
-    }
-
-    public isGADiscreteInputRunning_args() {
-    }
-
-    /**
-     * Performs a deep copy on <i>other</i>.
-     */
-    public isGADiscreteInputRunning_args(isGADiscreteInputRunning_args other) {
-    }
-
-    public isGADiscreteInputRunning_args deepCopy() {
-      return new isGADiscreteInputRunning_args(this);
-    }
-
-    @Override
-    public void clear() {
-    }
-
-    public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable Object value) {
-      switch (field) {
-      }
-    }
-
-    @org.apache.thrift.annotation.Nullable
-    public Object getFieldValue(_Fields field) {
-      switch (field) {
-      }
-      throw new IllegalStateException();
-    }
-
-    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
-    public boolean isSet(_Fields field) {
-      if (field == null) {
-        throw new IllegalArgumentException();
-      }
-
-      switch (field) {
-      }
-      throw new IllegalStateException();
-    }
-
-    @Override
-    public boolean equals(Object that) {
-      if (that == null)
-        return false;
-      if (that instanceof isGADiscreteInputRunning_args)
-        return this.equals((isGADiscreteInputRunning_args)that);
-      return false;
-    }
-
-    public boolean equals(isGADiscreteInputRunning_args that) {
-      if (that == null)
-        return false;
-      if (this == that)
-        return true;
-
-      return true;
-    }
-
-    @Override
-    public int hashCode() {
-      int hashCode = 1;
-
-      return hashCode;
-    }
-
-    @Override
-    public int compareTo(isGADiscreteInputRunning_args other) {
-      if (!getClass().equals(other.getClass())) {
-        return getClass().getName().compareTo(other.getClass().getName());
-      }
-
-      int lastComparison = 0;
-
-      return 0;
-    }
-
-    @org.apache.thrift.annotation.Nullable
-    public _Fields fieldForId(int fieldId) {
-      return _Fields.findByThriftId(fieldId);
-    }
-
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      scheme(iprot).read(iprot, this);
-    }
-
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
-      scheme(oprot).write(oprot, this);
-    }
-
-    @Override
-    public String toString() {
-      StringBuilder sb = new StringBuilder("isGADiscreteInputRunning_args(");
-      boolean first = true;
-
-      sb.append(")");
-      return sb.toString();
-    }
-
-    public void validate() throws org.apache.thrift.TException {
-      // check for required fields
-      // check for sub-struct validity
-    }
-
-    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
-      try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
-        throw new java.io.IOException(te);
-      }
-    }
-
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
-      try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
-        throw new java.io.IOException(te);
-      }
-    }
-
-    private static class isGADiscreteInputRunning_argsStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
-      public isGADiscreteInputRunning_argsStandardScheme getScheme() {
-        return new isGADiscreteInputRunning_argsStandardScheme();
-      }
-    }
-
-    private static class isGADiscreteInputRunning_argsStandardScheme extends org.apache.thrift.scheme.StandardScheme<isGADiscreteInputRunning_args> {
-
-      public void read(org.apache.thrift.protocol.TProtocol iprot, isGADiscreteInputRunning_args struct) throws org.apache.thrift.TException {
-        org.apache.thrift.protocol.TField schemeField;
-        iprot.readStructBegin();
-        while (true)
-        {
-          schemeField = iprot.readFieldBegin();
-          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
-            break;
-          }
-          switch (schemeField.id) {
-            default:
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-          }
-          iprot.readFieldEnd();
-        }
-        iprot.readStructEnd();
-
-        // check for required fields of primitive type, which can't be checked in the validate method
-        struct.validate();
-      }
-
-      public void write(org.apache.thrift.protocol.TProtocol oprot, isGADiscreteInputRunning_args struct) throws org.apache.thrift.TException {
-        struct.validate();
-
-        oprot.writeStructBegin(STRUCT_DESC);
-        oprot.writeFieldStop();
-        oprot.writeStructEnd();
-      }
-
-    }
-
-    private static class isGADiscreteInputRunning_argsTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
-      public isGADiscreteInputRunning_argsTupleScheme getScheme() {
-        return new isGADiscreteInputRunning_argsTupleScheme();
-      }
-    }
-
-    private static class isGADiscreteInputRunning_argsTupleScheme extends org.apache.thrift.scheme.TupleScheme<isGADiscreteInputRunning_args> {
-
-      @Override
-      public void write(org.apache.thrift.protocol.TProtocol prot, isGADiscreteInputRunning_args struct) throws org.apache.thrift.TException {
-        org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-      }
-
-      @Override
-      public void read(org.apache.thrift.protocol.TProtocol prot, isGADiscreteInputRunning_args struct) throws org.apache.thrift.TException {
-        org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-      }
-    }
-
-    private static <S extends org.apache.thrift.scheme.IScheme> S scheme(org.apache.thrift.protocol.TProtocol proto) {
-      return (org.apache.thrift.scheme.StandardScheme.class.equals(proto.getScheme()) ? STANDARD_SCHEME_FACTORY : TUPLE_SCHEME_FACTORY).getScheme();
-    }
-  }
-
-  public static class isGADiscreteInputRunning_result implements org.apache.thrift.TBase<isGADiscreteInputRunning_result, isGADiscreteInputRunning_result._Fields>, java.io.Serializable, Cloneable, Comparable<isGADiscreteInputRunning_result>   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("isGADiscreteInputRunning_result");
-
-    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.BOOL, (short)0);
-
-    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new isGADiscreteInputRunning_resultStandardSchemeFactory();
-    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new isGADiscreteInputRunning_resultTupleSchemeFactory();
-
-    public boolean success; // required
-
-    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
-      SUCCESS((short)0, "success");
-
-      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
-
-      static {
-        for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
-          byName.put(field.getFieldName(), field);
-        }
-      }
-
-      /**
-       * Find the _Fields constant that matches fieldId, or null if its not found.
-       */
-      @org.apache.thrift.annotation.Nullable
-      public static _Fields findByThriftId(int fieldId) {
-        switch(fieldId) {
-          case 0: // SUCCESS
-            return SUCCESS;
-          default:
-            return null;
-        }
-      }
-
-      /**
-       * Find the _Fields constant that matches fieldId, throwing an exception
-       * if it is not found.
-       */
-      public static _Fields findByThriftIdOrThrow(int fieldId) {
-        _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
-        return fields;
-      }
-
-      /**
-       * Find the _Fields constant that matches name, or null if its not found.
-       */
-      @org.apache.thrift.annotation.Nullable
-      public static _Fields findByName(String name) {
-        return byName.get(name);
-      }
-
-      private final short _thriftId;
-      private final String _fieldName;
-
-      _Fields(short thriftId, String fieldName) {
-        _thriftId = thriftId;
-        _fieldName = fieldName;
-      }
-
-      public short getThriftFieldId() {
-        return _thriftId;
-      }
-
-      public String getFieldName() {
-        return _fieldName;
-      }
-    }
-
-    // isset id assignments
-    private static final int __SUCCESS_ISSET_ID = 0;
-    private byte __isset_bitfield = 0;
-    public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
-    static {
-      java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.BOOL)));
-      metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(isGADiscreteInputRunning_result.class, metaDataMap);
-    }
-
-    public isGADiscreteInputRunning_result() {
-    }
-
-    public isGADiscreteInputRunning_result(
-      boolean success)
-    {
-      this();
-      this.success = success;
-      setSuccessIsSet(true);
-    }
-
-    /**
-     * Performs a deep copy on <i>other</i>.
-     */
-    public isGADiscreteInputRunning_result(isGADiscreteInputRunning_result other) {
-      __isset_bitfield = other.__isset_bitfield;
-      this.success = other.success;
-    }
-
-    public isGADiscreteInputRunning_result deepCopy() {
-      return new isGADiscreteInputRunning_result(this);
-    }
-
-    @Override
-    public void clear() {
-      setSuccessIsSet(false);
-      this.success = false;
-    }
-
-    public boolean isSuccess() {
-      return this.success;
-    }
-
-    public isGADiscreteInputRunning_result setSuccess(boolean success) {
-      this.success = success;
-      setSuccessIsSet(true);
-      return this;
-    }
-
-    public void unsetSuccess() {
-      __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __SUCCESS_ISSET_ID);
-    }
-
-    /** Returns true if field success is set (has been assigned a value) and false otherwise */
-    public boolean isSetSuccess() {
-      return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __SUCCESS_ISSET_ID);
-    }
-
-    public void setSuccessIsSet(boolean value) {
-      __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __SUCCESS_ISSET_ID, value);
-    }
-
-    public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable Object value) {
-      switch (field) {
-      case SUCCESS:
-        if (value == null) {
-          unsetSuccess();
-        } else {
-          setSuccess((Boolean)value);
-        }
-        break;
-
-      }
-    }
-
-    @org.apache.thrift.annotation.Nullable
-    public Object getFieldValue(_Fields field) {
-      switch (field) {
-      case SUCCESS:
-        return isSuccess();
-
-      }
-      throw new IllegalStateException();
-    }
-
-    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
-    public boolean isSet(_Fields field) {
-      if (field == null) {
-        throw new IllegalArgumentException();
-      }
-
-      switch (field) {
-      case SUCCESS:
-        return isSetSuccess();
-      }
-      throw new IllegalStateException();
-    }
-
-    @Override
-    public boolean equals(Object that) {
-      if (that == null)
-        return false;
-      if (that instanceof isGADiscreteInputRunning_result)
-        return this.equals((isGADiscreteInputRunning_result)that);
-      return false;
-    }
-
-    public boolean equals(isGADiscreteInputRunning_result that) {
-      if (that == null)
-        return false;
-      if (this == that)
-        return true;
-
-      boolean this_present_success = true;
-      boolean that_present_success = true;
-      if (this_present_success || that_present_success) {
-        if (!(this_present_success && that_present_success))
-          return false;
-        if (this.success != that.success)
-          return false;
-      }
-
-      return true;
-    }
-
-    @Override
-    public int hashCode() {
-      int hashCode = 1;
-
-      hashCode = hashCode * 8191 + ((success) ? 131071 : 524287);
-
-      return hashCode;
-    }
-
-    @Override
-    public int compareTo(isGADiscreteInputRunning_result other) {
-      if (!getClass().equals(other.getClass())) {
-        return getClass().getName().compareTo(other.getClass().getName());
-      }
-
-      int lastComparison = 0;
-
-      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
-      if (lastComparison != 0) {
-        return lastComparison;
-      }
-      if (isSetSuccess()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.success, other.success);
-        if (lastComparison != 0) {
-          return lastComparison;
-        }
-      }
-      return 0;
-    }
-
-    @org.apache.thrift.annotation.Nullable
-    public _Fields fieldForId(int fieldId) {
-      return _Fields.findByThriftId(fieldId);
-    }
-
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      scheme(iprot).read(iprot, this);
-    }
-
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
-      scheme(oprot).write(oprot, this);
-      }
-
-    @Override
-    public String toString() {
-      StringBuilder sb = new StringBuilder("isGADiscreteInputRunning_result(");
-      boolean first = true;
-
-      sb.append("success:");
-      sb.append(this.success);
-      first = false;
-      sb.append(")");
-      return sb.toString();
-    }
-
-    public void validate() throws org.apache.thrift.TException {
-      // check for required fields
-      // check for sub-struct validity
-    }
-
-    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
-      try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
-        throw new java.io.IOException(te);
-      }
-    }
-
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
-      try {
-        // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
-        __isset_bitfield = 0;
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
-        throw new java.io.IOException(te);
-      }
-    }
-
-    private static class isGADiscreteInputRunning_resultStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
-      public isGADiscreteInputRunning_resultStandardScheme getScheme() {
-        return new isGADiscreteInputRunning_resultStandardScheme();
-      }
-    }
-
-    private static class isGADiscreteInputRunning_resultStandardScheme extends org.apache.thrift.scheme.StandardScheme<isGADiscreteInputRunning_result> {
-
-      public void read(org.apache.thrift.protocol.TProtocol iprot, isGADiscreteInputRunning_result struct) throws org.apache.thrift.TException {
-        org.apache.thrift.protocol.TField schemeField;
-        iprot.readStructBegin();
-        while (true)
-        {
-          schemeField = iprot.readFieldBegin();
-          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
-            break;
-          }
-          switch (schemeField.id) {
-            case 0: // SUCCESS
-              if (schemeField.type == org.apache.thrift.protocol.TType.BOOL) {
-                struct.success = iprot.readBool();
-                struct.setSuccessIsSet(true);
-              } else { 
-                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-              }
-              break;
-            default:
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-          }
-          iprot.readFieldEnd();
-        }
-        iprot.readStructEnd();
-
-        // check for required fields of primitive type, which can't be checked in the validate method
-        struct.validate();
-      }
-
-      public void write(org.apache.thrift.protocol.TProtocol oprot, isGADiscreteInputRunning_result struct) throws org.apache.thrift.TException {
-        struct.validate();
-
-        oprot.writeStructBegin(STRUCT_DESC);
-        if (struct.isSetSuccess()) {
-          oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
-          oprot.writeBool(struct.success);
-          oprot.writeFieldEnd();
-        }
-        oprot.writeFieldStop();
-        oprot.writeStructEnd();
-      }
-
-    }
-
-    private static class isGADiscreteInputRunning_resultTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
-      public isGADiscreteInputRunning_resultTupleScheme getScheme() {
-        return new isGADiscreteInputRunning_resultTupleScheme();
-      }
-    }
-
-    private static class isGADiscreteInputRunning_resultTupleScheme extends org.apache.thrift.scheme.TupleScheme<isGADiscreteInputRunning_result> {
-
-      @Override
-      public void write(org.apache.thrift.protocol.TProtocol prot, isGADiscreteInputRunning_result struct) throws org.apache.thrift.TException {
-        org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-        java.util.BitSet optionals = new java.util.BitSet();
-        if (struct.isSetSuccess()) {
-          optionals.set(0);
-        }
-        oprot.writeBitSet(optionals, 1);
-        if (struct.isSetSuccess()) {
-          oprot.writeBool(struct.success);
-        }
-      }
-
-      @Override
-      public void read(org.apache.thrift.protocol.TProtocol prot, isGADiscreteInputRunning_result struct) throws org.apache.thrift.TException {
-        org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-        java.util.BitSet incoming = iprot.readBitSet(1);
-        if (incoming.get(0)) {
-          struct.success = iprot.readBool();
-          struct.setSuccessIsSet(true);
-        }
-      }
-    }
-
-    private static <S extends org.apache.thrift.scheme.IScheme> S scheme(org.apache.thrift.protocol.TProtocol proto) {
-      return (org.apache.thrift.scheme.StandardScheme.class.equals(proto.getScheme()) ? STANDARD_SCHEME_FACTORY : TUPLE_SCHEME_FACTORY).getScheme();
-    }
-  }
-
-  public static class startGADiscreteInput_args implements org.apache.thrift.TBase<startGADiscreteInput_args, startGADiscreteInput_args._Fields>, java.io.Serializable, Cloneable, Comparable<startGADiscreteInput_args>   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("startGADiscreteInput_args");
-
-    private static final org.apache.thrift.protocol.TField PROBLEM_FIELD_DESC = new org.apache.thrift.protocol.TField("problem", org.apache.thrift.protocol.TType.STRING, (short)1);
-    private static final org.apache.thrift.protocol.TField DATASET_FIELD_DESC = new org.apache.thrift.protocol.TField("dataset", org.apache.thrift.protocol.TType.LIST, (short)2);
-    private static final org.apache.thrift.protocol.TField USERNAME_FIELD_DESC = new org.apache.thrift.protocol.TField("username", org.apache.thrift.protocol.TType.STRING, (short)3);
-
-    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new startGADiscreteInput_argsStandardSchemeFactory();
-    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new startGADiscreteInput_argsTupleSchemeFactory();
-
-    public @org.apache.thrift.annotation.Nullable String problem; // required
-    public @org.apache.thrift.annotation.Nullable java.util.List<DiscreteInputArchitecture> dataset; // required
-    public @org.apache.thrift.annotation.Nullable String username; // required
-
-    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
-      PROBLEM((short)1, "problem"),
-      DATASET((short)2, "dataset"),
-      USERNAME((short)3, "username");
-
-      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
-
-      static {
-        for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
-          byName.put(field.getFieldName(), field);
-        }
-      }
-
-      /**
-       * Find the _Fields constant that matches fieldId, or null if its not found.
-       */
-      @org.apache.thrift.annotation.Nullable
-      public static _Fields findByThriftId(int fieldId) {
-        switch(fieldId) {
-          case 1: // PROBLEM
-            return PROBLEM;
-          case 2: // DATASET
-            return DATASET;
-          case 3: // USERNAME
-            return USERNAME;
-          default:
-            return null;
-        }
-      }
-
-      /**
-       * Find the _Fields constant that matches fieldId, throwing an exception
-       * if it is not found.
-       */
-      public static _Fields findByThriftIdOrThrow(int fieldId) {
-        _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
-        return fields;
-      }
-
-      /**
-       * Find the _Fields constant that matches name, or null if its not found.
-       */
-      @org.apache.thrift.annotation.Nullable
-      public static _Fields findByName(String name) {
-        return byName.get(name);
-      }
-
-      private final short _thriftId;
-      private final String _fieldName;
-
-      _Fields(short thriftId, String fieldName) {
-        _thriftId = thriftId;
-        _fieldName = fieldName;
-      }
-
-      public short getThriftFieldId() {
-        return _thriftId;
-      }
-
-      public String getFieldName() {
-        return _fieldName;
-      }
-    }
-
-    // isset id assignments
-    public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
-    static {
-      java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.PROBLEM, new org.apache.thrift.meta_data.FieldMetaData("problem", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-      tmpMap.put(_Fields.DATASET, new org.apache.thrift.meta_data.FieldMetaData("dataset", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
-              new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, DiscreteInputArchitecture.class))));
-      tmpMap.put(_Fields.USERNAME, new org.apache.thrift.meta_data.FieldMetaData("username", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-      metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(startGADiscreteInput_args.class, metaDataMap);
-    }
-
-    public startGADiscreteInput_args() {
-    }
-
-    public startGADiscreteInput_args(
-      String problem,
-      java.util.List<DiscreteInputArchitecture> dataset,
-      String username)
-    {
-      this();
-      this.problem = problem;
-      this.dataset = dataset;
-      this.username = username;
-    }
-
-    /**
-     * Performs a deep copy on <i>other</i>.
-     */
-    public startGADiscreteInput_args(startGADiscreteInput_args other) {
-      if (other.isSetProblem()) {
-        this.problem = other.problem;
-      }
-      if (other.isSetDataset()) {
-        java.util.List<DiscreteInputArchitecture> __this__dataset = new java.util.ArrayList<DiscreteInputArchitecture>(other.dataset.size());
-        for (DiscreteInputArchitecture other_element : other.dataset) {
-          __this__dataset.add(new DiscreteInputArchitecture(other_element));
-        }
-        this.dataset = __this__dataset;
-      }
-      if (other.isSetUsername()) {
-        this.username = other.username;
-      }
-    }
-
-    public startGADiscreteInput_args deepCopy() {
-      return new startGADiscreteInput_args(this);
-    }
-
-    @Override
-    public void clear() {
-      this.problem = null;
-      this.dataset = null;
-      this.username = null;
-    }
-
-    @org.apache.thrift.annotation.Nullable
-    public String getProblem() {
-      return this.problem;
-    }
-
-    public startGADiscreteInput_args setProblem(@org.apache.thrift.annotation.Nullable String problem) {
-      this.problem = problem;
-      return this;
-    }
-
-    public void unsetProblem() {
-      this.problem = null;
-    }
-
-    /** Returns true if field problem is set (has been assigned a value) and false otherwise */
-    public boolean isSetProblem() {
-      return this.problem != null;
-    }
-
-    public void setProblemIsSet(boolean value) {
-      if (!value) {
-        this.problem = null;
-      }
-    }
-
-    public int getDatasetSize() {
-      return (this.dataset == null) ? 0 : this.dataset.size();
-    }
-
-    @org.apache.thrift.annotation.Nullable
-    public java.util.Iterator<DiscreteInputArchitecture> getDatasetIterator() {
-      return (this.dataset == null) ? null : this.dataset.iterator();
-    }
-
-    public void addToDataset(DiscreteInputArchitecture elem) {
-      if (this.dataset == null) {
-        this.dataset = new java.util.ArrayList<DiscreteInputArchitecture>();
-      }
-      this.dataset.add(elem);
-    }
-
-    @org.apache.thrift.annotation.Nullable
-    public java.util.List<DiscreteInputArchitecture> getDataset() {
-      return this.dataset;
-    }
-
-    public startGADiscreteInput_args setDataset(@org.apache.thrift.annotation.Nullable java.util.List<DiscreteInputArchitecture> dataset) {
-      this.dataset = dataset;
-      return this;
-    }
-
-    public void unsetDataset() {
-      this.dataset = null;
-    }
-
-    /** Returns true if field dataset is set (has been assigned a value) and false otherwise */
-    public boolean isSetDataset() {
-      return this.dataset != null;
-    }
-
-    public void setDatasetIsSet(boolean value) {
-      if (!value) {
-        this.dataset = null;
-      }
-    }
-
-    @org.apache.thrift.annotation.Nullable
-    public String getUsername() {
-      return this.username;
-    }
-
-    public startGADiscreteInput_args setUsername(@org.apache.thrift.annotation.Nullable String username) {
-      this.username = username;
-      return this;
-    }
-
-    public void unsetUsername() {
-      this.username = null;
-    }
-
-    /** Returns true if field username is set (has been assigned a value) and false otherwise */
-    public boolean isSetUsername() {
-      return this.username != null;
-    }
-
-    public void setUsernameIsSet(boolean value) {
-      if (!value) {
-        this.username = null;
-      }
-    }
-
-    public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable Object value) {
-      switch (field) {
-      case PROBLEM:
-        if (value == null) {
-          unsetProblem();
-        } else {
-          setProblem((String)value);
-        }
-        break;
-
-      case DATASET:
-        if (value == null) {
-          unsetDataset();
-        } else {
-          setDataset((java.util.List<DiscreteInputArchitecture>)value);
-        }
-        break;
-
-      case USERNAME:
-        if (value == null) {
-          unsetUsername();
-        } else {
-          setUsername((String)value);
-        }
-        break;
-
-      }
-    }
-
-    @org.apache.thrift.annotation.Nullable
-    public Object getFieldValue(_Fields field) {
-      switch (field) {
-      case PROBLEM:
-        return getProblem();
-
-      case DATASET:
-        return getDataset();
-
-      case USERNAME:
-        return getUsername();
-
-      }
-      throw new IllegalStateException();
-    }
-
-    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
-    public boolean isSet(_Fields field) {
-      if (field == null) {
-        throw new IllegalArgumentException();
-      }
-
-      switch (field) {
-      case PROBLEM:
-        return isSetProblem();
-      case DATASET:
-        return isSetDataset();
-      case USERNAME:
-        return isSetUsername();
-      }
-      throw new IllegalStateException();
-    }
-
-    @Override
-    public boolean equals(Object that) {
-      if (that == null)
-        return false;
-      if (that instanceof startGADiscreteInput_args)
-        return this.equals((startGADiscreteInput_args)that);
-      return false;
-    }
-
-    public boolean equals(startGADiscreteInput_args that) {
-      if (that == null)
-        return false;
-      if (this == that)
-        return true;
-
-      boolean this_present_problem = true && this.isSetProblem();
-      boolean that_present_problem = true && that.isSetProblem();
-      if (this_present_problem || that_present_problem) {
-        if (!(this_present_problem && that_present_problem))
-          return false;
-        if (!this.problem.equals(that.problem))
-          return false;
-      }
-
-      boolean this_present_dataset = true && this.isSetDataset();
-      boolean that_present_dataset = true && that.isSetDataset();
-      if (this_present_dataset || that_present_dataset) {
-        if (!(this_present_dataset && that_present_dataset))
-          return false;
-        if (!this.dataset.equals(that.dataset))
-          return false;
-      }
-
-      boolean this_present_username = true && this.isSetUsername();
-      boolean that_present_username = true && that.isSetUsername();
-      if (this_present_username || that_present_username) {
-        if (!(this_present_username && that_present_username))
-          return false;
-        if (!this.username.equals(that.username))
-          return false;
-      }
-
-      return true;
-    }
-
-    @Override
-    public int hashCode() {
-      int hashCode = 1;
-
-      hashCode = hashCode * 8191 + ((isSetProblem()) ? 131071 : 524287);
-      if (isSetProblem())
-        hashCode = hashCode * 8191 + problem.hashCode();
-
-      hashCode = hashCode * 8191 + ((isSetDataset()) ? 131071 : 524287);
-      if (isSetDataset())
-        hashCode = hashCode * 8191 + dataset.hashCode();
-
-      hashCode = hashCode * 8191 + ((isSetUsername()) ? 131071 : 524287);
-      if (isSetUsername())
-        hashCode = hashCode * 8191 + username.hashCode();
-
-      return hashCode;
-    }
-
-    @Override
-    public int compareTo(startGADiscreteInput_args other) {
-      if (!getClass().equals(other.getClass())) {
-        return getClass().getName().compareTo(other.getClass().getName());
-      }
-
-      int lastComparison = 0;
-
-      lastComparison = Boolean.valueOf(isSetProblem()).compareTo(other.isSetProblem());
-      if (lastComparison != 0) {
-        return lastComparison;
-      }
-      if (isSetProblem()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.problem, other.problem);
-        if (lastComparison != 0) {
-          return lastComparison;
-        }
-      }
-      lastComparison = Boolean.valueOf(isSetDataset()).compareTo(other.isSetDataset());
-      if (lastComparison != 0) {
-        return lastComparison;
-      }
-      if (isSetDataset()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.dataset, other.dataset);
-        if (lastComparison != 0) {
-          return lastComparison;
-        }
-      }
-      lastComparison = Boolean.valueOf(isSetUsername()).compareTo(other.isSetUsername());
-      if (lastComparison != 0) {
-        return lastComparison;
-      }
-      if (isSetUsername()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.username, other.username);
-        if (lastComparison != 0) {
-          return lastComparison;
-        }
-      }
-      return 0;
-    }
-
-    @org.apache.thrift.annotation.Nullable
-    public _Fields fieldForId(int fieldId) {
-      return _Fields.findByThriftId(fieldId);
-    }
-
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      scheme(iprot).read(iprot, this);
-    }
-
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
-      scheme(oprot).write(oprot, this);
-    }
-
-    @Override
-    public String toString() {
-      StringBuilder sb = new StringBuilder("startGADiscreteInput_args(");
-      boolean first = true;
-
-      sb.append("problem:");
-      if (this.problem == null) {
-        sb.append("null");
-      } else {
-        sb.append(this.problem);
-      }
-      first = false;
-      if (!first) sb.append(", ");
-      sb.append("dataset:");
-      if (this.dataset == null) {
-        sb.append("null");
-      } else {
-        sb.append(this.dataset);
-      }
-      first = false;
-      if (!first) sb.append(", ");
-      sb.append("username:");
-      if (this.username == null) {
-        sb.append("null");
-      } else {
-        sb.append(this.username);
-      }
-      first = false;
-      sb.append(")");
-      return sb.toString();
-    }
-
-    public void validate() throws org.apache.thrift.TException {
-      // check for required fields
-      // check for sub-struct validity
-    }
-
-    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
-      try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
-        throw new java.io.IOException(te);
-      }
-    }
-
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
-      try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
-        throw new java.io.IOException(te);
-      }
-    }
-
-    private static class startGADiscreteInput_argsStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
-      public startGADiscreteInput_argsStandardScheme getScheme() {
-        return new startGADiscreteInput_argsStandardScheme();
-      }
-    }
-
-    private static class startGADiscreteInput_argsStandardScheme extends org.apache.thrift.scheme.StandardScheme<startGADiscreteInput_args> {
-
-      public void read(org.apache.thrift.protocol.TProtocol iprot, startGADiscreteInput_args struct) throws org.apache.thrift.TException {
-        org.apache.thrift.protocol.TField schemeField;
-        iprot.readStructBegin();
-        while (true)
-        {
-          schemeField = iprot.readFieldBegin();
-          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
-            break;
-          }
-          switch (schemeField.id) {
-            case 1: // PROBLEM
-              if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
-                struct.problem = iprot.readString();
-                struct.setProblemIsSet(true);
-              } else { 
-                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-              }
-              break;
-            case 2: // DATASET
-              if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
-                {
-                  org.apache.thrift.protocol.TList _list278 = iprot.readListBegin();
-                  struct.dataset = new java.util.ArrayList<DiscreteInputArchitecture>(_list278.size);
-                  @org.apache.thrift.annotation.Nullable DiscreteInputArchitecture _elem279;
-                  for (int _i280 = 0; _i280 < _list278.size; ++_i280)
-                  {
-                    _elem279 = new DiscreteInputArchitecture();
-                    _elem279.read(iprot);
-                    struct.dataset.add(_elem279);
-                  }
-                  iprot.readListEnd();
-                }
-                struct.setDatasetIsSet(true);
-              } else { 
-                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-              }
-              break;
-            case 3: // USERNAME
-              if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
-                struct.username = iprot.readString();
-                struct.setUsernameIsSet(true);
-              } else { 
-                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-              }
-              break;
-            default:
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-          }
-          iprot.readFieldEnd();
-        }
-        iprot.readStructEnd();
-
-        // check for required fields of primitive type, which can't be checked in the validate method
-        struct.validate();
-      }
-
-      public void write(org.apache.thrift.protocol.TProtocol oprot, startGADiscreteInput_args struct) throws org.apache.thrift.TException {
-        struct.validate();
-
-        oprot.writeStructBegin(STRUCT_DESC);
-        if (struct.problem != null) {
-          oprot.writeFieldBegin(PROBLEM_FIELD_DESC);
-          oprot.writeString(struct.problem);
-          oprot.writeFieldEnd();
-        }
-        if (struct.dataset != null) {
-          oprot.writeFieldBegin(DATASET_FIELD_DESC);
-          {
-            oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.dataset.size()));
-            for (DiscreteInputArchitecture _iter281 : struct.dataset)
-            {
-              _iter281.write(oprot);
-            }
-            oprot.writeListEnd();
-          }
-          oprot.writeFieldEnd();
-        }
-        if (struct.username != null) {
-          oprot.writeFieldBegin(USERNAME_FIELD_DESC);
-          oprot.writeString(struct.username);
-          oprot.writeFieldEnd();
-        }
-        oprot.writeFieldStop();
-        oprot.writeStructEnd();
-      }
-
-    }
-
-    private static class startGADiscreteInput_argsTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
-      public startGADiscreteInput_argsTupleScheme getScheme() {
-        return new startGADiscreteInput_argsTupleScheme();
-      }
-    }
-
-    private static class startGADiscreteInput_argsTupleScheme extends org.apache.thrift.scheme.TupleScheme<startGADiscreteInput_args> {
-
-      @Override
-      public void write(org.apache.thrift.protocol.TProtocol prot, startGADiscreteInput_args struct) throws org.apache.thrift.TException {
-        org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-        java.util.BitSet optionals = new java.util.BitSet();
-        if (struct.isSetProblem()) {
-          optionals.set(0);
-        }
-        if (struct.isSetDataset()) {
-          optionals.set(1);
-        }
-        if (struct.isSetUsername()) {
-          optionals.set(2);
-        }
-        oprot.writeBitSet(optionals, 3);
-        if (struct.isSetProblem()) {
-          oprot.writeString(struct.problem);
-        }
-        if (struct.isSetDataset()) {
-          {
-            oprot.writeI32(struct.dataset.size());
-            for (DiscreteInputArchitecture _iter282 : struct.dataset)
-            {
-              _iter282.write(oprot);
-            }
-          }
-        }
-        if (struct.isSetUsername()) {
-          oprot.writeString(struct.username);
-        }
-      }
-
-      @Override
-      public void read(org.apache.thrift.protocol.TProtocol prot, startGADiscreteInput_args struct) throws org.apache.thrift.TException {
-        org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-        java.util.BitSet incoming = iprot.readBitSet(3);
-        if (incoming.get(0)) {
-          struct.problem = iprot.readString();
-          struct.setProblemIsSet(true);
-        }
-        if (incoming.get(1)) {
-          {
-            org.apache.thrift.protocol.TList _list283 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
-            struct.dataset = new java.util.ArrayList<DiscreteInputArchitecture>(_list283.size);
-            @org.apache.thrift.annotation.Nullable DiscreteInputArchitecture _elem284;
-            for (int _i285 = 0; _i285 < _list283.size; ++_i285)
-            {
-              _elem284 = new DiscreteInputArchitecture();
-              _elem284.read(iprot);
-              struct.dataset.add(_elem284);
-            }
-          }
-          struct.setDatasetIsSet(true);
-        }
-        if (incoming.get(2)) {
-          struct.username = iprot.readString();
-          struct.setUsernameIsSet(true);
-        }
-      }
-    }
-
-    private static <S extends org.apache.thrift.scheme.IScheme> S scheme(org.apache.thrift.protocol.TProtocol proto) {
-      return (org.apache.thrift.scheme.StandardScheme.class.equals(proto.getScheme()) ? STANDARD_SCHEME_FACTORY : TUPLE_SCHEME_FACTORY).getScheme();
-    }
-  }
-
-  public static class startGADiscreteInput_result implements org.apache.thrift.TBase<startGADiscreteInput_result, startGADiscreteInput_result._Fields>, java.io.Serializable, Cloneable, Comparable<startGADiscreteInput_result>   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("startGADiscreteInput_result");
-
-    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.I32, (short)0);
-
-    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new startGADiscreteInput_resultStandardSchemeFactory();
-    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new startGADiscreteInput_resultTupleSchemeFactory();
-
-    public int success; // required
-
-    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
-      SUCCESS((short)0, "success");
-
-      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
-
-      static {
-        for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
-          byName.put(field.getFieldName(), field);
-        }
-      }
-
-      /**
-       * Find the _Fields constant that matches fieldId, or null if its not found.
-       */
-      @org.apache.thrift.annotation.Nullable
-      public static _Fields findByThriftId(int fieldId) {
-        switch(fieldId) {
-          case 0: // SUCCESS
-            return SUCCESS;
-          default:
-            return null;
-        }
-      }
-
-      /**
-       * Find the _Fields constant that matches fieldId, throwing an exception
-       * if it is not found.
-       */
-      public static _Fields findByThriftIdOrThrow(int fieldId) {
-        _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
-        return fields;
-      }
-
-      /**
-       * Find the _Fields constant that matches name, or null if its not found.
-       */
-      @org.apache.thrift.annotation.Nullable
-      public static _Fields findByName(String name) {
-        return byName.get(name);
-      }
-
-      private final short _thriftId;
-      private final String _fieldName;
-
-      _Fields(short thriftId, String fieldName) {
-        _thriftId = thriftId;
-        _fieldName = fieldName;
-      }
-
-      public short getThriftFieldId() {
-        return _thriftId;
-      }
-
-      public String getFieldName() {
-        return _fieldName;
-      }
-    }
-
-    // isset id assignments
-    private static final int __SUCCESS_ISSET_ID = 0;
-    private byte __isset_bitfield = 0;
-    public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
-    static {
-      java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32          , "int")));
-      metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(startGADiscreteInput_result.class, metaDataMap);
-    }
-
-    public startGADiscreteInput_result() {
-    }
-
-    public startGADiscreteInput_result(
-      int success)
-    {
-      this();
-      this.success = success;
-      setSuccessIsSet(true);
-    }
-
-    /**
-     * Performs a deep copy on <i>other</i>.
-     */
-    public startGADiscreteInput_result(startGADiscreteInput_result other) {
-      __isset_bitfield = other.__isset_bitfield;
-      this.success = other.success;
-    }
-
-    public startGADiscreteInput_result deepCopy() {
-      return new startGADiscreteInput_result(this);
-    }
-
-    @Override
-    public void clear() {
-      setSuccessIsSet(false);
-      this.success = 0;
-    }
-
-    public int getSuccess() {
-      return this.success;
-    }
-
-    public startGADiscreteInput_result setSuccess(int success) {
-      this.success = success;
-      setSuccessIsSet(true);
-      return this;
-    }
-
-    public void unsetSuccess() {
-      __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __SUCCESS_ISSET_ID);
-    }
-
-    /** Returns true if field success is set (has been assigned a value) and false otherwise */
-    public boolean isSetSuccess() {
-      return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __SUCCESS_ISSET_ID);
-    }
-
-    public void setSuccessIsSet(boolean value) {
-      __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __SUCCESS_ISSET_ID, value);
-    }
-
-    public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable Object value) {
-      switch (field) {
-      case SUCCESS:
-        if (value == null) {
-          unsetSuccess();
-        } else {
-          setSuccess((Integer)value);
-        }
-        break;
-
-      }
-    }
-
-    @org.apache.thrift.annotation.Nullable
-    public Object getFieldValue(_Fields field) {
-      switch (field) {
-      case SUCCESS:
-        return getSuccess();
-
-      }
-      throw new IllegalStateException();
-    }
-
-    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
-    public boolean isSet(_Fields field) {
-      if (field == null) {
-        throw new IllegalArgumentException();
-      }
-
-      switch (field) {
-      case SUCCESS:
-        return isSetSuccess();
-      }
-      throw new IllegalStateException();
-    }
-
-    @Override
-    public boolean equals(Object that) {
-      if (that == null)
-        return false;
-      if (that instanceof startGADiscreteInput_result)
-        return this.equals((startGADiscreteInput_result)that);
-      return false;
-    }
-
-    public boolean equals(startGADiscreteInput_result that) {
-      if (that == null)
-        return false;
-      if (this == that)
-        return true;
-
-      boolean this_present_success = true;
-      boolean that_present_success = true;
-      if (this_present_success || that_present_success) {
-        if (!(this_present_success && that_present_success))
-          return false;
-        if (this.success != that.success)
-          return false;
-      }
-
-      return true;
-    }
-
-    @Override
-    public int hashCode() {
-      int hashCode = 1;
-
-      hashCode = hashCode * 8191 + success;
-
-      return hashCode;
-    }
-
-    @Override
-    public int compareTo(startGADiscreteInput_result other) {
-      if (!getClass().equals(other.getClass())) {
-        return getClass().getName().compareTo(other.getClass().getName());
-      }
-
-      int lastComparison = 0;
-
-      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
-      if (lastComparison != 0) {
-        return lastComparison;
-      }
-      if (isSetSuccess()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.success, other.success);
-        if (lastComparison != 0) {
-          return lastComparison;
-        }
-      }
-      return 0;
-    }
-
-    @org.apache.thrift.annotation.Nullable
-    public _Fields fieldForId(int fieldId) {
-      return _Fields.findByThriftId(fieldId);
-    }
-
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      scheme(iprot).read(iprot, this);
-    }
-
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
-      scheme(oprot).write(oprot, this);
-      }
-
-    @Override
-    public String toString() {
-      StringBuilder sb = new StringBuilder("startGADiscreteInput_result(");
-      boolean first = true;
-
-      sb.append("success:");
-      sb.append(this.success);
-      first = false;
-      sb.append(")");
-      return sb.toString();
-    }
-
-    public void validate() throws org.apache.thrift.TException {
-      // check for required fields
-      // check for sub-struct validity
-    }
-
-    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
-      try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
-        throw new java.io.IOException(te);
-      }
-    }
-
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
-      try {
-        // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
-        __isset_bitfield = 0;
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
-        throw new java.io.IOException(te);
-      }
-    }
-
-    private static class startGADiscreteInput_resultStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
-      public startGADiscreteInput_resultStandardScheme getScheme() {
-        return new startGADiscreteInput_resultStandardScheme();
-      }
-    }
-
-    private static class startGADiscreteInput_resultStandardScheme extends org.apache.thrift.scheme.StandardScheme<startGADiscreteInput_result> {
-
-      public void read(org.apache.thrift.protocol.TProtocol iprot, startGADiscreteInput_result struct) throws org.apache.thrift.TException {
-        org.apache.thrift.protocol.TField schemeField;
-        iprot.readStructBegin();
-        while (true)
-        {
-          schemeField = iprot.readFieldBegin();
-          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
-            break;
-          }
-          switch (schemeField.id) {
-            case 0: // SUCCESS
-              if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
-                struct.success = iprot.readI32();
-                struct.setSuccessIsSet(true);
-              } else { 
-                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-              }
-              break;
-            default:
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-          }
-          iprot.readFieldEnd();
-        }
-        iprot.readStructEnd();
-
-        // check for required fields of primitive type, which can't be checked in the validate method
-        struct.validate();
-      }
-
-      public void write(org.apache.thrift.protocol.TProtocol oprot, startGADiscreteInput_result struct) throws org.apache.thrift.TException {
-        struct.validate();
-
-        oprot.writeStructBegin(STRUCT_DESC);
-        if (struct.isSetSuccess()) {
-          oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
-          oprot.writeI32(struct.success);
-          oprot.writeFieldEnd();
-        }
-        oprot.writeFieldStop();
-        oprot.writeStructEnd();
-      }
-
-    }
-
-    private static class startGADiscreteInput_resultTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
-      public startGADiscreteInput_resultTupleScheme getScheme() {
-        return new startGADiscreteInput_resultTupleScheme();
-      }
-    }
-
-    private static class startGADiscreteInput_resultTupleScheme extends org.apache.thrift.scheme.TupleScheme<startGADiscreteInput_result> {
-
-      @Override
-      public void write(org.apache.thrift.protocol.TProtocol prot, startGADiscreteInput_result struct) throws org.apache.thrift.TException {
-        org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-        java.util.BitSet optionals = new java.util.BitSet();
-        if (struct.isSetSuccess()) {
-          optionals.set(0);
-        }
-        oprot.writeBitSet(optionals, 1);
-        if (struct.isSetSuccess()) {
-          oprot.writeI32(struct.success);
-        }
-      }
-
-      @Override
-      public void read(org.apache.thrift.protocol.TProtocol prot, startGADiscreteInput_result struct) throws org.apache.thrift.TException {
-        org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-        java.util.BitSet incoming = iprot.readBitSet(1);
-        if (incoming.get(0)) {
-          struct.success = iprot.readI32();
-          struct.setSuccessIsSet(true);
-        }
-      }
-    }
-
-    private static <S extends org.apache.thrift.scheme.IScheme> S scheme(org.apache.thrift.protocol.TProtocol proto) {
-      return (org.apache.thrift.scheme.StandardScheme.class.equals(proto.getScheme()) ? STANDARD_SCHEME_FACTORY : TUPLE_SCHEME_FACTORY).getScheme();
-    }
-  }
-
-  public static class stopGADiscreteInput_args implements org.apache.thrift.TBase<stopGADiscreteInput_args, stopGADiscreteInput_args._Fields>, java.io.Serializable, Cloneable, Comparable<stopGADiscreteInput_args>   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("stopGADiscreteInput_args");
-
-    private static final org.apache.thrift.protocol.TField USERNAME_FIELD_DESC = new org.apache.thrift.protocol.TField("username", org.apache.thrift.protocol.TType.STRING, (short)1);
-
-    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new stopGADiscreteInput_argsStandardSchemeFactory();
-    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new stopGADiscreteInput_argsTupleSchemeFactory();
-
-    public @org.apache.thrift.annotation.Nullable String username; // required
-
-    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
-      USERNAME((short)1, "username");
-
-      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
-
-      static {
-        for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
-          byName.put(field.getFieldName(), field);
-        }
-      }
-
-      /**
-       * Find the _Fields constant that matches fieldId, or null if its not found.
-       */
-      @org.apache.thrift.annotation.Nullable
-      public static _Fields findByThriftId(int fieldId) {
-        switch(fieldId) {
-          case 1: // USERNAME
-            return USERNAME;
-          default:
-            return null;
-        }
-      }
-
-      /**
-       * Find the _Fields constant that matches fieldId, throwing an exception
-       * if it is not found.
-       */
-      public static _Fields findByThriftIdOrThrow(int fieldId) {
-        _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
-        return fields;
-      }
-
-      /**
-       * Find the _Fields constant that matches name, or null if its not found.
-       */
-      @org.apache.thrift.annotation.Nullable
-      public static _Fields findByName(String name) {
-        return byName.get(name);
-      }
-
-      private final short _thriftId;
-      private final String _fieldName;
-
-      _Fields(short thriftId, String fieldName) {
-        _thriftId = thriftId;
-        _fieldName = fieldName;
-      }
-
-      public short getThriftFieldId() {
-        return _thriftId;
-      }
-
-      public String getFieldName() {
-        return _fieldName;
-      }
-    }
-
-    // isset id assignments
-    public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
-    static {
-      java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.USERNAME, new org.apache.thrift.meta_data.FieldMetaData("username", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-      metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(stopGADiscreteInput_args.class, metaDataMap);
-    }
-
-    public stopGADiscreteInput_args() {
-    }
-
-    public stopGADiscreteInput_args(
-      String username)
-    {
-      this();
-      this.username = username;
-    }
-
-    /**
-     * Performs a deep copy on <i>other</i>.
-     */
-    public stopGADiscreteInput_args(stopGADiscreteInput_args other) {
-      if (other.isSetUsername()) {
-        this.username = other.username;
-      }
-    }
-
-    public stopGADiscreteInput_args deepCopy() {
-      return new stopGADiscreteInput_args(this);
-    }
-
-    @Override
-    public void clear() {
-      this.username = null;
-    }
-
-    @org.apache.thrift.annotation.Nullable
-    public String getUsername() {
-      return this.username;
-    }
-
-    public stopGADiscreteInput_args setUsername(@org.apache.thrift.annotation.Nullable String username) {
-      this.username = username;
-      return this;
-    }
-
-    public void unsetUsername() {
-      this.username = null;
-    }
-
-    /** Returns true if field username is set (has been assigned a value) and false otherwise */
-    public boolean isSetUsername() {
-      return this.username != null;
-    }
-
-    public void setUsernameIsSet(boolean value) {
-      if (!value) {
-        this.username = null;
-      }
-    }
-
-    public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable Object value) {
-      switch (field) {
-      case USERNAME:
-        if (value == null) {
-          unsetUsername();
-        } else {
-          setUsername((String)value);
-        }
-        break;
-
-      }
-    }
-
-    @org.apache.thrift.annotation.Nullable
-    public Object getFieldValue(_Fields field) {
-      switch (field) {
-      case USERNAME:
-        return getUsername();
-
-      }
-      throw new IllegalStateException();
-    }
-
-    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
-    public boolean isSet(_Fields field) {
-      if (field == null) {
-        throw new IllegalArgumentException();
-      }
-
-      switch (field) {
-      case USERNAME:
-        return isSetUsername();
-      }
-      throw new IllegalStateException();
-    }
-
-    @Override
-    public boolean equals(Object that) {
-      if (that == null)
-        return false;
-      if (that instanceof stopGADiscreteInput_args)
-        return this.equals((stopGADiscreteInput_args)that);
-      return false;
-    }
-
-    public boolean equals(stopGADiscreteInput_args that) {
-      if (that == null)
-        return false;
-      if (this == that)
-        return true;
-
-      boolean this_present_username = true && this.isSetUsername();
-      boolean that_present_username = true && that.isSetUsername();
-      if (this_present_username || that_present_username) {
-        if (!(this_present_username && that_present_username))
-          return false;
-        if (!this.username.equals(that.username))
-          return false;
-      }
-
-      return true;
-    }
-
-    @Override
-    public int hashCode() {
-      int hashCode = 1;
-
-      hashCode = hashCode * 8191 + ((isSetUsername()) ? 131071 : 524287);
-      if (isSetUsername())
-        hashCode = hashCode * 8191 + username.hashCode();
-
-      return hashCode;
-    }
-
-    @Override
-    public int compareTo(stopGADiscreteInput_args other) {
-      if (!getClass().equals(other.getClass())) {
-        return getClass().getName().compareTo(other.getClass().getName());
-      }
-
-      int lastComparison = 0;
-
-      lastComparison = Boolean.valueOf(isSetUsername()).compareTo(other.isSetUsername());
-      if (lastComparison != 0) {
-        return lastComparison;
-      }
-      if (isSetUsername()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.username, other.username);
-        if (lastComparison != 0) {
-          return lastComparison;
-        }
-      }
-      return 0;
-    }
-
-    @org.apache.thrift.annotation.Nullable
-    public _Fields fieldForId(int fieldId) {
-      return _Fields.findByThriftId(fieldId);
-    }
-
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      scheme(iprot).read(iprot, this);
-    }
-
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
-      scheme(oprot).write(oprot, this);
-    }
-
-    @Override
-    public String toString() {
-      StringBuilder sb = new StringBuilder("stopGADiscreteInput_args(");
-      boolean first = true;
-
-      sb.append("username:");
-      if (this.username == null) {
-        sb.append("null");
-      } else {
-        sb.append(this.username);
-      }
-      first = false;
-      sb.append(")");
-      return sb.toString();
-    }
-
-    public void validate() throws org.apache.thrift.TException {
-      // check for required fields
-      // check for sub-struct validity
-    }
-
-    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
-      try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
-        throw new java.io.IOException(te);
-      }
-    }
-
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
-      try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
-        throw new java.io.IOException(te);
-      }
-    }
-
-    private static class stopGADiscreteInput_argsStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
-      public stopGADiscreteInput_argsStandardScheme getScheme() {
-        return new stopGADiscreteInput_argsStandardScheme();
-      }
-    }
-
-    private static class stopGADiscreteInput_argsStandardScheme extends org.apache.thrift.scheme.StandardScheme<stopGADiscreteInput_args> {
-
-      public void read(org.apache.thrift.protocol.TProtocol iprot, stopGADiscreteInput_args struct) throws org.apache.thrift.TException {
-        org.apache.thrift.protocol.TField schemeField;
-        iprot.readStructBegin();
-        while (true)
-        {
-          schemeField = iprot.readFieldBegin();
-          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
-            break;
-          }
-          switch (schemeField.id) {
-            case 1: // USERNAME
-              if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
-                struct.username = iprot.readString();
-                struct.setUsernameIsSet(true);
-              } else { 
-                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-              }
-              break;
-            default:
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-          }
-          iprot.readFieldEnd();
-        }
-        iprot.readStructEnd();
-
-        // check for required fields of primitive type, which can't be checked in the validate method
-        struct.validate();
-      }
-
-      public void write(org.apache.thrift.protocol.TProtocol oprot, stopGADiscreteInput_args struct) throws org.apache.thrift.TException {
-        struct.validate();
-
-        oprot.writeStructBegin(STRUCT_DESC);
-        if (struct.username != null) {
-          oprot.writeFieldBegin(USERNAME_FIELD_DESC);
-          oprot.writeString(struct.username);
-          oprot.writeFieldEnd();
-        }
-        oprot.writeFieldStop();
-        oprot.writeStructEnd();
-      }
-
-    }
-
-    private static class stopGADiscreteInput_argsTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
-      public stopGADiscreteInput_argsTupleScheme getScheme() {
-        return new stopGADiscreteInput_argsTupleScheme();
-      }
-    }
-
-    private static class stopGADiscreteInput_argsTupleScheme extends org.apache.thrift.scheme.TupleScheme<stopGADiscreteInput_args> {
-
-      @Override
-      public void write(org.apache.thrift.protocol.TProtocol prot, stopGADiscreteInput_args struct) throws org.apache.thrift.TException {
-        org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-        java.util.BitSet optionals = new java.util.BitSet();
-        if (struct.isSetUsername()) {
-          optionals.set(0);
-        }
-        oprot.writeBitSet(optionals, 1);
-        if (struct.isSetUsername()) {
-          oprot.writeString(struct.username);
-        }
-      }
-
-      @Override
-      public void read(org.apache.thrift.protocol.TProtocol prot, stopGADiscreteInput_args struct) throws org.apache.thrift.TException {
-        org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-        java.util.BitSet incoming = iprot.readBitSet(1);
-        if (incoming.get(0)) {
-          struct.username = iprot.readString();
-          struct.setUsernameIsSet(true);
-        }
-      }
-    }
-
-    private static <S extends org.apache.thrift.scheme.IScheme> S scheme(org.apache.thrift.protocol.TProtocol proto) {
-      return (org.apache.thrift.scheme.StandardScheme.class.equals(proto.getScheme()) ? STANDARD_SCHEME_FACTORY : TUPLE_SCHEME_FACTORY).getScheme();
-    }
-  }
-
-  public static class stopGADiscreteInput_result implements org.apache.thrift.TBase<stopGADiscreteInput_result, stopGADiscreteInput_result._Fields>, java.io.Serializable, Cloneable, Comparable<stopGADiscreteInput_result>   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("stopGADiscreteInput_result");
-
-    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.I32, (short)0);
-
-    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new stopGADiscreteInput_resultStandardSchemeFactory();
-    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new stopGADiscreteInput_resultTupleSchemeFactory();
-
-    public int success; // required
-
-    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
-      SUCCESS((short)0, "success");
-
-      private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
-
-      static {
-        for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
-          byName.put(field.getFieldName(), field);
-        }
-      }
-
-      /**
-       * Find the _Fields constant that matches fieldId, or null if its not found.
-       */
-      @org.apache.thrift.annotation.Nullable
-      public static _Fields findByThriftId(int fieldId) {
-        switch(fieldId) {
-          case 0: // SUCCESS
-            return SUCCESS;
-          default:
-            return null;
-        }
-      }
-
-      /**
-       * Find the _Fields constant that matches fieldId, throwing an exception
-       * if it is not found.
-       */
-      public static _Fields findByThriftIdOrThrow(int fieldId) {
-        _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
-        return fields;
-      }
-
-      /**
-       * Find the _Fields constant that matches name, or null if its not found.
-       */
-      @org.apache.thrift.annotation.Nullable
-      public static _Fields findByName(String name) {
-        return byName.get(name);
-      }
-
-      private final short _thriftId;
-      private final String _fieldName;
-
-      _Fields(short thriftId, String fieldName) {
-        _thriftId = thriftId;
-        _fieldName = fieldName;
-      }
-
-      public short getThriftFieldId() {
-        return _thriftId;
-      }
-
-      public String getFieldName() {
-        return _fieldName;
-      }
-    }
-
-    // isset id assignments
-    private static final int __SUCCESS_ISSET_ID = 0;
-    private byte __isset_bitfield = 0;
-    public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
-    static {
-      java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32          , "int")));
-      metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(stopGADiscreteInput_result.class, metaDataMap);
-    }
-
-    public stopGADiscreteInput_result() {
-    }
-
-    public stopGADiscreteInput_result(
-      int success)
-    {
-      this();
-      this.success = success;
-      setSuccessIsSet(true);
-    }
-
-    /**
-     * Performs a deep copy on <i>other</i>.
-     */
-    public stopGADiscreteInput_result(stopGADiscreteInput_result other) {
-      __isset_bitfield = other.__isset_bitfield;
-      this.success = other.success;
-    }
-
-    public stopGADiscreteInput_result deepCopy() {
-      return new stopGADiscreteInput_result(this);
-    }
-
-    @Override
-    public void clear() {
-      setSuccessIsSet(false);
-      this.success = 0;
-    }
-
-    public int getSuccess() {
-      return this.success;
-    }
-
-    public stopGADiscreteInput_result setSuccess(int success) {
-      this.success = success;
-      setSuccessIsSet(true);
-      return this;
-    }
-
-    public void unsetSuccess() {
-      __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __SUCCESS_ISSET_ID);
-    }
-
-    /** Returns true if field success is set (has been assigned a value) and false otherwise */
-    public boolean isSetSuccess() {
-      return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __SUCCESS_ISSET_ID);
-    }
-
-    public void setSuccessIsSet(boolean value) {
-      __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __SUCCESS_ISSET_ID, value);
-    }
-
-    public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable Object value) {
-      switch (field) {
-      case SUCCESS:
-        if (value == null) {
-          unsetSuccess();
-        } else {
-          setSuccess((Integer)value);
-        }
-        break;
-
-      }
-    }
-
-    @org.apache.thrift.annotation.Nullable
-    public Object getFieldValue(_Fields field) {
-      switch (field) {
-      case SUCCESS:
-        return getSuccess();
-
-      }
-      throw new IllegalStateException();
-    }
-
-    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
-    public boolean isSet(_Fields field) {
-      if (field == null) {
-        throw new IllegalArgumentException();
-      }
-
-      switch (field) {
-      case SUCCESS:
-        return isSetSuccess();
-      }
-      throw new IllegalStateException();
-    }
-
-    @Override
-    public boolean equals(Object that) {
-      if (that == null)
-        return false;
-      if (that instanceof stopGADiscreteInput_result)
-        return this.equals((stopGADiscreteInput_result)that);
-      return false;
-    }
-
-    public boolean equals(stopGADiscreteInput_result that) {
-      if (that == null)
-        return false;
-      if (this == that)
-        return true;
-
-      boolean this_present_success = true;
-      boolean that_present_success = true;
-      if (this_present_success || that_present_success) {
-        if (!(this_present_success && that_present_success))
-          return false;
-        if (this.success != that.success)
-          return false;
-      }
-
-      return true;
-    }
-
-    @Override
-    public int hashCode() {
-      int hashCode = 1;
-
-      hashCode = hashCode * 8191 + success;
-
-      return hashCode;
-    }
-
-    @Override
-    public int compareTo(stopGADiscreteInput_result other) {
-      if (!getClass().equals(other.getClass())) {
-        return getClass().getName().compareTo(other.getClass().getName());
-      }
-
-      int lastComparison = 0;
-
-      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
-      if (lastComparison != 0) {
-        return lastComparison;
-      }
-      if (isSetSuccess()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.success, other.success);
-        if (lastComparison != 0) {
-          return lastComparison;
-        }
-      }
-      return 0;
-    }
-
-    @org.apache.thrift.annotation.Nullable
-    public _Fields fieldForId(int fieldId) {
-      return _Fields.findByThriftId(fieldId);
-    }
-
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      scheme(iprot).read(iprot, this);
-    }
-
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
-      scheme(oprot).write(oprot, this);
-      }
-
-    @Override
-    public String toString() {
-      StringBuilder sb = new StringBuilder("stopGADiscreteInput_result(");
-      boolean first = true;
-
-      sb.append("success:");
-      sb.append(this.success);
-      first = false;
-      sb.append(")");
-      return sb.toString();
-    }
-
-    public void validate() throws org.apache.thrift.TException {
-      // check for required fields
-      // check for sub-struct validity
-    }
-
-    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
-      try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
-        throw new java.io.IOException(te);
-      }
-    }
-
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
-      try {
-        // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
-        __isset_bitfield = 0;
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
-        throw new java.io.IOException(te);
-      }
-    }
-
-    private static class stopGADiscreteInput_resultStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
-      public stopGADiscreteInput_resultStandardScheme getScheme() {
-        return new stopGADiscreteInput_resultStandardScheme();
-      }
-    }
-
-    private static class stopGADiscreteInput_resultStandardScheme extends org.apache.thrift.scheme.StandardScheme<stopGADiscreteInput_result> {
-
-      public void read(org.apache.thrift.protocol.TProtocol iprot, stopGADiscreteInput_result struct) throws org.apache.thrift.TException {
-        org.apache.thrift.protocol.TField schemeField;
-        iprot.readStructBegin();
-        while (true)
-        {
-          schemeField = iprot.readFieldBegin();
-          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
-            break;
-          }
-          switch (schemeField.id) {
-            case 0: // SUCCESS
-              if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
-                struct.success = iprot.readI32();
-                struct.setSuccessIsSet(true);
-              } else { 
-                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-              }
-              break;
-            default:
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-          }
-          iprot.readFieldEnd();
-        }
-        iprot.readStructEnd();
-
-        // check for required fields of primitive type, which can't be checked in the validate method
-        struct.validate();
-      }
-
-      public void write(org.apache.thrift.protocol.TProtocol oprot, stopGADiscreteInput_result struct) throws org.apache.thrift.TException {
-        struct.validate();
-
-        oprot.writeStructBegin(STRUCT_DESC);
-        if (struct.isSetSuccess()) {
-          oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
-          oprot.writeI32(struct.success);
-          oprot.writeFieldEnd();
-        }
-        oprot.writeFieldStop();
-        oprot.writeStructEnd();
-      }
-
-    }
-
-    private static class stopGADiscreteInput_resultTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
-      public stopGADiscreteInput_resultTupleScheme getScheme() {
-        return new stopGADiscreteInput_resultTupleScheme();
-      }
-    }
-
-    private static class stopGADiscreteInput_resultTupleScheme extends org.apache.thrift.scheme.TupleScheme<stopGADiscreteInput_result> {
-
-      @Override
-      public void write(org.apache.thrift.protocol.TProtocol prot, stopGADiscreteInput_result struct) throws org.apache.thrift.TException {
-        org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-        java.util.BitSet optionals = new java.util.BitSet();
-        if (struct.isSetSuccess()) {
-          optionals.set(0);
-        }
-        oprot.writeBitSet(optionals, 1);
-        if (struct.isSetSuccess()) {
-          oprot.writeI32(struct.success);
-        }
-      }
-
-      @Override
-      public void read(org.apache.thrift.protocol.TProtocol prot, stopGADiscreteInput_result struct) throws org.apache.thrift.TException {
-        org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-        java.util.BitSet incoming = iprot.readBitSet(1);
-        if (incoming.get(0)) {
-          struct.success = iprot.readI32();
           struct.setSuccessIsSet(true);
         }
       }

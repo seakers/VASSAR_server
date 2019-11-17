@@ -21,8 +21,8 @@ import java.util.ArrayList;
  */
 public class BinaryInputInteractiveSearch extends AbstractInteractiveSearch {
 
-    public BinaryInputInteractiveSearch(Algorithm alg, TypedProperties properties, String username) {
-        super(alg, properties, username);
+    public BinaryInputInteractiveSearch(Algorithm alg, TypedProperties properties, String id) {
+        super(alg, properties, id);
     }
 
     @Override
