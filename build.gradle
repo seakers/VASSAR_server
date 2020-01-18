@@ -18,7 +18,7 @@ repositories {
 }
 
 dependencies {
-    compile group: 'org.orekit', name: 'orekit', version: '10.0'
+    compile group: 'org.orekit', name: 'orekit', version: '8.0'
     compile 'com.googlecode.combinatoricslib:combinatoricslib:2.2'
     compile 'org.apache.commons:commons-lang3:3.9'
     compile 'org.hipparchus:hipparchus-stat:1.5'
