@@ -38,9 +38,9 @@ public class GATest {
         //PATH
         String path = "../VASSAR_resources/problems/Decadal2017Aerosols";
 
-        BaseParams params = new Decadal2017AerosolsParams(path, "CRISP-ATTRIBUTES", "test", "normal");
+        BaseParams params                       = new Decadal2017AerosolsParams(path, "CRISP-ATTRIBUTES", "test", "normal");
         AbstractArchitectureEvaluator evaluator = new ArchitectureEvaluator();
-        ArchitectureEvaluationManager AEM = new ArchitectureEvaluationManager(params, evaluator);
+        ArchitectureEvaluationManager AEM       = new ArchitectureEvaluationManager(params, evaluator);
 
         //parameters and operators for search
         TypedProperties properties = new TypedProperties();
@@ -95,22 +95,25 @@ public class GATest {
 //            initial.add(new_arch);
 //        }
 
-        Initialization initialization = new PartitioningAndAssigningInitialization(partitioningAndAssigningProblem, popSize, params);
+        Initialization initialization      = new PartitioningAndAssigningInitialization(partitioningAndAssigningProblem, popSize, params);
 
         //initialize population structure for algorithm
-        Population population = new Population();
+        Population population              = new Population();
         EpsilonBoxDominanceArchive archive = new EpsilonBoxDominanceArchive(epsilonDouble);
-        ChainedComparator comp = new ChainedComparator(new ParetoObjectiveComparator());
-        TournamentSelection selection = new TournamentSelection(2, comp);
+        ChainedComparator comp             = new ChainedComparator(new ParetoObjectiveComparator());
+        TournamentSelection selection      = new TournamentSelection(2, comp);
 
         // Define operators
-        Variation singlecross = new PartitioningAndAssigningCrossover(crossoverProbability, params);
+        Variation singlecross      = new PartitioningAndAssigningCrossover(crossoverProbability, params);
         Variation intergerMutation = new PartitioningAndAssigningMutation(mutationProbability, params);
-        CompoundVariation var = new CompoundVariation(singlecross, intergerMutation);
+        CompoundVariation var      = new CompoundVariation(singlecross, intergerMutation);
 
-        Algorithm eMOEA = new EpsilonMOEA(partitioningAndAssigningProblem, population, archive, selection, var, initialization);
 
-        Algorithm alg = eMOEA;
+
+
+
+        Algorithm eMOEA    = new EpsilonMOEA(partitioningAndAssigningProblem, population, archive, selection, var, initialization);
+        Algorithm alg      = eMOEA;
         int populationSize = popSize;
         int maxEvaluations = maxEvals;
 
