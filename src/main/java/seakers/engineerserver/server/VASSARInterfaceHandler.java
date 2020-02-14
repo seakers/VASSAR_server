@@ -146,7 +146,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             // Message queue
             // Notify listeners of GA starting in username channel
             ConnectionFactory factory = new ConnectionFactory();
-            factory.setHost("localhost");
+            factory.setHost(System.getenv("RABBITMQ_HOST"));
             String sendbackQueueName = id + "_gabrain";
 
             try (Connection connection = factory.newConnection(); Channel channel = connection.createChannel()) {
@@ -253,7 +253,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             // Message queue
             // Notify listeners of GA starting in username channel
             ConnectionFactory factory = new ConnectionFactory();
-            factory.setHost("localhost");
+            factory.setHost(System.getenv("RABBITMQ_HOST"));
             String sendbackQueueName = id + "_gabrain";
 
             try (Connection connection = factory.newConnection(); Channel channel = connection.createChannel()) {
@@ -1156,7 +1156,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
     public int stopGA(String id) {
         if (this.gaThreads.containsKey(id) && this.gaThreads.get(id).isAlive())  {
             ConnectionFactory factory = new ConnectionFactory();
-            factory.setHost("localhost");
+            factory.setHost(System.getenv("RABBITMQ_HOST"));
             String queueName = id + "_brainga";
 
             try (Connection connection = factory.newConnection(); Channel channel = connection.createChannel()) {
