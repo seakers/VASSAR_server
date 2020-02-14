@@ -33,7 +33,7 @@ public abstract class AbstractInteractiveSearch implements Callable<Algorithm> {
         sendQueue = id + "_gabrain";
 
         ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("localhost");
+        factory.setHost(System.getenv("RABBITMQ_HOST"));
         try  {
             mqConnection = factory.newConnection();
             mqChannel = mqConnection.createChannel();

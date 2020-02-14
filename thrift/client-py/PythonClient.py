@@ -35,7 +35,7 @@ from thrift.protocol import TBinaryProtocol
 
 def startConnection():
     # Make socket
-    transport = TSocket.TSocket('localhost', 9090)
+    transport = TSocket.TSocket(System.getenv("VASSAR_HOST"), System.getenv("VASSAR_PORT"))
 
     # Buffering is critical. Raw sockets are very slow
     transport = TTransport.TBufferedTransport(transport)
