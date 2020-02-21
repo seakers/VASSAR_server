@@ -215,7 +215,7 @@ class TSSLSocket(TSocket.TSocket, TSSLBase):
     # def __init__(self, host='localhost', port=9090, validate=True,
     #              ca_certs=None, keyfile=None, certfile=None,
     #              unix_socket=None, ciphers=None):
-    def __init__(self, host='localhost', port=9090, *args, **kwargs):
+    def __init__(self, host=os.environ['VASSAR_HOST'], port=os.environ['VASSAR_PORT'], *args, **kwargs):
         """Positional arguments: ``host``, ``port``, ``unix_socket``
 
         Keyword arguments: ``keyfile``, ``certfile``, ``cert_reqs``,

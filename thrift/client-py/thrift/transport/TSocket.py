@@ -50,7 +50,7 @@ class TSocketBase(TTransportBase):
 class TSocket(TSocketBase):
     """Socket implementation of TTransport base."""
 
-    def __init__(self, host='localhost', port=9090, unix_socket=None, socket_family=socket.AF_UNSPEC):
+    def __init__(self, host=os.environ['VASSAR_HOST'], port=os.environ['VASSAR_PORT'], unix_socket=None, socket_family=socket.AF_UNSPEC):
         """Initialize a TSocket
 
         @param host(str)  The host to connect to.
