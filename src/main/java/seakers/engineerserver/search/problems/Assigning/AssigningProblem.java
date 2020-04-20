@@ -57,8 +57,8 @@ public class AssigningProblem extends AbstractProblem implements SystemArchitect
     public void evaluate(Solution sltn) {
         AssigningArchitecture arch = (AssigningArchitecture) sltn;
         evaluateArch(arch);
-        System.out.println(String.format("Arch %s Science = %10f; Cost = %10f",
-                arch.toString(), arch.getObjective(0), arch.getObjective(1)));
+         System.out.println(String.format("Arch %s Science = %10f; Cost = %10f",
+                 arch.toString(), arch.getObjective(0), arch.getObjective(1)));
     }
 
     private void evaluateArch(AssigningArchitecture arch) {
@@ -71,12 +71,13 @@ public class AssigningProblem extends AbstractProblem implements SystemArchitect
             AbstractArchitecture arch_old;
             if (problem.equalsIgnoreCase("SMAP") || problem.equalsIgnoreCase("SMAP_JPL1")
                     || problem.equalsIgnoreCase("SMAP_JPL2")
-                    || problem.equalsIgnoreCase("ClimateCentric")) {
+                    || problem.equalsIgnoreCase("ClimateCentric")
+                    || problem.equalsIgnoreCase("Aerosols_Clouds")) {
                 // Generate a new architecture
                 arch_old = new Architecture(bitStringBuilder.toString(), 1, (AssigningParams)params);
             }
             else {
-                throw new IllegalArgumentException("Unrecorgnizable problem type: " + problem);
+                throw new IllegalArgumentException("Unrecognizable problem type: " + problem);
             }
 
             try {

@@ -107,15 +107,14 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             //initialize problem
             BaseParams params = this.getProblemParameters(problem);
             ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
-
             Problem assignmentProblem = new AssigningProblem(new int[]{1}, problem, AEM, params);
-
             // Create a solution for each input arch in the dataset
             List<Solution> initial = new ArrayList<>(dataset.size());
             for (BinaryInputArchitecture arch : dataset) {
                 AssigningArchitecture new_arch = new AssigningArchitecture(new int[]{1},
                         params.getNumInstr(), params.getNumOrbits(), 2);
-
+                System.out.println(new_arch.getNumberOfVariables());
+                System.out.println(arch.inputs.size());
                 for (int j = 1; j < new_arch.getNumberOfVariables(); ++j) {
                     BinaryVariable var = new BinaryVariable(1);
                     var.set(0, arch.inputs.get(j-1));
@@ -300,7 +299,8 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
         if (problem.equalsIgnoreCase("SMAP") || problem.equalsIgnoreCase("SMAP_JPL1")
                 || problem.equalsIgnoreCase("SMAP_JPL2")
-                || problem.equalsIgnoreCase("ClimateCentric")) {
+                || problem.equalsIgnoreCase("ClimateCentric")
+                || problem.equalsIgnoreCase("Aerosols_Clouds")) {
             key = problem;
 
             if (problem.equalsIgnoreCase("SMAP")) {
@@ -317,6 +317,10 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             }
             else if (problem.equalsIgnoreCase("ClimateCentric")) {
                 params = new ClimateCentricParams(this.resourcesPath, "CRISP-ATTRIBUTES",
+                        "test", "normal");
+            }
+            else if (problem.equalsIgnoreCase("Aerosols_Clouds")) {
+                params = new AerosolsCloudsParams(this.resourcesPath, "CRISP-CASES",
                         "test", "normal");
             }
             else {
@@ -368,6 +372,9 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         else if (problem.equalsIgnoreCase("Decadal2017Aerosols")) {
             key = "Decadal2017Aerosols";
         }
+        else if (problem.equalsIgnoreCase("Aerosols_Clouds")) {
+            key = "Aerosols_Clouds";
+        }
         else {
             throw new IllegalArgumentException("Unrecorgnizable problem type: " + problem);
         }
@@ -386,7 +393,8 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
         if (problem.equalsIgnoreCase("SMAP") || problem.equalsIgnoreCase("SMAP_JPL1")
                 || problem.equalsIgnoreCase("SMAP_JPL2")
-                || problem.equalsIgnoreCase("ClimateCentric")) {
+                || problem.equalsIgnoreCase("ClimateCentric")
+                || problem.equalsIgnoreCase("Aerosols_Clouds")) {
             // Generate a new architecture
             architecture = new seakers.vassar.problems.Assigning.Architecture(bitString, numSatellites, (AssigningParams) params);
 
@@ -619,7 +627,8 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
 
         if (problem.equalsIgnoreCase("SMAP") || problem.equalsIgnoreCase("SMAP_JPL1")
                 || problem.equalsIgnoreCase("SMAP_JPL2")
-                || problem.equalsIgnoreCase("ClimateCentric")) {
+                || problem.equalsIgnoreCase("ClimateCentric")
+                || problem.equalsIgnoreCase("Aerosols_Clouds")) {
 
             seakers.vassar.problems.Assigning.AssigningParams params = (seakers.vassar.problems.Assigning.AssigningParams) this.getProblemParameters(problem);
             ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
