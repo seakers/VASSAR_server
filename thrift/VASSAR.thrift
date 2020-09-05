@@ -46,6 +46,12 @@ struct DiscreteInputArchitecture {
     3: list<double> outputs
 }
 
+struct SchedulingInputArchitecture {
+    1: int id,
+    2: list<int> inputs,
+    3: list<double> outputs
+}
+
 struct ObjectiveSatisfaction {
     1: string objective_name,
     2: double satisfaction,
@@ -79,6 +85,13 @@ struct SubobjectiveDetails {
     4: list<double> scores,
     5: list<string> taken_by,
     6: list<list<string>> justifications
+}
+
+struct MissionMeasurements {
+    1: list<string> names,
+    2: int start_year,
+    3: int end_year,
+    4: list<double> panelScores
 }
 
 
@@ -134,6 +147,8 @@ service VASSARInterface {
 
     string startGADiscreteInput(1:string problem, 2:list<DiscreteInputArchitecture> dataset, 3:string username),
 
+    string startGAScheduling(1:string problem, 2:list<SchedulingInputArchitecture> dataset, 3:list<BinaryInputArchitecture> inputArches, 4:list<MissionMeasurements> historicalInfo, 5:string username),
+
 
     list<SubscoreInformation> getArchScienceInformationBinaryInput(1:string problem, 2:BinaryInputArchitecture arch),
 
@@ -145,6 +160,18 @@ service VASSARInterface {
 
     list<MissionCostInformation> getArchCostInformationDiscreteInput(1:string problem, 2:DiscreteInputArchitecture arch),
 
-    SubobjectiveDetails getSubscoreDetailsDiscreteInput(1:string problem, 2:DiscreteInputArchitecture arch, 3:string subobj)
+    SubobjectiveDetails getSubscoreDetailsDiscreteInput(1:string problem, 2:DiscreteInputArchitecture arch, 3:string subobj),
+
+    list<string> getCommonMeasurements(1:string problem, 2:list<BinaryInputArchitecture> arch_list),
+
+    list<string> getMeasurements(1:string problem, 2:BinaryInputArchitecture arch),
+
+    list<double> getPanelScoresForArch(1:string problem, 2:BinaryInputArchitecture arch),
+
+    double evaluateDataContinuityScore(1:list<MissionMeasurements> missionMeasurements, 2:list<MissionMeasurements> historical_missionMeasurements),
+
+    double evaluateFairnessScore(1:list<MissionMeasurements> missionMeasurements),
+
+    double enumeratedDesigns(1:string problem, 2:list<BinaryInputArchitecture> input_arches, 3:list<MissionMeasurements> historical_info)
 }
 

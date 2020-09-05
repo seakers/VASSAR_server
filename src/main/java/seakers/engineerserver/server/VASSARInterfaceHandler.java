@@ -36,6 +36,7 @@ import org.moeaframework.core.*;
 import org.moeaframework.core.comparator.ChainedComparator;
 import org.moeaframework.core.comparator.ParetoObjectiveComparator;
 import org.moeaframework.core.operator.*;
+import org.moeaframework.core.operator.real.UM;
 import org.moeaframework.core.operator.binary.BitFlip;
 import org.moeaframework.core.variable.BinaryVariable;
 import org.moeaframework.util.TypedProperties;
@@ -52,14 +53,22 @@ import seakers.engineerserver.thriftinterface.*;
 import seakers.engineerserver.search.problems.PartitioningAndAssigning.PartitioningAndAssigningProblem;
 import seakers.engineerserver.search.problems.PartitioningAndAssigning.operators.PartitioningAndAssigningCrossover;
 import seakers.engineerserver.search.problems.PartitioningAndAssigning.operators.PartitioningAndAssigningMutation;
+import seakers.engineerserver.search.problems.Scheduling.SchedulingProblem;
+import seakers.engineerserver.search.problems.Scheduling.SchedulingArchitecture;
+import seakers.engineerserver.search.problems.Scheduling.SchedulingInitialization;
 import seakers.orekit.util.OrekitConfig;
 import seakers.vassar.BaseParams;
+import seakers.architecture.enumeration.*;
+import seakers.architecture.enumeration.FullFactorial;
+import seakers.architecture.pattern.*;
+import seakers.architecture.pattern.Permuting;
 import seakers.vassar.Resource;
 import seakers.vassar.Result;
 import seakers.vassar.architecture.AbstractArchitecture;
 import seakers.vassar.evaluation.AbstractArchitectureEvaluator;
 import seakers.vassar.evaluation.ArchitectureEvaluationManager;
 import seakers.vassar.problems.Assigning.*;
+import seakers.vassar.problems.Scheduling.*;
 import seakers.vassar.problems.PartitioningAndAssigning.Decadal2017AerosolsParams;
 
 public class VASSARInterfaceHandler implements VASSARInterface.Iface {
@@ -287,6 +296,107 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         };
     }
 
+    private Runnable generateSchedulingGATask(String problem, List<SchedulingInputArchitecture> dataset, List<BinaryInputArchitecture> inputArches, List<MissionMeasurements> historical_info, String id) {
+        return () -> {
+            System.out.println("Starting GA for scheduling");
+
+            ExecutorService pool = Executors.newFixedThreadPool(1);
+            CompletionService<Algorithm> ecs = new ExecutorCompletionService<>(pool);
+
+            //parameters and operators for seakers.vassar_server.search
+            TypedProperties properties = new TypedProperties();
+            //search paramaters set here
+            int maxEvals = 3000;
+            int populationSize = 100;
+            properties.setInt("maxEvaluations", maxEvals);
+            properties.setInt("populationSize", populationSize);
+
+            double crossoverProbability = 1.0;
+            properties.setDouble("crossoverProbability", crossoverProbability);
+            double mutationProbability = 1. / 6.;
+            properties.setDouble("mutationProbability", mutationProbability);
+
+            //setup for epsilon MOEA
+            double[] epsilonDouble = new double[]{0.001, 0.001};
+
+            //initialize problem
+            BaseParams params = this.getProblemParameters(problem);
+
+            Problem schedulingProblem = new SchedulingProblem(problem, this, inputArches.size(), inputArches, historical_info);
+
+            // Create a solution for each input arch in the dataset
+            List<Solution> initial = new ArrayList<>(dataset.size());
+            for (SchedulingInputArchitecture arch : dataset) {
+                SchedulingArchitecture new_arch = new SchedulingArchitecture(
+                        params.getNumInstr(), 2);
+
+                int numSchedulingVariables = inputArches.size();
+
+                for (int j = 0; j < numSchedulingVariables; ++j) {
+                    IntegerVariable var = new IntegerVariable(arch.inputs.get(j), 0, inputArches.size());
+                    new_arch.setVariable(j, var);
+                }
+
+                new_arch.setObjective(0, -arch.outputs.get(0));
+                new_arch.setObjective(1, -arch.outputs.get(1));
+                new_arch.setAlreadyEvaluated(true);
+                initial.add(new_arch);
+            }
+
+            Initialization initialization = new SchedulingInitialization(schedulingProblem,
+                    dataset.size(), initial, params);
+
+            //initialize population structure for algorithm
+            Population population = new Population();
+            EpsilonBoxDominanceArchive archive = new EpsilonBoxDominanceArchive(epsilonDouble);
+            ChainedComparator comp = new ChainedComparator(new ParetoObjectiveComparator());
+            TournamentSelection selection = new TournamentSelection(2, comp);
+
+            // Define operators
+            //Variation singlecross = new PartitioningAndAssigningCrossover(crossoverProbability, params);
+            //Variation intergerMutation = new PartitioningAndAssigningMutation(mutationProbability, params);
+            UM var = new UM(0.01);
+
+            Algorithm eMOEA = new EpsilonMOEA(schedulingProblem, population, archive, selection, var, initialization);
+            ecs.submit(new DiscreteInputInteractiveSearch(eMOEA, properties, id));
+
+            // Message queue
+            // Notify listeners of GA starting in username channel
+            ConnectionFactory factory = new ConnectionFactory();
+            factory.setHost(System.getenv("RABBITMQ_HOST"));
+            String sendbackQueueName = id + "_gabrain";
+
+            try (Connection connection = factory.newConnection(); Channel channel = connection.createChannel()) {
+                channel.queueDeclare(sendbackQueueName, false, false, false, null);
+                String message = "{ \"type\": \"ga_started\" }";
+                channel.basicPublish("", sendbackQueueName, null, message.getBytes("UTF-8"));
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            try {
+                Algorithm alg = ecs.take().get();
+            } catch (InterruptedException | ExecutionException ex) {
+                ex.printStackTrace();
+            }
+
+            // Notify listeners of new architectures in username channel
+            try (Connection connection = factory.newConnection(); Channel channel = connection.createChannel()) {
+                channel.queueDeclare(sendbackQueueName, false, false, false, null);
+                String message = " \"{ \"type\": \"ga_done\" }\"";
+                channel.basicPublish("", sendbackQueueName, null, message.getBytes("UTF-8"));
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            pool.shutdown();
+
+            System.out.println("DONE");
+        };
+    }
+
     public void ping() {
         System.out.println("ping()");
     }
@@ -412,6 +522,100 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         }
 
         return architecture;
+    }
+
+    @Override
+    public double evaluateDataContinuityScore(List<MissionMeasurements> missionMeasurements, List<MissionMeasurements> historical_missionMeasurements) {
+        int score = 0;
+        for(MissionMeasurements missionMeasurement : missionMeasurements) {
+            int start_year = missionMeasurement.start_year;
+            int end_year = missionMeasurement.end_year;
+            for(String individualMeasurement : missionMeasurement.names) {
+                for(MissionMeasurements historical_missionMeasurement : historical_missionMeasurements) {
+                    for(String name : historical_missionMeasurement.names) {
+                        if(name.equals("Sea-ice cover")) {
+                            name = "Sea ice cover";
+                        }
+                        if(name.equals("Soil moisture at the surface")) {
+                            name = "Soil moisture";
+                        }
+                        if(name.equals("Wind vector over sea surface (horizontal)") || name.equals("Wind speed over sea surface (horizontal)")) {
+                            name = "Ocean surface wind speed";
+                        }
+                        if(name.equals(individualMeasurement)) {
+                            if (end_year < historical_missionMeasurement.start_year || start_year > historical_missionMeasurement.end_year) {
+                                score = score;
+                            } else if (start_year > historical_missionMeasurement.start_year && end_year < historical_missionMeasurement.end_year) {
+                                score = score + end_year - start_year;
+                            } else if (start_year > historical_missionMeasurement.start_year && end_year > historical_missionMeasurement.end_year) {
+                                score = score + historical_missionMeasurement.end_year - start_year;
+                            } else if (start_year < historical_missionMeasurement.start_year && end_year < historical_missionMeasurement.end_year) {
+                                score = score + end_year - historical_missionMeasurement.start_year;
+                            } else {
+                                score = score;
+                            }
+                            //System.out.println("Score: "+score+", start_year: "+start_year+", end_year: "+ end_year+", missionMeasurement.start_year: "+missionMeasurement.start_year+", missionMeasurement.end_year: "+missionMeasurement.end_year);
+                        }
+                    }
+                }
+            }
+        }
+        return Double.valueOf(score);
+    }
+
+    @Override
+    public double evaluateFairnessScore(List<MissionMeasurements> missionMeasurements) {
+        int score = 0;
+        List<Double> panelSum = new ArrayList<Double>(Arrays.asList(0.0,0.0,0.0,0.0,0.0));
+        for (MissionMeasurements missionMeasurement : missionMeasurements) {
+            List<Double> panelScores = missionMeasurement.panelScores;
+            for (int i = 0; i < panelScores.size(); i++) {
+                panelSum.set(i,panelSum.get(i) + panelScores.get(i));
+            }
+        }
+        double minimum = 100000.0;
+        for (int j = 0; j < panelSum.size(); j++) {
+            if(panelSum.get(j)<minimum) {
+                minimum = panelSum.get(j);
+            }
+        }
+        return minimum;
+    }
+
+    @Override
+    public double enumeratedDesigns(String problem, List<BinaryInputArchitecture> input_arches, List<MissionMeasurements> historical_info) {
+        double xd = 250.0;
+        double lowestScore = 100000.0;
+        int startYear = 2010;
+        int yearIncrement = 2;
+        int numArches = input_arches.size();
+        int[] lowestOption = new int[numArches];
+        Permuting permute = new Permuting(numArches,"xd");
+        FullFactorial ff = new FullFactorial(permute);
+        Collection<int[]> options = ff.ffPermuting(numArches);
+        for (int[] option : options) {
+            //System.out.println(Arrays.toString(option));
+            List<MissionMeasurements> missions = new ArrayList<>();
+            for (int i = 0; i < option.length; i++) {
+                int missionStartYear = startYear + option[i]*yearIncrement;
+                int missionEndYear = missionStartYear + yearIncrement;
+                //System.out.println("Start Year: "+missionStartYear+", End Year: "+missionEndYear);
+                List<String> measurements = getMeasurements(problem, input_arches.get(i));
+                List<Double> panelScores = getPanelScoresForArch(problem, input_arches.get(i));
+                //System.out.println(Arrays.toString(measurements.toArray()));
+                MissionMeasurements mission = new MissionMeasurements(measurements, missionStartYear, missionEndYear, panelScores);
+                missions.add(mission);
+            }
+            double dataContinuityScore = evaluateDataContinuityScore(missions, historical_info);
+            if(dataContinuityScore < lowestScore) {
+                lowestScore = dataContinuityScore;
+                lowestOption = option;
+            }
+            double fairnessScore = evaluateFairnessScore(missions);
+            System.out.println("Data Continuity Score: " + dataContinuityScore + ", Fairness Score: " + fairnessScore);
+        }
+        System.out.println("Best order: "+Arrays.toString(lowestOption));
+        return xd;
     }
 
     @Override
@@ -1004,6 +1208,62 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
     }
 
     @Override
+    public List<String> getCommonMeasurements(String problem, List<BinaryInputArchitecture> arch_list) {
+        List<String> commonMeasurements = new ArrayList<>();
+        for (BinaryInputArchitecture arch : arch_list) {
+            //System.out.println("New architecture");
+            List<SubscoreInformation> measurements = getArchScienceInformationBinaryInput(problem, arch);
+            for (SubscoreInformation measurement : measurements) {
+                List<SubscoreInformation> panel_subscores = measurement.subscores;
+                for(SubscoreInformation panel_subscore : panel_subscores) {
+                    List<SubscoreInformation> obj_subscores = panel_subscore.subscores;
+                    for(SubscoreInformation obj_subscore : obj_subscores) {
+                        String name = obj_subscore.name;
+                        String description = obj_subscore.description;
+                        double value = obj_subscore.value;
+                        if(value != 0 && !commonMeasurements.contains(name+" "+description)) {
+                            commonMeasurements.add(description);
+                            //System.out.println(name+" "+description);
+                        }
+                    }
+                }
+            }
+        }
+        //System.out.println(commonMeasurements);
+        return commonMeasurements;
+    }
+
+    @Override
+    public List<String> getMeasurements(String problem, BinaryInputArchitecture arch) {
+        List<String> archMeasurements = new ArrayList<>();
+        List<SubscoreInformation> measurements = getArchScienceInformationBinaryInput(problem, arch);
+        for (SubscoreInformation measurement : measurements) {
+            List<SubscoreInformation> panel_subscores = measurement.subscores;
+            for(SubscoreInformation panel_subscore : panel_subscores) {
+                List<SubscoreInformation> obj_subscores = panel_subscore.subscores;
+                for(SubscoreInformation obj_subscore : obj_subscores) {
+                    String description = obj_subscore.description;
+                    if(obj_subscore.value != 0) {
+                        archMeasurements.add(description);
+                    }
+                }
+            }
+        }
+        return archMeasurements;
+    }
+
+    @Override
+    public List<Double> getPanelScoresForArch(String problem, BinaryInputArchitecture arch) {
+        List<Double> panelScores = new ArrayList<>();
+        List<SubscoreInformation> measurements = getArchScienceInformationBinaryInput(problem, arch);
+        for (SubscoreInformation measurement : measurements) {
+            double score = measurement.value;
+            panelScores.add(score);
+        }
+        return panelScores;
+    }
+
+    @Override
     public List<SubscoreInformation> getArchScienceInformationBinaryInput(String problem, BinaryInputArchitecture architecture) {
         String bitString = "";
         for (Boolean b : architecture.inputs) {
@@ -1189,6 +1449,15 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         String gaId = UUID.randomUUID().toString() + "_" + username + "_" + problem;
         deleteAllDoneGAs();
         this.gaThreads.put(gaId, new Thread(this.generateDiscreteInputGATask(problem, dataset, username)));
+        this.gaThreads.get(gaId).start();
+        return gaId;
+    }
+
+    @Override
+    public String startGAScheduling(String problem, List<SchedulingInputArchitecture> dataset, List<BinaryInputArchitecture> inputArches, List<MissionMeasurements> historicalInfo, String username) {
+        String gaId = UUID.randomUUID().toString() + "_" + username + "_" + problem;
+        deleteAllDoneGAs();
+        this.gaThreads.put(gaId, new Thread(this.generateSchedulingGATask(problem, dataset, inputArches, historicalInfo, gaId)));
         this.gaThreads.get(gaId).start();
         return gaId;
     }

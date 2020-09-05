@@ -57,8 +57,8 @@ public class AssigningProblem extends AbstractProblem implements SystemArchitect
     public void evaluate(Solution sltn) {
         AssigningArchitecture arch = (AssigningArchitecture) sltn;
         evaluateArch(arch);
-        System.out.println(String.format("Arch %s Science = %10f; Cost = %10f",
-                arch.toString(), arch.getObjective(0), arch.getObjective(1)));
+        //System.out.println(String.format("Arch %s Science = %10f; Cost = %10f",
+        //        arch.toString(), arch.getObjective(0), arch.getObjective(1)));
     }
 
     private void evaluateArch(AssigningArchitecture arch) {
