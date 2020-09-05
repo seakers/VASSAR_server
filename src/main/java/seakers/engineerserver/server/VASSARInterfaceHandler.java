@@ -107,14 +107,15 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             //initialize problem
             BaseParams params = this.getProblemParameters(problem);
             ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
+
             Problem assignmentProblem = new AssigningProblem(new int[]{1}, problem, AEM, params);
+
             // Create a solution for each input arch in the dataset
             List<Solution> initial = new ArrayList<>(dataset.size());
             for (BinaryInputArchitecture arch : dataset) {
                 AssigningArchitecture new_arch = new AssigningArchitecture(new int[]{1},
                         params.getNumInstr(), params.getNumOrbits(), 2);
-                System.out.println(new_arch.getNumberOfVariables());
-                System.out.println(arch.inputs.size());
+
                 for (int j = 1; j < new_arch.getNumberOfVariables(); ++j) {
                     BinaryVariable var = new BinaryVariable(1);
                     var.set(0, arch.inputs.get(j-1));
@@ -338,7 +339,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             evaluator = new seakers.vassar.problems.PartitioningAndAssigning.ArchitectureEvaluator();
         }
         else {
-            throw new IllegalArgumentException("Unrecorgnizable problem type: " + problem);
+            throw new IllegalArgumentException("Unrecognizable problem type: " + problem);
         }
 
         if (this.paramsMap.keySet().contains(key)) {
@@ -376,7 +377,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             key = "Aerosols_Clouds";
         }
         else {
-            throw new IllegalArgumentException("Unrecorgnizable problem type: " + problem);
+            throw new IllegalArgumentException("Unrecognizable problem type: " + problem);
         }
 
         if (this.paramsMap.containsKey(key)) {
@@ -399,7 +400,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             architecture = new seakers.vassar.problems.Assigning.Architecture(bitString, numSatellites, (AssigningParams) params);
 
         } else {
-            throw new IllegalArgumentException("Unrecorgnizable problem type: " + problem);
+            throw new IllegalArgumentException("Unrecognizable problem type: " + problem);
         }
 
         return architecture;
@@ -416,7 +417,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             architecture = new seakers.vassar.problems.PartitioningAndAssigning.Architecture(instrPartitioning, orbitAssignation, numSatellites, (Decadal2017AerosolsParams) params);
 
         } else {
-            throw new IllegalArgumentException("Unrecorgnizable problem type: " + problem);
+            throw new IllegalArgumentException("Unrecognizable problem type: " + problem);
         }
 
         return architecture;
@@ -429,6 +430,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         for (Boolean b : boolList) {
             bitString += b ? "1" : "0";
         }
+        System.out.println(bitString);
 
         ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
         Resource res = AEM.getResourcePool().getResource();
@@ -445,7 +447,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         List<Double> outputs = new ArrayList<>();
         outputs.add(science);
         outputs.add(cost);
-
+        System.out.println(result.toString());
         System.out.println("Performance Score: " + science + ", Cost: " + cost);
         return new BinaryInputArchitecture(0, boolList, outputs);
     }
@@ -642,7 +644,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             return critiquer.getCritique();
 
         } else {
-            throw new IllegalArgumentException("Unrecorgnizable problem type: " + problem);
+            throw new IllegalArgumentException("Unrecognizable problem type: " + problem);
         }
     }
 
@@ -852,9 +854,8 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         return explanations;
     }
 
-    private SubobjectiveDetails getSubscoreDetails(BaseParams params, String subobj, Result result) {
+    private SubobjectiveDetails getSubscoreDetailsAttrib(BaseParams params, String subobj, Result result) {
         String parameter = params.subobjectivesToMeasurements.get(subobj);
-
         // Obtain list of attributes for this parameter
         ArrayList<String> attrNames = new ArrayList<>();
         HashMap<String, ArrayList<String>> requirementRules = params.requirementRules.get(subobj);
@@ -927,6 +928,76 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
             }
             catch (JessException e) {
                 System.err.println(e.toString());
+                e.printStackTrace();
+            }
+        }
+
+        return new SubobjectiveDetails(
+                parameter,
+                attrNames,
+                attrValues,
+                scores,
+                takenBy,
+                justifications);
+    }
+
+    private SubobjectiveDetails getSubscoreDetailsCase(BaseParams params, String subobj, Result result) {
+        //System.out.println(subobj);
+        String parameter = params.subobjectivesToMeasurements.get(subobj);
+        //System.out.println(parameter);
+        // Obtain list of attributes for this parameter
+        ArrayList<String> attrNames = new ArrayList<>();
+        //System.out.println("params.requirementRules.get(subobj): " + params.requirementRules.get(subobj));
+        HashMap<String, ArrayList<String>> requirementRules = params.requirementRules.get(subobj);
+        attrNames.addAll(requirementRules.keySet());
+        //System.out.println("attrnames: " + attrNames);
+        // Loop to get rows of details for each data product
+        ArrayList<List<String>> attrValues = new ArrayList<>();
+        ArrayList<Double> scores = new ArrayList<>();
+        ArrayList<String> takenBy = new ArrayList<>();
+        ArrayList<List<String>> justifications = new ArrayList<>();
+//         for (Fact capability: result.getCapabilityList().get(subobj)) {
+//             System.out.println(capability.getFactId()+" "+capability);
+//         }
+        for (Fact explanation: result.getExplanations().get(subobj)) {
+            try {
+                // Try to find the requirement fact!
+                int measurementId = explanation.getSlotValue("requirement-id").intValue(null);
+                if (measurementId == -1) {
+                    continue;
+                }
+                Fact measurement = null;
+                for (Fact capability: result.getCapabilities()) {
+                    if (capability.getFactId() == measurementId) {
+                        measurement = capability;
+                        break;
+                    }
+                }
+                // Start by putting all attribute values into list
+                ArrayList<String> rowValues = new ArrayList<>();
+                for (String attrName: attrNames) {
+                    String attrType = requirementRules.get(attrName).get(0);
+                    // Check type and convert to String if needed
+                    Value attrValue = measurement.getSlotValue(attrName);
+                    rowValues.add(attrValue.toString());
+                }
+                // Get information from explanation fact
+                Double score = explanation.getSlotValue("value").floatValue(null);
+                String satisfiedBy = explanation.getSlotValue("taken-by").stringValue(null);
+                //System.out.println(measurementId+" Score: " + score + " Satisfied by: " + satisfiedBy);
+                ArrayList<String> rowJustifications = new ArrayList<>();
+                String reason = explanation.getSlotValue("attribute").stringValue(null);
+                rowJustifications.add(reason);
+
+                // Put everything in their lists
+                attrValues.add(rowValues);
+                scores.add(score);
+                takenBy.add(satisfiedBy);
+                justifications.add(rowJustifications);
+            }
+            catch (JessException e) {
+                System.err.println(e.toString());
+                e.printStackTrace();
             }
         }
 
@@ -946,7 +1017,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         for (Boolean b : architecture.inputs) {
             bitString += b ? "1" : "0";
         }
-
+        SubobjectiveDetails subobjDetails = new SubobjectiveDetails();
         this.getProblemParameters(problem);
         ArchitectureEvaluationManager AEM = this.architectureEvaluationManagerMap.get(problem);
         Resource res = AEM.getResourcePool().getResource();
@@ -954,8 +1025,13 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         AEM.getResourcePool().freeResource(res);
         AbstractArchitecture absArchitecture = this.getArchitectureBinaryInput(problem, bitString, 1, params);
         Result result = AEM.evaluateArchitectureSync(absArchitecture, "Slow", true);
+        if(params.reqMode.equalsIgnoreCase("CRISP-CASES")) {
+            subobjDetails = getSubscoreDetailsCase(params, subobj, result);
+        } else {
+            subobjDetails = getSubscoreDetailsAttrib(params, subobj, result);
+        }
 
-        return getSubscoreDetails(params, subobj, result);
+        return subobjDetails;
     }
 
     @Override
@@ -973,7 +1049,7 @@ public class VASSARInterfaceHandler implements VASSARInterface.Iface {
         // Evaluate the architecture
         Result result = AEM.evaluateArchitectureSync(absArchitecture, "Slow", true);
 
-        return getSubscoreDetails(params, subobj, result);
+        return getSubscoreDetailsAttrib(params, subobj, result);
     }
 
     private List<SubscoreInformation> getArchScienceInformation(BaseParams params, Result result) {
